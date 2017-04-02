@@ -1,8 +1,7 @@
-inherited frmTimelogMain: TfrmTimelogMain
-  Caption = 'frmTimelogMain'
+inherited frmTimelogYear: TfrmTimelogYear
+  Caption = 'frmTimelogYear'
   ClientHeight = 484
   ClientWidth = 1091
-  OnCreate = FormCreate
   ExplicitWidth = 1107
   ExplicitHeight = 523
   DesignSize = (
@@ -184,11 +183,21 @@ inherited frmTimelogMain: TfrmTimelogMain
     Font.Style = [fsBold]
     ParentFont = False
   end
-  inherited RzLabel1: TRzLabel
-    Left = 20
-    Top = 51
-    ExplicitLeft = 20
-    ExplicitTop = 51
+  object lblSwitchView: TRzURLLabel [9]
+    Left = 954
+    Top = 454
+    Width = 120
+    Height = 14
+    Anchors = [akRight, akBottom]
+    Caption = 'Switch to payroll view'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = 8806462
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsUnderline]
+    ParentFont = False
+    OnClick = lblSwitchViewClick
+    FlyByEnabled = True
   end
   inherited pnlTitle: TRzPanel
     Width = 1091
@@ -216,97 +225,15 @@ inherited frmTimelogMain: TfrmTimelogMain
       Transparent = True
     end
   end
-  inherited grCalendar: TRzStringGrid
-    Left = 20
-    Top = 73
-    Width = 877
-    Height = 325
-    DefaultColWidth = 24
-    DefaultRowHeight = 24
-    DrawingStyle = gdsGradient
-    RowCount = 13
-    Font.Color = 14273211
-    ParentCtl3D = False
-    ParentFont = False
-    TabOrder = 5
-    OnDblClick = grCalendarDblClick
-    OnDrawCell = grCalendarDrawCell
-    FrameVisible = True
-    FixedLineColor = 14273211
-    UseDrawingStyle = False
-    ExplicitLeft = 20
-    ExplicitTop = 73
-    ExplicitWidth = 877
-    ExplicitHeight = 325
-    ColWidths = (
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24)
-    RowHeights = (
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24
-      24)
-  end
-  inherited cmbYear: TRzComboBox
-    Left = 59
-    Top = 45
+  inherited cmbPeriod: TRzComboBox
     AutoCloseUp = True
-    Ctl3D = False
-    FlatButtonColor = 14273211
-    FlatButtons = True
-    FrameColor = 8675134
-    FrameVisible = True
-    FramingPreference = fpCustomFraming
-    ParentCtl3D = False
-    TabOrder = 6
-    OnChange = cmbYearChange
-    OnClick = cmbYearChange
-    ExplicitLeft = 59
-    ExplicitTop = 45
+    FrameHotStyle = fsFlat
+    TabOrder = 5
   end
-  object pnlColorLegend: TRzPanel
+  object pnlColorLegend: TRzPanel [12]
     Left = 110
     Top = 450
-    Width = 895
+    Width = 675
     Height = 23
     Anchors = [akLeft, akBottom]
     BorderOuter = fsNone
@@ -461,10 +388,10 @@ inherited frmTimelogMain: TfrmTimelogMain
       ParentFont = False
     end
   end
-  object pnlIconLegend: TRzPanel
+  object pnlIconLegend: TRzPanel [13]
     Left = 110
     Top = 450
-    Width = 895
+    Width = 659
     Height = 23
     Anchors = [akLeft, akBottom]
     BorderOuter = fsNone
@@ -785,7 +712,7 @@ inherited frmTimelogMain: TfrmTimelogMain
         0FA6FFA32010826CF2376B9A60F0F13C43D80000000049454E44AE426082}
     end
   end
-  object pnlEmployees: TRzPanel
+  object pnlEmployees: TRzPanel [14]
     Left = 910
     Top = 73
     Width = 163
@@ -844,7 +771,7 @@ inherited frmTimelogMain: TfrmTimelogMain
       OnDblClick = lbEmployeesDblClick
     end
   end
-  object rbgViewOptions: TRzRadioGroup
+  object rbgViewOptions: TRzRadioGroup [15]
     Left = 902
     Top = 46
     Width = 172
@@ -864,5 +791,41 @@ inherited frmTimelogMain: TfrmTimelogMain
     TabOrder = 2
     VisualStyle = vsClassic
     OnClick = rbgViewOptionsClick
+  end
+  inherited pnlCalendar: TRzPanel
+    Width = 885
+    Height = 371
+    BorderWidth = 0
+    TabOrder = 6
+    ExplicitWidth = 885
+    ExplicitHeight = 371
+    inherited grCalendar: TRzStringGrid
+      Left = 0
+      Top = 0
+      Width = 885
+      Height = 371
+      DefaultColWidth = 24
+      OnDblClick = grCalendarDblClick
+      OnDrawCell = grCalendarDrawCell
+      ExplicitWidth = 885
+      ExplicitHeight = 371
+      ColWidths = (
+        24
+        24
+        24
+        24
+        24
+        24
+        24
+        24
+        24
+        24
+        24
+        24
+        24
+        24
+        24
+        24)
+    end
   end
 end

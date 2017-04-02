@@ -5,13 +5,11 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BaseForm, Vcl.StdCtrls, RzLabel,
-  Vcl.Imaging.pngimage, Vcl.ExtCtrls, RzPanel, RzBmpBtn, RzButton, RefreshIntf;
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, RzPanel, RzBmpBtn, RzButton, RefreshIntf,
+  DockIntf;
 
 type
-  TForms = (fmTimeLog,fmUndertime,fmForApproval,fmSynchronisation);
-
-type
-  TfrmMain = class(TfrmBase)
+  TfrmMain = class(TfrmBase, IDock)
     pnlTitle: TRzPanel;
     imgClose: TImage;
     lblCaption: TRzLabel;
@@ -48,9 +46,9 @@ type
     procedure btnSynchroniseClick(Sender: TObject);
   private
     { Private declarations }
-    procedure DockForm(const fm: TForms; const title: string = '');
   public
     { Public declarations }
+    procedure DockForm(const fm: TForms; const title: string = '');
   end;
 
 var
@@ -61,7 +59,8 @@ implementation
 {$R *.dfm}
 
 uses
-  TimelogMain, KioskGlobal, TimelogData, UndertimeDetails, ForApproval, SyncMain;
+  TimelogYear, KioskGlobal, TimelogData, UndertimeDetails, ForApproval, SyncMain,
+  TimelogPayPeriod;
 
 procedure TfrmMain.DockForm(const fm: TForms; const title: string);
 var
@@ -91,10 +90,11 @@ begin
 
     // instantiate form
     case fm of
-      fmTimelog: frm := TfrmTimelogMain.Create(Application);
+      fmTimelogYear: frm := TfrmTimelogYear.Create(Application);
       fmUndertime: frm := TfrmUndertimeDetails.Create(Application);
       fmForApproval: frm := TfrmForApproval.Create(Application);
       fmSynchronisation: frm := TfrmSyncMain.Create(Application);
+      fmTimelogPayPeriod: frm := TfrmTimelogPayPeriod.Create(Application);
     else
       frm := TForm.Create(Application);
     end;
@@ -118,13 +118,13 @@ end;
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
   inherited;
-  DockForm(fmTimelog);
+  DockForm(fmTimelogYear);
 end;
 
 procedure TfrmMain.btnTimelogClick(Sender: TObject);
 begin
   inherited;
-  DockForm(fmTimelog);
+  DockForm(fmTimelogYear);
 end;
 
 procedure TfrmMain.btnUndertimeClick(Sender: TObject);

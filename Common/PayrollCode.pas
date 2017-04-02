@@ -2,23 +2,40 @@ unit PayrollCode;
 
 interface
 
+uses
+  System.Classes, System.SysUtils;
+
 type
   TPayrollCode = class
   private
     FCode: string;
     FPeriod: string;
-    FDateFrom: string;
-    FDateUntil: string;
+    FDateFromStr: string;
+    FDateUntilStr: string;
+
+    function GetDateFrom: TDateTime;
+    function GetDateUntil: TDateTime;
+
+    function GetDate(const dateStr: string): TDateTime;
+
   public
     property Code: string read FCode write FCode;
     property Period: string read FPeriod write FPeriod;
-    property DateFrom: string read FDateFrom write FDateFrom;
-    property DateUntil: string read FDateUntil write FDateUntil;
+    property DateFromStr: string read FDateFromStr write FDateFromStr;
+    property DateUntilStr: string read FDateUntilStr write FDateUntilStr;
+    property DateFrom: TDateTime read GetDateFrom;
+    property DateUntil: TDateTime read GetDateUntil;
 
-    constructor Create(const cd, pd, fr, un: string);
+    constructor Create; overload;
+    constructor Create(const cd, pd, fr, un: string); overload;
   end;
 
 implementation
+
+constructor TPayrollCode.Create;
+begin
+  inherited Create;
+end;
 
 constructor TPayrollCode.Create(const cd, pd, fr, un: string);
 begin
@@ -26,8 +43,29 @@ begin
 
   FCode := cd;
   FPeriod := pd;
-  FDateFrom := fr;
-  FDateUntil := un;
+  FDateFromStr := fr;
+  FDateUntilStr := un;
+end;
+
+function TPayrollCode.GetDate(const dateStr: string): TDateTime;
+var
+  list: TStringList;
+begin
+  list := TStringList.Create;
+  list.Delimiter := '-';
+  list.DelimitedText := dateStr;
+
+  Result := EncodeDate(StrToInt(list[0]), StrToInt(list[1]), StrToInt(list[2]));
+end;
+
+function TPayrollCode.GetDateFrom: TDateTime;
+begin
+  Result := GetDate(FDateFromStr);
+end;
+
+function TPayrollCode.GetDateUntil: TDateTime;
+begin
+  Result := GetDate(FDateUntilStr);
 end;
 
 end.

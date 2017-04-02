@@ -144,7 +144,8 @@ begin
     for i := 0 to kk.ActivePayrollCount - 1 do
     begin
       pc := kk.ActivePayrollCodes[i];
-      AddItemValue(pc.Period,pc.Code);
+      // AddItemValue(pc.Period,pc.Code);
+      AddObject(pc.Period,TObject(pc));
     end;
     ItemIndex := 0;
   end;

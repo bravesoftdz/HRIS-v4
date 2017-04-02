@@ -1,4 +1,4 @@
-unit TimelogMain;
+unit TimelogYear;
 
 interface
 
@@ -6,10 +6,10 @@ uses
   System.SysUtils, System.Classes, BaseCalendar, Vcl.Controls, Vcl.StdCtrls,
   RzCmboBx, Vcl.Grids, RzGrids, Vcl.ExtCtrls, RzPanel, RzLabel, Types, Graphics,
   Vcl.Imaging.pngimage, RzRadGrp, Timelog, RzLstBox, RzDBList, Data.DB,
-  Vcl.DBGrids, RzDBGrid, StrUtils;
+  Vcl.DBGrids, RzDBGrid, StrUtils, Vcl.Forms, RzButton, RzRadChk;
 
 type
-  TfrmTimelogMain = class(TfrmBaseCalendar)
+  TfrmTimelogYear = class(TfrmBaseCalendar)
     imgHoliday: TImage;
     imgLeave: TImage;
     imgComplete: TImage;
@@ -54,29 +54,31 @@ type
     RzLabel17: TRzLabel;
     lbEmployees: TRzListBox;
     lblEmployeeName: TRzLabel;
+    lblSwitchView: TRzURLLabel;
     procedure FormCreate(Sender: TObject);
     procedure grCalendarDrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
-    procedure cmbYearChange(Sender: TObject);
     procedure rbgViewOptionsClick(Sender: TObject);
     procedure grCalendarDblClick(Sender: TObject);
     procedure lbEmployeesDblClick(Sender: TObject);
+    procedure lblSwitchViewClick(Sender: TObject);
   private
     { Private declarations }
-    procedure InitForm;
-    procedure InitCalendar;
-    procedure PopulateCalendar(const fetch: boolean = true);
-    procedure ClearCalendar;
     procedure GraphicalView(const log: TTimelog; Rect: TRect);
-    procedure SimpleView(const log: TTimelog; Rect: TRect);
     procedure SetViewOptions;
     procedure PopulateEmployeeList;
   public
     { Public declarations }
+  protected
+    procedure InitForm; override;
+    procedure PopulateCalendar(const fetch: boolean = true); override;
+    procedure PopulatePeriod; override;
+    procedure InitCalendar; override;
+    procedure ClearCalendar; override;
   end;
 
 var
-  frmTimelogMain: TfrmTimelogMain;
+  frmTimelogYear: TfrmTimelogYear;
 
 implementation
 
@@ -85,9 +87,10 @@ implementation
 {$R *.dfm}
 
 uses
-  AttendanceUtils, Timelogs, KioskGlobal, TimelogDetails, TimelogData, Employee;
+  AttendanceUtils, Timelogs, KioskGlobal, TimelogDetails, TimelogData, Employee,
+  DockIntf, TimelogUtils;
 
-procedure TfrmTimelogMain.PopulateEmployeeList;
+procedure TfrmTimelogYear.PopulateEmployeeList;
 var
   emp: TEmployee;
 begin
@@ -112,7 +115,13 @@ begin
   end;
 end;
 
-procedure TfrmTimelogMain.SetViewOptions;
+procedure TfrmTimelogYear.PopulatePeriod;
+begin
+  inherited;
+  PopulateYear(cmbPeriod);
+end;
+
+procedure TfrmTimelogYear.SetViewOptions;
 begin
   with rbgViewOptions, tlogs do
   begin
@@ -125,129 +134,49 @@ begin
   end;
 end;
 
-procedure TfrmTimelogMain.ClearCalendar;
+procedure TfrmTimelogYear.ClearCalendar;
 var
   i, cnt: integer;
   log: TTimelog;
 begin
-  with tlogs, grCalendar do
+  if Assigned(tlogs) then
   begin
-    cnt := LogsCount - 1;
-
-    for i := 0 to cnt do
+    with tlogs, grCalendar do
     begin
-      log := Logs[i];
+      cnt := LogsCount - 1;
 
-      Objects[log.Day,log.Month] := nil;
+      for i := 0 to cnt do
+      begin
+        log := Logs[i];
 
-      Canvas.Brush.Color := Color;
-      Canvas.FillRect(CellRect(log.Day,log.Month));
+        Objects[log.Day,log.Month] := nil;
+
+        Canvas.Brush.Color := Color;
+        Canvas.FillRect(CellRect(log.Day,log.Month));
+      end;
     end;
   end;
 end;
 
-procedure TfrmTimelogMain.InitForm;
+procedure TfrmTimelogYear.InitForm;
 begin
-  grCalendar.ColWidths[0] := 100;
-
-  PopulateYear(cmbYear);
-
-  InitCalendar;
-
   lbEmployees.AddObject(kk.Employee.FullName,kk.Employee);
 end;
 
-procedure TfrmTimelogMain.lbEmployeesDblClick(Sender: TObject);
+procedure TfrmTimelogYear.lbEmployeesDblClick(Sender: TObject);
 begin
   PopulateCalendar(true);
 end;
 
-procedure TfrmTimelogMain.SimpleView(const log: TTimelog; Rect: TRect);
+procedure TfrmTimelogYear.lblSwitchViewClick(Sender: TObject);
+var
+  intf: IDock;
 begin
-  with grCalendar do
-  begin
-    if not log.IsEmpty then
-    begin
-      if log.IsHoliday then
-      begin
-        Canvas.Brush.Color := $00FF972F;
-        Canvas.Pen.Style := psClear;
-        Canvas.Rectangle(
-                Rect.Left-2,
-                Rect.Top+1,
-                Rect.Left+8,
-                Rect.Top+11);
-      end;
-
-      // regular log
-      if not log.NoLog then
-      begin
-        // override
-        if log.HasOverride then Canvas.Brush.Color := $000DFFFF
-        else if log.Complete then Canvas.Brush.Color := $0054A800
-        else Canvas.Brush.Color := $0051FFA8;
-
-        Canvas.Pen.Style := psClear;
-        Canvas.Rectangle(
-                Rect.Left-2,
-                Rect.Top+1,
-                Rect.Left+8,
-                Rect.Top+11);
-      end;
-
-      // undertime
-      if log.HasUndertime then
-      begin
-        Canvas.Brush.Color := $00FF4AA5;
-        Canvas.Pen.Style := psClear;
-        Canvas.Rectangle(
-                Rect.Left-2+11,
-                Rect.Top+1,
-                Rect.Left+8+11,
-                Rect.Top+11);
-
-        if log.UndertimeCount > 1 then
-          Canvas.Rectangle(
-                    Rect.Left-2+11,
-                    Rect.Top+1+11,
-                    Rect.Left+8+11,
-                    Rect.Top+11+11);
-      end;
-
-      // leaves
-      if log.HasLeave then
-      begin
-        Canvas.Brush.Color := $004242FF;
-        Canvas.Pen.Style := psClear;
-        Canvas.Rectangle(
-                Rect.Left-2,
-                Rect.Top+1+11,
-                Rect.Left+8,
-                Rect.Top+11+11);
-
-        if (log.LeaveCount > 1) or (log.LeaveIsWholeDay) then
-          Canvas.Rectangle(
-                  Rect.Left-2+11,
-                  Rect.Top+1+11,
-                  Rect.Left+8+11,
-                  Rect.Top+11+11);
-
-      end;
-    end
-    else if log.IsSunday then
-    begin
-      Canvas.Brush.Color := $0054ABAB;
-      Canvas.Pen.Style := psClear;
-      Canvas.Rectangle(
-                Rect.Left-2,
-                Rect.Top+1,
-                Rect.Left+8,
-                Rect.Top+11);
-    end;
-  end;
+  if Supports(Application.MainForm,IDock,intf) then
+    intf.DockForm(fmTimeLogPayPeriod);
 end;
 
-procedure TfrmTimelogMain.GraphicalView(const log: TTimelog; Rect: TRect);
+procedure TfrmTimelogYear.GraphicalView(const log: TTimelog; Rect: TRect);
 begin
   with grCalendar do
   begin
@@ -279,7 +208,7 @@ begin
   end;
 end;
 
-procedure TfrmTimelogMain.grCalendarDblClick(Sender: TObject);
+procedure TfrmTimelogYear.grCalendarDblClick(Sender: TObject);
 var
   r, c: integer;
 begin
@@ -300,7 +229,7 @@ begin
   end;
 end;
 
-procedure TfrmTimelogMain.grCalendarDrawCell(Sender: TObject; ACol,
+procedure TfrmTimelogYear.grCalendarDrawCell(Sender: TObject; ACol,
   ARow: Integer; Rect: TRect; State: TGridDrawState);
 var
   log: TTimelog;
@@ -311,13 +240,13 @@ begin
     begin
       log := Objects[ACol,ARow] as TTimelog;
 
-      if tlogs.ViewOption = cvoSimple then SimpleView(log,Rect)
+      if tlogs.ViewOption = cvoSimple then SimpleView(grCalendar,log,Rect)
       else GraphicalView(log,Rect);
     end
   end;
 end;
 
-procedure TfrmTimelogMain.InitCalendar;
+procedure TfrmTimelogYear.InitCalendar;
 var
   r, cnt: integer;
   months: array of string;
@@ -330,6 +259,8 @@ begin
     RowCount := 13;
 
     cnt := RowCount - 1;
+
+    ColWidths[0] := 100;
 
     for r := 1 to cnt do Cells[0,r] := months[r-1];
   end;
@@ -346,13 +277,15 @@ begin
 
 end;
 
-procedure TfrmTimelogMain.PopulateCalendar(const fetch: boolean);
+procedure TfrmTimelogYear.PopulateCalendar(const fetch: boolean);
 var
   i, cnt: integer;
   log: TTimelog;
   fd, td: TDate;
   emp: TEmployee;
 begin
+  ClearCalendar;
+
   with tlogs, grCalendar do
   begin
     if fetch then
@@ -360,7 +293,7 @@ begin
       tlogs := TTimelogs.Create;
 
       // date params
-      GetDateParamsYear(StrToInt(cmbYear.Text),fd,td);
+      GetDateParamsYear(StrToInt(cmbPeriod.Text),fd,td);
 
       // id num param
       if lbEmployees.IndexOf(lbEmployees.SelectedItem) > -1 then
@@ -371,10 +304,8 @@ begin
       Retrieve(fd,td,emp.IdNum,emp.LocationCode);
 
       lblEmployeeName.Caption := emp.FullName +
-                                 '  [' +
-                                 emp.IdNum +
-                                 IfThen(emp.LocationCode <> '',' - ' + Trim(emp.LocationCode),'') +
-                                 ']';
+                                 '  ' + emp.IdNum + ' - ' +
+                                 kk.GetLocationNameByCode(Trim(emp.LocationCode));
     end;
 
     SetViewOptions;
@@ -390,26 +321,16 @@ begin
   end;
 end;
 
-procedure TfrmTimelogMain.rbgViewOptionsClick(Sender: TObject);
+procedure TfrmTimelogYear.rbgViewOptionsClick(Sender: TObject);
 begin
   inherited;
-  ClearCalendar;
   PopulateCalendar(false);
 end;
 
-procedure TfrmTimelogMain.cmbYearChange(Sender: TObject);
+procedure TfrmTimelogYear.FormCreate(Sender: TObject);
 begin
   inherited;
-  ClearCalendar;
-  PopulateCalendar;
-end;
-
-procedure TfrmTimelogMain.FormCreate(Sender: TObject);
-begin
-  inherited;
-  InitForm;
   PopulateEmployeeList;
-  PopulateCalendar;
 end;
 
 end.

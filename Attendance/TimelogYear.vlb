@@ -1,9 +1,6 @@
 ﻿[RzLabel1]
 Coordinates=10,282,69,58
 
-[grCalendar]
-Coordinates=118,10,78,58
-
 [imgHoliday]
 Coordinates=178,282,78,58
 
@@ -27,9 +24,6 @@ Coordinates=460,214,57,58
 
 [imgComplete]
 Coordinates=266,282,90,58
-
-[cmbYear]
-Coordinates=424,350,66,36
 
 [Shape2]
 Coordinates=355,350,59,36
@@ -126,5 +120,8 @@ Coordinates=125,146,69,58
 Coordinates=541,282,59,36
 
 []
-Coordinates=10,146,105,58
+Coordinates=118,10,78,58
+
+[cmbPeriod]
+Coordinates=424,350,66,36
 

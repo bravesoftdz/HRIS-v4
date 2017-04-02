@@ -10,11 +10,20 @@ uses
 type
   TfrmBaseCalendar = class(TfrmBaseDocked)
     grCalendar: TRzStringGrid;
-    cmbYear: TRzComboBox;
+    cmbPeriod: TRzComboBox;
+    pnlCalendar: TRzPanel;
+    procedure FormCreate(Sender: TObject);
+    procedure cmbPeriodChange(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+  protected
+    procedure InitForm; virtual; abstract;
+    procedure PopulateCalendar(const fetch: boolean = true); virtual; abstract;
+    procedure PopulatePeriod; virtual; abstract;
+    procedure InitCalendar; virtual; abstract;
+    procedure ClearCalendar; virtual; abstract;
   end;
 
 var
@@ -23,5 +32,21 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmBaseCalendar.cmbPeriodChange(Sender: TObject);
+begin
+  inherited;
+  PopulateCalendar;
+end;
+
+procedure TfrmBaseCalendar.FormCreate(Sender: TObject);
+begin
+  inherited;
+  // Note: DO NOT mess with the sequence
+  InitForm;
+  PopulatePeriod;
+  InitCalendar;
+  PopulateCalendar;
+end;
 
 end.

@@ -68,7 +68,8 @@ implementation
 {$R *.dfm}
 
 uses
-  AppData, Timelogs, TimeLog, KioskGlobal, AttendanceUtils, Entitlement;
+  AppData, Timelogs, TimeLog, KioskGlobal, AttendanceUtils, Entitlement,
+  Employee;
 
 procedure TdmTimelog.DataModuleDestroy(Sender: TObject);
 begin
@@ -122,6 +123,7 @@ end;
 procedure TdmTimelog.dstLogsAfterOpen(DataSet: TDataSet);
 var
   log: TTimelog;
+  emp: TEmployee;
 begin
   with DataSet, tlogs do
   begin
@@ -137,6 +139,16 @@ begin
       log.TimeOutPM := FieldByName('time_out_pm').AsString;
       log.TotalHoursAM := FieldByName('total_hours_am').AsFloat;
       log.TotalHoursPM := FieldByName('total_hours_pm').AsFloat;
+
+      // employee
+      emp := TEmployee.Create;
+      emp.IdNum := FieldByName('id_num').AsString;
+      emp.FirstName := FieldByName('employee_firstname').AsString;
+      emp.LastName := FieldByName('employee_lastname').AsString;
+      emp.LocationCode := FieldByName('location_code').AsString;
+      emp.PositionTypeCode := FieldByName('positiontype_code').AsString;
+
+      log.Employee := emp;
 
       // leave whole day
       if FieldByName('leave_date_full').AsString <> '' then

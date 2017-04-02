@@ -119,8 +119,8 @@
         <DCCReference Include="JvCore.dcp"/>
         <DCCReference Include="JvStdCtrls.dcp"/>
         <DCCReference Include="xmlrtl.dcp"/>
-        <DCCReference Include="TimelogMain.pas">
-            <Form>frmTimelogMain</Form>
+        <DCCReference Include="TimelogYear.pas">
+            <Form>frmTimelogYear</Form>
         </DCCReference>
         <DCCReference Include="..\Base\BaseCalendar.pas">
             <Form>frmBaseCalendar</Form>
@@ -154,6 +154,16 @@
             <Form>frmBaseDocked</Form>
         </DCCReference>
         <DCCReference Include="Entitlement.pas"/>
+        <DCCReference Include="TimelogPayPeriod.pas">
+            <Form>frmTimelogPayPeriod</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="TimelogUtils.pas"/>
+        <DCCReference Include="FilterSelect.pas">
+            <Form>frmFilterSelect</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Filter.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

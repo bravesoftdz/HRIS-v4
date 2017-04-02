@@ -92,6 +92,7 @@ type
     FUndertimes: array of TUndertime;
     FOverrides: array of TOverride;
     FHoliday: THoliday;
+    FHasConflict: boolean;
 
     function GetMaxHours: integer;
     function GetComplete: boolean;
@@ -147,6 +148,7 @@ type
     property LeaveCount: integer read GetLeaveCount;
     property UndertimeCount: integer read GetUndertimeCount;
     property LeaveIsWholeDay: boolean read GetLeaveIsWholeDay;
+    property HasConflict: boolean read FHasConflict write FHasConflict;
 
     procedure AddLeave(const lv: TLeave);
     procedure ClearLeaves;
