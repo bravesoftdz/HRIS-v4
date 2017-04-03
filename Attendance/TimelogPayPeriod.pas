@@ -10,28 +10,10 @@ uses
 
 type
   TfrmTimelogPayPeriod = class(TfrmBaseCalendar)
-    pnlColorLegend: TRzPanel;
-    Shape1: TShape;
-    RzLabel2: TRzLabel;
-    Shape2: TShape;
-    RzLabel3: TRzLabel;
-    Shape3: TShape;
-    RzLabel4: TRzLabel;
-    Shape4: TShape;
-    RzLabel5: TRzLabel;
-    Shape5: TShape;
-    RzLabel6: TRzLabel;
-    Shape6: TShape;
-    RzLabel7: TRzLabel;
-    Shape7: TShape;
-    RzLabel8: TRzLabel;
-    RzLabel16: TRzLabel;
     lblNext: TLabel;
     lblPrevious: TLabel;
     lblStatus: TRzLabel;
     lblSwitchView: TRzLabel;
-    bteFilter: TRzButtonEdit;
-    RzLabel9: TRzLabel;
     procedure cmbPeriodChange(Sender: TObject);
     procedure grCalendarDrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
@@ -39,7 +21,6 @@ type
     procedure lblNextClick(Sender: TObject);
     procedure lblPreviousClick(Sender: TObject);
     procedure lblSwitchViewClick(Sender: TObject);
-    procedure bteFilterButtonClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -63,19 +44,7 @@ implementation
 
 uses
   DockIntf, FormsUtil, PayrollCode, Timelogs, Timelog, AttendanceUtils,
-  TimelogUtils, TimelogDetails, FilterSelect, Filter;
-
-procedure TfrmTimelogPayPeriod.bteFilterButtonClick(Sender: TObject);
-begin
-  with TfrmFilterSelect.Create(nil) do
-  begin
-    ShowModal;
-
-    if ModalResult = mrOK then Free;
-
-  end;
-
-end;
+  TimelogUtils, TimelogDetails, ResourceFilter;
 
 procedure TfrmTimelogPayPeriod.ClearCalendar;
 var
@@ -149,7 +118,7 @@ begin
   begin
     RowCount := 13;
 
-    ColWidths[0] := 223;
+    ColWidths[0] := 195;
 
     pc := TPayrollCode(cmbPeriod.Items.Objects[cmbPeriod.ItemIndex]);
 
@@ -198,10 +167,27 @@ var
   log: TTimelog;
   fd, td: TDate;
   pc: TPayrollCode;
+  showLog: boolean;
+
+  function CompareFilter: boolean;
+  begin
+    Result := false;
+
+    case resFilter.FilterType of
+      ftNone: Result := true;
+      ftBranch: Result := log.Employee.LocationCode = resFilter.Code;
+      ftDepartment: Result := log.Employee.DepartmentCode = resFilter.Code;
+      ftPositionType: Result := log.Employee.PositionTypeCode = resFilter.Code;
+    end;
+
+  end;
+
 begin
   ClearCalendar;
 
   pc := TPayrollCode.Create;
+
+  showLog := false;
 
   with tlogs, grCalendar do
   begin
@@ -212,17 +198,21 @@ begin
     begin
       tlogs := TTimelogs.Create;
 
+      tlogs.PeriodView := pvPayroll;
+
       fd := pc.DateFrom;
       td := pc.DateUntil;
 
       lblStatus.Visible := true;
       cmbPeriod.Enabled := false;
+      bteFilter.Enabled := false;
       Application.ProcessMessages;
 
       Retrieve(fd,td,'','');
 
       lblStatus.Visible := false;
       cmbPeriod.Enabled := true;
+      bteFilter.Enabled := true;
       Application.ProcessMessages;
     end;
 
@@ -233,27 +223,33 @@ begin
 
     r := 1; // grid row
 
+    // log index
     if tlogs.GroupNumber <= 0 then i := 0
-    else i := (tlogs.GroupNumber * tlogs.RecordsPerGroup * days); // log index
+    // else if resFilter.FilterType = ftNone then i := (tlogs.GroupNumber * tlogs.RecordsPerGroup * days)
+    else i := tlogs.CurrentIndex;
 
     while (i <= cnt) and (r <= tlogs.RecordsPerGroup) do
     begin
       c := 1; // grid column
-      while c <= days do
+      while (c <= days) and (i <=cnt) do
       begin
         log := Logs[i];
 
-        if c = 1 then Cells[0,r] := log.Employee.FullName;
+        showLog := CompareFilter;
 
-        Objects[c,r] := log;
-
-        Inc(c);
+        if showLog then
+        begin
+          if c = 1 then Cells[0,r] := log.Employee.FullName; // add employee name
+          Objects[c,r] := log;
+          Inc(c);
+        end;
 
         Inc(i);
-      end;
-      Inc(r);
 
-      tlogs.CurrentIndex := i;
+        tlogs.CurrentIndex := i;
+      end;
+
+      if showLog then Inc(r);
     end; // end while
   end;
 end;

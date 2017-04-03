@@ -1,16 +1,9 @@
 inherited frmTimelogYear: TfrmTimelogYear
   Caption = 'frmTimelogYear'
-  ClientHeight = 484
-  ClientWidth = 1091
-  ExplicitWidth = 1107
-  ExplicitHeight = 523
-  DesignSize = (
-    1091
-    484)
   PixelsPerInch = 96
   TextHeight = 14
   object imgHoliday: TImage [0]
-    Left = 250
+    Left = 858
     Top = 51
     Width = 14
     Height = 14
@@ -31,7 +24,7 @@ inherited frmTimelogYear: TfrmTimelogYear
     Visible = False
   end
   object imgLeave: TImage [1]
-    Left = 172
+    Left = 780
     Top = 51
     Width = 14
     Height = 14
@@ -55,7 +48,7 @@ inherited frmTimelogYear: TfrmTimelogYear
     Visible = False
   end
   object imgComplete: TImage [2]
-    Left = 152
+    Left = 760
     Top = 51
     Width = 14
     Height = 14
@@ -80,7 +73,7 @@ inherited frmTimelogYear: TfrmTimelogYear
     Visible = False
   end
   object imgUndertime: TImage [3]
-    Left = 192
+    Left = 800
     Top = 51
     Width = 14
     Height = 14
@@ -105,7 +98,7 @@ inherited frmTimelogYear: TfrmTimelogYear
     Visible = False
   end
   object imgOverride: TImage [4]
-    Left = 210
+    Left = 818
     Top = 51
     Width = 14
     Height = 14
@@ -128,7 +121,7 @@ inherited frmTimelogYear: TfrmTimelogYear
     Visible = False
   end
   object imgSunday: TImage [5]
-    Left = 230
+    Left = 838
     Top = 51
     Width = 14
     Height = 14
@@ -147,7 +140,7 @@ inherited frmTimelogYear: TfrmTimelogYear
     Visible = False
   end
   object imgIncomplete: TImage [6]
-    Left = 270
+    Left = 878
     Top = 51
     Width = 14
     Height = 14
@@ -169,25 +162,12 @@ inherited frmTimelogYear: TfrmTimelogYear
       F5BF701A400E187803004C4CCFE175D027640000000049454E44AE426082}
     Visible = False
   end
-  object RzLabel16: TRzLabel [7]
-    Left = 20
-    Top = 454
-    Width = 49
-    Height = 14
-    Anchors = [akLeft, akBottom]
-    Caption = 'Legend:'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -12
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-  end
-  object lblSwitchView: TRzURLLabel [9]
+  object lblSwitchView: TRzURLLabel [8]
     Left = 954
     Top = 454
     Width = 120
     Height = 14
+    Hint = 'Switch to payroll view'
     Anchors = [akRight, akBottom]
     Caption = 'Switch to payroll view'
     Font.Charset = DEFAULT_CHARSET
@@ -196,208 +176,24 @@ inherited frmTimelogYear: TfrmTimelogYear
     Font.Name = 'Tahoma'
     Font.Style = [fsUnderline]
     ParentFont = False
+    ParentShowHint = False
+    ShowHint = True
     OnClick = lblSwitchViewClick
     FlyByEnabled = True
   end
-  inherited pnlTitle: TRzPanel
-    Width = 1091
-    BorderSides = []
-    Color = clBlack
-    ExplicitWidth = 1091
-    inherited lblTitle: TRzLabel
-      Width = 47
-      Caption = 'Timelog'
-      ExplicitWidth = 47
-    end
-    object lblEmployeeName: TRzLabel
-      Left = 1069
-      Top = 7
-      Width = 4
-      Height = 14
-      Alignment = taRightJustify
-      Anchors = [akTop, akRight]
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
-      Font.Height = -12
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      ParentFont = False
-      Transparent = True
-    end
+  inherited bteFilter: TRzButtonEdit [11]
+    TabOrder = 7
   end
-  inherited cmbPeriod: TRzComboBox
-    AutoCloseUp = True
-    FrameHotStyle = fsFlat
-    TabOrder = 5
-  end
-  object pnlColorLegend: TRzPanel [12]
+  object pnlIconLegend: TRzPanel [12]
     Left = 110
     Top = 450
-    Width = 675
+    Width = 595
     Height = 23
     Anchors = [akLeft, akBottom]
     BorderOuter = fsNone
     BorderSides = []
     Color = 14273211
-    TabOrder = 1
-    object Shape1: TShape
-      Left = -1
-      Top = 6
-      Width = 12
-      Height = 12
-      Brush.Color = 16750383
-      Pen.Style = psClear
-    end
-    object RzLabel2: TRzLabel
-      Left = 17
-      Top = 5
-      Width = 35
-      Height = 13
-      Caption = 'Holiday'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Shape2: TShape
-      Left = 73
-      Top = 6
-      Width = 12
-      Height = 12
-      Brush.Color = 5548032
-      Pen.Style = psClear
-    end
-    object RzLabel3: TRzLabel
-      Left = 91
-      Top = 5
-      Width = 45
-      Height = 13
-      Caption = 'Complete'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Shape3: TShape
-      Left = 159
-      Top = 6
-      Width = 12
-      Height = 12
-      Brush.Color = 5373864
-      Pen.Style = psClear
-    end
-    object RzLabel4: TRzLabel
-      Left = 177
-      Top = 5
-      Width = 53
-      Height = 13
-      Caption = 'Incomplete'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Shape4: TShape
-      Left = 253
-      Top = 6
-      Width = 12
-      Height = 12
-      Brush.Color = 917503
-      Pen.Style = psClear
-    end
-    object RzLabel5: TRzLabel
-      Left = 271
-      Top = 5
-      Width = 42
-      Height = 13
-      Caption = 'Override'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Shape5: TShape
-      Left = 334
-      Top = 6
-      Width = 12
-      Height = 12
-      Brush.Color = 16730789
-      Pen.Style = psClear
-    end
-    object RzLabel6: TRzLabel
-      Left = 352
-      Top = 5
-      Width = 49
-      Height = 13
-      Caption = 'Undertime'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Shape6: TShape
-      Left = 424
-      Top = 6
-      Width = 12
-      Height = 12
-      Brush.Color = 4342527
-      Pen.Style = psClear
-    end
-    object RzLabel7: TRzLabel
-      Left = 442
-      Top = 5
-      Width = 29
-      Height = 13
-      Caption = 'Leave'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object Shape7: TShape
-      Left = 493
-      Top = 6
-      Width = 12
-      Height = 12
-      Brush.Color = 5548971
-      Pen.Style = psClear
-    end
-    object RzLabel8: TRzLabel
-      Left = 511
-      Top = 5
-      Width = 36
-      Height = 13
-      Caption = 'Sunday'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-  end
-  object pnlIconLegend: TRzPanel [13]
-    Left = 110
-    Top = 450
-    Width = 659
-    Height = 23
-    Anchors = [akLeft, akBottom]
-    BorderOuter = fsNone
-    BorderSides = []
-    Color = 14273211
-    TabOrder = 3
+    TabOrder = 2
     Visible = False
     object RzLabel9: TRzLabel
       Left = 17
@@ -712,7 +508,7 @@ inherited frmTimelogYear: TfrmTimelogYear
         0FA6FFA32010826CF2376B9A60F0F13C43D80000000049454E44AE426082}
     end
   end
-  object pnlEmployees: TRzPanel [14]
+  object pnlEmployees: TRzPanel [13]
     Left = 910
     Top = 73
     Width = 163
@@ -724,7 +520,7 @@ inherited frmTimelogYear: TfrmTimelogYear
     GradientColorStyle = gcsCustom
     GradientColorStart = 12955288
     GradientColorStop = 13284767
-    TabOrder = 4
+    TabOrder = 3
     VisualStyle = vsGradient
     object pnlEmployeesHead: TRzPanel
       Left = 1
@@ -771,7 +567,7 @@ inherited frmTimelogYear: TfrmTimelogYear
       OnDblClick = lbEmployeesDblClick
     end
   end
-  object rbgViewOptions: TRzRadioGroup [15]
+  object rbgViewOptions: TRzRadioGroup [14]
     Left = 902
     Top = 46
     Width = 172
@@ -788,25 +584,53 @@ inherited frmTimelogYear: TfrmTimelogYear
     Items.Strings = (
       'Simple view'
       'Graphical')
-    TabOrder = 2
+    TabOrder = 1
     VisualStyle = vsClassic
     OnClick = rbgViewOptionsClick
   end
-  inherited pnlCalendar: TRzPanel
+  inherited pnlTitle: TRzPanel [15]
+    BorderSides = []
+    Color = clBlack
+    inherited lblTitle: TRzLabel
+      Width = 47
+      Caption = 'Timelog'
+      ExplicitWidth = 47
+    end
+    object lblEmployeeName: TRzLabel
+      Left = 1069
+      Top = 7
+      Width = 4
+      Height = 14
+      Alignment = taRightJustify
+      Anchors = [akTop, akRight]
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+    end
+  end
+  inherited cmbPeriod: TRzComboBox [16]
+    AutoCloseUp = True
+    FrameHotStyle = fsFlat
+    TabOrder = 4
+  end
+  inherited pnlCalendar: TRzPanel [17]
     Width = 885
     Height = 371
-    BorderWidth = 0
-    TabOrder = 6
+    TabOrder = 5
     ExplicitWidth = 885
     ExplicitHeight = 371
     inherited grCalendar: TRzStringGrid
-      Left = 0
-      Top = 0
       Width = 885
       Height = 371
       DefaultColWidth = 24
       OnDblClick = grCalendarDblClick
       OnDrawCell = grCalendarDrawCell
+      ExplicitLeft = 0
+      ExplicitTop = 0
       ExplicitWidth = 885
       ExplicitHeight = 371
       ColWidths = (
@@ -827,5 +651,8 @@ inherited frmTimelogYear: TfrmTimelogYear
         24
         24)
     end
+  end
+  inherited pnlColorLegend: TRzPanel [18]
+    TabOrder = 6
   end
 end

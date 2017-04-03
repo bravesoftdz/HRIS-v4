@@ -3,13 +3,15 @@ unit TimelogUtils;
 interface
 
 uses
-  Timelog, System.Types, RzGrids, Vcl.Graphics, KioskDialogs, System.SysUtils;
+  Timelog, System.Types, RzGrids, Vcl.Graphics, KioskDialogs, System.SysUtils, Timelogs;
 
 procedure SimpleView(const grid: TRzStringGrid; const log: TTimelog; Rect: TRect);
 
 implementation
 
 procedure SimpleView(const grid: TRzStringGrid; const log: TTimelog; Rect: TRect);
+var
+  conflictWidth: integer;
 begin
   try
     with grid do
@@ -19,11 +21,14 @@ begin
         // has conflict
         if log.HasConflict then
         begin
+          if tLogs.PeriodView = pvYear then conflictWidth := 21
+          else conflictWidth := 49;
+
           Canvas.Brush.Color := $008A8AFF;
           Canvas.Rectangle(
                   Rect.Left-4,
                   Rect.Top,
-                  Rect.Left+47,
+                  Rect.Left + conflictWidth,
                   Rect.Top+25);
         end;
 

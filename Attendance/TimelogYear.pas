@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Classes, BaseCalendar, Vcl.Controls, Vcl.StdCtrls,
   RzCmboBx, Vcl.Grids, RzGrids, Vcl.ExtCtrls, RzPanel, RzLabel, Types, Graphics,
   Vcl.Imaging.pngimage, RzRadGrp, Timelog, RzLstBox, RzDBList, Data.DB,
-  Vcl.DBGrids, RzDBGrid, StrUtils, Vcl.Forms, RzButton, RzRadChk;
+  Vcl.DBGrids, RzDBGrid, StrUtils, Vcl.Forms, RzButton, RzRadChk, Vcl.Mask,
+  RzEdit, RzBtnEdt;
 
 type
   TfrmTimelogYear = class(TfrmBaseCalendar)
@@ -16,21 +17,6 @@ type
     imgUndertime: TImage;
     imgOverride: TImage;
     imgSunday: TImage;
-    pnlColorLegend: TRzPanel;
-    Shape1: TShape;
-    RzLabel2: TRzLabel;
-    Shape2: TShape;
-    RzLabel3: TRzLabel;
-    Shape3: TShape;
-    RzLabel4: TRzLabel;
-    Shape4: TShape;
-    RzLabel5: TRzLabel;
-    Shape5: TShape;
-    RzLabel6: TRzLabel;
-    Shape6: TShape;
-    RzLabel7: TRzLabel;
-    Shape7: TShape;
-    RzLabel8: TRzLabel;
     pnlIconLegend: TRzPanel;
     RzLabel9: TRzLabel;
     RzLabel10: TRzLabel;
@@ -47,7 +33,6 @@ type
     Image5: TImage;
     Image6: TImage;
     Image7: TImage;
-    RzLabel16: TRzLabel;
     pnlEmployees: TRzPanel;
     rbgViewOptions: TRzRadioGroup;
     pnlEmployeesHead: TRzPanel;
@@ -55,7 +40,6 @@ type
     lbEmployees: TRzListBox;
     lblEmployeeName: TRzLabel;
     lblSwitchView: TRzURLLabel;
-    procedure FormCreate(Sender: TObject);
     procedure grCalendarDrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
     procedure rbgViewOptionsClick(Sender: TObject);
@@ -75,6 +59,7 @@ type
     procedure PopulatePeriod; override;
     procedure InitCalendar; override;
     procedure ClearCalendar; override;
+    procedure RefreshDisplay; override;
   end;
 
 var
@@ -88,14 +73,30 @@ implementation
 
 uses
   AttendanceUtils, Timelogs, KioskGlobal, TimelogDetails, TimelogData, Employee,
-  DockIntf, TimelogUtils;
+  DockIntf, TimelogUtils, ResourceFilter;
 
 procedure TfrmTimelogYear.PopulateEmployeeList;
 var
   emp: TEmployee;
+
+  function CompareFilter: boolean;
+  begin
+    Result := false;
+
+    case resFilter.FilterType of
+      ftNone: Result := true;
+      ftBranch: Result := emp.LocationCode = resFilter.Code;
+      ftDepartment: Result := emp.DepartmentCode = resFilter.Code;
+      ftPositionType: Result := emp.PositionTypeCode = resFilter.Code;
+    end;
+
+  end;
+
 begin
   with dmTimelog.dstEmployees, lbEmployees do
   begin
+    Clear;
+
     Open;
 
     while not Eof do
@@ -105,9 +106,10 @@ begin
       emp.FirstName := FieldByName('employee_firstname').AsString;
       emp.LastName := FieldByName('employee_lastname').AsString;
       emp.LocationCode := FieldByName('location_code').AsString;
+      emp.DepartmentCode := FieldByName('department_code').AsString;
       emp.PositionTypeCode := FieldByName('positiontype_code').AsString;
 
-      AddObject(emp.FullName,emp);
+      if CompareFilter then AddObject(emp.FullName,emp);
       Next;
     end;
 
@@ -292,6 +294,8 @@ begin
     begin
       tlogs := TTimelogs.Create;
 
+      tlogs.PeriodView := pvYear;
+
       // date params
       GetDateParamsYear(StrToInt(cmbPeriod.Text),fd,td);
 
@@ -327,10 +331,14 @@ begin
   PopulateCalendar(false);
 end;
 
-procedure TfrmTimelogYear.FormCreate(Sender: TObject);
+procedure TfrmTimelogYear.RefreshDisplay;
 begin
-  inherited;
   PopulateEmployeeList;
+  lbEmployees.ItemIndex := 0;
+
+  Application.ProcessMessages;
+
+  PopulateCalendar;
 end;
 
 end.

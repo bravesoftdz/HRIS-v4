@@ -6,6 +6,7 @@ uses
   Timelog, SysUtils;
 
 type TCalendarViewOption = (cvoSimple,cvoGraphical);
+type TPeriodView = (pvYear,pvPayroll);
 
 type
   TTimeLogs = class
@@ -15,6 +16,7 @@ type
     FGroupNumber: integer;
     FRecordsPerGroup: integer;
     FCurrentIndex: integer;
+    FPeriodView: TPeriodView;
 
     function GetLog(const i: integer): TTimelog;
     function GetLogCount: integer;
@@ -31,6 +33,7 @@ type
     property GroupNumber: integer read FGroupNumber write FGroupNumber;
     property RecordsPerGroup: integer read FRecordsPerGroup;
     property CurrentIndex: integer read FCurrentIndex write FCurrentIndex;
+    property PeriodView: TPeriodView read FPeriodView write FPeriodView;
 
     constructor Create;
   end;

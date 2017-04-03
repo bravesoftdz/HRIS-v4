@@ -9,6 +9,7 @@ type
     FFirstName: string;
     FLastName: string;
     FLocationCode: string;
+    FDepartmentCode: string;
     FPositionTypeCode: string;
 
     function GetFullName: string;
@@ -17,6 +18,7 @@ type
     property FirstName: string read FFirstName write FFirstName;
     property LastName: string read FLastName write FLastName;
     property LocationCode: string read FLocationCode write FLocationCode;
+    property DepartmentCode: string read FDepartmentCode write FDepartmentCode;
     property PositionTypeCode: string read FPositionTypeCode write FPositionTypeCode;
     property FullName: string read GetFullName;
 

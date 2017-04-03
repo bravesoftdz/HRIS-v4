@@ -272,7 +272,7 @@ begin
     Application.ProcessMessages;
 
     (DataSource.DataSet as TADODataSet).Parameters.ParamByName('@payroll_code').Value :=
-        Trim(cmbPeriod.Value);
+        TPayrollCode(cmbPeriod.Items.Objects[cmbPeriod.ItemIndex]).Code;
 
     OpenGridDataSources(pnlList);
 

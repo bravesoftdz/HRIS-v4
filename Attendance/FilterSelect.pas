@@ -5,12 +5,13 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BasePopup, Data.DB, Vcl.StdCtrls,
-  Vcl.Grids, Vcl.DBGrids, RzDBGrid, Vcl.Mask, RzEdit, RzLabel,
-  Vcl.Imaging.pngimage, Vcl.ExtCtrls, RzPanel, RzButton, Vcl.ComCtrls, RzTreeVw;
+  Vcl.Grids, Vcl.DBGrids, RzDBGrid, Vcl.Mask, RzEdit, RzLabel, Vcl.ExtCtrls,
+  RzPanel, RzButton, Vcl.ComCtrls, RzTreeVw, ResourceFilter,
+  Vcl.Imaging.pngimage;
 
 type
   TfrmFilterSelect = class(TfrmBasePopup)
-    pnlSearch: TRzPanel;
+    pnlFilter: TRzPanel;
     pnlSelect: TRzPanel;
     btnSelect: TRzShapeButton;
     pnlCancel: TRzPanel;
@@ -24,7 +25,9 @@ type
     procedure tvFilterDblClick(Sender: TObject);
   private
     { Private declarations }
+    Filters: array of TResourceFilter;
     procedure PopulateTree;
+    procedure RetrieveFilters;
   protected
     { Public declarations }
   end;
@@ -37,7 +40,7 @@ implementation
 {$R *.dfm}
 
 uses
-  TimelogData,Filter;
+  TimelogData;
 
 procedure TfrmFilterSelect.PopulateTree;
 var
@@ -49,32 +52,50 @@ var
   begin
     Result := nil;
     for n := 0 to tvFilter.Items.Count - 1 do
-      if Assigned(TFilter(tvFilter.Items[n].Data)) then
+      if not Assigned(tvFilter.Items[n].Data) then
       begin
-        Result := tvFilter.Items[n];
-        Exit;
+        if tvFilter.Items[n].SelectedIndex = Integer(Filters[i].FilterType) then
+        begin
+          Result := tvFilter.Items[n];
+          Exit;
+        end;
       end;
   end;
 
 begin
-  {with tvFilter do
+  with tvFilter do
   begin
-    Items.Clear;
-
-    cnt := Length(groups) - 1;
-
-    // loop through the list and insert items with no parent first
+    cnt := Length(Filters) - 1;
     for i := 0 to cnt do
-      if not groups[i].HasParent then
-        Items.AddObject(nil,groups[i].GroupName,groups[i]);
+      Items.AddChildObject(GetParentNode,Filters[i].Name,Filters[i]);
+  end;
+end;
 
-    // loop through the list and insert child items (with parent)
-    for i := 0 to cnt do
-      if groups[i].HasParent then
-        Items.AddChildObject(GetParentNode,groups[i].GroupName,groups[i]);
+procedure TfrmFilterSelect.RetrieveFilters;
+var
+  rf: TResourceFilter;
+begin
+  with dmTimeLog do
+  begin
+    dstResourceTypes.Open;
 
-    FullExpand;
-  end;  }
+    while not dstResourceTypes.Eof do
+    begin
+      rf := TResourceFilter.Create;
+
+      rf.ResourceTypeName := dstResourceTypes.FieldByName('resource_type').AsString;
+      rf.Code := dstResourceTypes.FieldByName('code').AsString;
+      rf.Name := dstResourceTypes.FieldByName('name').AsString;
+
+      SetLength(Filters,Length(Filters) + 1);
+
+      Filters[Length(Filters) - 1] := rf;
+
+      dstResourceTypes.Next;
+    end;
+
+    dstResourceTypes.Close;
+  end;
 end;
 
 procedure TfrmFilterSelect.tvFilterDblClick(Sender: TObject);
@@ -91,23 +112,20 @@ end;
 
 procedure TfrmFilterSelect.FormClose(Sender: TObject; var Action: TCloseAction);
 var
-  selFilter: TFilter;
+  rf: TResourceFilter;
 begin
   if ModalResult = mrOK then
   begin
-    selFilter := TFilter(tvFilter.Selected.Data);
-    if Assigned(selFilter) then
-    begin
-      filtr.FilterType := selFilter.FilterType;
-      filtr.Value := selFilter.Value;
-    end;
+    rf := TResourceFilter(tvFilter.Selected.Data);
+    if Assigned(rf) then resFilter := rf;
   end;
+
   inherited;
 end;
 
 procedure TfrmFilterSelect.FormCreate(Sender: TObject);
 begin
-
+  RetrieveFilters;
   PopulateTree;
 
   inherited;

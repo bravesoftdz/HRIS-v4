@@ -2,7 +2,7 @@ object dmTimelog: TdmTimelog
   OldCreateOrder = False
   OnDestroy = DataModuleDestroy
   Height = 224
-  Width = 443
+  Width = 508
   object dstLogs: TADODataSet
     Connection = dmApplication.acMain
     CursorType = ctStatic
@@ -328,5 +328,31 @@ object dmTimelog: TdmTimelog
       FixedChar = True
       Size = 5
     end
+  end
+  object dstResourceTypes: TADODataSet
+    AutoCalcFields = False
+    Connection = dmApplication.acMain
+    CursorType = ctStatic
+    LockType = ltReadOnly
+    OnNewRecord = dstUndertimePMNewRecord
+    CommandText = 'hris_dd_get_resource_types;1'
+    CommandType = cmdStoredProc
+    Parameters = <
+      item
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        Direction = pdReturnValue
+        Precision = 10
+        Value = Null
+      end
+      item
+        Name = '@filter_position'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 10
+        Value = 1
+      end>
+    Left = 410
+    Top = 24
   end
 end

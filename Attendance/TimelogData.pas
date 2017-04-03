@@ -46,6 +46,7 @@ type
     dstForApprovaltime_out_am_f: TStringField;
     dstForApprovaltime_in_pm_f: TStringField;
     dstForApprovaltime_out_pm_f: TStringField;
+    dstResourceTypes: TADODataSet;
     procedure dstLogsAfterOpen(DataSet: TDataSet);
     procedure dstUndertimeAMNewRecord(DataSet: TDataSet);
     procedure dstUndertimePMNewRecord(DataSet: TDataSet);
@@ -146,6 +147,7 @@ begin
       emp.FirstName := FieldByName('employee_firstname').AsString;
       emp.LastName := FieldByName('employee_lastname').AsString;
       emp.LocationCode := FieldByName('location_code').AsString;
+      emp.DepartmentCode := FieldByName('department_code').AsString;
       emp.PositionTypeCode := FieldByName('positiontype_code').AsString;
 
       log.Employee := emp;

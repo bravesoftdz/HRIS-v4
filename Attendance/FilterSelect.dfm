@@ -32,10 +32,10 @@ inherited frmFilterSelect: TfrmFilterSelect
     DesignSize = (
       314
       321)
-    object pnlSearch: TRzPanel
+    object pnlFilter: TRzPanel
       Left = 8
       Top = 8
-      Width = 296
+      Width = 298
       Height = 272
       Anchors = [akLeft, akTop, akRight, akBottom]
       BorderOuter = fsNone
@@ -46,7 +46,7 @@ inherited frmFilterSelect: TfrmFilterSelect
       object tvFilter: TRzTreeView
         Left = 1
         Top = 1
-        Width = 294
+        Width = 296
         Height = 270
         SelectionPen.Color = clBtnShadow
         Align = alClient
@@ -59,6 +59,12 @@ inherited frmFilterSelect: TfrmFilterSelect
         SortType = stText
         TabOrder = 0
         OnDblClick = tvFilterDblClick
+        Items.NodeData = {
+          03030000002A0000000000000001000000FFFFFFFFFFFFFFFF00000000000000
+          000000000001064200720061006E0063006800320000000000000002000000FF
+          FFFFFFFFFFFFFF000000000000000000000000010A4400650070006100720074
+          006D0065006E0074002E0000000000000003000000FFFFFFFFFFFFFFFF000000
+          000000000000000000010850006F0073006900740069006F006E00}
       end
     end
     object pnlSelect: TRzPanel
@@ -85,7 +91,7 @@ inherited frmFilterSelect: TfrmFilterSelect
       end
     end
     object pnlCancel: TRzPanel
-      Left = 254
+      Left = 256
       Top = 289
       Width = 50
       Height = 22

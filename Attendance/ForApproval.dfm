@@ -447,6 +447,8 @@ inherited frmForApproval: TfrmForApproval
         Color = 14273211
         TabVisible = False
         Caption = 'Leave'
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object JvLabel3: TJvLabel
           Tag = -1
           Left = 4
