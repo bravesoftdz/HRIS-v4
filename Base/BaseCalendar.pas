@@ -16,21 +16,23 @@ type
     RzLabel16: TRzLabel;
     pnlColorLegend: TRzPanel;
     RzLabel8: TRzLabel;
-    Shape8: TShape;
-    Shape7: TShape;
+    shBusinessTrip: TShape;
+    shLeave: TShape;
     RzLabel7: TRzLabel;
     RzLabel6: TRzLabel;
-    Shape6: TShape;
+    shUndertime: TShape;
     RzLabel5: TRzLabel;
-    Shape5: TShape;
+    shOverride: TShape;
     RzLabel4: TRzLabel;
-    Shape4: TShape;
+    shIncomplete: TShape;
     RzLabel3: TRzLabel;
-    Shape3: TShape;
+    shComplete: TShape;
     RzLabel2: TRzLabel;
-    Shape2: TShape;
+    shHoliday: TShape;
     RzLabel18: TRzLabel;
     bteFilter: TRzButtonEdit;
+    shSunday: TShape;
+    RzLabel19: TRzLabel;
     procedure FormCreate(Sender: TObject);
     procedure cmbPeriodChange(Sender: TObject);
     procedure bteFilterButtonClick(Sender: TObject);
@@ -38,6 +40,7 @@ type
     procedure bteFilterAltBtnClick(Sender: TObject);
   private
     { Private declarations }
+    procedure SetColours;
   public
     { Public declarations }
   protected
@@ -57,7 +60,7 @@ implementation
 {$R *.dfm}
 
 uses
-  FilterSelect, ResourceFilter, TimeLogs;
+  FilterSelect, ResourceFilter, TimeLogs, KioskGlobal;
 
 procedure TfrmBaseCalendar.bteFilterAltBtnClick(Sender: TObject);
 begin
@@ -104,6 +107,8 @@ begin
 
   resFilter := TResourceFilter.Create;
 
+  SetColours;
+
   // Note: DO NOT mess with the sequence
   InitForm;
   PopulatePeriod;
@@ -115,6 +120,24 @@ procedure TfrmBaseCalendar.RefreshDisplay;
 begin
   tlogs.GroupNumber := 0;
   PopulateCalendar(false);
+end;
+
+procedure TfrmBaseCalendar.SetColours;
+begin
+  with kk.Settings.CalendarColours, grCalendar do
+  begin
+    shHoliday.Brush.Color := Holiday;
+    shComplete.Brush.Color := Complete;
+    shIncomplete.Brush.Color := Incomplete;
+    shOverride.Brush.Color := Ovrride;
+    shUndertime.Brush.Color := Undertime;
+    shLeave.Brush.Color := Leave;
+    shBusinessTrip.Brush.Color := BusinessTrip;
+    shSunday.Brush.Color := Sunday;
+
+    // grid lines
+    LineColor := GridLine;
+  end;
 end;
 
 end.

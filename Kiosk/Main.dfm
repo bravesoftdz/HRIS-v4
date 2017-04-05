@@ -110,7 +110,7 @@ inherited frmMain: TfrmMain
     end
     object lblLocation: TRzLabel
       Left = 27
-      Top = 65
+      Top = 42
       Width = 112
       Height = 16
       Caption = 'Location: Unknown.'
@@ -120,6 +120,22 @@ inherited frmMain: TfrmMain
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+    end
+    object lblSettings: TRzLabel
+      Left = 29
+      Top = 79
+      Width = 58
+      Height = 16
+      Cursor = crHandPoint
+      Caption = 'Settings...'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 6572079
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsUnderline]
+      ParentFont = False
+      OnClick = lblSettingsClick
+      FlyByEnabled = True
     end
     object pnlTimelog: TRzPanel
       Left = 758

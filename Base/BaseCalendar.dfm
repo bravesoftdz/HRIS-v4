@@ -93,14 +93,12 @@ inherited frmBaseCalendar: TfrmBaseCalendar
       ParentFont = False
       ScrollBars = ssNone
       TabOrder = 0
+      FrameColor = 8806462
       FrameVisible = True
+      FramingPreference = fpCustomFraming
       FixedLineColor = 14273211
       LineColor = clMenu
       UseDrawingStyle = False
-      ExplicitLeft = 1
-      ExplicitTop = 1
-      ExplicitWidth = 1044
-      ExplicitHeight = 334
       ColWidths = (
         50
         50
@@ -137,7 +135,7 @@ inherited frmBaseCalendar: TfrmBaseCalendar
   object pnlColorLegend: TRzPanel
     Left = 110
     Top = 450
-    Width = 595
+    Width = 731
     Height = 23
     Anchors = [akLeft, akBottom]
     BorderOuter = fsNone
@@ -147,9 +145,9 @@ inherited frmBaseCalendar: TfrmBaseCalendar
     object RzLabel8: TRzLabel
       Left = 511
       Top = 5
-      Width = 36
+      Width = 60
       Height = 13
-      Caption = 'Sunday'
+      Caption = 'Business trip'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -157,20 +155,20 @@ inherited frmBaseCalendar: TfrmBaseCalendar
       Font.Style = []
       ParentFont = False
     end
-    object Shape8: TShape
+    object shBusinessTrip: TShape
       Left = 493
       Top = 6
       Width = 12
       Height = 12
-      Brush.Color = 5548971
+      Brush.Color = 33023
       Pen.Style = psClear
     end
-    object Shape7: TShape
+    object shLeave: TShape
       Left = 424
       Top = 6
       Width = 12
       Height = 12
-      Brush.Color = 4342527
+      Brush.Color = clRed
       Pen.Style = psClear
     end
     object RzLabel7: TRzLabel
@@ -199,7 +197,7 @@ inherited frmBaseCalendar: TfrmBaseCalendar
       Font.Style = []
       ParentFont = False
     end
-    object Shape6: TShape
+    object shUndertime: TShape
       Left = 334
       Top = 6
       Width = 12
@@ -220,7 +218,7 @@ inherited frmBaseCalendar: TfrmBaseCalendar
       Font.Style = []
       ParentFont = False
     end
-    object Shape5: TShape
+    object shOverride: TShape
       Left = 253
       Top = 6
       Width = 12
@@ -241,7 +239,7 @@ inherited frmBaseCalendar: TfrmBaseCalendar
       Font.Style = []
       ParentFont = False
     end
-    object Shape4: TShape
+    object shIncomplete: TShape
       Left = 159
       Top = 6
       Width = 12
@@ -262,7 +260,7 @@ inherited frmBaseCalendar: TfrmBaseCalendar
       Font.Style = []
       ParentFont = False
     end
-    object Shape3: TShape
+    object shComplete: TShape
       Left = 73
       Top = 6
       Width = 12
@@ -283,13 +281,34 @@ inherited frmBaseCalendar: TfrmBaseCalendar
       Font.Style = []
       ParentFont = False
     end
-    object Shape2: TShape
+    object shHoliday: TShape
       Left = -1
       Top = 6
       Width = 12
       Height = 12
       Brush.Color = 16750383
       Pen.Style = psClear
+    end
+    object shSunday: TShape
+      Left = 597
+      Top = 6
+      Width = 12
+      Height = 12
+      Brush.Color = 5548971
+      Pen.Style = psClear
+    end
+    object RzLabel19: TRzLabel
+      Left = 615
+      Top = 5
+      Width = 36
+      Height = 13
+      Caption = 'Sunday'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
     end
   end
   object bteFilter: TRzButtonEdit

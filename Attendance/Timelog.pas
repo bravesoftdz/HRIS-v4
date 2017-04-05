@@ -18,6 +18,7 @@ type
     FRemarks: string;
 
     function GetHalfDay: boolean;
+    function GetIsBusinessTrip: boolean;
   public
     property AmPm: string read FAmPm write FAmPm;
     property LeaveType: string read FLeaveType write FLeaveType;
@@ -25,6 +26,7 @@ type
     property IsHalfDay: boolean read GetHalfDay;
     property Reason: string read FReason write FReason;
     property Remarks: string read FRemarks write FRemarks;
+    property IsBusinessTrip: boolean read GetIsBusinessTrip;
 
     constructor Create(const ap, tp, nm, rs, rm: string);
   end;
@@ -177,6 +179,11 @@ end;
 function TLeave.GetHalfDay;
 begin
   Result := FAmPM <> '';
+end;
+
+function TLeave.GetIsBusinessTrip: boolean;
+begin
+  Result := Trim(FLeaveType) = 'BT';
 end;
 
 constructor TTimelog.Create;

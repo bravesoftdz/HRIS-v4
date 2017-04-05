@@ -15,6 +15,9 @@
         <Projects Include="Synchronisation\Synchronisation.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Tools\Tools.dproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="Kiosk\Kiosk.dproj">
             <Dependencies/>
         </Projects>
@@ -62,6 +65,15 @@
     <Target Name="Synchronisation:Make">
         <MSBuild Projects="Synchronisation\Synchronisation.dproj" Targets="Make"/>
     </Target>
+    <Target Name="Tools">
+        <MSBuild Projects="Tools\Tools.dproj"/>
+    </Target>
+    <Target Name="Tools:Clean">
+        <MSBuild Projects="Tools\Tools.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Tools:Make">
+        <MSBuild Projects="Tools\Tools.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Kiosk">
         <MSBuild Projects="Kiosk\Kiosk.dproj"/>
     </Target>
@@ -72,13 +84,13 @@
         <MSBuild Projects="Kiosk\Kiosk.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Attendance;Base;Common;Synchronisation;Kiosk"/>
+        <CallTarget Targets="Attendance;Base;Common;Synchronisation;Tools;Kiosk"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Attendance:Clean;Base:Clean;Common:Clean;Synchronisation:Clean;Kiosk:Clean"/>
+        <CallTarget Targets="Attendance:Clean;Base:Clean;Common:Clean;Synchronisation:Clean;Tools:Clean;Kiosk:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Attendance:Make;Base:Make;Common:Make;Synchronisation:Make;Kiosk:Make"/>
+        <CallTarget Targets="Attendance:Make;Base:Make;Common:Make;Synchronisation:Make;Tools:Make;Kiosk:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

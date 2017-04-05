@@ -118,6 +118,7 @@
         <DCCReference Include="Jcl.dcp"/>
         <DCCReference Include="JvCore.dcp"/>
         <DCCReference Include="JvStdCtrls.dcp"/>
+        <DCCReference Include="dclstd.dcp"/>
         <DCCReference Include="AppConstants.pas"/>
         <DCCReference Include="AppData.pas">
             <Form>dmApplication</Form>

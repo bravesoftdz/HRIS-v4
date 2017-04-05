@@ -120,6 +120,7 @@
         <DCCReference Include="JvStdCtrls.dcp"/>
         <DCCReference Include="xmlrtl.dcp"/>
         <DCCReference Include="fmx.dcp"/>
+        <DCCReference Include="dclstd.dcp"/>
         <DCCReference Include="TimelogYear.pas">
             <Form>frmTimelogYear</Form>
         </DCCReference>

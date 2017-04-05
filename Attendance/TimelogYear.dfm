@@ -629,8 +629,6 @@ inherited frmTimelogYear: TfrmTimelogYear
       DefaultColWidth = 24
       OnDblClick = grCalendarDblClick
       OnDrawCell = grCalendarDrawCell
-      ExplicitLeft = 0
-      ExplicitTop = 0
       ExplicitWidth = 885
       ExplicitHeight = 371
       ColWidths = (

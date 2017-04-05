@@ -105,14 +105,14 @@ begin
 
   ExecuteSQL(sql);
 
-  // cancel the time log for conflicts
+  // cancel the time log and override for conflicts
   if (status = stApprove) and (ConflictExists) then leaveApp.CancelLogs;
 end;
 
 
 procedure TLeaveApproval.CancelLogs;
 var
-  sql, dt: string;
+  sql, ov, dt: string;
 begin
   // cancel the time logs depending on leave is in the morning, afternoon or whole day
   dt := FormatDateTime('yyyy-mm-dd', FDate);
@@ -136,7 +136,26 @@ begin
            ' WHERE dtr_date = ''' + dt +  '''' +
            '   AND id_num = ''' + FIdNum + '''';
 
-  ExecuteSQL(sql);
+  // include override cancel
+  if FAmPm = 'A' then
+    ov := 'UPDATE dtroverride ' +
+          '   SET is_cancelled = 1' +
+          ' WHERE dtr_date = ''' + dt +  '''' +
+          '   AND id_num = ''' + FIdNum + '''' +
+          '   AND am_pm = ''A'''
+  else if FAmPm = 'P' then
+    ov := 'UPDATE dtroverride ' +
+          '   SET is_cancelled = 1' +
+          ' WHERE dtr_date = ''' + dt +  '''' +
+          '   AND id_num = ''' + FIdNum + '''' +
+          '   AND am_pm = ''P'''
+  else
+    ov := 'UPDATE dtroverride ' +
+          '   SET is_cancelled = 1' +
+          ' WHERE dtr_date = ''' + dt +  '''' +
+          '   AND id_num = ''' + FIdNum + '''';
+
+  ExecuteSQL(sql + ov);
 end;
 
 function TLeaveApproval.ConflictExists: boolean;

@@ -35,6 +35,7 @@ type
     btnUndertime: TRzShapeButton;
     imgUndertimeBtn: TImage;
     lblLocation: TRzLabel;
+    lblSettings: TRzLabel;
     procedure imgCloseClick(Sender: TObject);
     procedure btnTimelogClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -44,8 +45,11 @@ type
     procedure btnForApprovalClick(Sender: TObject);
     procedure btnUndertimeClick(Sender: TObject);
     procedure btnSynchroniseClick(Sender: TObject);
+    procedure lblSettingsClick(Sender: TObject);
   private
     { Private declarations }
+    const MSG_RUN_ONSHOW  =  WM_USER + 1000;
+    procedure HandleRunOnShow(var Msg:TMessage);  message MSG_RUN_ONSHOW;
   public
     { Public declarations }
     procedure DockForm(const fm: TForms; const title: string = '');
@@ -54,13 +58,15 @@ type
 var
   frmMain: TfrmMain;
 
+
+
 implementation
 
 {$R *.dfm}
 
 uses
   TimelogYear, KioskGlobal, TimelogData, UndertimeDetails, ForApproval, SyncMain,
-  TimelogPayPeriod;
+  TimelogPayPeriod, SettingsMain;
 
 procedure TfrmMain.DockForm(const fm: TForms; const title: string);
 var
@@ -95,6 +101,7 @@ begin
       fmForApproval: frm := TfrmForApproval.Create(Application);
       fmSynchronisation: frm := TfrmSyncMain.Create(Application);
       fmTimelogPayPeriod: frm := TfrmTimelogPayPeriod.Create(Application);
+      fmSettings: frm := TfrmSettingsMain.Create(Application);
     else
       frm := TForm.Create(Application);
     end;
@@ -118,13 +125,18 @@ end;
 procedure TfrmMain.FormShow(Sender: TObject);
 begin
   inherited;
-  DockForm(fmTimelogYear);
+  PostMessage(Handle,MSG_RUN_ONSHOW,0,0);
+end;
+
+procedure TfrmMain.HandleRunOnShow(var Msg:TMessage);
+begin
+  DockForm(fmTimelogPayPeriod);
 end;
 
 procedure TfrmMain.btnTimelogClick(Sender: TObject);
 begin
   inherited;
-  DockForm(fmTimelogYear);
+  DockForm(fmTimelogPayPeriod);
 end;
 
 procedure TfrmMain.btnUndertimeClick(Sender: TObject);
@@ -149,6 +161,12 @@ end;
 procedure TfrmMain.imgCloseClick(Sender: TObject);
 begin
   Application.Terminate;
+end;
+
+procedure TfrmMain.lblSettingsClick(Sender: TObject);
+begin
+  inherited;
+  DockForm(fmSettings);
 end;
 
 procedure TfrmMain.pnlTitleMouseDown(Sender: TObject; Button: TMouseButton;

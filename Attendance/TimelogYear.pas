@@ -163,6 +163,7 @@ end;
 procedure TfrmTimelogYear.InitForm;
 begin
   lbEmployees.AddObject(kk.Employee.FullName,kk.Employee);
+  lbEmployees.ItemIndex := 0;
 end;
 
 procedure TfrmTimelogYear.lbEmployeesDblClick(Sender: TObject);
@@ -302,8 +303,7 @@ begin
       // id num param
       if lbEmployees.IndexOf(lbEmployees.SelectedItem) > -1 then
         emp := TEmployee(lbEmployees.Items.Objects[lbEmployees.IndexOf(lbEmployees.SelectedItem)])
-      else
-        emp := kk.Employee;
+      else Exit;
 
       Retrieve(fd,td,emp.IdNum,emp.LocationCode);
 
@@ -334,6 +334,7 @@ end;
 procedure TfrmTimelogYear.RefreshDisplay;
 begin
   PopulateEmployeeList;
+
   lbEmployees.ItemIndex := 0;
 
   Application.ProcessMessages;

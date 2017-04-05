@@ -113,8 +113,8 @@ inherited frmTimelogPayPeriod: TfrmTimelogPayPeriod
       GradientStartColor = 8806462
       OnDblClick = grCalendarDblClick
       OnDrawCell = grCalendarDrawCell
-      ExplicitWidth = 1055
-      ExplicitHeight = 369
+      ExplicitWidth = 1057
+      ExplicitHeight = 371
       ColWidths = (
         52
         52

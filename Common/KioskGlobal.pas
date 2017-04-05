@@ -3,7 +3,7 @@ unit KioskGlobal;
 interface
 
 uses
-  User, SysUtils, DateUtils, PayrollCode, Location, Employee;
+  User, SysUtils, DateUtils, PayrollCode, Location, Employee, Settings;
 
 type
   TKioskGlobal = class
@@ -17,6 +17,7 @@ type
     FMaximumUndertime: integer; // in minutes
     FActivePayrollCodes: array of TPayrollCode;
     FLocations: array of TLocation;
+    FSettings: TSettings;
 
     function GetTimeInAM: double;
     function GetTimeOutAM: double;
@@ -43,6 +44,7 @@ type
     property ActivePayrollCount: integer read GetActivePayrollCount;
     property Locations[const i: integer]: TLocation read GetLocation;
     property LocationCount: integer read GetLocationCount;
+    property Settings: TSettings read FSettings write FSettings;
 
     procedure AddActivePayrollCode(const pc: TPayrollCode);
     procedure AddLocation(const loc: TLocation);
@@ -63,6 +65,7 @@ begin
   begin
     FUser := TUser.Create;
     FEmployee := TEmployee.Create;
+    FSettings := TSettings.Create;
 
     kk := self
   end

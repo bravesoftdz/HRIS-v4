@@ -225,7 +225,7 @@ begin
 
     // log index
     if tlogs.GroupNumber <= 0 then i := 0
-    // else if resFilter.FilterType = ftNone then i := (tlogs.GroupNumber * tlogs.RecordsPerGroup * days)
+    else if resFilter.FilterType = ftNone then i := (tlogs.GroupNumber * tlogs.RecordsPerGroup * days)
     else i := tlogs.CurrentIndex;
 
     while (i <= cnt) and (r <= tlogs.RecordsPerGroup) do

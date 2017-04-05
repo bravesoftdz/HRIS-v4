@@ -2,11 +2,15 @@ unit AppUtil;
 
 interface
 
-uses Winapi.Windows, System.SysUtils, System.Classes, Math;
+uses Winapi.Windows, System.SysUtils, System.Classes, Math, Inifiles;
 
 function GetAppVersionStr(const exeName : string): string;
 function RestoreIfRunning(const appHandle : THandle;
   maxInstances : integer = 1): boolean;
+function GetIniFile: TInifile;
+
+const
+  KIOSK_INI = 'ascc.ini';
 
 implementation
 
@@ -113,6 +117,21 @@ begin
     end;
   end;
 end; (*RestoreIfRunning*)
+
+function GetIniFile: TIniFile;
+var
+  dir, inifile, section: string;
+begin
+  // application path parameter is only used by the windows service
+  dir := GetCurrentDir;
+
+  // specify section
+  section := 'CALENDAR COLOURS';
+
+  inifile := dir + '\' + KIOSK_INI;
+
+  Result := TIniFile.Create(inifile);
+end;
 
 initialization
 //nothing special here

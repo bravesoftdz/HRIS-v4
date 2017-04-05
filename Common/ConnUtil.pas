@@ -2,13 +2,10 @@ unit ConnUtil;
 
 interface
 
-uses SysUtils, IniFiles;
+uses SysUtils, IniFiles, AppUtil;
 
 function GetConnection(const appPath, AUser, APassword: string;
   const core: boolean = false): string;
-
-const
-  KIOSK_INI = 'ascc.ini';
 
 implementation
 

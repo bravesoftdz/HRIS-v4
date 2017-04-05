@@ -48,13 +48,11 @@ uses
 
 constructor TTimeLogs.Create;
 begin
-  if tlogs = nil then
-    tlogs := self
-  else
-  begin
-    FGroupNumber := 0;
-    FRecordsPerGroup := 12;
-  end;
+  if tlogs <> nil then tlogs := self
+  else inherited Create;
+
+  FGroupNumber := 0;
+  FRecordsPerGroup := 12;
 end;
 
 procedure TTimeLogs.Retrieve(const fromDate, toDate: TDate; const idNum, branchCode: string);

@@ -167,7 +167,7 @@ begin
   dmApplication := TdmApplication.Create(Application);
 
   // get version
-  lblVersion.Caption := 'Version ' + GetAppVersionStr(ParamStr(0));
+  lblVersion.Caption := 'v' + GetAppVersionStr(ParamStr(0));
 end;
 
 procedure TfrmLogin.FormShow(Sender: TObject);
@@ -246,6 +246,8 @@ begin
     kk.MaximumUndertime := 120;
 
     GetLocations;
+
+    kk.Settings.Load;
 
     dstConfig.Close;
     dstPayrollCode.Close;

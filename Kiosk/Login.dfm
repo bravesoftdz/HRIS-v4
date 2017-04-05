@@ -25,8 +25,8 @@ inherited frmLogin: TfrmLogin
       ExplicitWidth = 63
     end
     object lblVersion: TLabel
-      Left = 70
-      Top = 75
+      Left = 77
+      Top = 4
       Width = 32
       Height = 13
       Caption = 'V1.0.0'
