@@ -37,7 +37,6 @@ inherited frmBasePopupDetail: TfrmBasePopupDetail
       BorderWidth = 1
       Color = 14273211
       TabOrder = 0
-      ExplicitHeight = 176
     end
     object btnSave: TRzPanel
       Left = 417

@@ -113,6 +113,7 @@ inherited frmTimelogPayPeriod: TfrmTimelogPayPeriod
       GradientStartColor = 8806462
       OnDblClick = grCalendarDblClick
       OnDrawCell = grCalendarDrawCell
+      FixedLineColor = clMenu
       ExplicitWidth = 1057
       ExplicitHeight = 371
       ColWidths = (
@@ -136,6 +137,7 @@ inherited frmTimelogPayPeriod: TfrmTimelogPayPeriod
   end
   inherited bteFilter: TRzButtonEdit
     Left = 365
+    ParentCtl3D = False
     ExplicitLeft = 365
   end
 end

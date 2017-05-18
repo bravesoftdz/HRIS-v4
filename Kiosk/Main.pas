@@ -29,8 +29,8 @@ type
     btnSynchronise: TRzShapeButton;
     imgSynchronise: TImage;
     RzPanel2: TRzPanel;
-    RzShapeButton2: TRzShapeButton;
-    Image2: TImage;
+    btnOverride: TRzShapeButton;
+    imgOverride: TImage;
     pnlUndertime: TRzPanel;
     btnUndertime: TRzShapeButton;
     imgUndertimeBtn: TImage;
@@ -46,6 +46,7 @@ type
     procedure btnUndertimeClick(Sender: TObject);
     procedure btnSynchroniseClick(Sender: TObject);
     procedure lblSettingsClick(Sender: TObject);
+    procedure btnOverrideClick(Sender: TObject);
   private
     { Private declarations }
     const MSG_RUN_ONSHOW  =  WM_USER + 1000;
@@ -66,7 +67,7 @@ implementation
 
 uses
   TimelogYear, KioskGlobal, TimelogData, UndertimeDetails, ForApproval, SyncMain,
-  TimelogPayPeriod, SettingsMain;
+  TimelogPayPeriod, SettingsMain, OverrideDetails;
 
 procedure TfrmMain.DockForm(const fm: TForms; const title: string);
 var
@@ -178,6 +179,25 @@ begin
   begin
     ReleaseCapture;
     Perform(WM_SYSCOMMAND, SC_DRAGMOVE, 0);
+  end;
+end;
+
+procedure TfrmMain.btnOverrideClick(Sender: TObject);
+var
+  intf: IRefresh;
+begin
+  inherited;
+  with TfrmOverrideDetails.Create(self) do
+  begin
+    ShowModal;
+
+    if ModalResult = mrOk then
+    begin
+      if Supports(pnlDockMain.Controls[0] as TForm,IRefresh,intf) then
+        intf.RefreshDisplay;
+    end;
+
+    Free;
   end;
 end;
 

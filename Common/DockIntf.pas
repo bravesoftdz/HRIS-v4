@@ -4,7 +4,7 @@ interface
 
 type
   TForms = (fmTimeLogYear,fmUndertime,fmForApproval,fmSynchronisation,
-            fmTimeLogPayPeriod, fmSettings);
+            fmTimeLogPayPeriod, fmSettings, frmOverride);
 
 type
   IDock = Interface(IInterface)

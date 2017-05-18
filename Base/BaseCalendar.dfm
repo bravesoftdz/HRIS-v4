@@ -93,6 +93,7 @@ inherited frmBaseCalendar: TfrmBaseCalendar
       ParentFont = False
       ScrollBars = ssNone
       TabOrder = 0
+      OnMouseDown = grCalendarMouseDown
       FrameColor = 8806462
       FrameVisible = True
       FramingPreference = fpCustomFraming

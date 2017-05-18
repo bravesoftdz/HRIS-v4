@@ -20,6 +20,7 @@ inherited frmMain: TfrmMain
     BorderOuter = fsNone
     BorderColor = clBlack
     BorderWidth = 1
+    Color = 8675134
     GradientColorStyle = gcsCustom
     GradientColorStart = 6572079
     GradientColorStop = 8675134
@@ -626,11 +627,13 @@ inherited frmMain: TfrmMain
       BorderWidth = 1
       Color = 14075057
       TabOrder = 5
-      object RzShapeButton2: TRzShapeButton
+      object btnOverride: TRzShapeButton
         Left = 2
         Top = 2
         Width = 75
         Height = 56
+        Cursor = crHandPoint
+        Hint = 'View override'
         BorderColor = 8806462
         CaptionPosition = cpXY
         CaptionX = 10
@@ -643,14 +646,18 @@ inherited frmMain: TfrmMain
         Font.Style = [fsBold]
         ParentFont = False
         ParentShowHint = False
-        ShowHint = False
+        ShowHint = True
+        OnClick = btnOverrideClick
       end
-      object Image2: TImage
+      object imgOverride: TImage
         Left = 24
         Top = 7
         Width = 32
         Height = 32
+        Cursor = crHandPoint
+        Hint = 'View override'
         AutoSize = True
+        ParentShowHint = False
         Picture.Data = {
           0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
           00200806000000737A7AF400000006624B474400FF00FF00FFA0BDA793000000
@@ -714,6 +721,8 @@ inherited frmMain: TfrmMain
           6D6F6469667900323031312D30382D32315431323A31363A30312D30363A3030
           0B7FD3AF0000001974455874536F6674776172650041646F626520496D616765
           526561647971C9653C0000000049454E44AE426082}
+        ShowHint = True
+        OnClick = btnOverrideClick
       end
     end
     object pnlUndertime: TRzPanel
@@ -733,6 +742,7 @@ inherited frmMain: TfrmMain
         Width = 75
         Height = 56
         Cursor = crHandPoint
+        Hint = 'View undertime'
         BorderColor = 8806462
         CaptionPosition = cpXY
         CaptionX = 5
@@ -745,7 +755,7 @@ inherited frmMain: TfrmMain
         Font.Style = [fsBold]
         ParentFont = False
         ParentShowHint = False
-        ShowHint = False
+        ShowHint = True
         OnClick = btnUndertimeClick
       end
       object imgUndertimeBtn: TImage
@@ -754,7 +764,9 @@ inherited frmMain: TfrmMain
         Width = 32
         Height = 32
         Cursor = crHandPoint
+        Hint = 'View  undertime'
         AutoSize = True
+        ParentShowHint = False
         Picture.Data = {
           0954506E67496D61676589504E470D0A1A0A0000000D49484452000000200000
           00200806000000737A7AF400000006624B474400FF00FF00FFA0BDA793000000
@@ -806,6 +818,7 @@ inherited frmMain: TfrmMain
           455874646174653A6D6F6469667900323031312D30382D32315431323A31353A
           34302D30363A3030C2756DE20000001974455874536F6674776172650041646F
           626520496D616765526561647971C9653C0000000049454E44AE426082}
+        ShowHint = True
         OnClick = btnUndertimeClick
       end
     end

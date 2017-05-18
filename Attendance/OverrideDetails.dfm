@@ -1,5 +1,5 @@
-inherited frmUndertimeDetails: TfrmUndertimeDetails
-  Caption = 'frmUndertimeDetails'
+inherited frmOverrideDetails: TfrmOverrideDetails
+  Caption = 'frmOverrideDetails'
   ClientHeight = 355
   ClientWidth = 581
   OnCreate = FormCreate
@@ -12,12 +12,12 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
     ExplicitWidth = 581
     inherited imgClose: TImage
       Left = 560
-      ExplicitLeft = 591
+      ExplicitLeft = 560
     end
     inherited lblCaption: TRzLabel
-      Width = 60
-      Caption = 'Undertime'
-      ExplicitWidth = 60
+      Width = 49
+      Caption = 'Override'
+      ExplicitWidth = 49
     end
   end
   inherited pnlMain: TRzPanel
@@ -25,9 +25,6 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
     Height = 334
     ExplicitWidth = 581
     ExplicitHeight = 334
-    DesignSize = (
-      581
-      334)
     object lblDate: TRzLabel [0]
       Left = 19
       Top = 61
@@ -59,7 +56,6 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
       Top = 99
       Width = 541
       Height = 32
-      BorderColor = 6572079
       ExplicitLeft = 19
       ExplicitTop = 99
       ExplicitWidth = 541
@@ -139,8 +135,7 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
       ExplicitLeft = 456
       ExplicitTop = 304
       inherited sbtnSave: TRzShapeButton
-        CaptionX = 10
-        CaptionY = 1
+        CaptionPosition = cpCentered
       end
     end
     inherited btnCancel: TRzPanel
@@ -149,8 +144,7 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
       ExplicitLeft = 510
       ExplicitTop = 304
       inherited sbtnCancel: TRzShapeButton
-        CaptionX = 4
-        CaptionY = 1
+        CaptionPosition = cpCentered
       end
     end
     object pnlAM: TRzPanel
@@ -190,20 +184,6 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         Font.Style = []
         ParentFont = False
       end
-      object lblStatusAM: TRzLabel
-        Left = 224
-        Top = 27
-        Width = 18
-        Height = 14
-        Alignment = taRightJustify
-        Caption = 'xxx'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clMaroon
-        Font.Height = -12
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
       object RzPanel1: TRzPanel
         Left = 1
         Top = 1
@@ -223,9 +203,9 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
           Tag = -1
           Left = 4
           Top = 1
-          Width = 139
+          Width = 128
           Height = 13
-          Caption = 'Morning undertime (AM)'
+          Caption = 'Morning override (AM)'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -11
@@ -241,12 +221,12 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         Top = 82
         Width = 175
         Height = 22
-        DataField = 'undertime_reason_code'
-        DataSource = dmTimelog.dscUndertimeAM
+        DataField = 'override_reason_code'
+        DataSource = dmTimelog.dscOverrideAM
         Enabled = False
-        KeyField = 'undertime_reason_code'
-        ListField = 'undertime_reason_name'
-        ListSource = dmTimelog.dscUndertimeReason
+        KeyField = 'override_reason_code'
+        ListField = 'override_reason_name'
+        ListSource = dmTimelog.dscOverrideReasons
         TabOrder = 4
         FlatButtons = True
         DisabledColor = 14273211
@@ -272,7 +252,7 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         TabOrder = 1
         OnClick = chbAMClick
       end
-      object dteFromAM: TRzDateTimeEdit
+      object dteInAM: TRzDateTimeEdit
         Left = 67
         Top = 58
         Width = 86
@@ -281,7 +261,6 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         EditType = etTime
         Format = 'hh:nn'
         UseFormatToParse = True
-        OnInvalidTime = dteFromAMInvalidTime
         BeepOnInvalidKey = False
         DisabledColor = 14273211
         DropButtonVisible = False
@@ -294,7 +273,7 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         TabOnEnter = True
         TabOrder = 2
       end
-      object dteUntilAM: TRzDateTimeEdit
+      object dteOutAM: TRzDateTimeEdit
         Left = 156
         Top = 58
         Width = 86
@@ -303,7 +282,6 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         EditType = etTime
         Format = 'hh:nn'
         UseFormatToParse = True
-        OnInvalidTime = dteUntilAMInvalidTime
         DisabledColor = 14273211
         DropButtonVisible = False
         Enabled = False
@@ -315,16 +293,16 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         TabOnEnter = True
         TabOrder = 3
       end
-      object chbPaidAM: TRzDBCheckBox
+      object chbCancelledAM: TRzDBCheckBox
         Left = 67
         Top = 110
-        Width = 41
+        Width = 70
         Height = 16
-        DataField = 'is_paid'
-        DataSource = dmTimelog.dscUndertimeAM
+        DataField = 'is_cancelled'
+        DataSource = dmTimelog.dscOverrideAM
         ValueChecked = '1'
         ValueUnchecked = '0'
-        Caption = 'Paid'
+        Caption = 'Cancelled'
         DisabledColor = 14273211
         FillColor = 14273211
         FocusColor = 14273211
@@ -368,20 +346,6 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         Font.Style = []
         ParentFont = False
       end
-      object lblStatusPM: TRzLabel
-        Left = 224
-        Top = 27
-        Width = 18
-        Height = 14
-        Alignment = taRightJustify
-        Caption = 'xxx'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clMaroon
-        Font.Height = -12
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
-      end
       object RzPanel3: TRzPanel
         Left = 1
         Top = 1
@@ -401,9 +365,9 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
           Tag = -1
           Left = 4
           Top = 1
-          Width = 149
+          Width = 138
           Height = 13
-          Caption = 'Afternoon undertime (PM)'
+          Caption = 'Afternoon override (PM)'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWhite
           Font.Height = -11
@@ -419,13 +383,13 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         Top = 82
         Width = 175
         Height = 22
-        DataField = 'undertime_reason_code'
-        DataSource = dmTimelog.dscUndertimePM
+        DataField = 'override_reason_code'
+        DataSource = dmTimelog.dscOverridePM
         Enabled = False
-        KeyField = 'undertime_reason_code'
-        ListField = 'undertime_reason_name'
-        ListSource = dmTimelog.dscUndertimeReason
-        TabOrder = 3
+        KeyField = 'override_reason_code'
+        ListField = 'override_reason_name'
+        ListSource = dmTimelog.dscOverrideReasons
+        TabOrder = 4
         FlatButtons = True
         DisabledColor = 14273211
         FocusColor = clWhite
@@ -433,21 +397,6 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         FrameVisible = True
         FramingPreference = fpCustomFraming
         ReadOnlyColor = 14273211
-      end
-      object chbPaidPM: TRzDBCheckBox
-        Left = 67
-        Top = 110
-        Width = 41
-        Height = 16
-        DataField = 'is_paid'
-        DataSource = dmTimelog.dscUndertimePM
-        ValueChecked = '1'
-        ValueUnchecked = '0'
-        Caption = 'Paid'
-        DisabledColor = 14273211
-        FillColor = 14273211
-        FocusColor = 14273211
-        TabOrder = 4
       end
       object chbPM: TRzCheckBox
         Left = 19
@@ -462,10 +411,10 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         Font.Style = [fsBold]
         ParentFont = False
         State = cbUnchecked
-        TabOrder = 5
+        TabOrder = 1
         OnClick = chbPMClick
       end
-      object dteFromPM: TRzDateTimeEdit
+      object dteInPM: TRzDateTimeEdit
         Left = 67
         Top = 58
         Width = 86
@@ -474,28 +423,6 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         EditType = etTime
         Format = 'hh:nn'
         UseFormatToParse = True
-        OnInvalidTime = dteFromAMInvalidTime
-        DisabledColor = 14273211
-        DropButtonVisible = False
-        Enabled = False
-        FlatButtons = True
-        FrameColor = 6572079
-        FrameVisible = True
-        FramingPreference = fpCustomFraming
-        ReadOnlyColor = 14273211
-        TabOnEnter = True
-        TabOrder = 1
-      end
-      object dteUntilPM: TRzDateTimeEdit
-        Left = 156
-        Top = 58
-        Width = 86
-        Height = 22
-        ShowHowToUseHint = False
-        EditType = etTime
-        Format = 'hh:nn'
-        UseFormatToParse = True
-        OnInvalidTime = dteUntilAMInvalidTime
         DisabledColor = 14273211
         DropButtonVisible = False
         Enabled = False
@@ -507,27 +434,41 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         TabOnEnter = True
         TabOrder = 2
       end
-    end
-    object bteEmployee: TRzButtonEdit
-      Left = 86
-      Top = 18
-      Width = 474
-      Height = 22
-      Text = ''
-      Color = 14273211
-      FrameColor = 6572079
-      FrameVisible = True
-      FramingPreference = fpCustomFraming
-      ReadOnly = True
-      ReadOnlyColor = 14273211
-      TabOrder = 5
-      AltBtnKind = bkFind
-      ButtonKind = bkFind
-      AltBtnWidth = 15
-      ButtonWidth = 15
-      FlatButtons = True
-      HideButtonsOnReadOnly = False
-      OnButtonClick = bteEmployeeButtonClick
+      object dteOutPM: TRzDateTimeEdit
+        Left = 156
+        Top = 58
+        Width = 86
+        Height = 22
+        ShowHowToUseHint = False
+        EditType = etTime
+        Format = 'hh:nn'
+        UseFormatToParse = True
+        DisabledColor = 14273211
+        DropButtonVisible = False
+        Enabled = False
+        FlatButtons = True
+        FrameColor = 6572079
+        FrameVisible = True
+        FramingPreference = fpCustomFraming
+        ReadOnlyColor = 14273211
+        TabOnEnter = True
+        TabOrder = 3
+      end
+      object chbCancelledPM: TRzDBCheckBox
+        Left = 67
+        Top = 110
+        Width = 70
+        Height = 16
+        DataField = 'is_cancelled'
+        DataSource = dmTimelog.dscOverridePM
+        ValueChecked = '1'
+        ValueUnchecked = '0'
+        Caption = 'Cancelled'
+        DisabledColor = 14273211
+        FillColor = 14273211
+        FocusColor = 14273211
+        TabOrder = 5
+      end
     end
     object chbCloseOnSave: TRzCheckBox
       Left = 19
@@ -544,7 +485,28 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
       Font.Style = []
       ParentFont = False
       State = cbChecked
+      TabOrder = 5
+    end
+    object bteEmployee: TRzButtonEdit
+      Left = 86
+      Top = 18
+      Width = 474
+      Height = 22
+      Text = ''
+      Color = 14273211
+      FrameColor = 6572079
+      FrameVisible = True
+      FramingPreference = fpCustomFraming
+      ReadOnly = True
+      ReadOnlyColor = 14273211
       TabOrder = 6
+      AltBtnKind = bkFind
+      ButtonKind = bkFind
+      AltBtnWidth = 15
+      ButtonWidth = 15
+      FlatButtons = True
+      HideButtonsOnReadOnly = False
+      OnButtonClick = bteEmployeeButtonClick
     end
   end
 end

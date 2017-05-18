@@ -29,6 +29,8 @@ type
     function GetEditAllowed: boolean;
     function GetIsNew: boolean;
     function GetStatusName: string;
+    function GetTimeFromFormatted: string;
+    function GetTimeUntilFormatted: string;
 
   public
     property Employee: TEmployee read FEmployee write FEmployee;
@@ -48,6 +50,8 @@ type
     property EditAllowed: boolean read GetEditAllowed;
     property IsNew: boolean read GetIsNew;
     property StatusName: string read GetStatusName;
+    property TimeFromFormatted: string read GetTimeFromFormatted;
+    property TimeUntilFormatted: string read GetTimeUntilFormatted;
 
     procedure Save;
 
@@ -58,7 +62,7 @@ type
 implementation
 
 uses
-  TimelogData;
+  TimelogData, AttendanceUtils;
 
 procedure TUndertimeLog.Save;
 begin
@@ -89,6 +93,16 @@ begin
       dstUndertimePM.Post;
     end;
   end;
+end;
+
+function TUndertimeLog.GetTimeFromFormatted: string;
+begin
+  Result := FormatTimeString(TimeToStr(FTimeFrom));
+end;
+
+function TUndertimeLog.GetTimeUntilFormatted: string;
+begin
+  Result := FormatTimeString(TimeToStr(FTimeUntil));
 end;
 
 class procedure TUndertimeLog.Append(const pd: TPeriod);

@@ -1,8 +1,8 @@
 object dmTimelog: TdmTimelog
   OldCreateOrder = False
   OnDestroy = DataModuleDestroy
-  Height = 224
-  Width = 508
+  Height = 382
+  Width = 676
   object dstLogs: TADODataSet
     Connection = dmApplication.acMain
     CursorType = ctStatic
@@ -44,7 +44,7 @@ object dmTimelog: TdmTimelog
         Size = 3
         Value = ''
       end>
-    Left = 23
+    Left = 47
     Top = 24
   end
   object dstEmployees: TADODataSet
@@ -54,13 +54,13 @@ object dmTimelog: TdmTimelog
     CommandText = 'dtr_get_logs_employees;1'
     CommandType = cmdStoredProc
     Parameters = <>
-    Left = 95
-    Top = 24
+    Left = 159
+    Top = 88
   end
   object dscEmployees: TDataSource
     DataSet = dstEmployees
-    Left = 152
-    Top = 24
+    Left = 248
+    Top = 88
   end
   object dstUndertimeAM: TADODataSet
     AutoCalcFields = False
@@ -96,18 +96,18 @@ object dmTimelog: TdmTimelog
         Size = 12
         Value = ''
       end>
-    Left = 90
-    Top = 80
+    Left = 138
+    Top = 176
   end
   object dscUndertimeAM: TDataSource
     DataSet = dstUndertimeAM
-    Left = 154
-    Top = 80
+    Left = 250
+    Top = 176
   end
   object dscUndertimePM: TDataSource
     DataSet = dstUndertimePM
-    Left = 154
-    Top = 136
+    Left = 250
+    Top = 232
   end
   object dstUndertimePM: TADODataSet
     AutoCalcFields = False
@@ -143,13 +143,13 @@ object dmTimelog: TdmTimelog
         Size = 12
         Value = ''
       end>
-    Left = 90
-    Top = 136
+    Left = 138
+    Top = 232
   end
   object dscUndertimeReason: TDataSource
     DataSet = dstUndertimeReason
-    Left = 319
-    Top = 24
+    Left = 247
+    Top = 288
   end
   object dstUndertimeReason: TADODataSet
     AutoCalcFields = False
@@ -159,13 +159,13 @@ object dmTimelog: TdmTimelog
     CommandText = 'hris_dd_get_undertime_reasons;1'
     CommandType = cmdStoredProc
     Parameters = <>
-    Left = 239
-    Top = 24
+    Left = 135
+    Top = 288
   end
   object dscForApproval: TDataSource
     DataSet = dstForApproval
-    Left = 319
-    Top = 80
+    Left = 247
+    Top = 24
   end
   object dstForApproval: TADODataSet
     Connection = dmApplication.acMain
@@ -191,8 +191,8 @@ object dmTimelog: TdmTimelog
         Size = 15
         Value = ''
       end>
-    Left = 239
-    Top = 80
+    Left = 159
+    Top = 24
     object dstForApprovalentitlement: TWordField
       FieldName = 'entitlement'
     end
@@ -352,7 +352,107 @@ object dmTimelog: TdmTimelog
         Precision = 10
         Value = 1
       end>
-    Left = 410
+    Left = 42
+    Top = 88
+  end
+  object dstOverrideAM: TADODataSet
+    AutoCalcFields = False
+    Connection = dmApplication.acMain
+    CursorType = ctStatic
+    OnNewRecord = dstOverrideAMNewRecord
+    CommandText = 'dtr_get_override_by_date_am;1'
+    CommandType = cmdStoredProc
+    Parameters = <
+      item
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        Direction = pdReturnValue
+        Precision = 10
+        Value = 0
+      end
+      item
+        Name = '@dtr_date_from'
+        Attributes = [paNullable]
+        DataType = ftDateTime
+        Value = 0d
+      end
+      item
+        Name = '@dtr_date_until'
+        Attributes = [paNullable]
+        DataType = ftDateTime
+        Value = 0d
+      end
+      item
+        Name = '@id_num'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 12
+        Value = ''
+      end>
+    Left = 458
     Top = 24
+  end
+  object dscOverrideAM: TDataSource
+    DataSet = dstOverrideAM
+    Left = 570
+    Top = 24
+  end
+  object dscOverridePM: TDataSource
+    DataSet = dstOverridePM
+    Left = 570
+    Top = 80
+  end
+  object dstOverridePM: TADODataSet
+    AutoCalcFields = False
+    Connection = dmApplication.acMain
+    CursorType = ctStatic
+    OnNewRecord = dstOverridePMNewRecord
+    CommandText = 'dtr_get_override_by_date_pm;1'
+    CommandType = cmdStoredProc
+    Parameters = <
+      item
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        Direction = pdReturnValue
+        Precision = 10
+        Value = Null
+      end
+      item
+        Name = '@dtr_date_from'
+        Attributes = [paNullable]
+        DataType = ftDateTime
+        Value = 0d
+      end
+      item
+        Name = '@dtr_date_until'
+        Attributes = [paNullable]
+        DataType = ftDateTime
+        Value = 0d
+      end
+      item
+        Name = '@id_num'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 12
+        Value = ''
+      end>
+    Left = 458
+    Top = 80
+  end
+  object dscOverrideReasons: TDataSource
+    DataSet = dstOverrideReasons
+    Left = 567
+    Top = 136
+  end
+  object dstOverrideReasons: TADODataSet
+    AutoCalcFields = False
+    Connection = dmApplication.acMain
+    CursorType = ctStatic
+    LockType = ltReadOnly
+    CommandText = 'hris_dd_get_override_reasons;1'
+    CommandType = cmdStoredProc
+    Parameters = <>
+    Left = 455
+    Top = 136
   end
 end

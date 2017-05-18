@@ -47,12 +47,20 @@ type
     dstForApprovaltime_in_pm_f: TStringField;
     dstForApprovaltime_out_pm_f: TStringField;
     dstResourceTypes: TADODataSet;
+    dstOverrideAM: TADODataSet;
+    dscOverrideAM: TDataSource;
+    dscOverridePM: TDataSource;
+    dstOverridePM: TADODataSet;
+    dscOverrideReasons: TDataSource;
+    dstOverrideReasons: TADODataSet;
     procedure dstLogsAfterOpen(DataSet: TDataSet);
     procedure dstUndertimeAMNewRecord(DataSet: TDataSet);
     procedure dstUndertimePMNewRecord(DataSet: TDataSet);
     procedure dstForApprovalCalcFields(DataSet: TDataSet);
     procedure dstForApprovalAfterScroll(DataSet: TDataSet);
     procedure DataModuleDestroy(Sender: TObject);
+    procedure dstOverrideAMNewRecord(DataSet: TDataSet);
+    procedure dstOverridePMNewRecord(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -225,6 +233,28 @@ begin
 
       Next;
     end;
+  end;
+end;
+
+procedure TdmTimelog.dstOverrideAMNewRecord(DataSet: TDataSet);
+begin
+  with DataSet do
+  begin
+    FieldByName('am_pm').AsString := 'A';
+    FieldByName('overriden_by').AsString := kk.User.UserId;
+    FieldByName('location_code').AsString := kk.LocationCode;
+    FieldByName('is_cancelled').AsInteger := 0;
+  end;
+end;
+
+procedure TdmTimelog.dstOverridePMNewRecord(DataSet: TDataSet);
+begin
+  with DataSet do
+  begin
+    FieldByName('am_pm').AsString := 'P';
+    FieldByName('overriden_by').AsString := kk.User.UserId;
+    FieldByName('location_code').AsString := kk.LocationCode;
+    FieldByName('is_cancelled').AsInteger := 0;
   end;
 end;
 

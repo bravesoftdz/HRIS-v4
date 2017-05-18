@@ -206,6 +206,7 @@ begin
       lblStatus.Visible := true;
       cmbPeriod.Enabled := false;
       bteFilter.Enabled := false;
+
       Application.ProcessMessages;
 
       Retrieve(fd,td,'','');

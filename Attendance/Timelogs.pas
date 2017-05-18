@@ -9,6 +9,11 @@ type TCalendarViewOption = (cvoSimple,cvoGraphical);
 type TPeriodView = (pvYear,pvPayroll);
 
 type
+  TConflict = class(TTimelog)
+
+  end;
+
+type
   TTimeLogs = class
   private
     FLogs: array of TTimelog;
@@ -17,15 +22,18 @@ type
     FRecordsPerGroup: integer;
     FCurrentIndex: integer;
     FPeriodView: TPeriodView;
+    FConflictLogs: array of TConflict;
 
     function GetLog(const i: integer): TTimelog;
     function GetLogCount: integer;
     function LogExists(const log: TTimelog): boolean;
+    function GetConflict(const i: integer): TConflict;
 
   public
     procedure Retrieve(const fromDate, toDate: TDate; const idNum, branchCode: string);
     procedure AddLog(const log: TTimelog);
     procedure Clear;
+    procedure AddConflict(const conflict: TConflict);
 
     property Logs[const i: integer]: TTimelog read GetLog;
     property LogsCount: integer read GetLogCount;
@@ -34,6 +42,7 @@ type
     property RecordsPerGroup: integer read FRecordsPerGroup;
     property CurrentIndex: integer read FCurrentIndex write FCurrentIndex;
     property PeriodView: TPeriodView read FPeriodView write FPeriodView;
+    property Conflicts[const i: integer]: TConflict read GetConflict;
 
     constructor Create;
   end;
@@ -71,6 +80,12 @@ begin
   end;
 end;
 
+procedure TTimeLogs.AddConflict(const conflict: TConflict);
+begin
+  SetLength(FConflictLogs,Length(FConflictLogs) + 1);
+  FConflictLogs[Length(FConflictLogs) - 1] := conflict;
+end;
+
 procedure TTimeLogs.AddLog(const log: TTimelog);
 begin
   if not LogExists(log) then
@@ -83,6 +98,11 @@ end;
 procedure TTimeLogs.Clear;
 begin
   FLogs := [];
+end;
+
+function TTimeLogs.GetConflict(const i: integer): TConflict;
+begin
+  Result := FConflictLogs[i];
 end;
 
 function TTimeLogs.GetLog(const i: Integer): TTimeLog;
@@ -106,6 +126,9 @@ begin
     begin
       // tag the found log as having a conflict
       l.HasConflict := true;
+
+      // add the conlict
+      AddConflict(TConflict(log));
 
       Result := true;
       Exit;

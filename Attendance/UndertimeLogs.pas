@@ -26,6 +26,7 @@ type
     function IndexOf(const dt: TDate; const pd: TPeriod): integer;
 
     constructor Create;
+    destructor Destroy; override;
   end;
 
 var
@@ -39,6 +40,16 @@ constructor TUndertimeLogs.Create;
 begin
   if utLogs <> nil then utLogs := self
   else inherited Create;
+end;
+
+destructor TUndertimeLogs.Destroy;
+begin
+  utLogs := nil;
+  with dmTimelog do
+  begin
+    dstUndertimeAM.Close;
+    dstUndertimePM.Close;
+  end;
 end;
 
 procedure TUndertimeLogs.Retrieve(const fromDate, toDate: TDate; const idNum: string);

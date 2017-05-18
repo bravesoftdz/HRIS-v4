@@ -167,7 +167,7 @@ begin
   dmApplication := TdmApplication.Create(Application);
 
   // get version
-  lblVersion.Caption := 'v' + GetAppVersionStr(ParamStr(0));
+  lblVersion.Caption := 'ver. ' + GetAppVersionStr(ParamStr(0));
 end;
 
 procedure TfrmLogin.FormShow(Sender: TObject);

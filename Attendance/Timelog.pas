@@ -3,7 +3,7 @@ unit Timelog;
 interface
 
 uses
-  SysUtils, Graphics, DateUtils, Employee;
+  SysUtils, Graphics, DateUtils, Employee, StrUtils;
 
 type
   TPeriod = (pdMorning,pdAfternoon,pdWholeDay);
@@ -38,11 +38,15 @@ type
     FTimeUntil: string;
     FAmPM: string;
     FReason: string;
+    function GetTimeFromFormatted: string;
+    function GetTimeUntilFormatted: string;
   public
     property TimeFrom: string read FTimeFrom write FTimeFrom;
     property TimeUntil: string read FTimeUntil write FTimeUntil;
     property AmPm: string read FAmPM write FAmPM;
     property Reason: string read FReason write FReason;
+    property TimeFromFormatted: string read GetTimeFromFormatted;
+    property TimeUntilFormatted: string read GetTimeUntilFormatted;
 
     constructor Create(const fr, ut, ap, rs: string);
   end;
@@ -54,11 +58,15 @@ type
     FTimeOut: string;
     FAmPM: string;
     FReason: string;
+    function GetTimeInFormatted: string;
+    function GetTimeOutFormatted: string;
   public
     property TimeIn: string read FTimeIn write FTimeIn;
     property TimeOut: string read FTimeOut write FTimeOut;
     property AmPm: string read FAmPm write FAmPm;
     property Reason: string read FReason write FReason;
+    property TimeInFormatted: string read GetTimeInFormatted;
+    property TimeOutFormatted: string read GetTimeOutFormatted;
 
     constructor Create(const i, o, ap, rs: string);
   end;
@@ -117,6 +125,10 @@ type
     function GetLeaveCount: integer;
     function GetUndertimeCount: integer;
     function GetLeaveIsWholeDay: boolean;
+    function GetTimeInAMFormatted: string;
+    function GetTimeInPMFormatted: string;
+    function GetTimeOutAMFormatted: string;
+    function GetTimeOutPMFormatted: string;
 
   public
     property Employee: TEmployee read FEmployee write FEmployee;
@@ -151,6 +163,10 @@ type
     property UndertimeCount: integer read GetUndertimeCount;
     property LeaveIsWholeDay: boolean read GetLeaveIsWholeDay;
     property HasConflict: boolean read FHasConflict write FHasConflict;
+    property TimeInAMFormatted: string read GetTimeInAMFormatted;
+    property TimeOutAMFormatted: string read GetTimeOutAMFormatted;
+    property TimeInPMFormatted: string read GetTimeInPMFormatted;
+    property TimeOutPMFormatted: string read GetTimeOutPMFormatted;
 
     procedure AddLeave(const lv: TLeave);
     procedure ClearLeaves;
@@ -166,6 +182,9 @@ var
   tlog: TTimelog;
 
 implementation
+
+uses
+  AttendanceUtils;
 
 constructor TLeave.Create(const ap, tp, nm, rs, rm: string);
 begin
@@ -354,6 +373,26 @@ begin
   Result := ov;
 end;
 
+function TTimelog.GetTimeInAMFormatted: string;
+begin
+  Result := FormatTimeString(FTimeInAM,true);
+end;
+
+function TTimelog.GetTimeInPMFormatted: string;
+begin
+  Result := FormatTimeString(FTimeInPM,true);
+end;
+
+function TTimelog.GetTimeOutAMFormatted: string;
+begin
+  Result := FormatTimeString(FTimeOutAM,true);
+end;
+
+function TTimelog.GetTimeOutPMFormatted: string;
+begin
+  Result := FormatTimeString(FTimeOutPM,true);
+end;
+
 function TTimelog.GetIsEmpty: boolean;
 begin
   Result := (GetNoLog) and (not GetHasLeave) and (not GetHasUndertime)
@@ -424,6 +463,26 @@ end;
 function THoliday.GetIsNational: boolean;
 begin
   Result := FIsNational = 1;
+end;
+
+function TOverride.GetTimeInFormatted: string;
+begin
+  Result := FormatTimeString(FTimeIn,true);
+end;
+
+function TOverride.GetTimeOutFormatted: string;
+begin
+  Result := FormatTimeString(FTimeOut,true);
+end;
+
+function TUndertime.GetTimeFromFormatted: string;
+begin
+  Result := FormatTimeString(FTimeFrom,true);
+end;
+
+function TUndertime.GetTimeUntilFormatted: string;
+begin
+  Result := FormatTimeString(FTimeUntil,true);
 end;
 
 end.

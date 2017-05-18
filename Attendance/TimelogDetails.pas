@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BasePopup, Vcl.StdCtrls, RzLabel,
-  Vcl.Imaging.pngimage, Vcl.ExtCtrls, RzPanel, Timelog, CollapsiblePanelUtils;
+  Vcl.Imaging.pngimage, Vcl.ExtCtrls, RzPanel, Timelog, CollapsiblePanelUtils,
+  System.ImageList, Vcl.ImgList;
 
 type
   TfrmTimelogDetails = class(TfrmBasePopup)
@@ -68,12 +69,18 @@ type
     lblLvReasonAM: TRzLabel;
     lblLvReasonPM: TRzLabel;
     RzLabel24: TRzLabel;
+    lblExpandOfficeLog: TRzLabel;
+    lblExpandUndertime: TRzLabel;
+    lblExpandLeaves: TRzLabel;
+    imageList: TImageList;
     procedure imgOfficelogClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure lblExpandOfficeLogDblClick(Sender: TObject);
   private
     { Private declarations }
     procedure ExpandPanel(Sender: TObject; panelState: TPanelState);
-    procedure SetCollapsePanelProperties(panel: TRzPanel; image: TImage; var tp: integer);
+    procedure SetCollapsePanelProperties(panel: TRzPanel; image: TImage; var tp: integer); overload;
+    procedure SetCollapsePanelProperties(panel: TRzPanel; labl: TRzLabel; var tp: integer); overload;
     procedure SetUnboundControls;
     procedure SetPanelColors;
   public
@@ -105,6 +112,7 @@ begin
   // image
   with image do
   begin
+    // imageList.GetBitmap(Integer(psExpand),Picture.Icon);
     Picture.LoadFromFile(kk.AppImagesPath + 'expand.png');
     Hint := 'Expand';
     Tag := Integer(psExpand);
@@ -118,7 +126,8 @@ begin
   ht := 0;
 
   // get the source tag
-  sourceTag := (Sender as TImage).Parent.Parent.Tag;
+  if Sender is TImage then sourceTag := (Sender as TImage).Parent.Parent.Tag
+  else sourceTag := (Sender as TRzLabel).Parent.Parent.Tag;
 
   case sourceTag of
     1: ht := 200;
@@ -136,30 +145,64 @@ begin
       begin
         if panelState = psExpand then
         begin
-          (Sender as TImage).Parent.Parent.Top := tp;
-          (Sender as TImage).Parent.Parent.Height := ht;
-          (Sender as TImage).Picture.LoadFromFile(kk.AppImagesPath + 'collapse.png');
-          (Sender as TImage).Hint := 'Collapse';
-          (Sender as TImage).Tag := Integer(psCollapse);
+          if Sender is TImage then
+          begin
+            (Sender as TImage).Parent.Parent.Top := tp;
+            (Sender as TImage).Parent.Parent.Height := ht;
+            (Sender as TImage).Picture.LoadFromFile(kk.AppImagesPath + 'collapse.png');
+            (Sender as TImage).Hint := 'Collapse';
+            (Sender as TImage).Tag := Integer(psCollapse);
+          end
+          else
+          begin
+            (Sender as TRzLabel).Parent.Parent.Top := tp;
+            (Sender as TRzLabel).Parent.Parent.Height := ht;
+            (Sender as TRzLabel).Caption := '-';
+            (Sender as TRzLabel).Hint := 'Collapse';
+            (Sender as TRzLabel).Tag := Integer(psCollapse);
+          end;
         end
         else
         begin
-          (Sender as TImage).Parent.Parent.Height := COLLAPSED_HEIGHT;
-          (Sender as TImage).Picture.LoadFromFile(kk.AppImagesPath + 'expand.png');
-          (Sender as TImage).Hint := 'Expand';
-          (Sender as TImage).Tag := Integer(psExpand);
+          if Sender is TImage then
+          begin
+            (Sender as TImage).Parent.Parent.Height := COLLAPSED_HEIGHT;
+            (Sender as TImage).Picture.LoadFromFile(kk.AppImagesPath + 'expand.png');
+            (Sender as TImage).Hint := 'Expand';
+            (Sender as TImage).Tag := Integer(psExpand);
+          end
+          else
+          begin
+            (Sender as TRzLabel).Parent.Parent.Height := COLLAPSED_HEIGHT;
+            (Sender as TRzLabel).Caption := '+';
+            (Sender as TRzLabel).Hint := 'Expand';
+            (Sender as TRzLabel).Tag := Integer(psExpand);
+          end;
         end;
 
-        tp := (Sender as TImage).Parent.Parent.Top + (Sender as TImage).Parent.Parent.Height + SPACE;
+        if Sender is TImage then
+          tp := (Sender as TImage).Parent.Parent.Top + (Sender as TImage).Parent.Parent.Height + SPACE
+        else
+          tp := (Sender as TRzLabel).Parent.Parent.Top + (Sender as TRzLabel).Parent.Parent.Height + SPACE;
       end
       else
       begin
-        case (pnlMain.Controls[i] as TRzPanel).Tag of
-          1: SetCollapsePanelProperties(pnlOfficelog,imgOfficelog,tp);
-          2: SetCollapsePanelProperties(pnlUndertime,imgUndertime,tp);
-          3: SetCollapsePanelProperties(pnlLeaves,imgLeaves,tp);
+        if Sender is TImage then
+        begin
+          case (pnlMain.Controls[i] as TRzPanel).Tag of
+            1: SetCollapsePanelProperties(pnlOfficelog,imgOfficelog,tp);
+            2: SetCollapsePanelProperties(pnlUndertime,imgUndertime,tp);
+            3: SetCollapsePanelProperties(pnlLeaves,imgLeaves,tp);
+          end;
+        end
+        else
+        begin
+          case (pnlMain.Controls[i] as TRzPanel).Tag of
+            1: SetCollapsePanelProperties(pnlOfficelog,lblExpandOfficeLog,tp);
+            2: SetCollapsePanelProperties(pnlUndertime,lblExpandUndertime,tp);
+            3: SetCollapsePanelProperties(pnlLeaves,lblExpandLeaves,tp);
+          end;
         end;
-
       end;
     end;
   end;
@@ -176,10 +219,10 @@ begin
     lblDate.Caption := 'Log details for ' + FormatDateTime('mmmm dd, yyyy dddd', tlog.Date);
 
     // office log
-    lblInAm.Caption := FormatTimeString(TimeInAM);
-    lblOutAm.Caption := FormatTimeString(TimeOutAM);
-    lblInPm.Caption := FormatTimeString(TimeInPM);
-    lblOutPm.Caption := FormatTimeString(TimeOutPM);
+    lblInAm.Caption := TimeInAMFormatted;
+    lblOutAm.Caption := TimeOutAMFormatted;
+    lblInPm.Caption := TimeInPMFormatted;
+    lblOutPm.Caption := TimeOutPMFormatted;
 
     // override
     if HasOverride then
@@ -187,16 +230,16 @@ begin
       ov := Ovride2[pdMorning];
       if Assigned(ov) then
       begin
-        lblOvInAm.Caption := FormatTimeString(ov.TimeIn);
-        lblOvOutAm.Caption := FormatTimeString(ov.TimeOut);
+        lblOvInAm.Caption := ov.TimeInFormatted;
+        lblOvOutAm.Caption := ov.TimeOutFormatted;
         lblOvAMReason.Caption := ov.Reason;
       end;
 
       ov := Ovride2[pdAfternoon];
       if Assigned(ov) then
       begin
-        lblOvInPm.Caption := FormatTimeString(ov.TimeIn);
-        lblOvOutPm.Caption := FormatTimeString(ov.TimeOut);
+        lblOvInPm.Caption := ov.TimeInFormatted;
+        lblOvOutPm.Caption := ov.TimeOutFormatted;
         lblOvPMReason.Caption := ov.Reason;
       end;
     end;
@@ -207,16 +250,16 @@ begin
       ut := Undertimes2[pdMorning];
       if Assigned(ut) then
       begin
-        lblUTTimeFromAM.Caption := FormatTimeString(ut.TimeFrom);
-        lblUTTimeUntilAM.Caption := FormatTimeString(ut.TimeUntil);
+        lblUTTimeFromAM.Caption := ut.TimeFromFormatted;
+        lblUTTimeUntilAM.Caption := ut.TimeUntilFormatted;
         lblUTTimeReasonAM.Caption := ut.Reason;
       end;
 
       ut := Undertimes2[pdAfternoon];
       if Assigned(ut) then
       begin
-        lblUTTimeFromPM.Caption := FormatTimeString(ut.TimeFrom);
-        lblUTTimeUntilPM.Caption := FormatTimeString(ut.TimeUntil);
+        lblUTTimeFromPM.Caption := ut.TimeFromFormatted;
+        lblUTTimeUntilPM.Caption := ut.TimeUntilFormatted;
         lblUTTimeReasonPM.Caption := ut.Reason;
       end;
     end;
@@ -267,6 +310,28 @@ begin
                 'Note: This date is a local holiday (' + Holiday.Name + ').';
 
     lblHolidayWarning.Visible := IsHoliday;
+  end;
+end;
+
+procedure TfrmTimelogDetails.SetCollapsePanelProperties(panel: TRzPanel;
+  labl: TRzLabel; var tp: integer);
+begin
+  // panel
+  with panel do
+  begin
+    Left := LEFT_ANCHOR;
+    Top  := tp;
+    Height := COLLAPSED_HEIGHT;
+    Visible := true;
+    tp := Top + COLLAPSED_HEIGHT + SPACE;
+  end;
+
+  // image
+  with labl do
+  begin
+    labl.Caption := '+';
+    Hint := 'Expand';
+    Tag := Integer(psExpand);
   end;
 end;
 
@@ -329,11 +394,10 @@ begin
   SetPanelColors;
 
   // expand panel
-  if (not tlog.NoLog) or (tlog.HasOverride) then imgOfficelog.OnClick(imgOfficelog)
-  else if tlog.HasUndertime then imgUndertime.OnClick(imgUndertime)
-  else if tlog.HasLeave then imgLeaves.OnClick(imgLeaves);
-       
-       
+  if (not tlog.NoLog) or (tlog.HasOverride) then lblExpandOfficeLog.OnClick(lblExpandOfficeLog)
+  else if tlog.HasUndertime then lblExpandUndertime.OnClick(lblExpandUndertime)
+  else if tlog.HasLeave then lblExpandLeaves.OnClick(lblExpandLeaves);
+
 end;
 
 procedure TfrmTimelogDetails.imgOfficelogClick(Sender: TObject);
@@ -354,6 +418,26 @@ begin
   else sndr := Sender;
 
   ExpandPanel(sndr,TPanelState((sndr as TImage).Tag));
+end;
+
+procedure TfrmTimelogDetails.lblExpandOfficeLogDblClick(Sender: TObject);
+var
+  sndr: TObject;
+
+  procedure FindExpandLabel;
+  var
+    i: integer;
+  begin
+    for i := 0 to (Sender as TRzPanel).ControlCount - 1 do
+      if (Sender as TRzPanel).Controls[i] is TRzLabel then
+        sndr := (Sender as TRzPanel).Controls[i];
+  end;
+
+begin
+  if Sender is TRzPanel then FindExpandLabel
+  else sndr := Sender;
+
+  ExpandPanel(sndr,TPanelState((sndr as TRzLabel).Tag));
 end;
 
 end.

@@ -27,7 +27,7 @@ inherited frmLogin: TfrmLogin
     object lblVersion: TLabel
       Left = 77
       Top = 4
-      Width = 32
+      Width = 34
       Height = 13
       Caption = 'V1.0.0'
       Color = clWhite
@@ -35,7 +35,7 @@ inherited frmLogin: TfrmLogin
       Font.Color = clWhite
       Font.Height = -11
       Font.Name = 'Tahoma'
-      Font.Style = []
+      Font.Style = [fsBold]
       ParentColor = False
       ParentFont = False
       Transparent = True

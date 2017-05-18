@@ -38,6 +38,8 @@ type
     procedure bteFilterButtonClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure bteFilterAltBtnClick(Sender: TObject);
+    procedure grCalendarMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
   private
     { Private declarations }
     procedure SetColours;
@@ -116,6 +118,13 @@ begin
   PopulateCalendar;
 end;
 
+procedure TfrmBaseCalendar.grCalendarMouseDown(Sender: TObject;
+  Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  inherited;
+  if Button = mbRight then grCalendar.Perform(WM_LBUTTONDOWN, 0, MakeLParam(Word(X), Word(Y)));
+end;
+
 procedure TfrmBaseCalendar.RefreshDisplay;
 begin
   tlogs.GroupNumber := 0;
@@ -137,6 +146,7 @@ begin
 
     // grid lines
     LineColor := GridLine;
+    FixedLineColor := GridLine;
   end;
 end;
 

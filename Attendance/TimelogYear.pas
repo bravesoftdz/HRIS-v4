@@ -50,7 +50,7 @@ type
     { Private declarations }
     procedure GraphicalView(const log: TTimelog; Rect: TRect);
     procedure SetViewOptions;
-    procedure PopulateEmployeeList;
+    procedure PopulateEmployeeList(const clearList: boolean = false);
   public
     { Public declarations }
   protected
@@ -75,7 +75,7 @@ uses
   AttendanceUtils, Timelogs, KioskGlobal, TimelogDetails, TimelogData, Employee,
   DockIntf, TimelogUtils, ResourceFilter;
 
-procedure TfrmTimelogYear.PopulateEmployeeList;
+procedure TfrmTimelogYear.PopulateEmployeeList(const clearList: boolean);
 var
   emp: TEmployee;
 
@@ -95,7 +95,8 @@ var
 begin
   with dmTimelog.dstEmployees, lbEmployees do
   begin
-    Clear;
+    // clear the listbox
+    if clearList then Clear;
 
     Open;
 
@@ -163,6 +164,8 @@ end;
 procedure TfrmTimelogYear.InitForm;
 begin
   lbEmployees.AddObject(kk.Employee.FullName,kk.Employee);
+  PopulateEmployeeList;
+
   lbEmployees.ItemIndex := 0;
 end;
 
@@ -333,7 +336,7 @@ end;
 
 procedure TfrmTimelogYear.RefreshDisplay;
 begin
-  PopulateEmployeeList;
+  PopulateEmployeeList(true);
 
   lbEmployees.ItemIndex := 0;
 

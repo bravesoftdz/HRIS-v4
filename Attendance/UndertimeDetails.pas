@@ -47,7 +47,6 @@ type
     chbCloseOnSave: TRzCheckBox;
     lblStatusAM: TRzLabel;
     lblStatusPM: TRzLabel;
-    procedure FormCreate(Sender: TObject);
     procedure grDateSelectorDrawCell(Sender: TObject; ACol, ARow: Integer;
       Rect: TRect; State: TGridDrawState);
     procedure chbAMClick(Sender: TObject);
@@ -59,6 +58,7 @@ type
       KeepInvalidText: Boolean; var NewTime: TDateTime);
     procedure grDateSelectorClick(Sender: TObject);
     procedure bteEmployeeButtonClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     procedure SetUnboundControls;
@@ -197,15 +197,24 @@ begin
   end
   else
   begin
-    utLogs.Free;
-    empl.Free;
-
-    with dmTimelog do
-    begin
-      dstUndertimeAM.Close;
-      dstUndertimePM.Close;
-    end;
+    utLogs.Destroy;
+    empl.Destroy;
   end;
+end;
+
+procedure TfrmUndertimeDetails.FormCreate(Sender: TObject);
+begin
+  inherited;
+  // set default employee to user
+  empl := TEmployee.Create;
+  empl.IdNum := kk.Employee.IdNum;
+  empl.FirstName := kk.Employee.FirstName;
+  empl.LastName := kk.Employee.LastName;
+
+  Initialise;
+
+  OpenDropdownDataSources(pnlAM);
+  OpenDropdownDataSources(pnlPM);
 end;
 
 procedure TfrmUndertimeDetails.Initialise;
@@ -222,20 +231,6 @@ begin
   EnableControls(chbPM,pdPM);
 
   bteEmployee.Text := empl.FullName;
-end;
-
-procedure TfrmUndertimeDetails.FormCreate(Sender: TObject);
-begin
-  inherited;
-
-  // set default employee to user
-  empl := TEmployee.Create;
-  empl := kk.Employee;
-
-  Initialise;
-
-  OpenDropdownDataSources(pnlAM);
-  OpenDropdownDataSources(pnlPM);
 end;
 
 procedure TfrmUndertimeDetails.grDateSelectorClick(Sender: TObject);
@@ -367,7 +362,6 @@ begin
     // set default selection
     Row := 0;
     Col := def;
-
     LeftCol := def;
   end;
 end;
@@ -379,7 +373,7 @@ begin
   ut := TUndertimeLog.Create;
   ut.DateString := FormatDateTime('yyyy-mm-dd',
         TSelDate(grDateSelector.Objects[grDateSelector.Col,grDateSelector.Row]).Date);
-  
+
   if chbAM.Checked then
   begin
     ut.Period := pdAm;
