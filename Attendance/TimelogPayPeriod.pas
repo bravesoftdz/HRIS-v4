@@ -234,7 +234,7 @@ begin
       c := 1; // grid column
       while (c <= days) and (i <=cnt) do
       begin
-        log := Logs[i];
+        log := Items[i];
 
         showLog := CompareFilter;
 

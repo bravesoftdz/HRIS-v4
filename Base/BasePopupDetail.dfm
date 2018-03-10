@@ -59,7 +59,6 @@ inherited frmBasePopupDetail: TfrmBasePopupDetail
         Height = 18
         Cursor = crHandPoint
         BorderColor = 8806462
-        CaptionPosition = cpXY
         CaptionX = 30
         CaptionY = 8
         Anchors = [akLeft, akTop, akRight, akBottom]
@@ -96,7 +95,6 @@ inherited frmBasePopupDetail: TfrmBasePopupDetail
         Height = 18
         Cursor = crHandPoint
         BorderColor = 8806462
-        CaptionPosition = cpXY
         CaptionX = 30
         CaptionY = 8
         Anchors = [akLeft, akTop, akRight, akBottom]

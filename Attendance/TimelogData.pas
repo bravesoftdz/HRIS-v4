@@ -77,7 +77,7 @@ implementation
 {$R *.dfm}
 
 uses
-  AppData, Timelogs, TimeLog, KioskGlobal, AttendanceUtils, Entitlement,
+  AppData, Timelogs, TimeLog, HRISGlobal, AttendanceUtils, Entitlement,
   Employee;
 
 procedure TdmTimelog.DataModuleDestroy(Sender: TObject);
@@ -166,7 +166,8 @@ begin
                 FieldByName('leavetype_code_full').AsString,
                 FieldByName('leavetype_name_full').AsString,
                 FieldByName('leave_reason_full').AsString,
-                FieldByName('leave_remarks_full').AsString));
+                FieldByName('leave_remarks_full').AsString,
+                FieldByName('is_paid_leave_full').AsInteger = 1));
 
       // leave am
       if FieldByName('leave_date_am').AsString <> '' then
@@ -174,7 +175,8 @@ begin
                 FieldByName('leavetype_code_am').AsString,
                 FieldByName('leavetype_name_am').AsString,
                 FieldByName('leave_reason_am').AsString,
-                FieldByName('leave_remarks_am').AsString));
+                FieldByName('leave_remarks_am').AsString,
+                FieldByName('is_paid_leave_am').AsInteger = 1));
 
       // leave pm
       if FieldByName('leave_date_pm').AsString <> '' then
@@ -182,7 +184,8 @@ begin
                 FieldByName('leavetype_code_pm').AsString,
                 FieldByName('leavetype_name_pm').AsString,
                 FieldByName('leave_reason_pm').AsString,
-                FieldByName('leave_remarks_pm').AsString));
+                FieldByName('leave_remarks_pm').AsString,
+                FieldByName('is_paid_leave_pm').AsInteger = 1));
 
       // undertime am
       if FieldByName('undertime_date_am').AsString <> '' then
@@ -190,8 +193,8 @@ begin
                 FieldByName('time_from_am').AsString,
                 FieldByName('time_until_am').AsString,
                 'A',
-                FieldByName('ut_reason_am').AsString
-                ));
+                FieldByName('ut_reason_am').AsString,
+                FieldByName('is_paid_undertime_am').AsInteger = 1));
 
       // undertime pm
       if FieldByName('undertime_date_pm').AsString <> '' then
@@ -199,8 +202,8 @@ begin
                 FieldByName('time_from_pm').AsString,
                 FieldByName('time_until_pm').AsString,
                 'P',
-                FieldByName('ut_reason_pm').AsString
-                ));
+                FieldByName('ut_reason_pm').AsString,
+                FieldByName('is_paid_undertime_pm').AsInteger = 1));
 
       // override am
       if FieldByName('override_date_am').AsString <> '' then
@@ -241,8 +244,8 @@ begin
   with DataSet do
   begin
     FieldByName('am_pm').AsString := 'A';
-    FieldByName('overriden_by').AsString := kk.User.UserId;
-    FieldByName('location_code').AsString := kk.LocationCode;
+    FieldByName('overriden_by').AsString := HRIS.User.UserId;
+    FieldByName('location_code').AsString := HRIS.LocationCode;
     FieldByName('is_cancelled').AsInteger := 0;
   end;
 end;
@@ -252,8 +255,8 @@ begin
   with DataSet do
   begin
     FieldByName('am_pm').AsString := 'P';
-    FieldByName('overriden_by').AsString := kk.User.UserId;
-    FieldByName('location_code').AsString := kk.LocationCode;
+    FieldByName('overriden_by').AsString := HRIS.User.UserId;
+    FieldByName('location_code').AsString := HRIS.LocationCode;
     FieldByName('is_cancelled').AsInteger := 0;
   end;
 end;
@@ -264,7 +267,7 @@ begin
   begin
     FieldByName('am_pm').AsString := 'A';
     FieldByName('timestatus_code').AsString := 'PND';
-    FieldByName('created_by').AsString := kk.User.UserId;
+    FieldByName('created_by').AsString := HRIS.User.UserId;
     FieldByName('is_paid').AsInteger := 0;
   end;
 end;
@@ -275,7 +278,7 @@ begin
   begin
     FieldByName('am_pm').AsString := 'P';
     FieldByName('timestatus_code').AsString := 'PND';
-    FieldByName('created_by').AsString := kk.User.UserId;
+    FieldByName('created_by').AsString := HRIS.User.UserId;
     FieldByName('is_paid').AsInteger := 0;
   end;
 end;

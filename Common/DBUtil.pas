@@ -3,7 +3,7 @@ unit DBUtil;
 interface
 
 uses
-  AppData, SysUtils, Vcl.ExtCtrls, DB, KioskGlobal, KioskDialogs;
+  AppData, SysUtils, Vcl.ExtCtrls, DB, HRISGlobal, HRISDialogs;
 
 procedure RefreshDataSet(const key: integer; const keyField: string; DataSet: TDataSet); overload;
 procedure RefreshDataSet(const key, keyField: string; DataSet: TDataSet); overload;
@@ -51,8 +51,8 @@ end;
 
 procedure SetCreatedFields(dataSet: TDataSet);
 begin
-  dataSet.FieldByName('created_date').AsDateTime := kk.CurrentDate;
-  dataSet.FieldByName('created_by').AsString := kk.User.UserId;
+  dataSet.FieldByName('created_date').AsDateTime := HRIS.CurrentDate;
+  dataSet.FieldByName('created_by').AsString := HRIS.User.UserId;
 end;
 
 procedure ExecuteSQL(const sql: string);

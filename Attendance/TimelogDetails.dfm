@@ -351,7 +351,7 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       end
       object RzLabel12: TRzLabel
         Left = 19
-        Top = 116
+        Top = 111
         Width = 97
         Height = 14
         Caption = 'Afternoon (PM)'
@@ -364,7 +364,7 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       end
       object RzLabel13: TRzLabel
         Left = 29
-        Top = 56
+        Top = 49
         Width = 65
         Height = 14
         Caption = 'Time from:'
@@ -377,7 +377,7 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       end
       object RzLabel14: TRzLabel
         Left = 29
-        Top = 76
+        Top = 69
         Width = 64
         Height = 14
         Caption = 'Time until:'
@@ -390,19 +390,19 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       end
       object lblUTTimeUntilAM: TRzLabel
         Left = 101
-        Top = 76
+        Top = 69
         Width = 4
         Height = 14
       end
       object lblUTTimeFromAM: TRzLabel
         Left = 101
-        Top = 56
+        Top = 49
         Width = 4
         Height = 14
       end
       object RzLabel17: TRzLabel
         Left = 29
-        Top = 144
+        Top = 132
         Width = 65
         Height = 14
         Caption = 'Time from:'
@@ -415,7 +415,7 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       end
       object RzLabel18: TRzLabel
         Left = 29
-        Top = 164
+        Top = 152
         Width = 64
         Height = 14
         Caption = 'Time until:'
@@ -428,19 +428,19 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       end
       object lblUTTimeUntilPM: TRzLabel
         Left = 101
-        Top = 164
+        Top = 152
         Width = 4
         Height = 14
       end
       object lblUTTimeFromPM: TRzLabel
         Left = 101
-        Top = 144
+        Top = 132
         Width = 4
         Height = 14
       end
       object RzLabel3: TRzLabel
         Left = 172
-        Top = 56
+        Top = 49
         Width = 49
         Height = 14
         Caption = 'Reason:'
@@ -452,15 +452,15 @@ inherited frmTimelogDetails: TfrmTimelogDetails
         ParentFont = False
       end
       object lblUTTimeReasonAM: TRzLabel
-        Left = 228
-        Top = 56
+        Left = 227
+        Top = 49
         Width = 301
-        Height = 34
+        Height = 54
         AutoSize = False
       end
       object RzLabel16: TRzLabel
         Left = 172
-        Top = 144
+        Top = 132
         Width = 49
         Height = 14
         Caption = 'Reason:'
@@ -473,10 +473,48 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       end
       object lblUTTimeReasonPM: TRzLabel
         Left = 228
-        Top = 144
+        Top = 132
         Width = 301
-        Height = 34
+        Height = 54
         AutoSize = False
+      end
+      object RzLabel22: TRzLabel
+        Left = 29
+        Top = 89
+        Width = 30
+        Height = 14
+        Caption = 'Paid:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lblUTAMPaid: TRzLabel
+        Left = 69
+        Top = 89
+        Width = 4
+        Height = 14
+      end
+      object RzLabel26: TRzLabel
+        Left = 29
+        Top = 172
+        Width = 30
+        Height = 14
+        Caption = 'Paid:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lblUTPMPaid: TRzLabel
+        Left = 69
+        Top = 172
+        Width = 4
+        Height = 14
       end
       object pnlUndertimeHead: TRzPanel
         Left = 1
@@ -601,7 +639,7 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       end
       object RzLabel20: TRzLabel
         Left = 29
-        Top = 56
+        Top = 49
         Width = 33
         Height = 14
         Caption = 'Type:'
@@ -614,7 +652,7 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       end
       object RzLabel21: TRzLabel
         Left = 19
-        Top = 116
+        Top = 111
         Width = 97
         Height = 14
         Caption = 'Afternoon (PM)'
@@ -627,13 +665,13 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       end
       object lblLvTypeAM: TRzLabel
         Left = 83
-        Top = 56
+        Top = 49
         Width = 4
         Height = 14
       end
       object RzLabel23: TRzLabel
         Left = 217
-        Top = 56
+        Top = 49
         Width = 56
         Height = 14
         Caption = 'Remarks:'
@@ -646,15 +684,15 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       end
       object lblLvRemarksAM: TRzLabel
         Left = 279
-        Top = 56
+        Top = 49
         Width = 270
-        Height = 45
+        Height = 54
         AutoSize = False
         WordWrap = True
       end
       object RzLabel25: TRzLabel
         Left = 29
-        Top = 144
+        Top = 132
         Width = 33
         Height = 14
         Caption = 'Type:'
@@ -667,13 +705,13 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       end
       object lblLvTypePM: TRzLabel
         Left = 83
-        Top = 144
+        Top = 132
         Width = 4
         Height = 14
       end
       object RzLabel27: TRzLabel
         Left = 217
-        Top = 144
+        Top = 132
         Width = 56
         Height = 14
         Caption = 'Remarks:'
@@ -686,15 +724,15 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       end
       object lblLvRemarksPM: TRzLabel
         Left = 279
-        Top = 144
+        Top = 132
         Width = 270
-        Height = 45
+        Height = 54
         AutoSize = False
         WordWrap = True
       end
       object RzLabel29: TRzLabel
         Left = 29
-        Top = 76
+        Top = 69
         Width = 49
         Height = 14
         Caption = 'Reason:'
@@ -707,19 +745,19 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       end
       object lblLvReasonAM: TRzLabel
         Left = 83
-        Top = 76
+        Top = 69
         Width = 4
         Height = 14
       end
       object lblLvReasonPM: TRzLabel
         Left = 83
-        Top = 164
+        Top = 152
         Width = 4
         Height = 14
       end
       object RzLabel24: TRzLabel
         Left = 29
-        Top = 164
+        Top = 152
         Width = 49
         Height = 14
         Caption = 'Reason:'
@@ -729,6 +767,44 @@ inherited frmTimelogDetails: TfrmTimelogDetails
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ParentFont = False
+      end
+      object RzLabel28: TRzLabel
+        Left = 29
+        Top = 89
+        Width = 30
+        Height = 14
+        Caption = 'Paid:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lblPaidAM: TRzLabel
+        Left = 67
+        Top = 89
+        Width = 4
+        Height = 14
+      end
+      object RzLabel30: TRzLabel
+        Left = 29
+        Top = 172
+        Width = 30
+        Height = 14
+        Caption = 'Paid:'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object lblPaidPM: TRzLabel
+        Left = 67
+        Top = 172
+        Width = 4
+        Height = 14
       end
       object pnlLeavesHead: TRzPanel
         Left = 1
@@ -833,7 +909,7 @@ inherited frmTimelogDetails: TfrmTimelogDetails
     Left = 536
     Top = 301
     Bitmap = {
-      494C010102000800140010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101020008001C0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

@@ -123,7 +123,7 @@ begin
       end;
     end;    // end width
   except
-    on E: Exception do ShowErrorBox('An error has occured while configuring the grid.');
+    on E: Exception do ShowErrorBox('An error has occured while rendering the grid.');
   end;
 end;
 

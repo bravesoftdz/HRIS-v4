@@ -114,8 +114,8 @@
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="vcl.dcp"/>
         <DCCReference Include="RaizeComponentsVcl.dcp"/>
-        <DCCReference Include="..\Base\BaseDocked.pas">
-            <Form>frmBaseDocked</Form>
+        <DCCReference Include="..\Base\BaseDocked2.pas">
+            <Form>frmBaseDocked2</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="..\Base\BaseForm.pas">
@@ -522,7 +522,6 @@
                 <Platform value="iOSDevice32">False</Platform>
                 <Platform value="iOSDevice64">False</Platform>
                 <Platform value="iOSSimulator">False</Platform>
-                <Platform value="Linux64">False</Platform>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
             </Platforms>

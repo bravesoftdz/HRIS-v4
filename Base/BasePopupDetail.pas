@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BasePopup, RzButton, RzTabs,
-  Vcl.StdCtrls, RzLabel, Vcl.Imaging.pngimage, Vcl.ExtCtrls, RzPanel, KioskDialogs;
+  Vcl.StdCtrls, RzLabel, Vcl.Imaging.pngimage, Vcl.ExtCtrls, RzPanel, HRISDialogs;
 
 type
   TfrmBasePopupDetail = class(TfrmBasePopup)
@@ -25,9 +25,6 @@ type
   public
     { Public declarations }
   end;
-
-var
-  frmBasePopupDetail: TfrmBasePopupDetail;
 
 implementation
 

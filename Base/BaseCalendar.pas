@@ -62,7 +62,7 @@ implementation
 {$R *.dfm}
 
 uses
-  FilterSelect, ResourceFilter, TimeLogs, KioskGlobal;
+  FilterSelect, ResourceFilter, TimeLogs, HRISGlobal;
 
 procedure TfrmBaseCalendar.bteFilterAltBtnClick(Sender: TObject);
 begin
@@ -133,7 +133,7 @@ end;
 
 procedure TfrmBaseCalendar.SetColours;
 begin
-  with kk.Settings.CalendarColours, grCalendar do
+  with HRIS.Settings.CalendarColours, grCalendar do
   begin
     shHoliday.Brush.Color := Holiday;
     shComplete.Brush.Color := Complete;

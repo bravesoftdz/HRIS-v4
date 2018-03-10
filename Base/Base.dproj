@@ -104,8 +104,8 @@
             <Form>frmBase</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="BasePopup.pas">
-            <Form>frmBasePopup1</Form>
+        <DCCReference Include="BasePopup2.pas">
+            <Form>frmBasePopup2</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="BasePopupDetail.pas">
@@ -120,8 +120,16 @@
             <Form>frmBaseCalendar</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="BaseDocked2.pas">
+            <Form>frmBaseDocked2</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <DCCReference Include="BaseDocked.pas">
             <Form>frmBaseDocked</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="BasePopup.pas">
+            <Form>frmBasePopup</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

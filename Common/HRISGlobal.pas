@@ -1,4 +1,4 @@
-unit KioskGlobal;
+unit HRISGlobal;
 
 interface
 
@@ -6,7 +6,7 @@ uses
   User, SysUtils, DateUtils, PayrollCode, Location, Employee, Settings;
 
 type
-  TKioskGlobal = class
+  THRISGlobal = class
   private
     FCurrentDate: TDate;
     FUser: TUser;
@@ -55,37 +55,37 @@ type
   end;
 
 var
-  kk: TKioskGlobal;
+  HRIS: THRISGlobal;
 
 implementation
 
-constructor TKioskGlobal.Create;
+constructor THRISGlobal.Create;
 begin
-  if kk = nil then
+  if HRIS = nil then
   begin
     FUser := TUser.Create;
     FEmployee := TEmployee.Create;
     FSettings := TSettings.Create;
 
-    kk := self
+    HRIS := self
   end
   else
     Abort;
 end;
 
-procedure TKioskGlobal.AddActivePayrollCode(const pc: TPayrollCode);
+procedure THRISGlobal.AddActivePayrollCode(const pc: TPayrollCode);
 begin
   SetLength(FActivePayrollCodes,Length(FActivePayrollCodes) + 1);
   FActivePayrollCodes[Length(FActivePayrollCodes) - 1] := pc;
 end;
 
-procedure TKioskGlobal.AddLocation(const loc: TLocation);
+procedure THRISGlobal.AddLocation(const loc: TLocation);
 begin
   SetLength(FLocations,Length(FLocations) + 1);
   FLocations[Length(FLocations) - 1] := loc;
 end;
 
-function TKioskGlobal.GetTimeInAM: double;
+function THRISGlobal.GetTimeInAM: double;
 begin
   if DayOfTheWeek(FCurrentDate) = DaySaturday then
     Result := EncodeTime(8,0,0,0)
@@ -93,37 +93,37 @@ begin
     Result := EncodeTime(8,30,0,0);
 end;
 
-function TKioskGlobal.GetTimeOutAM: double;
+function THRISGlobal.GetTimeOutAM: double;
 begin
   Result := EncodeTime(12,0,0,0);
 end;
 
-function TKioskGlobal.GetTimeInPM: double;
+function THRISGlobal.GetTimeInPM: double;
 begin
   Result := EncodeTime(13,0,0,0);
 end;
 
-function TKioskGlobal.GetTimeOutPM: double;
+function THRISGlobal.GetTimeOutPM: double;
 begin
   Result := EncodeTime(17,30,0,0);
 end;
 
-function TKioskGlobal.GetPayrollCode(const i: integer): TPayrollCode;
+function THRISGlobal.GetPayrollCode(const i: integer): TPayrollCode;
 begin
   Result := FActivePayrollCodes[i];
 end;
 
-function TKioskGlobal.GetActivePayrollCount: integer;
+function THRISGlobal.GetActivePayrollCount: integer;
 begin
   Result := Length(FActivePayrollCodes);
 end;
 
-function TKioskGlobal.GetLocation(const i: Integer): TLocation;
+function THRISGlobal.GetLocation(const i: Integer): TLocation;
 begin
   Result := FLocations[i];
 end;
 
-function TKioskGlobal.GetLocationNameByCode(const code: string): string;
+function THRISGlobal.GetLocationNameByCode(const code: string): string;
 var
   loc: TLocation;
 begin
@@ -137,7 +137,7 @@ begin
     end;
 end;
 
-function TKioskGlobal.GetLocationCount: integer;
+function THRISGlobal.GetLocationCount: integer;
 begin
   Result := Length(FLocations);
 end;

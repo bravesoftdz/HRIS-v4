@@ -15,11 +15,10 @@ type
     { Public declarations }
   end;
 
-var
-  frmWarningBox: TfrmWarningBox;
-
 implementation
 
 {$R *.dfm}
 
 end.
+
+

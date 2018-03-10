@@ -27,6 +27,7 @@ inherited frmMain: TfrmMain
     GradientDirection = gdVerticalEnd
     TabOrder = 0
     VisualStyle = vsGradient
+    OnDblClick = pnlTitleDblClick
     OnMouseDown = pnlTitleMouseDown
     DesignSize = (
       1150

@@ -6,7 +6,7 @@ uses
   Main in 'Main.pas' {frmMain},
   Login in 'Login.pas',
   BaseForm in '..\Base\BaseForm.pas' {frmBase},
-  BasePopup in '..\Base\BasePopup.pas' {frmBasePopup};
+  BasePopup2 in '..\Base\BasePopup2.pas' {frmBasePopup2};
 
 {$R *.res}
 
@@ -18,8 +18,6 @@ begin
       Application.Initialize;
       Application.MainFormOnTaskbar := True;
       Application.CreateForm(TfrmMain, frmMain);
-  Application.CreateForm(TfrmBase, frmBase);
-  Application.CreateForm(TfrmBasePopup, frmBasePopup);
   Application.Run;
     end;
   end;

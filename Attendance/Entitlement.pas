@@ -72,7 +72,7 @@ var
 implementation
 
 uses
-  DBUtil, KioskGlobal;
+  DBUtil, HRISGlobal;
 
 function GetStatusName(const status: TStatus): string;
 begin
@@ -122,14 +122,14 @@ begin
            '   SET dtrstatus_code = ''CNL''' +
            ' WHERE dtr_date = ''' + dt +  '''' +
            '   AND id_num = ''' + FIdNum + '''' +
-           '   AND time_in < ''' + FormatDateTime('hh:mm:ss',TTime(kk.TimeOutAM)) + ''''
+           '   AND time_in < ''' + FormatDateTime('hh:mm:ss',TTime(HRIS.TimeOutAM)) + ''''
   else if FAmPm = 'P' then
     sql := 'UPDATE dtr ' +
            '   SET dtrstatus_code = ''CNL''' +
            ' WHERE dtr_date = ''' + dt +  '''' +
            '   AND id_num = ''' + FIdNum + '''' +
-           '   AND time_in BETWEEN ''' + FormatDateTime('hh:mm:ss',TTime(kk.TimeOutAM)) + '''' +
-           '   AND ''' + FormatDateTime('hh:mm:ss',TTime(kk.TimeOutPM)) + ''''
+           '   AND time_in BETWEEN ''' + FormatDateTime('hh:mm:ss',TTime(HRIS.TimeOutAM)) + '''' +
+           '   AND ''' + FormatDateTime('hh:mm:ss',TTime(HRIS.TimeOutPM)) + ''''
   else
     sql := 'UPDATE dtr ' +
            '   SET dtrstatus_code = ''CNL''' +

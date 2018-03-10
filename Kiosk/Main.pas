@@ -47,6 +47,7 @@ type
     procedure btnSynchroniseClick(Sender: TObject);
     procedure lblSettingsClick(Sender: TObject);
     procedure btnOverrideClick(Sender: TObject);
+    procedure pnlTitleDblClick(Sender: TObject);
   private
     { Private declarations }
     const MSG_RUN_ONSHOW  =  WM_USER + 1000;
@@ -66,7 +67,7 @@ implementation
 {$R *.dfm}
 
 uses
-  TimelogYear, KioskGlobal, TimelogData, UndertimeDetails, ForApproval, SyncMain,
+  TimelogYear, HRISGlobal, TimelogData, UndertimeDetails, ForApproval, SyncMain,
   TimelogPayPeriod, SettingsMain, OverrideDetails;
 
 procedure TfrmMain.DockForm(const fm: TForms; const title: string);
@@ -168,6 +169,12 @@ procedure TfrmMain.lblSettingsClick(Sender: TObject);
 begin
   inherited;
   DockForm(fmSettings);
+end;
+
+procedure TfrmMain.pnlTitleDblClick(Sender: TObject);
+begin
+  inherited;
+  Application.Minimize;
 end;
 
 procedure TfrmMain.pnlTitleMouseDown(Sender: TObject; Button: TMouseButton;

@@ -34,7 +34,7 @@ implementation
 {$R *.dfm}
 
 uses
-  KioskGlobal;
+  HRISGlobal;
 
 procedure TdmApplication.acMainBeforeConnect(Sender: TObject);
 begin
@@ -53,8 +53,8 @@ end;
 
 procedure TdmApplication.dstEmployeesBeforeOpen(DataSet: TDataSet);
 begin
-  (DataSet as TADODataSet).Parameters.ParamByName('@dtr_date_from').Value := kk.CurrentDate;
-  (DataSet as TADODataSet).Parameters.ParamByName('@dtr_date_until').Value := kk.CurrentDate;
+  (DataSet as TADODataSet).Parameters.ParamByName('@dtr_date_from').Value := HRIS.CurrentDate;
+  (DataSet as TADODataSet).Parameters.ParamByName('@dtr_date_until').Value := HRIS.CurrentDate;
 end;
 
 end.

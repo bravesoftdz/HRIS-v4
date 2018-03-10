@@ -1,4 +1,4 @@
-unit KioskDialogs;
+unit HRISDialogs;
 
 interface
 

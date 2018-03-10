@@ -12,6 +12,7 @@ inherited frmBaseDocked: TfrmBaseDocked
     Height = 28
     Align = alTop
     BorderOuter = fsNone
+    BorderSides = [sdBottom]
     BorderColor = clBlack
     BorderWidth = 1
     Color = 8675134

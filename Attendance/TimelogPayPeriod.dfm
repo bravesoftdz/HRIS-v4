@@ -1,5 +1,7 @@
 inherited frmTimelogPayPeriod: TfrmTimelogPayPeriod
   Caption = 'frmTimelogPayPeriod'
+  ExplicitWidth = 320
+  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 14
   inherited RzLabel1: TRzLabel

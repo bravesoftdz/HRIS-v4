@@ -3,9 +3,11 @@ inherited frmBasePopup: TfrmBasePopup
   Caption = 'frmBasePopup'
   ClientHeight = 281
   ClientWidth = 543
+  KeyPreview = True
   Position = poMainFormCenter
+  OnKeyPress = FormKeyPress
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 14
   object pnlTitle: TRzPanel
     Left = 0
     Top = 0
@@ -15,6 +17,7 @@ inherited frmBasePopup: TfrmBasePopup
     BorderOuter = fsNone
     BorderColor = clBlack
     BorderWidth = 1
+    Color = 8675134
     GradientColorStyle = gcsCustom
     GradientColorStart = 6572079
     GradientColorStop = 8675134

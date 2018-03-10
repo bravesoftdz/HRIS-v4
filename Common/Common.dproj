@@ -93,7 +93,7 @@
         <DCC_BplOutput>..\_bpl</DCC_BplOutput>
         <DCC_DcpOutput>..\_dcp</DCC_DcpOutput>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_UnitSearchPath>..\_dcu;..\Base;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\_dcu;..\Base;..\Tools;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
     </PropertyGroup>
@@ -127,7 +127,7 @@
         </DCCReference>
         <DCCReference Include="AppUtil.pas"/>
         <DCCReference Include="User.pas"/>
-        <DCCReference Include="KioskGlobal.pas"/>
+        <DCCReference Include="HRISGlobal.pas"/>
         <DCCReference Include="ConnUtil.pas"/>
         <DCCReference Include="ConfBox.pas">
             <Form>frmConfBox</Form>
@@ -142,7 +142,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="FormsUtil.pas"/>
-        <DCCReference Include="KioskDialogs.pas"/>
+        <DCCReference Include="HRISDialogs.pas"/>
         <DCCReference Include="InfoBox.pas">
             <Form>frmInfoBox</Form>
             <FormType>dfm</FormType>
@@ -155,8 +155,8 @@
             <Form>frmBase</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Base\BasePopup.pas">
-            <Form>frmBasePopup</Form>
+        <DCCReference Include="..\Base\BasePopup2.pas">
+            <Form>frmBasePopup2</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="DBUtil.pas"/>
@@ -169,6 +169,9 @@
         </DCCReference>
         <DCCReference Include="Employee.pas"/>
         <DCCReference Include="DockIntf.pas"/>
+        <DCCReference Include="BaseActionIntf.pas"/>
+        <DCCReference Include="NewIntf.pas"/>
+        <DCCReference Include="SaveIntf.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -187,9 +190,9 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k240.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp240.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\18.0\bpl\OmniThreadLibraryDesigntime240.bpl">OmniThreadLibrary designtime</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Users\Public\Documents\Embarcadero\Studio\19.0\bpl\LockBox3FMXDD250.bpl">TurboPack LockBox 3 FMX designtime package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k250.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp250.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
                 <Source>
                     <Source Name="MainSource">Common.dpk</Source>

@@ -150,7 +150,7 @@ begin
 
       for i := 0 to cnt do
       begin
-        log := Logs[i];
+        log := Items[i];
 
         Objects[log.Day,log.Month] := nil;
 
@@ -321,7 +321,7 @@ begin
 
     for i := 0 to cnt do
     begin
-      log := Logs[i];
+      log := Items[i];
 
       Objects[log.Day,log.Month] := log;
     end;

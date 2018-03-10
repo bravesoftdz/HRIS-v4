@@ -5,7 +5,6 @@ inherited frmLogin: TfrmLogin
   ClientWidth = 434
   Position = poScreenCenter
   OnCreate = FormCreate
-  OnKeyPress = nil
   OnShow = FormShow
   ExplicitWidth = 434
   ExplicitHeight = 243

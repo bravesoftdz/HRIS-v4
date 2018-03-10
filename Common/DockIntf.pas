@@ -3,8 +3,7 @@ unit DockIntf;
 interface
 
 type
-  TForms = (fmTimeLogYear,fmUndertime,fmForApproval,fmSynchronisation,
-            fmTimeLogPayPeriod, fmSettings, frmOverride);
+  TForms = (fmNone, fmEmployeeDrawer);
 
 type
   IDock = Interface(IInterface)

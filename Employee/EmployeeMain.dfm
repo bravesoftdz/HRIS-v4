@@ -1,0 +1,102 @@
+inherited frmEmployeeMain: TfrmEmployeeMain
+  Align = alClient
+  Caption = 'frmEmployeeMain'
+  ExplicitWidth = 543
+  ExplicitHeight = 281
+  PixelsPerInch = 96
+  TextHeight = 14
+  object JvLabel1: TJvLabel
+    Left = 43
+    Top = 64
+    Width = 54
+    Height = 14
+    Caption = 'Lastname'
+    Transparent = True
+  end
+  object JvLabel2: TJvLabel
+    Left = 43
+    Top = 92
+    Width = 54
+    Height = 14
+    Caption = 'Firstname'
+    Transparent = True
+  end
+  object JvLabel3: TJvLabel
+    Left = 43
+    Top = 120
+    Width = 66
+    Height = 14
+    Caption = 'Middlename'
+    Transparent = True
+  end
+  object RzGroupBox2: TRzGroupBox
+    Left = 27
+    Top = 28
+    Width = 302
+    Height = 22
+    BorderColor = 6572079
+    BorderSides = []
+    BorderWidth = 1
+    Caption = 'Employee name'
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clRed
+    CaptionFont.Height = -12
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = []
+    Color = clMenu
+    FlatColor = clMedGray
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = 6572079
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    GradientColorStyle = gcsCustom
+    GroupStyle = gsUnderline
+    ParentFont = False
+    TabOrder = 0
+  end
+  object edMiddlename: TRzDBEdit
+    Left = 122
+    Top = 114
+    Width = 207
+    Height = 22
+    DataField = 'middlename'
+    CharCase = ecUpperCase
+    FrameColor = 13816530
+    FrameVisible = True
+    FramingPreference = fpCustomFraming
+    ReadOnlyColor = clWhite
+    TabOnEnter = True
+    TabOrder = 1
+  end
+  object edFirstname: TRzDBEdit
+    Left = 122
+    Top = 86
+    Width = 207
+    Height = 22
+    DataField = 'firstname'
+    CharCase = ecUpperCase
+    FrameColor = 13816530
+    FrameVisible = True
+    FramingPreference = fpCustomFraming
+    ReadOnlyColor = clWhite
+    TabOnEnter = True
+    TabOrder = 2
+  end
+  object edLastname: TRzDBEdit
+    Left = 122
+    Top = 58
+    Width = 207
+    Height = 22
+    DataField = 'lastname'
+    CharCase = ecUpperCase
+    Ctl3D = True
+    FrameColor = 13816530
+    FrameVisible = True
+    FramingPreference = fpCustomFraming
+    ParentCtl3D = False
+    ReadOnlyColor = clWhite
+    TabOnEnter = True
+    TabOrder = 3
+  end
+end

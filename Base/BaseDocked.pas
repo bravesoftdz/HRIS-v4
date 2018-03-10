@@ -18,9 +18,6 @@ type
     { Public declarations }
   end;
 
-var
-  frmBaseDocked: TfrmBaseDocked;
-
 implementation
 
 {$R *.dfm}

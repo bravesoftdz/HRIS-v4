@@ -73,6 +73,14 @@ type
     lblExpandUndertime: TRzLabel;
     lblExpandLeaves: TRzLabel;
     imageList: TImageList;
+    RzLabel22: TRzLabel;
+    lblUTAMPaid: TRzLabel;
+    RzLabel26: TRzLabel;
+    lblUTPMPaid: TRzLabel;
+    RzLabel28: TRzLabel;
+    lblPaidAM: TRzLabel;
+    RzLabel30: TRzLabel;
+    lblPaidPM: TRzLabel;
     procedure imgOfficelogClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure lblExpandOfficeLogDblClick(Sender: TObject);
@@ -253,6 +261,7 @@ begin
         lblUTTimeFromAM.Caption := ut.TimeFromFormatted;
         lblUTTimeUntilAM.Caption := ut.TimeUntilFormatted;
         lblUTTimeReasonAM.Caption := ut.Reason;
+        lblUTAMPaid.Caption := ut.Paid;
       end;
 
       ut := Undertimes2[pdAfternoon];
@@ -261,6 +270,7 @@ begin
         lblUTTimeFromPM.Caption := ut.TimeFromFormatted;
         lblUTTimeUntilPM.Caption := ut.TimeUntilFormatted;
         lblUTTimeReasonPM.Caption := ut.Reason;
+        lblUTPMPaid.Caption := ut.Paid;
       end;
     end;
 
@@ -274,10 +284,12 @@ begin
       begin
         lblLvTypeAM.Caption := lv.LeaveTypeName;
         lblLvReasonAM.Caption := lv.Reason;
+        lblPaidAM.Caption := lv.Paid;
         lblLvRemarksAM.Caption := lv.Remarks;
 
         lblLvTypePM.Caption := lv.LeaveTypeName;
         lblLvReasonPM.Caption := lv.Reason;
+        lblPaidPM.Caption := lv.Paid;
         lblLvRemarksPM.Caption := lv.Remarks;
       end
       else
@@ -287,6 +299,7 @@ begin
         begin
           lblLvTypeAM.Caption := lv.LeaveTypeName;
           lblLvReasonAM.Caption := lv.Reason;
+          lblPaidAM.Caption := lv.Paid;
           lblLvRemarksAM.Caption := lv.Remarks;
         end;
 
@@ -295,6 +308,7 @@ begin
         begin
           lblLvTypePM.Caption := lv.LeaveTypeName;
           lblLvReasonPM.Caption := lv.Reason;
+          lblPaidPM.Caption := lv.Paid;
           lblLvRemarksPM.Caption := lv.Remarks;
         end;
       end;

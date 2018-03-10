@@ -16,9 +16,11 @@ type
     FLeaveTypeName: string;
     FReason: string;
     FRemarks: string;
+    FIsPaid: boolean;
 
     function GetHalfDay: boolean;
     function GetIsBusinessTrip: boolean;
+    function GetPaid: string;
   public
     property AmPm: string read FAmPm write FAmPm;
     property LeaveType: string read FLeaveType write FLeaveType;
@@ -27,8 +29,10 @@ type
     property Reason: string read FReason write FReason;
     property Remarks: string read FRemarks write FRemarks;
     property IsBusinessTrip: boolean read GetIsBusinessTrip;
+    property IsPaid: boolean read FIsPaid write FIsPaid;
+    property Paid: string read GetPaid;
 
-    constructor Create(const ap, tp, nm, rs, rm: string);
+    constructor Create(const ap, tp, nm, rs, rm: string; const ip: boolean);
   end;
 
 type
@@ -38,8 +42,14 @@ type
     FTimeUntil: string;
     FAmPM: string;
     FReason: string;
+    FIsPaid: boolean;
+    FPaid: string;
+
     function GetTimeFromFormatted: string;
     function GetTimeUntilFormatted: string;
+    function GetPaid: string;
+    procedure SetPaid(const Value: string);
+
   public
     property TimeFrom: string read FTimeFrom write FTimeFrom;
     property TimeUntil: string read FTimeUntil write FTimeUntil;
@@ -47,8 +57,10 @@ type
     property Reason: string read FReason write FReason;
     property TimeFromFormatted: string read GetTimeFromFormatted;
     property TimeUntilFormatted: string read GetTimeUntilFormatted;
+    property IsPaid: boolean read FIsPaid write FIsPaid;
+    property Paid: string read GetPaid;
 
-    constructor Create(const fr, ut, ap, rs: string);
+    constructor Create(const fr, ut, ap, rs: string; const ip: boolean);
   end;
 
 type
@@ -186,13 +198,14 @@ implementation
 uses
   AttendanceUtils;
 
-constructor TLeave.Create(const ap, tp, nm, rs, rm: string);
+constructor TLeave.Create(const ap, tp, nm, rs, rm: string; const ip: boolean);
 begin
   FAmPm := ap;
   FLeaveType := tp;
   FLeaveTypeName := nm;
   FReason := rs;
   FRemarks := rm;
+  FIsPaid := ip;
 end;
 
 function TLeave.GetHalfDay;
@@ -203,6 +216,12 @@ end;
 function TLeave.GetIsBusinessTrip: boolean;
 begin
   Result := Trim(FLeaveType) = 'BT';
+end;
+
+function TLeave.GetPaid: string;
+begin
+  if FIsPaid then Result := 'Yes'
+  else Result := 'No';
 end;
 
 constructor TTimelog.Create;
@@ -332,7 +351,7 @@ var
   pd: string;
   ut: TUndertime;
 begin
-  ut := TUndertime.Create('','','','');
+  ut := TUndertime.Create('','','','',false);
 
   cnt := Length(FUndertimes) - 1;
 
@@ -438,12 +457,13 @@ begin
   end;
 end;
 
-constructor TUndertime.Create(const fr, ut, ap, rs: string);
+constructor TUndertime.Create(const fr, ut, ap, rs: string; const ip: boolean);
 begin
   FTimeFrom := fr;
   FTimeUntil := ut;
   FAmPM := ap;
   FReason := rs;
+  FIsPaid := ip;
 end;
 
 constructor TOverride.Create(const i, o, ap, rs: string);
@@ -475,6 +495,12 @@ begin
   Result := FormatTimeString(FTimeOut,true);
 end;
 
+function TUndertime.GetPaid: string;
+begin
+  if FIsPaid then Result := 'Yes'
+  else Result := 'No';
+end;
+
 function TUndertime.GetTimeFromFormatted: string;
 begin
   Result := FormatTimeString(FTimeFrom,true);
@@ -483,6 +509,11 @@ end;
 function TUndertime.GetTimeUntilFormatted: string;
 begin
   Result := FormatTimeString(FTimeUntil,true);
+end;
+
+procedure TUndertime.SetPaid(const Value: string);
+begin
+  FPaid := Value;
 end;
 
 end.

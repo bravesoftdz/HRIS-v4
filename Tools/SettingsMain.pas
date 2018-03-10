@@ -49,7 +49,7 @@ implementation
 {$R *.dfm}
 
 uses
-  KioskGlobal, AppUtil;
+  HRISGlobal, AppUtil;
 
 procedure TfrmSettingsMain.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
@@ -66,14 +66,14 @@ end;
 procedure TfrmSettingsMain.lblDefaultsClick(Sender: TObject);
 begin
   inherited;
-  kk.Settings.CalendarColours.LoadDefaults;
+  HRIS.Settings.CalendarColours.LoadDefaults;
   LoadSettings;
 end;
 
 procedure TfrmSettingsMain.LoadSettings;
 begin
   // calendar colours
-  with kk.Settings do
+  with HRIS.Settings do
   begin
     ceHoliday.SelectedColor := CalendarColours.Holiday;
     ceComplete.SelectedColor := CalendarColours.Complete;
@@ -89,7 +89,7 @@ end;
 
 procedure TfrmSettingsMain.SaveSettings;
 begin
-  with kk.Settings do
+  with HRIS.Settings do
   begin
     CalendarColours.Holiday := ceHoliday.SelectedColor;
     CalendarColours.Complete := ceComplete.SelectedColor;

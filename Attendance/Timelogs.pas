@@ -16,7 +16,7 @@ type
 type
   TTimeLogs = class
   private
-    FLogs: array of TTimelog;
+    FItems: array of TTimelog;
     FViewOption: TCalendarViewOption;
     FGroupNumber: integer;
     FRecordsPerGroup: integer;
@@ -24,7 +24,7 @@ type
     FPeriodView: TPeriodView;
     FConflictLogs: array of TConflict;
 
-    function GetLog(const i: integer): TTimelog;
+    function GetItem(const i: integer): TTimelog;
     function GetLogCount: integer;
     function LogExists(const log: TTimelog): boolean;
     function GetConflict(const i: integer): TConflict;
@@ -35,7 +35,7 @@ type
     procedure Clear;
     procedure AddConflict(const conflict: TConflict);
 
-    property Logs[const i: integer]: TTimelog read GetLog;
+    property Items[const i: integer]: TTimelog read GetItem;
     property LogsCount: integer read GetLogCount;
     property ViewOption: TCalendarViewOption read FViewOption write FViewOption;
     property GroupNumber: integer read FGroupNumber write FGroupNumber;
@@ -53,7 +53,7 @@ var
 implementation
 
 uses
-  TimelogData, KioskGlobal;
+  TimelogData, HRISGlobal;
 
 constructor TTimeLogs.Create;
 begin
@@ -90,14 +90,14 @@ procedure TTimeLogs.AddLog(const log: TTimelog);
 begin
   if not LogExists(log) then
   begin
-    SetLength(FLogs,Length(FLogs) + 1);
-    FLogs[Length(FLogs) - 1] := log;
+    SetLength(FItems,Length(FItems) + 1);
+    FItems[Length(FItems) - 1] := log;
   end;
 end;
 
 procedure TTimeLogs.Clear;
 begin
-  FLogs := [];
+  FItems := [];
 end;
 
 function TTimeLogs.GetConflict(const i: integer): TConflict;
@@ -105,14 +105,14 @@ begin
   Result := FConflictLogs[i];
 end;
 
-function TTimeLogs.GetLog(const i: Integer): TTimeLog;
+function TTimeLogs.GetItem(const i: Integer): TTimeLog;
 begin
-  Result := FLogs[i];
+  Result := FItems[i];
 end;
 
 function TTimeLogs.GetLogCount: integer;
 begin
-  Result := Length(FLogs);
+  Result := Length(FItems);
 end;
 
 function TTimeLogs.LogExists(const log: TTimelog): boolean;
@@ -120,7 +120,7 @@ var
   l: TTimeLog;
 begin
   Result := false;
-  for l in FLogs do
+  for l in FItems do
   begin
     if (l.Date = log.Date) and (l.Employee.IdNum = log.Employee.IdNum) then
     begin

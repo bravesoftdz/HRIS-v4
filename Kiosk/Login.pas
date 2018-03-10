@@ -62,7 +62,7 @@ implementation
 {$R *.dfm}
 
 uses
-  AppData, AppUtil, KioskGlobal, KioskDialogs, PayrollCode, Location;
+  AppData, AppUtil, HRISGlobal, HRISDialogs, PayrollCode, Location;
 
 class function TfrmLogin.LoggedIn: boolean;
 begin

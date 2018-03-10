@@ -4,7 +4,7 @@ interface
 
 uses
   Vcl.Controls, RzDBCmbo, RzDBGrid, RzGrids, DB, RzLstBox, RzChkLst, Vcl.ExtCtrls,
-  System.Classes, RzCmboBx, KioskGlobal, PayrollCode, KioskDialogs, SysUtils;
+  System.Classes, RzCmboBx, HRISGlobal, PayrollCode, HRISDialogs, SysUtils;
 
 procedure OpenDropdownDataSources(const parentCtrl: TWinControl;
   const open: boolean = true);
@@ -141,9 +141,9 @@ var
 begin
   with comboBox do
   begin
-    for i := 0 to kk.ActivePayrollCount - 1 do
+    for i := 0 to HRIS.ActivePayrollCount - 1 do
     begin
-      pc := kk.ActivePayrollCodes[i];
+      pc := HRIS.ActivePayrollCodes[i];
       AddObject(pc.Period,TObject(pc));
     end;
     ItemIndex := 0;
@@ -154,15 +154,15 @@ procedure PopulateBranchComboBox(comboBox: TRzComboBox; const viewAllOption: boo
 var
   i, cnt: integer;
 begin
-  cnt := kk.LocationCount - 1;
+  cnt := HRIS.LocationCount - 1;
 
   if viewAllOption then comboBox.AddItemValue('- View all -','');
 
   for i := 0 to cnt do
-    comboBox.AddItemValue(kk.Locations[i].LocationName,kk.Locations[i].LocationCode);
+    comboBox.AddItemValue(HRIS.Locations[i].LocationName,HRIS.Locations[i].LocationCode);
 
   // set default
-  comboBox.FindItem(kk.GetLocationNameByCode(kk.LocationCode));
+  comboBox.FindItem(HRIS.GetLocationNameByCode(HRIS.LocationCode));
 end;
 
 end.
