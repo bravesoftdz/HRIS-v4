@@ -37,8 +37,6 @@ object frmMain: TfrmMain
     TabOrder = 0
     VisualStyle = vsGradient
     OnMouseDown = pnlTitleMouseDown
-    ExplicitLeft = 48
-    ExplicitTop = -6
     DesignSize = (
       1190
       21)
@@ -153,13 +151,13 @@ object frmMain: TfrmMain
       ParentFont = False
     end
     object lblVersion: TLabel
-      Left = 1085
+      Left = 1100
       Top = 579
-      Width = 84
+      Width = 69
       Height = 14
       Alignment = taRightJustify
       Anchors = [akRight, akBottom]
-      Caption = 'Version 4.0.0.0'
+      Caption = 'Build 4.0.0.0'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clBlack
       Font.Height = -12

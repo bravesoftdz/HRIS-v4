@@ -7,7 +7,26 @@ uses
 
 type
   TdmEmployee = class(TDataModule)
-    ADOStoredProc1: TADOStoredProc;
+    dsEmployee: TDataSource;
+    dsReligion: TDataSource;
+    dsCivilStatus: TDataSource;
+    dsBloodType: TDataSource;
+    dstEmployee: TADODataSet;
+    dstReligion: TADODataSet;
+    dstCivilStatus: TADODataSet;
+    dstBloodType: TADODataSet;
+    dscEmpAddressH: TDataSource;
+    dstEmpAddressH: TADODataSet;
+    dscEmpAddressP: TDataSource;
+    dstEmpAddressP: TADODataSet;
+    dscEmpContactH: TDataSource;
+    dstEmpContactH: TADODataSet;
+    dscEmpContactP: TDataSource;
+    dstEmpContactP: TADODataSet;
+    dscEmpEmergency: TDataSource;
+    dstEmpEmergency: TADODataSet;
+    dscTowns: TDataSource;
+    dstTowns: TADODataSet;
   private
     { Private declarations }
   public

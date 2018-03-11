@@ -8,7 +8,6 @@ uses
 type
   TPeriod = (pdMorning,pdAfternoon,pdWholeDay);
 
-type
   TLeave = class
   private
     FAmPm: string;
@@ -35,7 +34,6 @@ type
     constructor Create(const ap, tp, nm, rs, rm: string; const ip: boolean);
   end;
 
-type
   TUndertime = class
   private
     FTimeFrom: string;
@@ -63,7 +61,6 @@ type
     constructor Create(const fr, ut, ap, rs: string; const ip: boolean);
   end;
 
-type
   TOverride = class
   private
     FTimeIn: string;
@@ -83,7 +80,6 @@ type
     constructor Create(const i, o, ap, rs: string);
   end;
 
-type
   THoliday = class
   private
     FName: string;
@@ -98,7 +94,6 @@ type
     constructor Create(const nm: string; const isNat: integer);
   end;
 
-type
   TTimelog = class(TObject)
   private
     FEmployee: TEmployee;

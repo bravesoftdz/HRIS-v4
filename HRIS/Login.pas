@@ -10,7 +10,6 @@ uses
 
 type
   TfrmLogin = class(TfrmBasePopup2)
-    Label4: TLabel;
     Label5: TLabel;
     Label1: TLabel;
     Label2: TLabel;
@@ -150,8 +149,6 @@ if (UserExists) and (PasswordIsValid) then
         edPassword.Enabled := false;
         btnLogin.Enabled := false;
         btnClose.Enabled := false;
-
-        lblVersion.Visible := false;
 
         lblStatus.Visible := true;
         prbStatus.Visible := true;

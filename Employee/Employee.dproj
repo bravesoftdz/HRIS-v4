@@ -107,6 +107,9 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_UnitSearchPath>..\Common;..\Base;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <Debugger_HostApplication>..\_bin\HRIS.exe</Debugger_HostApplication>
+        <Debugger_CWD>..\_bin</Debugger_CWD>
+        <Debugger_DebugSourcePath>..\_bin;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -124,6 +127,11 @@
         <DCCReference Include="adortl.dcp"/>
         <DCCReference Include="RaizeComponentsVcl.dcp"/>
         <DCCReference Include="dclstd.dcp"/>
+        <DCCReference Include="vcldb.dcp"/>
+        <DCCReference Include="Jcl.dcp"/>
+        <DCCReference Include="JvCore.dcp"/>
+        <DCCReference Include="JvStdCtrls.dcp"/>
+        <DCCReference Include="RaizeComponentsVclDb.dcp"/>
         <DCCReference Include="EmployeeData.pas">
             <Form>dmEmployee</Form>
             <FormType>dfm</FormType>
@@ -145,6 +153,10 @@
         </DCCReference>
         <DCCReference Include="EmployeeMain.pas">
             <Form>frmEmployeeMain</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="AddressAndContact.pas">
+            <Form>frmAddressAndContact</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

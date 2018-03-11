@@ -17,9 +17,9 @@ inherited frmEmployeeDrawer: TfrmEmployeeDrawer
     end
   end
   object pnlDock: TRzPanel
-    Left = 0
+    Left = 176
     Top = 28
-    Width = 696
+    Width = 520
     Height = 324
     Align = alClient
     BorderOuter = fsNone
@@ -32,5 +32,89 @@ inherited frmEmployeeDrawer: TfrmEmployeeDrawer
     GradientColorStop = 10329423
     TabOrder = 1
     VisualStyle = vsClassic
+  end
+  object pnlMenu: TRzPanel
+    Left = 0
+    Top = 28
+    Width = 176
+    Height = 324
+    Align = alLeft
+    BorderOuter = fsNone
+    BorderSides = [sdRight]
+    BorderColor = 12961221
+    BorderWidth = 1
+    Color = 15395562
+    Enabled = False
+    GradientColorStyle = gcsCustom
+    GradientColorStart = 8421440
+    GradientColorStop = 10329423
+    TabOrder = 2
+    VisualStyle = vsClassic
+    object urlMain: TRzURLLabel
+      Left = 24
+      Top = 24
+      Width = 24
+      Height = 14
+      Caption = 'Main'
+      Color = 15395562
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 8026685
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsUnderline]
+      ParentColor = False
+      ParentFont = False
+      OnClick = urlMainClick
+    end
+    object urlAddressAndContact: TRzURLLabel
+      Left = 24
+      Top = 48
+      Width = 113
+      Height = 14
+      Caption = 'Address and contact'
+      Color = 15395562
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 8026685
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsUnderline]
+      ParentColor = False
+      ParentFont = False
+      OnClick = urlAddressAndContactClick
+    end
+    object urlFamily: TRzURLLabel
+      Left = 24
+      Top = 72
+      Width = 104
+      Height = 14
+      Caption = 'Family and relatives'
+      Color = 15395562
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 8026685
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsUnderline]
+      ParentColor = False
+      ParentFont = False
+    end
+    object urlPhoto: TRzURLLabel
+      Left = 24
+      Top = 96
+      Width = 33
+      Height = 14
+      Caption = 'Photo'
+      Color = 15395562
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 8026685
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsUnderline]
+      ParentColor = False
+      ParentFont = False
+    end
   end
 end

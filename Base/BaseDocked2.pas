@@ -9,8 +9,6 @@ uses
 
 type
   TfrmBaseDocked2 = class(TfrmBaseDocked)
-    pnlTitle: TRzPanel;
-    lblTitle: TRzLabel;
   private
     { Private declarations }
   public

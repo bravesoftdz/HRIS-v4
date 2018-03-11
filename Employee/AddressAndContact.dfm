@@ -1,65 +1,40 @@
-inherited frmEmployeeMain: TfrmEmployeeMain
-  Align = alClient
-  Caption = 'frmEmployeeMain'
-  ClientHeight = 506
-  ClientWidth = 926
+inherited frmAddressAndContact: TfrmAddressAndContact
+  Caption = 'frmAddressAndContact'
+  ClientHeight = 441
+  ClientWidth = 824
   OnClose = FormClose
   OnCreate = FormCreate
-  ExplicitWidth = 942
-  ExplicitHeight = 545
+  ExplicitWidth = 840
+  ExplicitHeight = 480
   PixelsPerInch = 96
   TextHeight = 14
   object JvLabel1: TJvLabel
     Left = 59
-    Top = 104
-    Width = 54
+    Top = 67
+    Width = 37
     Height = 14
-    Caption = 'Lastname'
-    Transparent = True
-  end
-  object JvLabel2: TJvLabel
-    Left = 59
-    Top = 132
-    Width = 54
-    Height = 14
-    Caption = 'Firstname'
+    Caption = 'Street'
     Transparent = True
   end
   object JvLabel3: TJvLabel
     Left = 59
-    Top = 160
-    Width = 66
+    Top = 151
+    Width = 55
     Height = 14
-    Caption = 'Middlename'
-    Transparent = True
-  end
-  object JvLabel4: TJvLabel
-    Left = 59
-    Top = 240
-    Width = 52
-    Height = 14
-    Caption = 'Birthdate'
-    Transparent = True
-  end
-  object JvLabel5: TJvLabel
-    Left = 59
-    Top = 267
-    Width = 74
-    Height = 14
-    Caption = 'Place of birth'
+    Caption = 'City town'
     Transparent = True
   end
   object JvLabel6: TJvLabel
     Left = 59
-    Top = 325
-    Width = 42
+    Top = 267
+    Width = 36
     Height = 14
-    Caption = 'Gender'
+    Caption = 'Mobile'
     Transparent = True
   end
   object JvLabel7: TJvLabel
     Left = 59
-    Top = 32
+    Top = 40
     Width = 60
     Height = 14
     Caption = 'ID number'
@@ -67,55 +42,23 @@ inherited frmEmployeeMain: TfrmEmployeeMain
   end
   object JvLabel8: TJvLabel
     Left = 59
-    Top = 353
-    Width = 43
+    Top = 295
+    Width = 46
     Height = 14
-    Caption = 'Religion'
+    Caption = 'Landline'
     Transparent = True
   end
   object JvLabel9: TJvLabel
     Left = 59
-    Top = 382
-    Width = 58
+    Top = 324
+    Width = 29
     Height = 14
-    Caption = 'Civil status'
-    Transparent = True
-  end
-  object JvLabel10: TJvLabel
-    Left = 59
-    Top = 411
-    Width = 76
-    Height = 14
-    Caption = 'Marriage date'
-    Transparent = True
-  end
-  object JvLabel11: TJvLabel
-    Left = 427
-    Top = 104
-    Width = 38
-    Height = 14
-    Caption = 'Height'
-    Transparent = True
-  end
-  object JvLabel12: TJvLabel
-    Left = 427
-    Top = 132
-    Width = 42
-    Height = 14
-    Caption = 'Weight'
-    Transparent = True
-  end
-  object JvLabel13: TJvLabel
-    Left = 427
-    Top = 160
-    Width = 61
-    Height = 14
-    Caption = 'Blood type'
+    Caption = 'Email'
     Transparent = True
   end
   object JvLabel16: TJvLabel
     Left = 427
-    Top = 240
+    Top = 267
     Width = 22
     Height = 14
     Caption = 'TIN'
@@ -123,7 +66,7 @@ inherited frmEmployeeMain: TfrmEmployeeMain
   end
   object JvLabel17: TJvLabel
     Left = 427
-    Top = 268
+    Top = 295
     Width = 23
     Height = 14
     Caption = 'SSS'
@@ -131,7 +74,7 @@ inherited frmEmployeeMain: TfrmEmployeeMain
   end
   object JvLabel18: TJvLabel
     Left = 427
-    Top = 297
+    Top = 324
     Width = 33
     Height = 14
     Caption = 'HDMF'
@@ -139,7 +82,7 @@ inherited frmEmployeeMain: TfrmEmployeeMain
   end
   object JvLabel14: TJvLabel
     Left = 427
-    Top = 325
+    Top = 352
     Width = 28
     Height = 14
     Caption = 'PHIC'
@@ -147,21 +90,53 @@ inherited frmEmployeeMain: TfrmEmployeeMain
   end
   object JvLabel15: TJvLabel
     Left = 427
-    Top = 354
+    Top = 381
     Width = 81
     Height = 14
     Caption = 'Driver'#39's license'
     Transparent = True
   end
+  object JvLabel4: TJvLabel
+    Left = 59
+    Top = 123
+    Width = 51
+    Height = 14
+    Caption = 'Barangay'
+    Transparent = True
+  end
+  object JvLabel2: TJvLabel
+    Left = 427
+    Top = 67
+    Width = 37
+    Height = 14
+    Caption = 'Street'
+    Transparent = True
+  end
+  object JvLabel5: TJvLabel
+    Left = 427
+    Top = 151
+    Width = 55
+    Height = 14
+    Caption = 'City town'
+    Transparent = True
+  end
+  object JvLabel10: TJvLabel
+    Left = 427
+    Top = 123
+    Width = 51
+    Height = 14
+    Caption = 'Barangay'
+    Transparent = True
+  end
   object RzGroupBox2: TRzGroupBox
     Left = 43
-    Top = 68
+    Top = 31
     Width = 302
     Height = 22
     BorderColor = 6572079
     BorderSides = []
     BorderWidth = 1
-    Caption = 'Employee name'
+    Caption = 'Home address'
     CaptionFont.Charset = DEFAULT_CHARSET
     CaptionFont.Color = clGray
     CaptionFont.Height = -12
@@ -177,15 +152,56 @@ inherited frmEmployeeMain: TfrmEmployeeMain
     GradientColorStyle = gcsCustom
     GroupStyle = gsUnderline
     ParentFont = False
-    TabOrder = 0
+    TabOrder = 14
   end
-  object edMiddlename: TRzDBEdit
+  object RzGroupBox1: TRzGroupBox
+    Left = 43
+    Top = 231
+    Width = 302
+    Height = 22
+    BorderColor = 6572079
+    BorderSides = []
+    BorderWidth = 1
+    Caption = 'Contact details'
+    CaptionFont.Charset = DEFAULT_CHARSET
+    CaptionFont.Color = clGray
+    CaptionFont.Height = -12
+    CaptionFont.Name = 'Tahoma'
+    CaptionFont.Style = [fsBold]
+    Color = clMenu
+    FlatColor = clMedGray
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clGray
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    GradientColorStyle = gcsCustom
+    GroupStyle = gsUnderline
+    ParentFont = False
+    TabOrder = 15
+  end
+  object RzDBEdit1: TRzDBEdit
     Left = 138
-    Top = 154
+    Top = 117
     Width = 207
     Height = 22
-    DataSource = dmEmployee.dsEmployee
-    DataField = 'employee_middlename'
+    DataSource = dmEmployee.dscEmpAddressH
+    DataField = 'barangay'
+    CharCase = ecUpperCase
+    FrameColor = 13816530
+    FrameVisible = True
+    FramingPreference = fpCustomFraming
+    ReadOnlyColor = clWhite
+    TabOnEnter = True
+    TabOrder = 1
+  end
+  object RzDBEdit2: TRzDBEdit
+    Left = 506
+    Top = 117
+    Width = 207
+    Height = 22
+    DataSource = dmEmployee.dscEmpAddressP
+    DataField = 'barangay'
     CharCase = ecUpperCase
     FrameColor = 13816530
     FrameVisible = True
@@ -194,128 +210,30 @@ inherited frmEmployeeMain: TfrmEmployeeMain
     TabOnEnter = True
     TabOrder = 4
   end
-  object edFirstname: TRzDBEdit
+  object RzDBEdit3: TRzDBEdit
     Left = 138
-    Top = 126
+    Top = 261
     Width = 207
     Height = 22
-    DataSource = dmEmployee.dsEmployee
-    DataField = 'employee_firstname'
+    DataSource = dmEmployee.dscEmpContactH
+    DataField = 'mobile_no'
     CharCase = ecUpperCase
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
     ReadOnlyColor = clWhite
     TabOnEnter = True
-    TabOrder = 3
-  end
-  object edLastname: TRzDBEdit
-    Left = 138
-    Top = 98
-    Width = 207
-    Height = 22
-    DataSource = dmEmployee.dsEmployee
-    DataField = 'employee_lastname'
-    CharCase = ecUpperCase
-    Ctl3D = True
-    FrameColor = 13816530
-    FrameVisible = True
-    FramingPreference = fpCustomFraming
-    ParentCtl3D = False
-    ReadOnlyColor = clWhite
-    TabOnEnter = True
-    TabOrder = 2
-  end
-  object RzGroupBox1: TRzGroupBox
-    Left = 43
-    Top = 204
-    Width = 302
-    Height = 22
-    BorderColor = 6572079
-    BorderSides = []
-    BorderWidth = 1
-    Caption = 'Personal info'
-    CaptionFont.Charset = DEFAULT_CHARSET
-    CaptionFont.Color = clGray
-    CaptionFont.Height = -12
-    CaptionFont.Name = 'Tahoma'
-    CaptionFont.Style = [fsBold]
-    Color = clMenu
-    FlatColor = clMedGray
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
-    Font.Height = -12
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    GradientColorStyle = gcsCustom
-    GroupStyle = gsUnderline
-    ParentFont = False
-    TabOrder = 5
-  end
-  object RzDBEdit4: TRzDBEdit
-    Left = 138
-    Top = 26
-    Width = 121
-    Height = 22
-    DataSource = dmEmployee.dsEmployee
-    DataField = 'id_num'
-    CharCase = ecUpperCase
-    Ctl3D = True
-    FrameColor = 13816530
-    FrameVisible = True
-    FramingPreference = fpCustomFraming
-    ParentCtl3D = False
-    ReadOnlyColor = clWhite
-    TabOnEnter = True
-    TabOrder = 1
-  end
-  object RzDBDateTimeEdit1: TRzDBDateTimeEdit
-    Left = 138
-    Top = 234
-    Width = 121
-    Height = 22
-    DataSource = dmEmployee.dsEmployee
-    DataField = 'birth_date'
-    FrameColor = 13816530
-    FrameVisible = True
-    FramingPreference = fpCustomFraming
     TabOrder = 6
-    EditType = etDate
-  end
-  object RzDBMemo1: TRzDBMemo
-    Left = 138
-    Top = 262
-    Width = 207
-    Height = 50
-    DataField = 'birth_place'
-    DataSource = dmEmployee.dsEmployee
-    TabOrder = 7
-    FrameColor = 13816530
-    FrameVisible = True
-    FramingPreference = fpCustomFraming
-  end
-  object RzDBDateTimeEdit2: TRzDBDateTimeEdit
-    Left = 138
-    Top = 405
-    Width = 121
-    Height = 22
-    DataSource = dmEmployee.dsEmployee
-    DataField = 'marriage_date'
-    FrameColor = 13816530
-    FrameVisible = True
-    FramingPreference = fpCustomFraming
-    TabOrder = 11
-    EditType = etDate
   end
   object RzGroupBox3: TRzGroupBox
     Left = 411
-    Top = 68
+    Top = 31
     Width = 302
     Height = 22
     BorderColor = 6572079
     BorderSides = []
     BorderWidth = 1
-    Caption = 'Biograpical info'
+    Caption = 'Present address'
     CaptionFont.Charset = DEFAULT_CHARSET
     CaptionFont.Color = clGray
     CaptionFont.Height = -12
@@ -331,49 +249,17 @@ inherited frmEmployeeMain: TfrmEmployeeMain
     GradientColorStyle = gcsCustom
     GroupStyle = gsUnderline
     ParentFont = False
-    TabOrder = 13
-  end
-  object RzDBEdit6: TRzDBEdit
-    Left = 506
-    Top = 126
-    Width = 143
-    Height = 22
-    DataSource = dmEmployee.dsEmployee
-    DataField = 'weight'
-    CharCase = ecUpperCase
-    FrameColor = 13816530
-    FrameVisible = True
-    FramingPreference = fpCustomFraming
-    ReadOnlyColor = clWhite
-    TabOnEnter = True
-    TabOrder = 15
-  end
-  object RzDBEdit7: TRzDBEdit
-    Left = 506
-    Top = 98
-    Width = 143
-    Height = 22
-    DataSource = dmEmployee.dsEmployee
-    DataField = 'height'
-    CharCase = ecUpperCase
-    Ctl3D = True
-    FrameColor = 13816530
-    FrameVisible = True
-    FramingPreference = fpCustomFraming
-    ParentCtl3D = False
-    ReadOnlyColor = clWhite
-    TabOnEnter = True
-    TabOrder = 14
+    TabOrder = 16
   end
   object RzGroupBox4: TRzGroupBox
     Left = 411
-    Top = 204
+    Top = 231
     Width = 302
     Height = 22
     BorderColor = 6572079
     BorderSides = []
     BorderWidth = 1
-    Caption = 'Identification cards'
+    Caption = 'Emergency contact'
     CaptionFont.Charset = DEFAULT_CHARSET
     CaptionFont.Color = clGray
     CaptionFont.Height = -12
@@ -393,156 +279,161 @@ inherited frmEmployeeMain: TfrmEmployeeMain
   end
   object RzDBEdit8: TRzDBEdit
     Left = 528
-    Top = 234
+    Top = 261
     Width = 185
     Height = 22
     DataSource = dmEmployee.dsEmployee
-    DataField = 'tin'
+    DataField = 'employee_middlename'
     CharCase = ecUpperCase
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
     ReadOnlyColor = clWhite
     TabOnEnter = True
-    TabOrder = 18
+    TabOrder = 9
   end
   object RzDBEdit9: TRzDBEdit
     Left = 528
-    Top = 262
+    Top = 289
     Width = 185
     Height = 22
     DataSource = dmEmployee.dsEmployee
-    DataField = 'sss'
+    DataField = 'employee_middlename'
     CharCase = ecUpperCase
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
     ReadOnlyColor = clWhite
     TabOnEnter = True
-    TabOrder = 19
+    TabOrder = 10
   end
   object RzDBEdit10: TRzDBEdit
     Left = 528
-    Top = 291
+    Top = 318
     Width = 185
     Height = 22
     DataSource = dmEmployee.dsEmployee
-    DataField = 'hdmf'
+    DataField = 'employee_middlename'
     CharCase = ecUpperCase
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
     ReadOnlyColor = clWhite
     TabOnEnter = True
-    TabOrder = 20
+    TabOrder = 11
   end
   object RzDBEdit11: TRzDBEdit
     Left = 528
-    Top = 319
+    Top = 346
     Width = 185
     Height = 22
     DataSource = dmEmployee.dsEmployee
-    DataField = 'phic'
+    DataField = 'employee_middlename'
     CharCase = ecUpperCase
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
     ReadOnlyColor = clWhite
     TabOnEnter = True
-    TabOrder = 21
+    TabOrder = 12
   end
   object RzDBEdit12: TRzDBEdit
     Left = 528
-    Top = 348
+    Top = 375
     Width = 185
     Height = 22
     DataSource = dmEmployee.dsEmployee
-    DataField = 'drivers_license'
+    DataField = 'employee_middlename'
     CharCase = ecUpperCase
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
     ReadOnlyColor = clWhite
     TabOnEnter = True
-    TabOrder = 22
+    TabOrder = 13
   end
-  object RzDBCheckBox1: TRzDBCheckBox
-    Left = 411
-    Top = 28
-    Width = 63
-    Height = 16
-    DataField = 'is_external'
-    DataSource = dmEmployee.dsEmployee
-    ValueChecked = '1'
-    ValueUnchecked = '0'
-    Caption = 'External'
-    TabOrder = 12
+  object RzDBMemo1: TRzDBMemo
+    Left = 138
+    Top = 61
+    Width = 207
+    Height = 50
+    DataField = 'street'
+    DataSource = dmEmployee.dscEmpAddressH
+    TabOrder = 0
+    FrameColor = 13816530
+    FrameVisible = True
+    FramingPreference = fpCustomFraming
+  end
+  object RzDBEdit4: TRzDBEdit
+    Left = 138
+    Top = 289
+    Width = 207
+    Height = 22
+    DataSource = dmEmployee.dscEmpContactH
+    DataField = 'landline_no'
+    CharCase = ecUpperCase
+    FrameColor = 13816530
+    FrameVisible = True
+    FramingPreference = fpCustomFraming
+    ReadOnlyColor = clWhite
+    TabOnEnter = True
+    TabOrder = 7
+  end
+  object RzDBMemo2: TRzDBMemo
+    Left = 506
+    Top = 61
+    Width = 207
+    Height = 50
+    DataField = 'street'
+    DataSource = dmEmployee.dscEmpAddressP
+    TabOrder = 3
+    FrameColor = 13816530
+    FrameVisible = True
+    FramingPreference = fpCustomFraming
+  end
+  object RzDBEdit5: TRzDBEdit
+    Left = 138
+    Top = 318
+    Width = 207
+    Height = 22
+    DataSource = dmEmployee.dscEmpContactH
+    DataField = 'email'
+    CharCase = ecUpperCase
+    FrameColor = 13816530
+    FrameVisible = True
+    FramingPreference = fpCustomFraming
+    ReadOnlyColor = clWhite
+    TabOnEnter = True
+    TabOrder = 8
   end
   object RzDBLookupComboBox2: TRzDBLookupComboBox
-    Left = 138
-    Top = 347
-    Width = 207
-    Height = 22
-    Ctl3D = True
-    DataField = 'religion_id'
-    DataSource = dmEmployee.dsEmployee
-    KeyField = 'religion_id'
-    ListField = 'religion_name'
-    ListSource = dmEmployee.dsReligion
-    ParentCtl3D = False
-    TabOrder = 9
-    FrameColor = 13816530
-    FrameVisible = True
-    FramingPreference = fpCustomFraming
-  end
-  object RzDBLookupComboBox3: TRzDBLookupComboBox
-    Left = 138
-    Top = 376
-    Width = 207
-    Height = 22
-    DataField = 'civil_status'
-    DataSource = dmEmployee.dsEmployee
-    KeyField = 'value'
-    ListField = 'display'
-    ListSource = dmEmployee.dsCivilStatus
-    TabOrder = 10
-    FrameColor = 13816530
-    FrameVisible = True
-    FramingPreference = fpCustomFraming
-  end
-  object RzDBLookupComboBox4: TRzDBLookupComboBox
     Left = 506
-    Top = 154
-    Width = 111
+    Top = 145
+    Width = 207
     Height = 22
-    DataField = 'blood_type'
-    DataSource = dmEmployee.dsEmployee
-    KeyField = 'value'
-    ListField = 'display'
-    ListSource = dmEmployee.dsBloodType
-    TabOrder = 16
+    DataField = 'town_id'
+    DataSource = dmEmployee.dscEmpAddressP
+    KeyField = 'town_id'
+    ListField = 'town'
+    ListSource = dmEmployee.dscTowns
+    TabOrder = 5
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
   end
-  object RzDBComboBox1: TRzDBComboBox
+  object RzDBLookupComboBox1: TRzDBLookupComboBox
     Left = 138
-    Top = 319
-    Width = 121
+    Top = 145
+    Width = 207
     Height = 22
-    DataField = 'gender'
-    DataSource = dmEmployee.dsEmployee
-    Ctl3D = False
+    DataField = 'town_id'
+    DataSource = dmEmployee.dscEmpAddressH
+    KeyField = 'town_id'
+    ListField = 'town'
+    ListSource = dmEmployee.dscTowns
+    TabOrder = 2
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
-    ParentCtl3D = False
-    TabOrder = 8
-    Items.Strings = (
-      'Male'
-      'Female')
-    Values.Strings = (
-      #39'M'#39
-      #39'F'#39)
   end
 end

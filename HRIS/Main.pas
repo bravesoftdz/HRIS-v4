@@ -102,6 +102,8 @@ type
     { Private declarations }
     DOCKED_FORM: TForms;
     procedure SetCaptions;
+    procedure Cancel;
+    procedure Save;
   public
     { Public declarations }
     procedure DockForm(const fm: TForms; const title: string = '');
@@ -167,6 +169,35 @@ begin
   end;
 end;
 
+procedure TfrmMain.Save;
+var
+  intf: ISave;
+begin
+  try
+    if pnlDockMain.ControlCount > 0 then
+      if Supports(pnlDockMain.Controls[0] as TForm, ISave, intf) then
+        if intf.Save then
+          ShowConfirmationBox2;
+  except
+    on e: Exception do
+      ShowErrorBox(e.Message);
+  end;
+end;
+
+procedure TfrmMain.Cancel;
+var
+  intf: ISave;
+begin
+  try
+    if pnlDockMain.ControlCount > 0 then
+      if Supports(pnlDockMain.Controls[0] as TForm, ISave, intf) then
+        intf.Cancel;
+  except
+    on e: Exception do
+      ShowErrorBox(e.Message);
+  end;
+end;
+
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   DOCKED_FORM := fmNone;
@@ -200,21 +231,13 @@ begin
 end;
 
 procedure TfrmMain.imgCancelClick(Sender: TObject);
-var
-  intf: ISave;
 begin
-  try
-    if pnlDockMain.ControlCount > 0 then
-      if Supports(pnlDockMain.Controls[0] as TForm,ISave,intf) then
-        intf.Cancel;
-  except
-    on e:Exception do
-      ShowErrorBox(e.Message);
-  end;
+  Cancel;
 end;
 
 procedure TfrmMain.imgCloseClick(Sender: TObject);
 begin
+  Cancel;
   Application.Terminate;
 end;
 
@@ -224,17 +247,8 @@ begin
 end;
 
 procedure TfrmMain.imgSaveClick(Sender: TObject);
-var
-  intf: ISave;
 begin
-  try
-    if pnlDockMain.ControlCount > 0 then
-      if Supports(pnlDockMain.Controls[0] as TForm,ISave,intf) then
-        if intf.Save then ShowConfirmationBox;
-  except
-    on e:Exception do
-      ShowErrorBox(e.Message);
-  end;
+  Save;
 end;
 
 procedure TfrmMain.acGenericNewExecute(Sender: TObject);

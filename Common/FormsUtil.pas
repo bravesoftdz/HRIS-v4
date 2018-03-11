@@ -39,8 +39,7 @@ begin
 
         ds.Close;
 
-        if open then
-          ds.Open;
+        if open then ds.Open;
       end
     end
   end;

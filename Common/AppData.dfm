@@ -7,12 +7,12 @@ object dmApplication: TdmApplication
   object acMain: TADOConnection
     ConnectionString = 
       'Provider=SQLNCLI11.1;Integrated Security=SSPI;Persist Security I' +
-      'nfo=False;User ID="";Initial Catalog=HRIS;Data Source=BRYAN\DEVE' +
-      'LOPMENT;Use Procedure for Prepare=1;Auto Translate=True;Packet S' +
-      'ize=4096;Workstation ID=BRYAN;Initial File Name="";Use Encryptio' +
-      'n for Data=False;Tag with column collation when possible=False;M' +
-      'ARS Connection=False;DataTypeCompatibility=0;Trust Server Certif' +
-      'icate=False;Application Intent=READWRITE;'
+      'nfo=False;User ID="";Initial Catalog=HRIS;Data Source=BRYAN-X1C\' +
+      'DEVELOPMENT;Use Procedure for Prepare=1;Auto Translate=True;Pack' +
+      'et Size=4096;Workstation ID=BRYAN;Initial File Name="";Use Encry' +
+      'ption for Data=False;Tag with column collation when possible=Fal' +
+      'se;MARS Connection=False;DataTypeCompatibility=0;Trust Server Ce' +
+      'rtificate=False;Server SPN="";Application Intent=READWRITE;'
     LoginPrompt = False
     Provider = 'SQLNCLI11.1'
     BeforeConnect = acMainBeforeConnect
