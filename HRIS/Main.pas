@@ -22,68 +22,37 @@ type
     Save1: TMenuItem;
     alMain: TActionList;
     acSave: TAction;
-    acAddClient: TAction;
+    acAddEmployee: TAction;
     Newclient1: TMenuItem;
-    acNewLoan: TAction;
+    acAddPAF: TAction;
     Newloan1: TMenuItem;
-    acGenericNew: TAction;
+    acSearchEmployee: TAction;
     New1: TMenuItem;
     lblDate: TLabel;
     lblVersion: TLabel;
     Client1: TMenuItem;
     Loan1: TMenuItem;
     Selectclient1: TMenuItem;
-    acSelectClient: TAction;
     Newpayment1: TMenuItem;
-    acNewPayment: TAction;
     Payment1: TMenuItem;
     Selectclient2: TMenuItem;
-    acAddActiveLoan: TAction;
     imgMinimize: TImage;
     pcMenu: TRzPageControl;
     tsHome: TRzTabSheet;
     tsAdministration: TRzTabSheet;
-    pnlAddClient: TRzPanel;
+    pnlAddEmployee: TRzPanel;
     imgAddEmployee: TImage;
     pnlCancel: TRzPanel;
     imgCancel: TImage;
-    pnlNewLoan: TRzPanel;
-    imgNewLoan: TImage;
-    pnlPayment: TRzPanel;
-    imgNewPayment: TImage;
+    pnlAddPAF: TRzPanel;
+    imgAddPAF: TImage;
+    pnlEmployeeSearch: TRzPanel;
+    imgEmployeeSearch: TImage;
     pnlSave: TRzPanel;
     imgSave: TImage;
     lblWelcome: TRzLabel;
-    pnlBank: TRzPanel;
-    imgBanks: TImage;
-    pnlCompetitor: TRzPanel;
-    imgCompetitor: TImage;
-    pnlDesignationList: TRzPanel;
-    imgDesignationList: TImage;
-    pnlEmployer: TRzPanel;
-    imgEmployer: TImage;
-    pnlGroups: TRzPanel;
-    imgGroups: TImage;
-    pnlLoanCancellationReasonList: TRzPanel;
-    imgLoanCancellationReasonList: TImage;
-    pnlLoanClass: TRzPanel;
-    imgLoanClass: TImage;
-    pnlLoanType: TRzPanel;
-    imgLoanType: TImage;
-    pnlPurpose: TRzPanel;
-    imgPurpose: TImage;
-    pnlRejectionReasonList: TRzPanel;
-    imgRejectionReasonList: TImage;
     pnlSettings: TRzPanel;
     imgSettings: TImage;
-    pnlAcctType: TRzPanel;
-    imgAcctType: TImage;
-    pnlChargeTypes: TRzPanel;
-    imgChargeTypes: TImage;
-    pnlInfoSources: TRzPanel;
-    imgInfoSources: TImage;
-    pnlLoanClosureReasonsList: TRzPanel;
-    imgLoanClosureReasonsList: TImage;
     procedure FormCreate(Sender: TObject);
     procedure pnlTitleMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -94,10 +63,11 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure imgSaveClick(Sender: TObject);
     procedure imgCancelClick(Sender: TObject);
-    procedure acGenericNewExecute(Sender: TObject);
+    procedure acSearchEmployeeExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure imgMinimizeClick(Sender: TObject);
     procedure imgAddEmployeeClick(Sender: TObject);
+    procedure imgEmployeeSearchClick(Sender: TObject);
   private
     { Private declarations }
     DOCKED_FORM: TForms;
@@ -106,7 +76,7 @@ type
     procedure Save;
   public
     { Public declarations }
-    procedure DockForm(const fm: TForms; const title: string = '');
+    procedure DockForm(const fm: TForms; AObject: TObject = nil);
   end;
 
 var
@@ -117,7 +87,8 @@ implementation
 {$R *.dfm}
 
 uses
-  EmployeeDrawer, NewIntf, SaveIntf, FormsUtil, HRISDialogs;
+  EmployeeDrawer, NewIntf, SaveIntf, FormsUtil, HRISDialogs, EmployeeSearch, Employee,
+  HRISGlobal;
 
 procedure TfrmMain.pnlTitleMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
@@ -131,7 +102,7 @@ begin
   end;
 end;
 
-procedure TfrmMain.DockForm(const fm: TForms; const title: string);
+procedure TfrmMain.DockForm(const fm: TForms; AObject: TObject);
 var
   frm: TForm;
   control: integer;
@@ -153,7 +124,7 @@ begin
 
     // instantiate form
     case fm of
-      fmEmployeeDrawer: frm := TfrmEmployeeDrawer.Create(Application);
+      fmEmployeeDrawer: frm := TfrmEmployeeDrawer.Create(Application,AObject as TEmployee);
 
       else
         frm := nil;
@@ -176,11 +147,10 @@ begin
   try
     if pnlDockMain.ControlCount > 0 then
       if Supports(pnlDockMain.Controls[0] as TForm, ISave, intf) then
-        if intf.Save then
-          ShowConfirmationBox2;
+        if intf.Save then ShowConfirmationBox2;
   except
-    on e: Exception do
-      ShowErrorBox(e.Message);
+  //  on e: Exception do
+  //    ShowErrorBox(e.Message);
   end;
 end;
 
@@ -241,6 +211,22 @@ begin
   Application.Terminate;
 end;
 
+procedure TfrmMain.imgEmployeeSearchClick(Sender: TObject);
+var
+  LEmployee: TEmployee;
+begin
+  LEmployee := TEmployee.Create;
+
+  with TfrmEmployeeSearch.Create(nil,LEmployee) do
+  try
+    ShowModal;
+    if ModalResult = mrOK then DockForm(fmEmployeeDrawer,LEmployee as TObject)
+    else LEmployee.Free;
+  finally
+    Free;
+  end;
+end;
+
 procedure TfrmMain.imgMinimizeClick(Sender: TObject);
 begin
   Application.Minimize;
@@ -251,7 +237,7 @@ begin
   Save;
 end;
 
-procedure TfrmMain.acGenericNewExecute(Sender: TObject);
+procedure TfrmMain.acSearchEmployeeExecute(Sender: TObject);
 var
   intf: INew;
 begin
@@ -268,10 +254,10 @@ end;
 procedure TfrmMain.SetCaptions;
 begin
 //  lblCaption.Caption := ifn.AppName + ' - ' + ifn.AppDescription;
-//  lblWelcome.Caption := 'Welcome back ' + ifn.User.Name + '.';
-//  lblDate.Caption := 'Today is ' + FormatDateTime('mmmm dd, yyyy', ifn.AppDate);
+  lblWelcome.Caption := 'Welcome back ' + HRIS.User.FirstName + '.';
+  lblDate.Caption := 'Today is ' + FormatDateTime('mmmm dd, yyyy', HRIS.CurrentDate);
 //  lblLocation.Caption := 'Location: ' + ifn.GetLocationNameByCode(ifn.LocationCode);
-//  lblVersion.Caption := 'Version ' + ifn.Version;
+  lblVersion.Caption := 'Version ' + HRIS.Version;
 end;
 
 end.

@@ -8,8 +8,10 @@ inherited frmConfBox2: TfrmConfBox2
   TextHeight = 14
   inherited pnlTitle: TRzPanel
     Width = 357
+    ExplicitWidth = 357
     inherited imgClose: TImage
       Left = 336
+      ExplicitLeft = 336
     end
     inherited lblCaption: TRzLabel
       Width = 73
@@ -20,8 +22,8 @@ inherited frmConfBox2: TfrmConfBox2
   inherited pnlMain: TRzPanel
     Width = 357
     Height = 108
-    ExplicitLeft = 0
-    ExplicitTop = 21
+    ExplicitWidth = 357
+    ExplicitHeight = 108
     object Image1: TImage
       Left = 21
       Top = 16

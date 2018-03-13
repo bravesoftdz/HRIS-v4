@@ -35,9 +35,9 @@ inherited frmBaseSearch: TfrmBaseSearch
       Caption = 'Search'
     end
     object edSearchKey: TRzEdit
-      Left = 47
+      Left = 51
       Top = 8
-      Width = 257
+      Width = 253
       Height = 22
       Text = ''
       Anchors = [akLeft, akTop, akRight]

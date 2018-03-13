@@ -5,10 +5,10 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BaseDocked2, Vcl.StdCtrls, RzLabel,
-  Vcl.ExtCtrls, RzPanel, BaseDocked, EmployeeController, SaveIntf;
+  Vcl.ExtCtrls, RzPanel, BaseDocked, EmployeeController, SaveIntf, Employee;
 
 type
-  TEmployeeForms = (efMain,efAddressAndContact);
+  TEmployeeForms = (efMain,efAddressAndContact,efFamily);
 
   TfrmEmployeeDrawer = class(TfrmBaseDocked2,ISave)
     pnlDock: TRzPanel;
@@ -17,23 +17,28 @@ type
     urlAddressAndContact: TRzURLLabel;
     urlFamily: TRzURLLabel;
     urlPhoto: TRzURLLabel;
+    lblIdNumber: TRzLabel;
+    urlPAFRecords: TRzURLLabel;
+    urlPayroll: TRzURLLabel;
     procedure FormShow(Sender: TObject);
     procedure urlMainClick(Sender: TObject);
     procedure urlAddressAndContactClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure urlFamilyClick(Sender: TObject);
   private
     { Private declarations }
     DOCKED_FORM: TEmployeeForms;
     Controller: TEmployeeController;
     procedure DockForm(ef: TEmployeeForms);
     procedure EnableControls;
+    procedure SetTitle;
   public
     { Public declarations }
     function Save: boolean;
     procedure Cancel;
 
     constructor Create(AOwner: TComponent); overload; override;
-    constructor Create(AOwner: TComponent; const AController: TEmployeeController); reintroduce; overload;
+    constructor Create(AOwner: TComponent; const AEmployee: TEmployee); reintroduce; overload;
   end;
 
 implementation
@@ -41,15 +46,13 @@ implementation
 {$R *.dfm}
 
 uses
-  EmployeeMain, AddressAndContact;
+  EmployeeMain, AddressAndContact, FamilyAndRelatives;
 
 { TfrmEmployeeDrawer }
 
 constructor TfrmEmployeeDrawer.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
-  Controller := TEmployeeController.Create;
-  Controller.Add;
 end;
 
 procedure TfrmEmployeeDrawer.Cancel;
@@ -58,10 +61,17 @@ begin
 end;
 
 constructor TfrmEmployeeDrawer.Create(AOwner: TComponent;
-  const AController: TEmployeeController);
+  const AEmployee: TEmployee);
 begin
   inherited Create(AOwner);
-  Controller := AController;
+  Controller := TEmployeeController.Create;
+
+  if Assigned(AEmployee) then
+  begin
+  Controller.Employee := AEmployee;
+  Controller.Action := eaEditing;
+  end
+  else Controller.Add;
 end;
 
 procedure TfrmEmployeeDrawer.DockForm(ef: TEmployeeForms);
@@ -86,8 +96,9 @@ begin
 
     // instantiate form
     case ef of
-      efMain: frm := TfrmEmployeeMain.Create(self);
+      efMain: frm := TfrmEmployeeMain.Create(self,Controller.Employee);
       efAddressAndContact: frm := TfrmAddressAndContact.Create(self);
+      efFamily: frm := TfrmFamilyAndRelatives.Create(self,Controller);
       else frm := nil;
     end;
 
@@ -95,10 +106,11 @@ begin
     case ef of
       efMain: Controller.Selected := sdMain;
       efAddressAndContact: Controller.Selected := sdAddressAndContact;
+      efFamily: Controller.Selected := sdFamily;
       else Controller.Selected := sdNone;
     end;
 
-    if not Controller.New then Controller.OnSelectionChanged;
+    if Controller.Action = eaEditing then Controller.OnSelectionChanged;
 
     if Assigned(frm) then
     begin
@@ -112,7 +124,7 @@ end;
 
 procedure TfrmEmployeeDrawer.EnableControls;
 begin
-  pnlMenu.Enabled := not Controller.New;
+  pnlMenu.Enabled := Controller.IsEditing;
 end;
 
 procedure TfrmEmployeeDrawer.FormClose(Sender: TObject;
@@ -127,18 +139,36 @@ begin
   inherited;
   DockForm(efMain);
   EnableControls;
+  SetTitle;
 end;
 
 function TfrmEmployeeDrawer.Save: boolean;
 begin
-  Controller.Save;
+  Result := Controller.Save;
+
   EnableControls;
+  SetTitle;
+end;
+
+procedure TfrmEmployeeDrawer.SetTitle;
+begin
+  if Assigned(Controller.Employee) then
+  begin
+    lblTitle.Caption := Controller.Employee.Name;
+    lblIdNumber.Caption := 'ID Number: ' + Controller.Employee.IdNumber;
+  end;
 end;
 
 procedure TfrmEmployeeDrawer.urlAddressAndContactClick(Sender: TObject);
 begin
   inherited;
   DockForm(efAddressAndContact);
+end;
+
+procedure TfrmEmployeeDrawer.urlFamilyClick(Sender: TObject);
+begin
+  inherited;
+  DockForm(efFamily);
 end;
 
 procedure TfrmEmployeeDrawer.urlMainClick(Sender: TObject);

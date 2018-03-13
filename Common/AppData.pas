@@ -14,6 +14,8 @@ type
     dstLocation: TADODataSet;
     dstEmployees: TADODataSet;
     dscEmployees: TDataSource;
+    dstHRISEmployees: TADODataSet;
+    dscHRISEmployees: TDataSource;
     procedure DataModuleCreate(Sender: TObject);
     procedure acMainBeforeConnect(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);

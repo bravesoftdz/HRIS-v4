@@ -61,7 +61,7 @@ end;
 
 procedure TfrmBaseSearch.edSearchKeyChange(Sender: TObject);
 begin
-  SearchList;
+  if Trim(edSearchKey.Text) <> '' then SearchList;
 end;
 
 procedure TfrmBaseSearch.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -94,7 +94,8 @@ end;
 
 procedure TfrmBaseSearch.FormKeyPress(Sender: TObject; var Key: Char);
 begin
-  if Key = #13 then ModalResult := mrOK;
+  if Key = #13 then
+    if grSearch.DataSource.DataSet.RecordCount > 0 then ModalResult := mrOK;
   inherited;
 end;
 

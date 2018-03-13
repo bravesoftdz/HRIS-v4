@@ -137,8 +137,8 @@
             <Form>frmDecisionBox</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="ErrorBox.pas">
-            <Form>frmErrorBox</Form>
+        <DCCReference Include="ErrorBox2.pas">
+            <Form>frmErrorBox2</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="FormsUtil.pas"/>
@@ -174,6 +174,10 @@
         <DCCReference Include="SaveIntf.pas"/>
         <DCCReference Include="ConfBox2.pas">
             <Form>frmConfBox2</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="ErrorBox.pas">
+            <Form>frmErrorBox</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

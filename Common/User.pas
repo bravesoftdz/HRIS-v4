@@ -11,9 +11,16 @@ type
     FUserId: string;
     FUserName: string;
     FUserRights: array of string;
+    FName: string;
+    FFirstName: string;
+    FLastName: string;
+    function GetName: string;
   public
     property UserId: string read FUserId write FUserId;
     property UserName: string read FUserName write FUserName;
+    property FirstName: string read FFirstName write FFirstName;
+    property LastName: string write FLastName;
+    property Name: string read GetName;
 
     procedure SetRight(const right: string);
     function HasRights(const rights: array of string;
@@ -44,6 +51,11 @@ begin
   if usr = self then
     usr := nil;
   inherited Destroy;
+end;
+
+function TUser.GetName: string;
+begin
+  Result := FFirstName + ' ' + FLastName;
 end;
 
 function TUser.HasRights(const rights: array of string;

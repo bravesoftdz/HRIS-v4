@@ -20,9 +20,6 @@ type
     procedure Cancel; override;
   end;
 
-var
-  frmEmployeeSearch: TfrmEmployeeSearch;
-
 implementation
 
 {$R *.dfm}

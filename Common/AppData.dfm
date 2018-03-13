@@ -107,4 +107,48 @@ object dmApplication: TdmApplication
     Left = 400
     Top = 24
   end
+  object dstHRISEmployees: TADODataSet
+    Connection = acMain
+    CursorType = ctStatic
+    Filtered = True
+    LockType = ltReadOnly
+    CommandText = 'hris_get_employees;1'
+    CommandType = cmdStoredProc
+    Parameters = <
+      item
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        Direction = pdReturnValue
+        Precision = 10
+        Value = 0
+      end
+      item
+        Name = '@lastname'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 50
+        Value = Null
+      end
+      item
+        Name = '@firstname'
+        Attributes = [paNullable]
+        DataType = ftString
+        Size = 50
+        Value = Null
+      end
+      item
+        Name = '@option'
+        Attributes = [paNullable]
+        DataType = ftInteger
+        Precision = 10
+        Value = 1
+      end>
+    Left = 328
+    Top = 80
+  end
+  object dscHRISEmployees: TDataSource
+    DataSet = dstHRISEmployees
+    Left = 400
+    Top = 80
+  end
 end

@@ -5,6 +5,7 @@ inherited frmEmployeeMain: TfrmEmployeeMain
   ClientWidth = 926
   OnClose = FormClose
   OnCreate = FormCreate
+  OnShow = FormShow
   ExplicitWidth = 942
   ExplicitHeight = 545
   PixelsPerInch = 96
@@ -153,6 +154,61 @@ inherited frmEmployeeMain: TfrmEmployeeMain
     Caption = 'Driver'#39's license'
     Transparent = True
   end
+  object lblAge: TJvLabel
+    Left = 289
+    Top = 240
+    Width = 39
+    Height = 14
+    Caption = 'Age: 0'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsItalic]
+    ParentFont = False
+    Transparent = True
+    HotTrackFont.Charset = DEFAULT_CHARSET
+    HotTrackFont.Color = clWindowText
+    HotTrackFont.Height = -12
+    HotTrackFont.Name = 'Tahoma'
+    HotTrackFont.Style = []
+  end
+  object lblWeight: TJvLabel
+    Left = 596
+    Top = 132
+    Width = 6
+    Height = 14
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsItalic]
+    ParentFont = False
+    Transparent = True
+    HotTrackFont.Charset = DEFAULT_CHARSET
+    HotTrackFont.Color = clWindowText
+    HotTrackFont.Height = -12
+    HotTrackFont.Name = 'Tahoma'
+    HotTrackFont.Style = []
+  end
+  object lblHeight: TJvLabel
+    Left = 596
+    Top = 104
+    Width = 6
+    Height = 14
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsItalic]
+    ParentFont = False
+    Transparent = True
+    HotTrackFont.Charset = DEFAULT_CHARSET
+    HotTrackFont.Color = clWindowText
+    HotTrackFont.Height = -12
+    HotTrackFont.Name = 'Tahoma'
+    HotTrackFont.Style = []
+  end
   object RzGroupBox2: TRzGroupBox
     Left = 43
     Top = 68
@@ -186,7 +242,6 @@ inherited frmEmployeeMain: TfrmEmployeeMain
     Height = 22
     DataSource = dmEmployee.dsEmployee
     DataField = 'employee_middlename'
-    CharCase = ecUpperCase
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
@@ -201,7 +256,6 @@ inherited frmEmployeeMain: TfrmEmployeeMain
     Height = 22
     DataSource = dmEmployee.dsEmployee
     DataField = 'employee_firstname'
-    CharCase = ecUpperCase
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
@@ -216,7 +270,6 @@ inherited frmEmployeeMain: TfrmEmployeeMain
     Height = 22
     DataSource = dmEmployee.dsEmployee
     DataField = 'employee_lastname'
-    CharCase = ecUpperCase
     Ctl3D = True
     FrameColor = 13816530
     FrameVisible = True
@@ -252,7 +305,7 @@ inherited frmEmployeeMain: TfrmEmployeeMain
     ParentFont = False
     TabOrder = 5
   end
-  object RzDBEdit4: TRzDBEdit
+  object edIdNum: TRzDBEdit
     Left = 138
     Top = 26
     Width = 121
@@ -265,7 +318,6 @@ inherited frmEmployeeMain: TfrmEmployeeMain
     FrameVisible = True
     FramingPreference = fpCustomFraming
     ParentCtl3D = False
-    ReadOnlyColor = clWhite
     TabOnEnter = True
     TabOrder = 1
   end
@@ -281,6 +333,8 @@ inherited frmEmployeeMain: TfrmEmployeeMain
     FramingPreference = fpCustomFraming
     TabOrder = 6
     EditType = etDate
+    Format = 'mm/dd/yyyy'
+    FlatButtons = True
   end
   object RzDBMemo1: TRzDBMemo
     Left = 138
@@ -306,6 +360,8 @@ inherited frmEmployeeMain: TfrmEmployeeMain
     FramingPreference = fpCustomFraming
     TabOrder = 11
     EditType = etDate
+    Format = 'mm/dd/yyyy'
+    FlatButtons = True
   end
   object RzGroupBox3: TRzGroupBox
     Left = 411
@@ -336,7 +392,7 @@ inherited frmEmployeeMain: TfrmEmployeeMain
   object RzDBEdit6: TRzDBEdit
     Left = 506
     Top = 126
-    Width = 143
+    Width = 79
     Height = 22
     DataSource = dmEmployee.dsEmployee
     DataField = 'weight'
@@ -351,7 +407,7 @@ inherited frmEmployeeMain: TfrmEmployeeMain
   object RzDBEdit7: TRzDBEdit
     Left = 506
     Top = 98
-    Width = 143
+    Width = 79
     Height = 22
     DataSource = dmEmployee.dsEmployee
     DataField = 'height'
@@ -483,14 +539,13 @@ inherited frmEmployeeMain: TfrmEmployeeMain
     Top = 347
     Width = 207
     Height = 22
-    Ctl3D = True
     DataField = 'religion_id'
     DataSource = dmEmployee.dsEmployee
     KeyField = 'religion_id'
     ListField = 'religion_name'
     ListSource = dmEmployee.dsReligion
-    ParentCtl3D = False
     TabOrder = 9
+    FlatButtons = True
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
@@ -506,6 +561,7 @@ inherited frmEmployeeMain: TfrmEmployeeMain
     ListField = 'display'
     ListSource = dmEmployee.dsCivilStatus
     TabOrder = 10
+    FlatButtons = True
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
@@ -513,7 +569,7 @@ inherited frmEmployeeMain: TfrmEmployeeMain
   object RzDBLookupComboBox4: TRzDBLookupComboBox
     Left = 506
     Top = 154
-    Width = 111
+    Width = 79
     Height = 22
     DataField = 'blood_type'
     DataSource = dmEmployee.dsEmployee
@@ -521,28 +577,25 @@ inherited frmEmployeeMain: TfrmEmployeeMain
     ListField = 'display'
     ListSource = dmEmployee.dsBloodType
     TabOrder = 16
+    FlatButtons = True
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
   end
-  object RzDBComboBox1: TRzDBComboBox
+  object RzDBLookupComboBox1: TRzDBLookupComboBox
     Left = 138
     Top = 319
     Width = 121
     Height = 22
     DataField = 'gender'
     DataSource = dmEmployee.dsEmployee
-    Ctl3D = False
+    KeyField = 'value'
+    ListField = 'display'
+    ListSource = dmEmployee.dscGender
+    TabOrder = 8
+    FlatButtons = True
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
-    ParentCtl3D = False
-    TabOrder = 8
-    Items.Strings = (
-      'Male'
-      'Female')
-    Values.Strings = (
-      #39'M'#39
-      #39'F'#39)
   end
 end

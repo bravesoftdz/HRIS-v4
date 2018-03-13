@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BaseForm, Vcl.StdCtrls, Vcl.DBCtrls,
   RzDBEdit, Vcl.Mask, RzEdit, Vcl.ExtCtrls, RzPanel, JvExControls, JvLabel,
-  RzCmboBx, RzDBCmbo;
+  RzCmboBx, RzDBCmbo, RzButton, RzRadChk, RzDBChk;
 
 type
   TfrmAddressAndContact = class(TfrmBase)
@@ -29,7 +29,6 @@ type
     RzGroupBox3: TRzGroupBox;
     RzGroupBox4: TRzGroupBox;
     RzDBEdit8: TRzDBEdit;
-    RzDBEdit9: TRzDBEdit;
     RzDBEdit10: TRzDBEdit;
     RzDBEdit11: TRzDBEdit;
     RzDBEdit12: TRzDBEdit;
@@ -43,6 +42,8 @@ type
     RzDBEdit5: TRzDBEdit;
     RzDBLookupComboBox2: TRzDBLookupComboBox;
     RzDBLookupComboBox1: TRzDBLookupComboBox;
+    RzDBMemo3: TRzDBMemo;
+    RzDBCheckBox1: TRzDBCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private

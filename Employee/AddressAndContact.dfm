@@ -1,11 +1,11 @@
 inherited frmAddressAndContact: TfrmAddressAndContact
   Caption = 'frmAddressAndContact'
-  ClientHeight = 441
+  ClientHeight = 503
   ClientWidth = 824
   OnClose = FormClose
   OnCreate = FormCreate
   ExplicitWidth = 840
-  ExplicitHeight = 480
+  ExplicitHeight = 542
   PixelsPerInch = 96
   TextHeight = 14
   object JvLabel1: TJvLabel
@@ -59,41 +59,41 @@ inherited frmAddressAndContact: TfrmAddressAndContact
   object JvLabel16: TJvLabel
     Left = 427
     Top = 267
-    Width = 22
+    Width = 33
     Height = 14
-    Caption = 'TIN'
+    Caption = 'Name'
     Transparent = True
   end
   object JvLabel17: TJvLabel
     Left = 427
     Top = 295
-    Width = 23
+    Width = 45
     Height = 14
-    Caption = 'SSS'
+    Caption = 'Address'
     Transparent = True
   end
   object JvLabel18: TJvLabel
     Left = 427
-    Top = 324
-    Width = 33
+    Top = 351
+    Width = 45
     Height = 14
-    Caption = 'HDMF'
+    Caption = 'Relation'
     Transparent = True
   end
   object JvLabel14: TJvLabel
     Left = 427
-    Top = 352
-    Width = 28
+    Top = 379
+    Width = 91
     Height = 14
-    Caption = 'PHIC'
+    Caption = 'Contact number'
     Transparent = True
   end
   object JvLabel15: TJvLabel
     Left = 427
-    Top = 381
-    Width = 81
+    Top = 408
+    Width = 29
     Height = 14
-    Caption = 'Driver'#39's license'
+    Caption = 'Email'
     Transparent = True
   end
   object JvLabel4: TJvLabel
@@ -187,7 +187,6 @@ inherited frmAddressAndContact: TfrmAddressAndContact
     Height = 22
     DataSource = dmEmployee.dscEmpAddressH
     DataField = 'barangay'
-    CharCase = ecUpperCase
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
@@ -202,13 +201,12 @@ inherited frmAddressAndContact: TfrmAddressAndContact
     Height = 22
     DataSource = dmEmployee.dscEmpAddressP
     DataField = 'barangay'
-    CharCase = ecUpperCase
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
     ReadOnlyColor = clWhite
     TabOnEnter = True
-    TabOrder = 4
+    TabOrder = 5
   end
   object RzDBEdit3: TRzDBEdit
     Left = 138
@@ -217,13 +215,12 @@ inherited frmAddressAndContact: TfrmAddressAndContact
     Height = 22
     DataSource = dmEmployee.dscEmpContactH
     DataField = 'mobile_no'
-    CharCase = ecUpperCase
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
     ReadOnlyColor = clWhite
     TabOnEnter = True
-    TabOrder = 6
+    TabOrder = 7
   end
   object RzGroupBox3: TRzGroupBox
     Left = 411
@@ -282,24 +279,8 @@ inherited frmAddressAndContact: TfrmAddressAndContact
     Top = 261
     Width = 185
     Height = 22
-    DataSource = dmEmployee.dsEmployee
-    DataField = 'employee_middlename'
-    CharCase = ecUpperCase
-    FrameColor = 13816530
-    FrameVisible = True
-    FramingPreference = fpCustomFraming
-    ReadOnlyColor = clWhite
-    TabOnEnter = True
-    TabOrder = 9
-  end
-  object RzDBEdit9: TRzDBEdit
-    Left = 528
-    Top = 289
-    Width = 185
-    Height = 22
-    DataSource = dmEmployee.dsEmployee
-    DataField = 'employee_middlename'
-    CharCase = ecUpperCase
+    DataSource = dmEmployee.dscEmpEmergency
+    DataField = 'em_name'
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
@@ -309,12 +290,11 @@ inherited frmAddressAndContact: TfrmAddressAndContact
   end
   object RzDBEdit10: TRzDBEdit
     Left = 528
-    Top = 318
+    Top = 345
     Width = 185
     Height = 22
-    DataSource = dmEmployee.dsEmployee
-    DataField = 'employee_middlename'
-    CharCase = ecUpperCase
+    DataSource = dmEmployee.dscEmpEmergency
+    DataField = 'em_relation'
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
@@ -324,12 +304,11 @@ inherited frmAddressAndContact: TfrmAddressAndContact
   end
   object RzDBEdit11: TRzDBEdit
     Left = 528
-    Top = 346
+    Top = 373
     Width = 185
     Height = 22
-    DataSource = dmEmployee.dsEmployee
-    DataField = 'employee_middlename'
-    CharCase = ecUpperCase
+    DataSource = dmEmployee.dscEmpEmergency
+    DataField = 'em_contact'
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
@@ -339,12 +318,11 @@ inherited frmAddressAndContact: TfrmAddressAndContact
   end
   object RzDBEdit12: TRzDBEdit
     Left = 528
-    Top = 375
+    Top = 402
     Width = 185
     Height = 22
-    DataSource = dmEmployee.dsEmployee
-    DataField = 'employee_middlename'
-    CharCase = ecUpperCase
+    DataSource = dmEmployee.dscEmpEmergency
+    DataField = 'em_email'
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
@@ -371,13 +349,12 @@ inherited frmAddressAndContact: TfrmAddressAndContact
     Height = 22
     DataSource = dmEmployee.dscEmpContactH
     DataField = 'landline_no'
-    CharCase = ecUpperCase
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
     ReadOnlyColor = clWhite
     TabOnEnter = True
-    TabOrder = 7
+    TabOrder = 8
   end
   object RzDBMemo2: TRzDBMemo
     Left = 506
@@ -386,7 +363,7 @@ inherited frmAddressAndContact: TfrmAddressAndContact
     Height = 50
     DataField = 'street'
     DataSource = dmEmployee.dscEmpAddressP
-    TabOrder = 3
+    TabOrder = 4
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
@@ -398,13 +375,12 @@ inherited frmAddressAndContact: TfrmAddressAndContact
     Height = 22
     DataSource = dmEmployee.dscEmpContactH
     DataField = 'email'
-    CharCase = ecUpperCase
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
     ReadOnlyColor = clWhite
     TabOnEnter = True
-    TabOrder = 8
+    TabOrder = 9
   end
   object RzDBLookupComboBox2: TRzDBLookupComboBox
     Left = 506
@@ -416,7 +392,7 @@ inherited frmAddressAndContact: TfrmAddressAndContact
     KeyField = 'town_id'
     ListField = 'town'
     ListSource = dmEmployee.dscTowns
-    TabOrder = 5
+    TabOrder = 6
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
@@ -435,5 +411,29 @@ inherited frmAddressAndContact: TfrmAddressAndContact
     FrameColor = 13816530
     FrameVisible = True
     FramingPreference = fpCustomFraming
+  end
+  object RzDBMemo3: TRzDBMemo
+    Left = 528
+    Top = 289
+    Width = 185
+    Height = 49
+    DataField = 'em_address'
+    DataSource = dmEmployee.dscEmpEmergency
+    TabOrder = 18
+    FrameColor = 13816530
+    FrameVisible = True
+    FramingPreference = fpCustomFraming
+  end
+  object RzDBCheckBox1: TRzDBCheckBox
+    Left = 59
+    Top = 189
+    Width = 198
+    Height = 16
+    DataField = 'is_present'
+    DataSource = dmEmployee.dscEmpAddressH
+    ValueChecked = '1'
+    ValueUnchecked = '0'
+    Caption = 'Home address is present address'
+    TabOrder = 3
   end
 end

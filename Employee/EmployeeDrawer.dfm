@@ -11,9 +11,25 @@ inherited frmEmployeeDrawer: TfrmEmployeeDrawer
     Width = 696
     ExplicitWidth = 696
     inherited lblTitle: TRzLabel
-      Width = 58
-      Caption = 'Employee'
-      ExplicitWidth = 58
+      Width = 101
+      Caption = 'Employee record'
+      ExplicitWidth = 101
+    end
+    object lblIdNumber: TRzLabel
+      Left = 664
+      Top = 7
+      Width = 4
+      Height = 14
+      Alignment = taRightJustify
+      Anchors = [akTop, akRight]
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 8026685
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+      Transparent = True
+      BorderSides = [sdBottom]
     end
   end
   object pnlDock: TRzPanel
@@ -99,6 +115,7 @@ inherited frmEmployeeDrawer: TfrmEmployeeDrawer
       Font.Style = [fsUnderline]
       ParentColor = False
       ParentFont = False
+      OnClick = urlFamilyClick
     end
     object urlPhoto: TRzURLLabel
       Left = 24
@@ -106,6 +123,38 @@ inherited frmEmployeeDrawer: TfrmEmployeeDrawer
       Width = 33
       Height = 14
       Caption = 'Photo'
+      Color = 15395562
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 8026685
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsUnderline]
+      ParentColor = False
+      ParentFont = False
+    end
+    object urlPAFRecords: TRzURLLabel
+      Left = 24
+      Top = 120
+      Width = 65
+      Height = 14
+      Caption = 'PAF records'
+      Color = 15395562
+      Enabled = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = 8026685
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsUnderline]
+      ParentColor = False
+      ParentFont = False
+    end
+    object urlPayroll: TRzURLLabel
+      Left = 24
+      Top = 144
+      Width = 34
+      Height = 14
+      Caption = 'Payroll'
       Color = 15395562
       Enabled = False
       Font.Charset = DEFAULT_CHARSET

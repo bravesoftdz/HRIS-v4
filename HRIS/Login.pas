@@ -156,15 +156,17 @@ if (UserExists) and (PasswordIsValid) then
 
         self.Update;
 
+        HRIS := THRISGlobal.Create;
+
         LoadModules;
-        // SettingAccessRights;
+        SettingAccessRights;
         LoadSettings;
 
         ModalResult := 1;
       except
         on e: Exception do
         begin
-          ShowErrorBox('An exception has been detected and the application needs to close. ' +
+          ShowErrorBox2('An exception has been detected and the application needs to close. ' +
             'Please contact the administrator with the message below.' + #13#10 + #13#10 +
             e.Message);
           Application.Terminate;
@@ -205,7 +207,7 @@ begin
   begin
     Open;
 
-//    ifn.AppDate := Date;
+    HRIS.CurrentDate := Date;
 //
 //    // location code
 //    Locate('sysconfig_code','LOCATION_CODE',[]);
@@ -226,7 +228,7 @@ begin
 //    ifn.AppImagesPath := ExtractFilePath(Application.ExeName) + '_images\';
 //
 //    // version
-//    ifn.Version := GetAppVersionStr(ParamStr(0));
+    HRIS.Version := GetAppVersionStr(ParamStr(0));
 
     // get all locations
     GetLocations;
@@ -290,6 +292,8 @@ begin
   with dmApplication.dstUser do
   begin
     HRIS.User.UserId := FieldByName('id_num').AsString;
+    HRIS.User.FirstName := FieldByName('employee_firstname').AsString;
+    HRIS.User.LastName := FieldByName('employee_lastname').AsString;
 
     while not Eof do
     begin
