@@ -132,6 +132,7 @@
         <DCCReference Include="JvCore.dcp"/>
         <DCCReference Include="JvStdCtrls.dcp"/>
         <DCCReference Include="RaizeComponentsVclDb.dcp"/>
+        <DCCReference Include="DSPack_DXE4.dcp"/>
         <DCCReference Include="EmployeeData.pas">
             <Form>dmEmployee</Form>
             <FormType>dfm</FormType>
@@ -169,6 +170,14 @@
         </DCCReference>
         <DCCReference Include="FamilyAndRelatives.pas">
             <Form>frmFamilyAndRelatives</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="EmployeePAF.pas">
+            <Form>frmEmployeePAF</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="EmployeePhoto.pas">
+            <Form>frmEmployeePhoto</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

@@ -8,7 +8,7 @@ uses
   Vcl.ExtCtrls, RzPanel, BaseDocked, EmployeeController, SaveIntf, Employee;
 
 type
-  TEmployeeForms = (efMain,efAddressAndContact,efFamily);
+  TEmployeeForms = (efMain,efAddressAndContact,efFamily,efPAF,efPayroll,efPhoto);
 
   TfrmEmployeeDrawer = class(TfrmBaseDocked2,ISave)
     pnlDock: TRzPanel;
@@ -25,6 +25,8 @@ type
     procedure urlAddressAndContactClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure urlFamilyClick(Sender: TObject);
+    procedure urlPAFRecordsClick(Sender: TObject);
+    procedure urlPhotoClick(Sender: TObject);
   private
     { Private declarations }
     DOCKED_FORM: TEmployeeForms;
@@ -46,7 +48,7 @@ implementation
 {$R *.dfm}
 
 uses
-  EmployeeMain, AddressAndContact, FamilyAndRelatives;
+  EmployeeMain, AddressAndContact, FamilyAndRelatives, EmployeePAF, EmployeePhoto;
 
 { TfrmEmployeeDrawer }
 
@@ -99,6 +101,8 @@ begin
       efMain: frm := TfrmEmployeeMain.Create(self,Controller.Employee);
       efAddressAndContact: frm := TfrmAddressAndContact.Create(self);
       efFamily: frm := TfrmFamilyAndRelatives.Create(self,Controller);
+      efPhoto: frm := TfrmEmployeePhoto.Create(self,Controller.Employee);
+      efPAF: frm := TfrmEmployeePAF.Create(self);
       else frm := nil;
     end;
 
@@ -107,6 +111,8 @@ begin
       efMain: Controller.Selected := sdMain;
       efAddressAndContact: Controller.Selected := sdAddressAndContact;
       efFamily: Controller.Selected := sdFamily;
+      efPhoto: Controller.Selected := sdPhoto;
+      efPAF: Controller.Selected := sdPAF;
       else Controller.Selected := sdNone;
     end;
 
@@ -175,6 +181,18 @@ procedure TfrmEmployeeDrawer.urlMainClick(Sender: TObject);
 begin
   inherited;
   DockForm(efMain);
+end;
+
+procedure TfrmEmployeeDrawer.urlPAFRecordsClick(Sender: TObject);
+begin
+  inherited;
+  DockForm(efPAF);
+end;
+
+procedure TfrmEmployeeDrawer.urlPhotoClick(Sender: TObject);
+begin
+  inherited;
+  DockForm(efPhoto);
 end;
 
 end.

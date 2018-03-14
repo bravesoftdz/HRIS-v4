@@ -1,5 +1,5 @@
 inherited frmEmployeeDrawer: TfrmEmployeeDrawer
-  Caption = 'frmEmployeeDrawer'
+  Caption = 'gm'
   ClientHeight = 352
   ClientWidth = 696
   OnShow = FormShow
@@ -132,6 +132,7 @@ inherited frmEmployeeDrawer: TfrmEmployeeDrawer
       Font.Style = [fsUnderline]
       ParentColor = False
       ParentFont = False
+      OnClick = urlPhotoClick
     end
     object urlPAFRecords: TRzURLLabel
       Left = 24
@@ -148,6 +149,7 @@ inherited frmEmployeeDrawer: TfrmEmployeeDrawer
       Font.Style = [fsUnderline]
       ParentColor = False
       ParentFont = False
+      OnClick = urlPAFRecordsClick
     end
     object urlPayroll: TRzURLLabel
       Left = 24

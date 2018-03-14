@@ -224,10 +224,10 @@ begin
 //    if not DirectoryExists(ifn.PhotoPath) then
 //      CreateDir(ifn.PhotoPath);
 //
-//    // application images path
-//    ifn.AppImagesPath := ExtractFilePath(Application.ExeName) + '_images\';
-//
-//    // version
+    // application images path
+    HRIS.AppImagesPath := ExtractFilePath(Application.ExeName) + '_snapshots\';
+
+    // version
     HRIS.Version := GetAppVersionStr(ParamStr(0));
 
     // get all locations

@@ -8,7 +8,7 @@ uses
 type
   TEmployeeAction = (eaInserting,eaEditing);
 
-  TSelected = (sdNone,sdMain,sdAddressAndContact,sdFamily);
+  TSelected = (sdNone,sdMain,sdAddressAndContact,sdFamily,sdPAF,sdPayroll,sdPhoto);
 
   TSelectionChanged = procedure of object;
 
@@ -210,7 +210,9 @@ begin
              if Assigned(FEmployee) then (Components[i] as TADODataSet).Parameters.ParamByName('@id_num').Value := FEmployee.IdNumber;
 
              (Components[i] as TADODataSet).Open;
-             if (Components[i] as TADODataSet).RecordCount = 0 then  (Components[i] as TADODataSet).Append;
+             if (Components[i] as TADODataSet).RecordCount = 0 then
+               if not ((Components[i] as TADODataSet).LockType = ltReadOnly) then
+                 (Components[i] as TADODataSet).Append;
 
              if FSelected = sdMain then Bind;
            end;
@@ -258,6 +260,7 @@ begin
             (Components[i] as TADODataSet).Post
           end;
       end;
+
       Bind;
       FEmployeeAction := eaEditing;
       Result := true;

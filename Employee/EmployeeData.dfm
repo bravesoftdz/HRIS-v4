@@ -1,7 +1,7 @@
 object dmEmployee: TdmEmployee
   OldCreateOrder = False
-  Height = 451
-  Width = 873
+  Height = 432
+  Width = 866
   object dsEmployee: TDataSource
     DataSet = dstEmployee
     Left = 160
@@ -455,5 +455,109 @@ object dmEmployee: TdmEmployee
     Parameters = <>
     Left = 677
     Top = 32
+  end
+  object dscPAF: TDataSource
+    DataSet = dstPAF
+    Left = 360
+    Top = 96
+  end
+  object dstPAF: TADODataSet
+    Tag = 4
+    Connection = dmApplication.acMain
+    CursorType = ctStatic
+    LockType = ltReadOnly
+    BeforeOpen = dstPAFBeforeOpen
+    CommandText = 'hris_get_paf_list;1'
+    CommandType = cmdStoredProc
+    Parameters = <
+      item
+        Name = '@RETURN_VALUE'
+        DataType = ftInteger
+        Direction = pdReturnValue
+        Precision = 10
+        Value = 0
+      end
+      item
+        Name = '@id_num'
+        Attributes = [paNullable]
+        DataType = ftString
+        Precision = 10
+        Size = -1
+        Value = ''
+      end
+      item
+        Name = '@user_id_num'
+        DataType = ftString
+        Size = -1
+        Value = ''
+      end>
+    Left = 280
+    Top = 96
+    object dstPAFpaf_id: TIntegerField
+      FieldName = 'paf_id'
+      ReadOnly = True
+    end
+    object dstPAFid_num: TStringField
+      FieldName = 'id_num'
+      Size = 12
+    end
+    object dstPAFemployee_firstname: TStringField
+      FieldName = 'employee_firstname'
+      Size = 50
+    end
+    object dstPAFemployee_lastname: TStringField
+      FieldName = 'employee_lastname'
+      Size = 50
+    end
+    object dstPAFemployee_middlename: TStringField
+      FieldName = 'employee_middlename'
+      Size = 50
+    end
+    object dstPAFemployee_name: TStringField
+      FieldName = 'employee_name'
+      ReadOnly = True
+      Size = 102
+    end
+    object dstPAFposition_name: TStringField
+      FieldName = 'position_name'
+      Size = 25
+    end
+    object dstPAFposstatus_name: TStringField
+      FieldName = 'posstatus_name'
+      Size = 25
+    end
+    object dstPAFempstatus_name: TStringField
+      FieldName = 'empstatus_name'
+      Size = 25
+    end
+    object dstPAFlocation_name: TStringField
+      FieldName = 'location_name'
+      Size = 50
+    end
+    object dstPAFsalary: TBCDField
+      FieldName = 'salary'
+      DisplayFormat = '###,##0.00'
+      Precision = 10
+      Size = 2
+    end
+    object dstPAFeffective_date: TDateTimeField
+      FieldName = 'effective_date'
+      DisplayFormat = 'mm/dd/yyyy'
+    end
+    object dstPAFrank_movement: TIntegerField
+      FieldName = 'rank_movement'
+      ReadOnly = True
+    end
+    object dstPAFpafstatus_code: TStringField
+      FieldName = 'pafstatus_code'
+      FixedChar = True
+      Size = 3
+    end
+    object dstPAFis_cancelled: TSmallintField
+      FieldName = 'is_cancelled'
+    end
+    object dstPAFis_external: TSmallintField
+      FieldName = 'is_external'
+    end
   end
 end

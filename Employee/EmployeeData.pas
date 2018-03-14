@@ -70,6 +70,25 @@ type
     dstEmployeelocation_code: TStringField;
     dstEmployeedepartment_code: TStringField;
     dstEmployeepositiontype_code: TStringField;
+    dscPAF: TDataSource;
+    dstPAF: TADODataSet;
+    dstPAFpaf_id: TIntegerField;
+    dstPAFid_num: TStringField;
+    dstPAFemployee_firstname: TStringField;
+    dstPAFemployee_lastname: TStringField;
+    dstPAFemployee_middlename: TStringField;
+    dstPAFemployee_name: TStringField;
+    dstPAFposition_name: TStringField;
+    dstPAFposstatus_name: TStringField;
+    dstPAFempstatus_name: TStringField;
+    dstPAFlocation_name: TStringField;
+    dstPAFsalary: TBCDField;
+    dstPAFeffective_date: TDateTimeField;
+    dstPAFrank_movement: TIntegerField;
+    dstPAFpafstatus_code: TStringField;
+    dstPAFis_cancelled: TSmallintField;
+    dstPAFis_external: TSmallintField;
+    procedure dstPAFBeforeOpen(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -83,6 +102,11 @@ implementation
 {$R *.dfm}
 
 uses
-  AppData;
+  AppData, HRISGlobal;
+
+procedure TdmEmployee.dstPAFBeforeOpen(DataSet: TDataSet);
+begin
+  (DataSet as TADODataSet).Parameters.ParamByName('@user_id_num').Value := HRIS.User.UserId;
+end;
 
 end.
