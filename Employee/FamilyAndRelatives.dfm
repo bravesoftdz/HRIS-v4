@@ -21,8 +21,6 @@ inherited frmFamilyAndRelatives: TfrmFamilyAndRelatives
     BorderWidth = 1
     Color = clMenu
     TabOrder = 0
-    ExplicitLeft = 632
-    ExplicitHeight = 484
     DesignSize = (
       283
       460)
@@ -212,7 +210,7 @@ inherited frmFamilyAndRelatives: TfrmFamilyAndRelatives
       end
     end
     object pnlCancel: TRzPanel
-      Left = 72
+      Left = 74
       Top = 426
       Width = 50
       Height = 22

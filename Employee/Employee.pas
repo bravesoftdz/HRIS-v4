@@ -22,6 +22,7 @@ type
     function GetAge: integer;
     function GetHeightInFeetAndInches: string;
     function GetWeightInKilos: string;
+    function GetNameSurnameFirst: string;
   public
     property IdNumber: string read FIdNumber write FIdNumber;
     property FirstName: string read FFirstName write FFirstName;
@@ -34,6 +35,7 @@ type
     property HeightInFeetAndInches: string read GetHeightInFeetAndInches;
     property WeightInKilos: string read GetWeightInKilos;
     property OnUpdate: TOnUpdate read FOnUpdate write FOnUpdate;
+    property NameSurnameFirst: string read GetNameSurnameFirst;
   end;
 
 implementation
@@ -81,14 +83,20 @@ begin
   ft := (FHeight * 0.3937008) / 12;
   inches := (ft - Trunc(ft)) * 12;
 
-  if inches = 0 then Result := IntToStr(Trunc(ft)) + ' ft '
-  else if inches = 1 then Result := IntToStr(Trunc(ft)) + ' ft ' +  IntToStr(Round(inches)) + ' inch'
+  if Round(inches) = 0 then Result := IntToStr(Trunc(ft)) + ' ft '
+  else if Round(inches) = 1 then Result := IntToStr(Trunc(ft)) + ' ft ' +  IntToStr(Round(inches)) + ' inch'
+  else if Round(inches) = 12 then Result :=  IntToStr(Trunc(ft) + 1) + ' ft '
   else Result := IntToStr(Trunc(ft)) + ' ft ' +  IntToStr(Round(inches)) + ' inches';
 end;
 
 function TEmployee.GetName: string;
 begin
   Result := FFirstName + ' ' + FLastName;
+end;
+
+function TEmployee.GetNameSurnameFirst: string;
+begin
+  Result := FLastName + ', ' + FFirstName;
 end;
 
 function TEmployee.GetWeightInKilos: string;

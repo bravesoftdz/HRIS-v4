@@ -68,6 +68,7 @@ type
     procedure imgMinimizeClick(Sender: TObject);
     procedure imgAddEmployeeClick(Sender: TObject);
     procedure imgEmployeeSearchClick(Sender: TObject);
+    procedure imgAddPAFClick(Sender: TObject);
   private
     { Private declarations }
     DOCKED_FORM: TForms;
@@ -88,7 +89,7 @@ implementation
 
 uses
   EmployeeDrawer, NewIntf, SaveIntf, FormsUtil, HRISDialogs, EmployeeSearch, Employee,
-  HRISGlobal;
+  HRISGlobal, PafMain;
 
 procedure TfrmMain.pnlTitleMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
@@ -125,7 +126,7 @@ begin
     // instantiate form
     case fm of
       fmEmployeeDrawer: frm := TfrmEmployeeDrawer.Create(Application,AObject as TEmployee);
-
+      fmPaf: frm := TfrmPafMain.Create(Application);
       else
         frm := nil;
     end;
@@ -198,6 +199,11 @@ procedure TfrmMain.imgAddEmployeeMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   ButtonUp(Sender);
+end;
+
+procedure TfrmMain.imgAddPAFClick(Sender: TObject);
+begin
+  DockForm(fmPaf);
 end;
 
 procedure TfrmMain.imgCancelClick(Sender: TObject);

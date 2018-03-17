@@ -33,7 +33,6 @@ type
 var
   usr: TUser;
 
-
 implementation
 
 { TUser }

@@ -70,8 +70,8 @@ begin
 
   if Assigned(AEmployee) then
   begin
-  Controller.Employee := AEmployee;
-  Controller.Action := eaEditing;
+    Controller.Employee := AEmployee;
+    Controller.Action := eaEditing;
   end
   else Controller.Add;
 end;

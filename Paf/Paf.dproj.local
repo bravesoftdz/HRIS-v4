@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/03/15 15:10:43.000.030,=rtl.dcp</Transaction>
+    <Transaction>2018/03/15 15:12:55.000.297,C:\Users\Bryan - Lenovo\Documents\Embarcadero\Studio\Projects\Paf.dproj=C:\Users\Bryan - Lenovo\Documents\Embarcadero\Studio\Projects\Package1.dproj</Transaction>
+    <Transaction>2018/03/15 15:15:18.000.999,=C:\Users\Bryan - Lenovo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/03/15 15:17:01.000.572,C:\Projects\HRIS v4\Paf\Paf.pas=C:\Users\Bryan - Lenovo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/03/15 15:18:34.000.542,=C:\Users\Bryan - Lenovo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/03/15 15:18:45.000.258,C:\Projects\HRIS v4\Paf\PafData.pas=C:\Users\Bryan - Lenovo\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2018/03/15 15:18:45.000.258,C:\Projects\HRIS v4\Paf\PafData.dfm=C:\Users\Bryan - Lenovo\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2018/03/15 15:20:05.000.323,C:\Projects\HRIS v4\Paf\Paf1.dproj=C:\Users\Bryan - Lenovo\Documents\Embarcadero\Studio\Projects\Paf.dproj</Transaction>
+    <Transaction>2018/03/15 15:21:46.000.678,C:\Projects\HRIS v4\Paf\Paf.pas=</Transaction>
+    <Transaction>2018/03/15 15:21:52.000.070,C:\Projects\HRIS v4\Paf\Paf1.dproj=C:\Projects\HRIS v4\Paf\Paf.dproj</Transaction>
+    <Transaction>2018/03/15 15:23:03.000.666,=C:\Projects\HRIS v4\Paf\EmployeePaf.pas</Transaction>
+    <Transaction>2018/03/15 15:24:07.000.131,=C:\Projects\HRIS v4\Paf\Unit1.pas</Transaction>
+    <Transaction>2018/03/15 15:24:25.000.951,C:\Projects\HRIS v4\Paf\Unit1.pas=C:\Projects\HRIS v4\Paf\PafController.pas</Transaction>
+    <Transaction>2018/03/15 17:02:19.000.750,C:\Projects\HRIS v4\Paf\EmployeePaf.pas=C:\Projects\HRIS v4\Paf\PafRecord.pas</Transaction>
+    <Transaction>2018/03/15 17:20:48.000.067,=C:\Projects\HRIS v4\Base\BaseDocked2.pas</Transaction>
+    <Transaction>2018/03/15 17:20:57.000.166,=C:\Projects\HRIS v4\Paf\Unit1.pas</Transaction>
+    <Transaction>2018/03/15 17:21:05.000.156,C:\Projects\HRIS v4\Paf\Unit1.pas=C:\Projects\HRIS v4\Paf\PafMain.pas</Transaction>
+    <Transaction>2018/03/15 17:21:05.000.156,C:\Projects\HRIS v4\Paf\Unit1.dfm=C:\Projects\HRIS v4\Paf\PafMain.dfm</Transaction>
+    <Transaction>2018/03/15 18:15:44.000.685,=vclimg.dcp</Transaction>
+    <Transaction>2018/03/15 18:15:44.000.711,=Jcl.dcp</Transaction>
+    <Transaction>2018/03/15 18:15:44.000.698,=RaizeComponentsVcl.dcp</Transaction>
+    <Transaction>2018/03/15 18:15:44.000.739,=JvStdCtrls.dcp</Transaction>
+    <Transaction>2018/03/15 18:15:44.000.671,=vcl.dcp</Transaction>
+    <Transaction>2018/03/15 18:15:44.000.724,=JvCore.dcp</Transaction>
+    <Transaction>2018/03/15 18:31:54.000.725,=RaizeComponentsVclDb.dcp</Transaction>
+    <Transaction>2018/03/15 18:31:54.000.710,=vcldb.dcp</Transaction>
+    <Transaction>2018/03/15 21:54:05.000.559,=dclstd.dcp</Transaction>
+    <Transaction>2018/03/15 21:54:05.000.546,=adortl.dcp</Transaction>
+  </Transactions>
+	<ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="..\..\HRIS v4"/>
+    <File Path="..\Base"/>
+    <File Path="..\Base\BaseDocked2.pas"/>
+    <File Path="..\Base\BaseDocked2.dfm"/>
+    <File Path="PafController.pas"/>
+    <File Path="PafData.pas"/>
+    <File Path="PafData.dfm"/>
+    <File Path="PafRecord.pas"/>
+    <File Path="PafMain.pas"/>
+    <File Path="PafMain.dfm"/>
+    <File Path="adortl.dcp"/>
+    <File Path="dclstd.dcp"/>
+    <File Path="Jcl.dcp"/>
+    <File Path="JvCore.dcp"/>
+    <File Path="JvStdCtrls.dcp"/>
+    <File Path="RaizeComponentsVcl.dcp"/>
+    <File Path="RaizeComponentsVclDb.dcp"/>
+    <File Path="rtl.dcp"/>
+    <File Path="vcl.dcp"/>
+    <File Path="vcldb.dcp"/>
+    <File Path="vclimg.dcp"/>
+  </ProjectSortOrder>
+</BorlandProject>

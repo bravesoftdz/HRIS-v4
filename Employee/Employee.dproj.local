@@ -14,11 +14,11 @@
     <Transaction>2018/03/09 10:21:23.000.517,C:\Projects\HRIS v4\Employee\Unit1.pas=C:\Projects\HRIS v4\Employee\Employee.pas</Transaction>
     <Transaction>2018/03/09 10:23:56.000.793,=C:\Projects\HRIS v4\Employee\Unit1.pas</Transaction>
     <Transaction>2018/03/09 10:28:44.000.082,C:\Projects\HRIS v4\Employee\Unit1.pas=C:\Projects\HRIS v4\Employee\EmployeeController.pas</Transaction>
-    <Transaction>2018/03/09 10:30:35.000.011,=vcl.dcp</Transaction>
     <Transaction>2018/03/09 10:30:35.000.028,=dbrtl.dcp</Transaction>
+    <Transaction>2018/03/09 10:30:35.000.042,=adortl.dcp</Transaction>
+    <Transaction>2018/03/09 10:30:35.000.011,=vcl.dcp</Transaction>
     <Transaction>2018/03/09 10:30:35.000.056,=RaizeComponentsVcl.dcp</Transaction>
     <Transaction>2018/03/09 10:30:35.000.081,=dclstd.dcp</Transaction>
-    <Transaction>2018/03/09 10:30:35.000.042,=adortl.dcp</Transaction>
     <Transaction>2018/03/09 22:56:17.000.967,=C:\Projects\HRIS v4\Base\BaseForm.pas</Transaction>
     <Transaction>2018/03/09 22:57:13.000.407,=C:\Projects\HRIS v4\Employee\Unit1.pas</Transaction>
     <Transaction>2018/03/09 22:57:47.000.700,C:\Projects\HRIS v4\Employee\Unit1.dfm=C:\Projects\HRIS v4\Employee\EmployeeMain.dfm</Transaction>
@@ -26,9 +26,9 @@
     <Transaction>2018/03/10 20:03:40.000.212,C:\Projects\HRIS v4\Base\BaseDocked.dfm=C:\Projects\HRIS v4\Base\BaseDocked2.dfm</Transaction>
     <Transaction>2018/03/10 20:03:40.000.212,C:\Projects\HRIS v4\Base\BaseDocked.pas=C:\Projects\HRIS v4\Base\BaseDocked2.pas</Transaction>
     <Transaction>2018/03/11 08:53:32.000.666,=JvCore.dcp</Transaction>
-    <Transaction>2018/03/11 08:53:32.000.689,=JvStdCtrls.dcp</Transaction>
-    <Transaction>2018/03/11 08:53:32.000.597,=vcldb.dcp</Transaction>
     <Transaction>2018/03/11 08:53:32.000.643,=Jcl.dcp</Transaction>
+    <Transaction>2018/03/11 08:53:32.000.597,=vcldb.dcp</Transaction>
+    <Transaction>2018/03/11 08:53:32.000.689,=JvStdCtrls.dcp</Transaction>
     <Transaction>2018/03/11 10:15:12.000.180,=RaizeComponentsVclDb.dcp</Transaction>
     <Transaction>2018/03/11 14:48:48.000.139,=C:\Projects\HRIS v4\Employee\Unit1.pas</Transaction>
     <Transaction>2018/03/11 14:49:06.000.114,C:\Projects\HRIS v4\Employee\Unit1.pas=C:\Projects\HRIS v4\Employee\AddressAndContact.pas</Transaction>
@@ -44,12 +44,12 @@
     <Transaction>2018/03/13 22:52:41.000.324,=C:\Projects\HRIS v4\Employee\Unit1.pas</Transaction>
     <Transaction>2018/03/13 22:53:12.000.622,C:\Projects\HRIS v4\Employee\Unit1.dfm=C:\Projects\HRIS v4\Employee\EmployeePAF.dfm</Transaction>
     <Transaction>2018/03/13 22:53:12.000.622,C:\Projects\HRIS v4\Employee\Unit1.pas=C:\Projects\HRIS v4\Employee\EmployeePAF.pas</Transaction>
-    <Transaction>2018/03/14 15:13:00.758,=C:\Projects\HRIS v4\Employee\Unit1.pas</Transaction>
-    <Transaction>2018/03/14 15:19:25.286,C:\Projects\HRIS v4\Employee\EmployeePhoto.pas=C:\Projects\HRIS v4\Employee\Unit1.pas</Transaction>
-    <Transaction>2018/03/14 15:19:25.286,C:\Projects\HRIS v4\Employee\EmployeePhoto.dfm=C:\Projects\HRIS v4\Employee\Unit1.dfm</Transaction>
-    <Transaction>2018/03/14 15:33:08.270,=DSPack_DXE4.dcp</Transaction>
-    <Transaction>2018/03/14 17:20:31.354,C:\Projects\HRIS v4\Employee\EmployeePhoto.pas=</Transaction>
-    <Transaction>2018/03/14 17:21:05.119,=C:\Projects\HRIS v4\Employee\EmployeePhoto.pas</Transaction>
+    <Transaction>2018/03/14 15:13:00.000.758,=C:\Projects\HRIS v4\Employee\Unit1.pas</Transaction>
+    <Transaction>2018/03/14 15:19:25.000.286,C:\Projects\HRIS v4\Employee\EmployeePhoto.pas=C:\Projects\HRIS v4\Employee\Unit1.pas</Transaction>
+    <Transaction>2018/03/14 15:19:25.000.286,C:\Projects\HRIS v4\Employee\EmployeePhoto.dfm=C:\Projects\HRIS v4\Employee\Unit1.dfm</Transaction>
+    <Transaction>2018/03/14 15:33:08.000.270,=DSPack_DXE4.dcp</Transaction>
+    <Transaction>2018/03/14 17:20:31.000.354,C:\Projects\HRIS v4\Employee\EmployeePhoto.pas=</Transaction>
+    <Transaction>2018/03/14 17:21:05.000.119,=C:\Projects\HRIS v4\Employee\EmployeePhoto.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="..\..\HRIS v4"/>
@@ -81,6 +81,7 @@
     <File Path="adortl.dcp"/>
     <File Path="dbrtl.dcp"/>
     <File Path="dclstd.dcp"/>
+    <File Path="DSPack_DXE4.dcp"/>
     <File Path="Jcl.dcp"/>
     <File Path="JvCore.dcp"/>
     <File Path="JvStdCtrls.dcp"/>
@@ -89,6 +90,5 @@
     <File Path="rtl.dcp"/>
     <File Path="vcl.dcp"/>
     <File Path="vcldb.dcp"/>
-    <File Path="DSPack_DXE4.dcp"/>
   </ProjectSortOrder>
 </BorlandProject>

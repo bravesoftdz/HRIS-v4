@@ -135,6 +135,7 @@ destructor TEmployeeController.Destroy;
 begin
   FreeAndNil(FEmployee);
   FreeAndNil(FData);
+  inherited;
 end;
 
 function TEmployeeController.ErrorsExists: boolean;
@@ -242,9 +243,8 @@ function TEmployeeController.Save: boolean;
 var
   i: integer;
 begin
+  Result := false;
   try
-    Result := false;
-
     if ErrorsExists then Exit;
 
     with (FData as TdmEmployee) do

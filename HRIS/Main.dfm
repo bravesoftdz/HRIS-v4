@@ -406,7 +406,7 @@ object frmMain: TfrmMain
             Width = 32
             Height = 32
             Cursor = crHandPoint
-            Hint = 'Add PAF'
+            Hint = 'New PAF'
             AutoSize = True
             ParentShowHint = False
             Picture.Data = {
@@ -459,6 +459,7 @@ object frmMain: TfrmMain
               A1AFAAF7E9330318EE0801911BAB113BDBF5459181C1F61F13CA6452536F75CF
               0000000049454E44AE426082}
             ShowHint = True
+            OnClick = imgAddPAFClick
             OnMouseDown = imgAddEmployeeMouseDown
             OnMouseUp = imgAddEmployeeMouseUp
           end

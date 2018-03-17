@@ -3,7 +3,7 @@ program HRIS;
 uses
   AppUtil,
   Vcl.Forms,
-  Main in 'Main.pas' {Form1},
+  Main in 'Main.pas' {frmMain},
   Login in 'Login.pas' {frmLogin};
 
 {$R *.res}

@@ -4,8 +4,8 @@ interface
 
 uses
   System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DXSUtil, DSPack, BaseForm, Vcl.ExtCtrls,
-  Vcl.StdCtrls, DirectShow9, RzLabel, Employee;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, DXSUtil, DSPack, DirectShow9, BaseForm, Vcl.ExtCtrls,
+  Vcl.StdCtrls, RzLabel, Employee, Jpeg, RzButton, RzPanel;
 
 type
   TfrmEmployeePhoto = class(TfrmBase)
@@ -16,9 +16,14 @@ type
     EmployeePhoto: TImage;
     ListBox: TListBox;
     ListBox2: TListBox;
-    urlMain: TRzURLLabel;
+    pnlTakePhoto: TRzPanel;
+    btnTakePhoto: TRzShapeButton;
+    pnlCancel: TRzPanel;
+    btnCancel: TRzShapeButton;
+    pnlPhoto: TRzPanel;
     procedure FormCreate(Sender: TObject);
-    procedure urlMainClick(Sender: TObject);
+    procedure btnTakePhotoClick(Sender: TObject);
+    procedure btnCancelClick(Sender: TObject);
   private
     { Private declarations }
     FEmployee: TEmployee;
@@ -29,6 +34,7 @@ type
     procedure StartCapture;
     procedure GetSnapshot;
     procedure LoadPhoto;
+    procedure CancelPhotoCapture;
   public
     { Public declarations }
     constructor Create(AOwner: TComponent); overload; override;
@@ -45,6 +51,35 @@ uses
 constructor TfrmEmployeePhoto.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
+end;
+
+procedure TfrmEmployeePhoto.btnCancelClick(Sender: TObject);
+begin
+  inherited;
+  CancelPhotoCapture;
+end;
+
+procedure TfrmEmployeePhoto.btnTakePhotoClick(Sender: TObject);
+begin
+  inherited;
+  if VideoWindow.Visible then
+  begin
+    GetSnapshot;
+    CancelPhotoCapture;
+    LoadPhoto;
+  end
+  else
+  begin
+    ListBox.ItemIndex := 0;
+    SetImageDevice;
+    VideoWindow.Visible := true;
+  end;
+end;
+
+procedure TfrmEmployeePhoto.CancelPhotoCapture;
+begin
+  CaptureGraph.Active := false;
+  VideoWindow.Visible := false;
 end;
 
 constructor TfrmEmployeePhoto.Create(AOwner: TComponent;
@@ -71,29 +106,49 @@ procedure TfrmEmployeePhoto.GetSnapshot;
 var
   path: string;
   filename: string;
+  jpg: TJPEGImage;
 begin
-  path := '';
+  jpg := TJPEGImage.Create;
+  try
+    path := '';
 
-  SampleGrabber.GetBitmap(EmployeePhoto.Picture.Bitmap);
+    SampleGrabber.GetBitmap(EmployeePhoto.Picture.Bitmap);
 
-  path := HRIS.AppImagesPath;
+    path := HRIS.AppImagesPath;
 
-  filename := FEmployee.IdNumber + '.jpg';
+    filename := FEmployee.IdNumber + '.jpg';
 
-  // save file
-  if not DirectoryExists(path) then CreateDir(path);
+    // save file
+    if not DirectoryExists(path) then CreateDir(path);
 
-  EmployeePhoto.Picture.SaveToFile(path + filename);
+    jpg.CompressionQuality := 50;
+    jpg.Assign(EmployeePhoto.Picture.Bitmap);
+    jpg.SaveToFile(path + filename);
 
-  VideoWindow.Visible := false;
+    VideoWindow.Visible := false;
+  finally
+    jpg.Free;
+  end;
 end;
 
 procedure TfrmEmployeePhoto.LoadPhoto;
 var
   imageFile: string;
+  jpg: TJPEGImage;
 begin
-  imageFile := HRIS.AppImagesPath + FEmployee.IdNumber + '.jpg';
-  if FileExists(imageFile) then EmployeePhoto.Picture.LoadFromFile(imageFile);
+  jpg := TJPEGImage.Create;
+  try
+    imageFile := HRIS.AppImagesPath + FEmployee.IdNumber + '.jpg';
+
+    if FileExists(imageFile) then
+    begin
+      jpg.LoadFromFile(imageFile);
+      EmployeePhoto.Picture.Assign(jpg);
+      EmployeePhoto.Visible := true;
+    end else EmployeePhoto.Visible := false;
+  finally
+    jpg.Free;
+  end;
 end;
 
 procedure TfrmEmployeePhoto.SetImageDevice;
@@ -159,17 +214,6 @@ begin
 
  //Launch video
  CaptureGraph.Play;
-end;
-
-procedure TfrmEmployeePhoto.urlMainClick(Sender: TObject);
-begin
-  if VideoWindow.Visible then GetSnapshot
-  else
-  begin
-    ListBox.ItemIndex := 0;
-    SetImageDevice;
-    VideoWindow.Visible := true;
-  end;
 end;
 
 end.
