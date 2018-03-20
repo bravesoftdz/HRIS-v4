@@ -108,8 +108,8 @@
             <Form>frmBasePopup2</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="BasePopupDetail.pas">
-            <Form>frmBasePopupDetail</Form>
+        <DCCReference Include="BasePopupDetail2.pas">
+            <Form>frmBasePopupDetail2</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="BaseSearch.pas">
@@ -134,6 +134,10 @@
         </DCCReference>
         <DCCReference Include="BaseSearch2.pas">
             <Form>frmBaseSearch2</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="BasePopupDetail.pas">
+            <Form>frmBasePopupDetail</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

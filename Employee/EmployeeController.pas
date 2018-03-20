@@ -3,7 +3,7 @@ unit EmployeeController;
 interface
 
 uses
-  SysUtils, Employee, BaseActionIntf, Classes, DB, ADODB, StrUtils;
+  SysUtils, Employee, BaseActionIntf, Classes, DB, ADODB, StrUtils, Forms;
 
 type
   TEmployeeAction = (eaInserting,eaEditing);
@@ -40,6 +40,7 @@ type
 
     procedure Retrieve;
     procedure AddDetail;
+    procedure OpenPaf;
 
     constructor Create;
     destructor Destroy; override;
@@ -50,7 +51,7 @@ implementation
 { TEmployeeController }
 
 uses
-  EmployeeData, HRISDialogs;
+  EmployeeData, HRISDialogs, PafController, PafMain, DockIntf;
 
 function TEmployeeController.Add: boolean;
 begin
@@ -220,6 +221,32 @@ begin
         end;
       end;
     end;
+  end;
+end;
+
+procedure TEmployeeController.OpenPaf;
+var
+  intf: IDock;
+  pafId: integer;
+  pafController: TPafController;
+  LEmployee: TEmployee;
+begin
+  inherited;
+  if Supports(Application.MainForm,IDock,intf) then
+  begin
+    pafId := (FData as TdmEmployee).dstPaf.FieldbyName('paf_id').AsInteger;
+
+    with FEmployee do
+    begin
+      LEmployee := TEmployee.Create;
+      LEmployee.IdNumber := IdNumber;
+      LEmployee.LastName := LastName;
+      LEmployee.FirstName := FirstName;
+    end;
+
+    pafController := TPafController.Create(pafId,LEmployee);
+
+    intf.DockForm(fmPaf,pafController);
   end;
 end;
 

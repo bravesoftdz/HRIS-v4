@@ -2,8 +2,6 @@ inherited frmPafMain: TfrmPafMain
   Caption = 'frmPafMain'
   ClientHeight = 500
   ClientWidth = 1112
-  OnCreate = FormCreate
-  OnDestroy = FormDestroy
   OnShow = FormShow
   ExplicitWidth = 1128
   ExplicitHeight = 539
@@ -170,7 +168,7 @@ inherited frmPafMain: TfrmPafMain
   end
   inherited pnlTitle: TRzPanel
     Width = 1112
-    ExplicitWidth = 1071
+    ExplicitWidth = 1112
     inherited lblTitle: TRzLabel
       Width = 66
       Caption = 'PAF record'
@@ -325,6 +323,7 @@ inherited frmPafMain: TfrmPafMain
     ListField = 'location_name'
     ListSource = dmPaf.dscLocations
     TabOrder = 9
+    OnClick = RzDBLookupComboBox4Click
     FlatButtons = True
     FrameColor = 13816530
     FrameVisible = True
@@ -480,7 +479,79 @@ inherited frmPafMain: TfrmPafMain
     IntegersOnly = False
     DisplayFormat = '###,###,##0.00'
   end
-  object pnlNew: TRzPanel
+  object pnlApprove: TRzPanel
+    Left = 43
+    Top = 421
+    Width = 65
+    Height = 22
+    Anchors = [akLeft, akBottom]
+    BorderOuter = fsNone
+    BorderColor = 13816530
+    BorderWidth = 1
+    Color = clMenu
+    TabOrder = 15
+    object btnApprove: TRzShapeButton
+      Left = 0
+      Top = 0
+      Width = 65
+      Height = 22
+      Hint = 'Approve this PAF'
+      BorderStyle = bsNone
+      Caption = 'Approve'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      OnClick = btnApproveClick
+    end
+  end
+  object pnlStatus: TRzPanel
+    Left = 136
+    Top = 115
+    Width = 81
+    Height = 22
+    BorderSides = []
+    Caption = 'New'
+    Color = clPurple
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 16
+  end
+  object pnlCancel: TRzPanel
+    Left = 115
+    Top = 421
+    Width = 117
+    Height = 22
+    Anchors = [akLeft, akBottom]
+    BorderOuter = fsNone
+    BorderColor = 13816530
+    BorderWidth = 1
+    Color = clMenu
+    TabOrder = 17
+    object btnCancel: TRzShapeButton
+      Left = 0
+      Top = 0
+      Width = 117
+      Height = 22
+      Hint = 'Cancel this entry'
+      BorderStyle = bsNone
+      Caption = 'Cancel this entry'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      OnClick = btnCancelClick
+    end
+  end
+  object pnlAdd: TRzPanel
     Left = 460
     Top = 341
     Width = 50
@@ -489,78 +560,39 @@ inherited frmPafMain: TfrmPafMain
     BorderColor = 13816530
     BorderWidth = 1
     Color = clMenu
-    TabOrder = 15
-    object btnNew: TRzShapeButton
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 18
+    object btnAdd: TRzShapeButton
       Left = 0
       Top = 0
       Width = 50
       Height = 22
-      Hint = 'New'
+      Hint = 'Add allowance'
       BorderStyle = bsNone
       Caption = 'Add'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      OnClick = btnAddClick
     end
   end
-  object RzPanel1: TRzPanel
-    Left = 519
+  object pnlDelete: TRzPanel
+    Left = 517
     Top = 341
-    Width = 60
+    Width = 50
     Height = 22
     BorderOuter = fsNone
     BorderColor = 13816530
     BorderWidth = 1
     Color = clMenu
-    TabOrder = 16
-    object RzShapeButton1: TRzShapeButton
-      Left = 0
-      Top = 0
-      Width = 60
-      Height = 22
-      Hint = 'New'
-      BorderStyle = bsNone
-      Caption = 'Remove'
-    end
-  end
-  object RzPanel2: TRzPanel
-    Left = 43
-    Top = 429
-    Width = 60
-    Height = 22
-    Anchors = [akLeft, akBottom]
-    BorderOuter = fsNone
-    BorderColor = 13816530
-    BorderWidth = 1
-    Color = clMenu
-    TabOrder = 17
-    object RzShapeButton2: TRzShapeButton
-      Left = 0
-      Top = 0
-      Width = 60
-      Height = 22
-      Hint = 'New'
-      BorderStyle = bsNone
-      Caption = 'Approve'
-    end
-  end
-  object RzDBCheckBox1: TRzDBCheckBox
-    Left = 43
-    Top = 393
-    Width = 124
-    Height = 16
-    DataField = 'is_dependent'
-    DataSource = dmEmployee.dscFamily
-    ValueChecked = '1'
-    ValueUnchecked = '0'
-    Caption = 'Void this PAF entry'
-    TabOrder = 18
-  end
-  object RzPanel3: TRzPanel
-    Left = 136
-    Top = 116
-    Width = 81
-    Height = 22
-    BorderSides = []
-    Caption = 'Cancelled'
-    Color = clRed
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWhite
     Font.Height = -12
@@ -568,5 +600,20 @@ inherited frmPafMain: TfrmPafMain
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 19
+    object btnDelete: TRzShapeButton
+      Left = 0
+      Top = 0
+      Width = 50
+      Height = 22
+      Hint = 'Remove selected allowance'
+      BorderStyle = bsNone
+      Caption = 'Delete'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
   end
 end

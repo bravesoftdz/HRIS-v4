@@ -325,7 +325,7 @@ inherited frmLogin: TfrmLogin
         Font.Color = clWindowText
         Font.Height = -12
         Font.Name = 'Tahoma'
-        Font.Style = []
+        Font.Style = [fsBold]
         ParentFont = False
         OnClick = btnCloseClick
       end
@@ -352,7 +352,7 @@ inherited frmLogin: TfrmLogin
         Font.Color = clWindowText
         Font.Height = -12
         Font.Name = 'Tahoma'
-        Font.Style = []
+        Font.Style = [fsBold]
         ParentFont = False
         OnClick = btnLoginClick
       end

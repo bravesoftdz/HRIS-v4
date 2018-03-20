@@ -3,7 +3,7 @@ unit User;
 interface
 
 uses
-  SysUtils;
+  SysUtils, Classes, StrUtils;
 
 type
   TUser = class
@@ -22,55 +22,54 @@ type
     property LastName: string write FLastName;
     property Name: string read GetName;
 
-    procedure SetRight(const right: string);
-    function HasRights(const rights: array of string;
-      const warn: boolean = false): boolean;
+    procedure AddRight(const ARight: string);
+    function HasRights(const ARights: array of string;
+      const AWarn: boolean = false): boolean;
 
-    constructor Create;
-    destructor Destroy; override;
   end;
-
-var
-  usr: TUser;
 
 implementation
 
+uses
+  AppConstants, HRISDialogs;
+
 { TUser }
-
-constructor TUser.Create;
-begin
-  if usr <> nil then
-    Abort
-  else
-    usr := self;
-end;
-
-destructor TUser.Destroy;
-begin
-  if usr = self then
-    usr := nil;
-  inherited Destroy;
-end;
 
 function TUser.GetName: string;
 begin
   Result := FFirstName + ' ' + FLastName;
 end;
 
-function TUser.HasRights(const rights: array of string;
-  const warn: boolean = false): boolean;
+function TUser.HasRights(const ARights: array of string;
+  const AWarn: boolean = false): boolean;
+var
+  sl: TStringList;
+  i, cnt, rightCnt: integer;
 begin
-  Result := true;
+  rightCnt := 0;
+
+  cnt := Length(ARights) - 1;
+
+  for i := 0 to cnt do
+  begin
+    sl := TStringList.Create;
+    sl.Delimiter := ';';
+    sl.DelimitedText := ARights[i];
+
+    if MatchStr(sl[0],FUserRights) then Inc(rightCnt);
+
+    sl.Free;
+  end;
+
+  Result := rightCnt > 0;
+
+  if (not Result) and (AWarn) then ShowErrorBox2('Access is denied. Please contact system administrator.');
 end;
 
-procedure TUser.SetRight(const right: string);
-var
-  len: integer;
+procedure TUser.AddRight(const ARight: string);
 begin
-  len := Length(FUserRights);
-
-  SetLength(FUserRights, len + 1);
-  FUserRights[len] := right;
+  SetLength(FUserRights, Length(FUserRights) + 1);
+  FUserRights[Length(FUserRights) - 1] := ARight;
 end;
 
 end.

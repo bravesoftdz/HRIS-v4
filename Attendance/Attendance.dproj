@@ -143,8 +143,8 @@
         <DCCReference Include="UndertimeDetails.pas">
             <Form>frmUndertimeDetails</Form>
         </DCCReference>
-        <DCCReference Include="..\Base\BasePopupDetail.pas">
-            <Form>frmBasePopupDetail</Form>
+        <DCCReference Include="..\Base\BasePopupDetail2.pas">
+            <Form>frmBasePopupDetail2</Form>
         </DCCReference>
         <DCCReference Include="CollapsiblePanelUtils.pas"/>
         <DCCReference Include="UndertimeLog.pas"/>

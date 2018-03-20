@@ -143,6 +143,14 @@
             <Form>frmPafMain</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\Base\BasePopupDetail2.pas">
+            <Form>frmBasePopupDetail2</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="AllowanceDetails.pas">
+            <Form>frmAllowanceDetails</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

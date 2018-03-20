@@ -27,6 +27,7 @@ inherited frmEmployeePAF: TfrmEmployeePAF
     TitleFont.Height = -12
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnDblClick = grSearchDblClick
     FrameStyle = fsNone
     FrameVisible = True
     FramingPreference = fpCustomFraming

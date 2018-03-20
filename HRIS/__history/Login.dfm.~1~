@@ -321,12 +321,6 @@ inherited frmLogin: TfrmLogin
         Height = 22
         BorderStyle = bsNone
         Caption = 'Close'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
         OnClick = btnCloseClick
       end
     end
@@ -348,12 +342,6 @@ inherited frmLogin: TfrmLogin
         Height = 22
         BorderStyle = bsNone
         Caption = 'Login'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -12
-        Font.Name = 'Tahoma'
-        Font.Style = []
-        ParentFont = False
         OnClick = btnLoginClick
       end
     end

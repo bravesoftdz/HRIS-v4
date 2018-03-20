@@ -652,10 +652,6 @@ object frmMain: TfrmMain
       object tsAdministration: TRzTabSheet
         Color = clMenu
         Caption = 'Administration'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object pnlSettings: TRzPanel
           Left = 5
           Top = 5

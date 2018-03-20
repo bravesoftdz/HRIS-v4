@@ -31,7 +31,7 @@ type
     { Private declarations }
     DOCKED_FORM: TEmployeeForms;
     Controller: TEmployeeController;
-    procedure DockForm(ef: TEmployeeForms);
+    procedure DockForm(ef: TEmployeeForms; AObject: TObject = nil);
     procedure EnableControls;
     procedure SetTitle;
   public
@@ -76,7 +76,7 @@ begin
   else Controller.Add;
 end;
 
-procedure TfrmEmployeeDrawer.DockForm(ef: TEmployeeForms);
+procedure TfrmEmployeeDrawer.DockForm(ef: TEmployeeForms; AObject: TObject = nil);
 var
   frm: TForm;
   control: integer;
@@ -102,7 +102,7 @@ begin
       efAddressAndContact: frm := TfrmAddressAndContact.Create(self);
       efFamily: frm := TfrmFamilyAndRelatives.Create(self,Controller);
       efPhoto: frm := TfrmEmployeePhoto.Create(self,Controller.Employee);
-      efPAF: frm := TfrmEmployeePAF.Create(self);
+      efPAF: frm := TfrmEmployeePAF.Create(self,Controller);
       else frm := nil;
     end;
 

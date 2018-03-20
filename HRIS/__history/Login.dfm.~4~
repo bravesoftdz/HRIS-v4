@@ -312,7 +312,7 @@ inherited frmLogin: TfrmLogin
       BorderOuter = fsNone
       BorderColor = 13816530
       BorderWidth = 1
-      Color = clMenu
+      Color = clSilver
       TabOrder = 2
       object btnClose: TRzShapeButton
         Left = 0
@@ -339,7 +339,7 @@ inherited frmLogin: TfrmLogin
       BorderOuter = fsNone
       BorderColor = 13816530
       BorderWidth = 1
-      Color = clMenu
+      Color = clSilver
       TabOrder = 3
       object btnLogin: TRzShapeButton
         Left = 0

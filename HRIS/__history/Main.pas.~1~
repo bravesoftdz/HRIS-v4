@@ -89,7 +89,7 @@ implementation
 
 uses
   EmployeeDrawer, NewIntf, SaveIntf, FormsUtil, HRISDialogs, EmployeeSearch, Employee,
-  HRISGlobal, PafMain, PafController;
+  HRISGlobal, PafMain;
 
 procedure TfrmMain.pnlTitleMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
@@ -126,7 +126,7 @@ begin
     // instantiate form
     case fm of
       fmEmployeeDrawer: frm := TfrmEmployeeDrawer.Create(Application,AObject as TEmployee);
-      fmPaf: frm := TfrmPafMain.Create(Application, AObject as TPafController);
+      fmPaf: frm := TfrmPafMain.Create(Application);
       else
         frm := nil;
     end;

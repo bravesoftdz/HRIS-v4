@@ -197,15 +197,27 @@ inherited frmFamilyAndRelatives: TfrmFamilyAndRelatives
       BorderColor = 13816530
       BorderWidth = 1
       Color = clMenu
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 8
       object btnNew: TRzShapeButton
-        Left = 0
+        Left = 2
         Top = 0
-        Width = 50
+        Width = 47
         Height = 22
         Hint = 'New'
         BorderStyle = bsNone
         Caption = 'New'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
         OnClick = btnNewClick
       end
     end
@@ -219,15 +231,27 @@ inherited frmFamilyAndRelatives: TfrmFamilyAndRelatives
       BorderColor = 13816530
       BorderWidth = 1
       Color = clMenu
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 9
       object btnCancel: TRzShapeButton
         Left = 0
         Top = 0
-        Width = 50
+        Width = 49
         Height = 22
         Hint = 'Cancel changes'
         BorderStyle = bsNone
         Caption = 'Cancel'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
         OnClick = btnCancelClick
       end
     end

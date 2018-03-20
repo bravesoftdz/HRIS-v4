@@ -40,27 +40,33 @@ type
     lblTotalAllowance: TJvLabel;
     lblSummary: TJvLabel;
     lblChanges: TJvLabel;
-    pnlNew: TRzPanel;
-    btnNew: TRzShapeButton;
-    RzPanel1: TRzPanel;
-    RzShapeButton1: TRzShapeButton;
-    RzPanel2: TRzPanel;
-    RzShapeButton2: TRzShapeButton;
-    RzDBCheckBox1: TRzDBCheckBox;
-    RzPanel3: TRzPanel;
+    pnlApprove: TRzPanel;
+    btnApprove: TRzShapeButton;
+    pnlStatus: TRzPanel;
+    pnlCancel: TRzPanel;
+    btnCancel: TRzShapeButton;
+    pnlAdd: TRzPanel;
+    btnAdd: TRzShapeButton;
+    pnlDelete: TRzPanel;
+    btnDelete: TRzShapeButton;
     procedure edEmployeeButtonClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
+    procedure btnAddClick(Sender: TObject);
+    procedure btnApproveClick(Sender: TObject);
+    procedure btnCancelClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure RzDBLookupComboBox4Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
     { Private declarations }
     Controller: TPafController;
-    procedure SetEmployeeName;
     procedure RefreshForm;
   public
     { Public declarations }
     function Save: boolean;
     procedure Cancel;
+
+    constructor Create(AOwner: TComponent); overload; override;
+    constructor Create(AOwner: TComponent; const AController: TPafController); reintroduce; overload;
   end;
 
 implementation
@@ -68,45 +74,60 @@ implementation
 {$R *.dfm}
 
 uses
-  PafData, EmployeeSearch, Employee, FormsUtil;
+  PafData, FormsUtil, AppConstants;
+
+procedure TfrmPafMain.btnAddClick(Sender: TObject);
+begin
+  inherited;
+  Controller.AddAllowance;
+end;
+
+procedure TfrmPafMain.btnApproveClick(Sender: TObject);
+begin
+  inherited;
+  Controller.ApprovePaf;
+end;
+
+procedure TfrmPafMain.btnCancelClick(Sender: TObject);
+begin
+  inherited;
+  Controller.CancelPaf;
+end;
 
 procedure TfrmPafMain.Cancel;
 begin
-
+  Controller.Cancel;
 end;
 
-procedure TfrmPafMain.edEmployeeButtonClick(Sender: TObject);
-var
-  LEmployee: TEmployee;
+constructor TfrmPafMain.Create(AOwner: TComponent);
 begin
-  LEmployee := TEmployee.Create;
-
-  with TfrmEmployeeSearch.Create(nil,LEmployee) do
-  try
-    ShowModal;
-    if ModalResult = mrOK then
-    begin
-      Controller.Employee := LEmployee;
-      Controller.Add;
-      SetEmployeeName;
-    end
-    else LEmployee.Free;
-  finally
-    Free;
-  end;
-end;
-
-procedure TfrmPafMain.FormCreate(Sender: TObject);
-begin
-  inherited;
+  inherited Create(AOwner);
   Controller := TPafController.Create;
   Controller.OnUpdate := RefreshForm;
 end;
 
-procedure TfrmPafMain.FormDestroy(Sender: TObject);
+constructor TfrmPafMain.Create(AOwner: TComponent; const AController: TPafController);
 begin
-  inherited;
+  if Assigned(AController) then
+  begin
+    inherited Create(AOwner);
+    Controller := AController;
+    Controller.OnUpdate := RefreshForm;
+    Controller.Retrieve;
+    Controller.FilterDepartments;
+    RefreshForm;
+  end else Create(AOwner);
+end;
+
+procedure TfrmPafMain.edEmployeeButtonClick(Sender: TObject);
+begin
+  Controller.FindEmployee;
+end;
+
+procedure TfrmPafMain.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
   Controller.Free;
+  inherited;
 end;
 
 procedure TfrmPafMain.FormShow(Sender: TObject);
@@ -117,18 +138,27 @@ end;
 
 procedure TfrmPafMain.RefreshForm;
 begin
+  edEmployee.Text := Controller.Employee.NameSurnameFirst;
   lblTotalAllowance.Caption := FormatCurr('###,###,##0.00',Controller.TotalAllowance);
   lblChanges.Caption := Controller.Changes;
+
+  // status
+  pnlStatus.Caption := Controller.Status;
+  // colour
+  if (Controller.Status = PAF_NEW) or (Controller.Status = PAF_PENDING) then pnlStatus.Color := clPurple
+  else if Controller.Status = PAF_CANCELLED then pnlStatus.Color := clRed
+  else pnlStatus.Color := clGreen;
+end;
+
+procedure TfrmPafMain.RzDBLookupComboBox4Click(Sender: TObject);
+begin
+  inherited;
+  Controller.FilterDepartments;
 end;
 
 function TfrmPafMain.Save: boolean;
 begin
   Result := Controller.Save;
-end;
-
-procedure TfrmPafMain.SetEmployeeName;
-begin
-  edEmployee.Text := Controller.Employee.NameSurnameFirst;
 end;
 
 end.

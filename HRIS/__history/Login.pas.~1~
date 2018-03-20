@@ -298,7 +298,7 @@ begin
     while not Eof do
     begin
       right := FieldbyName('privilege_code').AsString;
-      HRIS.User.AddRight(right);
+      HRIS.User.SetRight(right);
       Next;
     end;
   end;

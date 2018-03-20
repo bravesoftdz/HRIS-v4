@@ -1,8 +1,9 @@
-inherited frmBasePopupDetail: TfrmBasePopupDetail
-  Caption = 'frmBasePopupDetail'
+inherited frmBasePopupDetail2: TfrmBasePopupDetail2
+  Caption = 'frmBasePopupDetail2'
   ClientHeight = 248
   ClientWidth = 533
   OnClose = FormClose
+  OnCreate = FormCreate
   ExplicitWidth = 533
   ExplicitHeight = 248
   PixelsPerInch = 96
@@ -21,6 +22,8 @@ inherited frmBasePopupDetail: TfrmBasePopupDetail
   inherited pnlMain: TRzPanel
     Width = 533
     Height = 227
+    ExplicitLeft = 0
+    ExplicitTop = 21
     ExplicitWidth = 533
     ExplicitHeight = 227
     DesignSize = (
@@ -33,10 +36,32 @@ inherited frmBasePopupDetail: TfrmBasePopupDetail
       Height = 179
       Anchors = [akLeft, akTop, akRight, akBottom]
       BorderOuter = fsNone
-      BorderColor = clBlack
+      BorderColor = 13816530
       BorderWidth = 1
-      Color = 14273211
+      Color = clMenu
       TabOrder = 0
+      DesignSize = (
+        514
+        179)
+      object lblError: TJvLabel
+        Left = 28
+        Top = 145
+        Width = 6
+        Height = 14
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clRed
+        Font.Height = -12
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        Anchors = [akLeft, akBottom]
+        ParentFont = False
+        Transparent = True
+        HotTrackFont.Charset = DEFAULT_CHARSET
+        HotTrackFont.Color = clWindowText
+        HotTrackFont.Height = -12
+        HotTrackFont.Name = 'Tahoma'
+        HotTrackFont.Style = []
+      end
     end
     object btnSave: TRzPanel
       Left = 417
@@ -45,14 +70,15 @@ inherited frmBasePopupDetail: TfrmBasePopupDetail
       Height = 22
       Anchors = [akRight, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 13816530
       BorderWidth = 1
-      Color = 14075057
+      Color = clMenu
       TabOrder = 1
       DesignSize = (
         50
         22)
       object sbtnSave: TRzShapeButton
+        AlignWithMargins = True
         Left = 2
         Top = 2
         Width = 46
@@ -60,13 +86,13 @@ inherited frmBasePopupDetail: TfrmBasePopupDetail
         Cursor = crHandPoint
         BorderColor = 8806462
         CaptionPosition = cpXY
-        CaptionX = 30
-        CaptionY = 8
+        CaptionX = 10
+        CaptionY = 1
         Anchors = [akLeft, akTop, akRight, akBottom]
         Caption = 'Save'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
+        Font.Color = clBlack
+        Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False
@@ -82,9 +108,9 @@ inherited frmBasePopupDetail: TfrmBasePopupDetail
       Height = 22
       Anchors = [akRight, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 13816530
       BorderWidth = 1
-      Color = 14075057
+      Color = clMenu
       TabOrder = 2
       DesignSize = (
         50
@@ -97,13 +123,13 @@ inherited frmBasePopupDetail: TfrmBasePopupDetail
         Cursor = crHandPoint
         BorderColor = 8806462
         CaptionPosition = cpXY
-        CaptionX = 30
-        CaptionY = 8
+        CaptionX = 5
+        CaptionY = 1
         Anchors = [akLeft, akTop, akRight, akBottom]
         Caption = 'Cancel'
         Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -13
+        Font.Color = clBlack
+        Font.Height = -12
         Font.Name = 'Tahoma'
         Font.Style = []
         ParentFont = False

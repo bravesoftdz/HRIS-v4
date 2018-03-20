@@ -30,10 +30,6 @@ object dmPaf: TdmPaf
       end>
     Left = 256
     Top = 24
-    object dstPafpaf_id: TAutoIncField
-      FieldName = 'paf_id'
-      ReadOnly = True
-    end
     object dstPafeffective_date: TDateTimeField
       FieldName = 'effective_date'
     end
@@ -41,6 +37,7 @@ object dmPaf: TdmPaf
       FieldName = 'effective_until'
     end
     object dstPafid_num: TStringField
+      Tag = 1
       FieldName = 'id_num'
       Size = 12
     end
@@ -84,30 +81,42 @@ object dmPaf: TdmPaf
       Size = 250
     end
     object dstPafcreated_by: TStringField
+      Tag = 1
       FieldName = 'created_by'
       Size = 12
     end
     object dstPafcreated_date: TDateTimeField
+      Tag = 1
       FieldName = 'created_date'
     end
     object dstPafmodified_by: TStringField
+      Tag = 1
       FieldName = 'modified_by'
       Size = 12
     end
     object dstPafmodified_date: TDateTimeField
+      Tag = 1
       FieldName = 'modified_date'
     end
     object dstPafrank_movement: TIntegerField
+      Tag = 1
       FieldName = 'rank_movement'
       ReadOnly = True
     end
     object dstPafis_cancelled: TSmallintField
+      Tag = 1
       FieldName = 'is_cancelled'
     end
     object dstPafpafstatus_code: TStringField
+      Tag = 1
       FieldName = 'pafstatus_code'
       FixedChar = True
       Size = 3
+    end
+    object dstPafpaf_id: TAutoIncField
+      Tag = 1
+      FieldName = 'paf_id'
+      ReadOnly = True
     end
   end
   object dscPafComp: TDataSource
@@ -175,16 +184,20 @@ object dmPaf: TdmPaf
     object dstPafAllowancespaf_id: TIntegerField
       FieldName = 'paf_id'
     end
+    object dstPafAllowancesallowancetype_code: TStringField
+      DisplayLabel = 'Allowance type'
+      FieldName = 'allowancetype_code'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
     object dstPafAllowancesallowance_amount: TBCDField
+      DisplayLabel = 'Allowance amount'
       FieldName = 'allowance_amount'
+      Required = True
       DisplayFormat = '###,###,##0.00'
       Precision = 10
       Size = 2
-    end
-    object dstPafAllowancesallowancetype_code: TStringField
-      FieldName = 'allowancetype_code'
-      FixedChar = True
-      Size = 3
     end
     object dstPafAllowancesexpiry_date: TDateTimeField
       FieldName = 'expiry_date'
@@ -241,15 +254,20 @@ object dmPaf: TdmPaf
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
-        Value = 0
+        Value = Null
       end
       item
         Name = '@id_num'
         Attributes = [paNullable]
         DataType = ftString
-        Precision = 10
-        Size = 16
-        Value = Null
+        Size = 12
+        Value = ''
+      end
+      item
+        Name = '@as_of_date'
+        Attributes = [paNullable]
+        DataType = ftDateTime
+        Value = 0d
       end>
     Left = 256
     Top = 216
@@ -312,7 +330,7 @@ object dmPaf: TdmPaf
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
-        Value = Null
+        Value = 0
       end>
     Left = 504
     Top = 280
