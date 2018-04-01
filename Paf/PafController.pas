@@ -3,7 +3,8 @@ unit PafController;
 interface
 
 uses
-  Employee, PafRecord, System.Classes, SysUtils, BaseActionIntf, DB, Controls;
+  Employee, PafRecord, System.Classes, SysUtils, BaseActionIntf, DB, Controls,
+  DateUtils, DBUtil;
 
 type
   TPafAction = (paNone,paAdding,paEditing);
@@ -45,6 +46,8 @@ type
     procedure Bind;
     procedure FilterAllowanceTypes;
     procedure RemoveDepartmentFilter;
+    procedure SetPafEffectiveUntil;
+    procedure UpdateEmployee;
 
     function GetHasChanges: boolean;
     function GetTotalAllowance: currency;
@@ -52,12 +55,14 @@ type
     function CheckNewAllowanceComponent: boolean;
     function CheckRemoveAllowanceComponent: boolean;
     function Add: boolean;
-    procedure SetStatus(const Value: string);
     function GetStatus: string;
-    function EdiAllowed: boolean;
+    function EditAllowed: boolean;
     function CancellationAllowed: boolean;
     function AddingAllowed: boolean;
     function ApprovingAllowed: boolean;
+    function ErrorsExists: boolean;
+    function AddingAllowanceAllowed: boolean;
+    function DeletingAllowanceAllowed: boolean;
 
   public
     property Employee: TEmployee read FEmployee write FEmployee;
@@ -174,31 +179,40 @@ procedure TPafController.AddAllowance;
 var
   LAllowance: TAllowance;
 begin
-  with TfrmAllowanceDetails.Create(nil,self) do
+  if AddingAllowanceAllowed then
   begin
-    FilterAllowanceTypes;
-
-    (FData as TdmPaf).dstPafAllowances.Append;
-
-    ShowModal;
-
-    if ModalResult = mrOk then
+    with TfrmAllowanceDetails.Create(nil,self) do
     begin
-      (FData as TdmPaf).dstPafAllowances.Post;
+      FilterAllowanceTypes;
 
-      LAllowance := TAllowance.Create;
-      LAllowance.AllowanceType := (FData as TdmPaf).dstPafAllowances.FieldByName('allowancetype_code').AsString;
-      LAllowance.Expiry := (FData as TdmPaf).dstPafAllowances.FieldByName('expiry_date').AsDateTime;
-      LAllowance.Amount := (FData as TdmPaf).dstPafAllowances.FieldByName('allowance_amount').AsSingle;
+      (FData as TdmPaf).dstPafAllowances.Append;
 
-      FPaf.Allowances.Add(LAllowance);
+      ShowModal;
 
-      FOnUpdate;
-    end
-    else (FData as TdmPaf).dstPafAllowances.Cancel;
+      if ModalResult = mrOk then
+      begin
+        (FData as TdmPaf).dstPafAllowances.Post;
 
-    Free;
+        LAllowance := TAllowance.Create;
+        LAllowance.AllowanceType := (FData as TdmPaf).dstPafAllowances.FieldByName('allowancetype_code').AsString;
+        LAllowance.Expiry := (FData as TdmPaf).dstPafAllowances.FieldByName('expiry_date').AsDateTime;
+        LAllowance.Amount := (FData as TdmPaf).dstPafAllowances.FieldByName('allowance_amount').AsSingle;
+
+        FPaf.Allowances.Add(LAllowance);
+
+        FOnUpdate;
+      end
+      else (FData as TdmPaf).dstPafAllowances.Cancel;
+
+      Free;
+    end;
   end;
+end;
+
+function TPafController.AddingAllowanceAllowed: boolean;
+begin
+  Result := (Assigned(FEmployee)) and (FPaf.StatusCode <> PAF_STATUS_APPROVED)
+    and (not FPaf.Cancelled);
 end;
 
 function TPafController.AddingAllowed: boolean;
@@ -227,16 +241,27 @@ end;
 function TPafController.ApprovingAllowed: boolean;
 var
   error: string;
+  hasRight: boolean;
 begin
-  error := '';
+  Result := false;
 
-  if not HRIS.User.HasRights([PRIV_PAF_APPROVE],true) then Exit
-  else if FPaf.Cancelled then  error := 'Cannot approve a cancelled PAF.'
-  else if FPaf.StatusCode = PAF_STATUS_APPROVED then error := 'PAF record has already been approved.';
+  if Assigned(FEmployee) then
+  begin
+    error := '';
+    hasRight := true;
 
-  Result := error = '';
+    if not HRIS.User.HasRights([PRIV_PAF_APPROVE],true) then
+    begin
+      Result := false;
+      Exit;
+    end
+    else if FPaf.Cancelled then  error := 'Cannot approve a cancelled PAF.'
+    else if FPaf.StatusCode = PAF_STATUS_APPROVED then error := 'PAF record has already been approved.';
 
-  if not Result then ShowErrorBox2(error);
+    Result := (error = '') and (hasRight);
+
+    if error <> '' then ShowErrorBox2(error);
+  end;
 end;
 
 procedure TPafController.Bind;
@@ -269,21 +294,43 @@ end;
 
 function TPafController.Cancel: boolean;
 begin
+  Result := false;
+
+  with (FData as TdmPaf) do
+  begin
+    dstPaf.Cancel;
+
+    if dstPafComp.Modified then dstPafComp.CancelBatch;
+
+    if dstPafAllowances.Modified then dstPafAllowances.CancelBatch;
+  end;
+
   Result := true;
 end;
 
 function TPafController.CancellationAllowed: boolean;
 var
   error: string;
+  hasRight: boolean;
 begin
-  error := '';
+  Result := false;
 
-  if not HRIS.User.HasRights([PRIV_PAF_CANCEL],true) then Exit
-  else if FPaf.Cancelled then  error := 'PAF has already been cancelled.';
+  if Assigned(FEmployee) then
+  begin
+    error := '';
+    hasRight := true;
 
-  Result := error = '';
+    if not HRIS.User.HasRights([PRIV_PAF_CANCEL],true) then
+    begin
+      hasRight := false;
+      Exit;
+    end
+    else if FPaf.Cancelled then  error := 'PAF has already been cancelled.';
 
-  if not Result then ShowErrorBox2(error);
+    Result := (error = '') and (hasRight);
+
+    if error <> '' then ShowErrorBox2(error);
+  end;
 end;
 
 procedure TPafController.CancelPaf;
@@ -291,14 +338,17 @@ begin
   with (FData as TdmPaf).dstPaf do
   begin
     if CancellationAllowed then
-    begin
-      Edit;
-      FieldByName('is_cancelled').AsInteger := 1;
-      Post;
-      FPaf.IsCancelled := FieldByName('is_cancelled').AsInteger;
-      Bind;
-      FOnUpdate;
-    end;
+      if ShowDecisionBox2('Are you sure you want to CANCEL this PAF?') = mrYes then
+      begin
+        Edit;
+        FieldByName('is_cancelled').AsInteger := 1;
+        SetModifiedFields((FData as TdmPaf).dstPaf);
+        Post;
+
+        FPaf.IsCancelled := FieldByName('is_cancelled').AsInteger;
+        Bind;
+        FOnUpdate;
+      end;
   end;
 end;
 
@@ -384,11 +434,18 @@ begin
   Result := true;
 end;
 
+function TPafController.DeletingAllowanceAllowed: boolean;
+begin
+
+end;
+
 destructor TPafController.Destroy;
 begin
-  FreeAndNil(FEmployee);
-  FreeAndNil(FPaf);
+  // Cancel all pending changes
+  Cancel;
 
+  if Assigned(FEmployee) then FreeAndNil(FEmployee);
+  if Assigned(FPaf) then FreeAndNil(FPaf);
   if Assigned(FPafLatest) then FreeAndNil(FPafLatest);
 
   FreeAndNil(FData);
@@ -397,9 +454,67 @@ begin
   inherited;
 end;
 
-function TPafController.EdiAllowed: boolean;
+function TPafController.EditAllowed: boolean;
+var
+  hasRight: boolean;
 begin
+  Result := false;
 
+  hasRight := HRIS.User.HasRights([PRIV_PAF_EDIT],true);
+
+  if hasRight then
+  begin
+    Result := (Assigned(FEmployee))
+            and (FStatus = PAF_STATUS_PENDING);
+
+    if not Result then ShowErrorBox2('Editing this PAF is restricted.');
+  end;
+end;
+
+function TPafController.ErrorsExists: boolean;
+var
+  i: integer;
+  error: string;
+begin
+  Result := true;
+
+  with (FData as TdmPaf).dstPaf do
+  begin
+    // iterate thru all the fields and transfer focus control to effect changes
+    for i := 0 to Fields.Count - 1 do Fields[i].FocusControl;
+
+    // check for selected employee
+    if not Assigned(FEmployee) then
+    begin
+      error := 'No employee selected.';
+      ShowErrorBox2(error);
+      Exit;
+    end;
+
+    // iterate thru all the fields and check for required
+    for i := 0 to Fields.Count - 1 do
+    begin
+      if (Fields[i].Required) and (Fields[i].IsNull) then
+      begin
+        error := Fields[i].DisplayLabel + ' is required.';
+        Fields[i].FocusControl;
+        ShowErrorBox2(error);
+        Fields[i].FocusControl;
+        Exit;
+      end;
+    end;
+
+    if not FieldByName('effective_until').IsNull then
+      if CompareDate(FieldByName('effective_date').AsDateTime,
+        FieldByName('effective_until').AsDateTime) in [0,1] then
+      begin
+        error := 'Invalid value for effective dates.';
+        ShowErrorBox2(error);
+        Exit;
+      end;
+  end;
+
+  Result := false;
 end;
 
 procedure TPafController.FilterAllowanceTypes;
@@ -439,9 +554,9 @@ begin
         Add;
         FOnUpdate;
       end
-      else LEmployee.Free;
+      else FreeAndNil(FEmployee);
     end
-    else LEmployee.Free;
+    else FreeAndNil(LEmployee);
   finally
     Free;
   end;
@@ -638,8 +753,12 @@ begin
   try
     Bind;
 
+    if ErrorsExists then Exit;
+
     with (FData as TdmPaf).dstPaf do
     begin
+      SetCreatedFields((FData as TdmPaf).dstPaf);
+
       Post;
       Refresh;
 
@@ -649,6 +768,12 @@ begin
 
     SaveAllowances;
     SaveComponents;
+
+    // set effective until field of last recorded paf
+    SetPafEffectiveUntil;
+
+    // update employee record
+    if FPaf.StatusCode = PAF_STATUS_APPROVED then UpdateEmployee;
 
     Result := true;
 
@@ -720,9 +845,22 @@ begin
   end;
 end;
 
-procedure TPafController.SetStatus(const Value: string);
+procedure TPafController.SetPafEffectiveUntil;
 begin
+  with (FData as TdmPaf).spPafEffectiveUntil do
+  begin
+    Parameters.ParamByName('@id_num').Value := FEmployee.IdNumber;
+    ExecProc;
+  end;
+end;
 
+procedure TPafController.UpdateEmployee;
+begin
+  with (FData as TdmPaf).spPafEffectiveUntil do
+  begin
+    Parameters.ParamByName('@id_num').Value := FEmployee.IdNumber;
+    ExecProc;
+  end;
 end;
 
 { TChanges }

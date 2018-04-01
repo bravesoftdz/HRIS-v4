@@ -8,7 +8,8 @@ uses
 procedure RefreshDataSet(const key: integer; const keyField: string; DataSet: TDataSet); overload;
 procedure RefreshDataSet(const key, keyField: string; DataSet: TDataSet); overload;
 procedure RefreshDataSet(const recordNo: integer; DataSet: TDataSet); overload;
-procedure SetCreatedFields(dataSet: TDataSet);
+procedure SetCreatedFields(ADataSet: TDataSet);
+procedure SetModifiedFields(ADataSet: TDataSet);
 procedure ExecuteSQL(const sql: string);
 
 implementation
@@ -49,10 +50,16 @@ begin
   end;
 end;
 
-procedure SetCreatedFields(dataSet: TDataSet);
+procedure SetCreatedFields(ADataSet: TDataSet);
 begin
-  dataSet.FieldByName('created_date').AsDateTime := HRIS.CurrentDate;
-  dataSet.FieldByName('created_by').AsString := HRIS.User.UserId;
+  ADataSet.FieldByName('created_date').AsDateTime := HRIS.CurrentDate;
+  ADataSet.FieldByName('created_by').AsString := HRIS.User.UserId;
+end;
+
+procedure SetModifiedFields(ADataSet: TDataSet);
+begin
+  ADataSet.FieldByName('modified_date').AsDateTime := HRIS.CurrentDate;
+  ADataSet.FieldByName('modified_by').AsString := HRIS.User.UserId;
 end;
 
 procedure ExecuteSQL(const sql: string);

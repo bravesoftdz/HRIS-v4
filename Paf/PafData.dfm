@@ -31,50 +31,66 @@ object dmPaf: TdmPaf
     Left = 256
     Top = 24
     object dstPafeffective_date: TDateTimeField
+      DisplayLabel = 'Effective date'
       FieldName = 'effective_date'
+      Required = True
     end
     object dstPafeffective_until: TDateTimeField
+      DisplayLabel = 'Effective until'
       FieldName = 'effective_until'
+    end
+    object dstPafposition_code: TStringField
+      DisplayLabel = 'Position'
+      FieldName = 'position_code'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object dstPafposstatus_code: TStringField
+      DisplayLabel = 'Position status'
+      FieldName = 'posstatus_code'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object dstPafempstatus_code: TStringField
+      DisplayLabel = 'Employment status'
+      FieldName = 'empstatus_code'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object dstPaflocation_code: TStringField
+      DisplayLabel = 'Location'
+      FieldName = 'location_code'
+      Required = True
+      FixedChar = True
+      Size = 3
+    end
+    object dstPafdepartment_code: TStringField
+      DisplayLabel = 'Department'
+      FieldName = 'department_code'
+      FixedChar = True
+      Size = 3
+    end
+    object dstPafsalary: TBCDField
+      DisplayLabel = 'Salary'
+      FieldName = 'salary'
+      Required = True
+      Precision = 10
+      Size = 2
+    end
+    object dstPaffrequency_code: TStringField
+      DisplayLabel = 'Salary frequency'
+      FieldName = 'frequency_code'
+      Required = True
+      FixedChar = True
+      Size = 3
     end
     object dstPafid_num: TStringField
       Tag = 1
       FieldName = 'id_num'
       Size = 12
-    end
-    object dstPafsalary: TBCDField
-      FieldName = 'salary'
-      Precision = 10
-      Size = 2
-    end
-    object dstPaffrequency_code: TStringField
-      FieldName = 'frequency_code'
-      FixedChar = True
-      Size = 3
-    end
-    object dstPafposition_code: TStringField
-      FieldName = 'position_code'
-      FixedChar = True
-      Size = 3
-    end
-    object dstPafempstatus_code: TStringField
-      FieldName = 'empstatus_code'
-      FixedChar = True
-      Size = 3
-    end
-    object dstPafposstatus_code: TStringField
-      FieldName = 'posstatus_code'
-      FixedChar = True
-      Size = 3
-    end
-    object dstPaflocation_code: TStringField
-      FieldName = 'location_code'
-      FixedChar = True
-      Size = 3
-    end
-    object dstPafdepartment_code: TStringField
-      FieldName = 'department_code'
-      FixedChar = True
-      Size = 3
     end
     object dstPafpaf_remarks: TStringField
       FieldName = 'paf_remarks'

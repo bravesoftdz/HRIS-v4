@@ -31,6 +31,7 @@ type
     { Private declarations }
     DOCKED_FORM: TEmployeeForms;
     Controller: TEmployeeController;
+    LDockForm: TEmployeeForms;
     procedure DockForm(ef: TEmployeeForms; AObject: TObject = nil);
     procedure EnableControls;
     procedure SetTitle;
@@ -40,7 +41,7 @@ type
     procedure Cancel;
 
     constructor Create(AOwner: TComponent); overload; override;
-    constructor Create(AOwner: TComponent; const AEmployee: TEmployee); reintroduce; overload;
+    constructor Create(AOwner: TComponent; const AEmployee: TEmployee; ADockForm: TEmployeeForms = efMain); reintroduce; overload;
   end;
 
 implementation
@@ -63,9 +64,12 @@ begin
 end;
 
 constructor TfrmEmployeeDrawer.Create(AOwner: TComponent;
-  const AEmployee: TEmployee);
+  const AEmployee: TEmployee; ADockForm: TEmployeeForms);
 begin
   inherited Create(AOwner);
+
+  LDockForm := ADockForm;
+
   Controller := TEmployeeController.Create;
 
   if Assigned(AEmployee) then
@@ -143,7 +147,7 @@ end;
 procedure TfrmEmployeeDrawer.FormShow(Sender: TObject);
 begin
   inherited;
-  DockForm(efMain);
+  DockForm(LDockForm);
   EnableControls;
   SetTitle;
 end;

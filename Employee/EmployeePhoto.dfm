@@ -66,7 +66,6 @@ inherited frmEmployeePhoto: TfrmEmployeePhoto
     Top = 434
     Width = 95
     Height = 22
-    Anchors = [akLeft, akBottom]
     BorderOuter = fsNone
     BorderColor = 13816530
     BorderWidth = 1
@@ -88,7 +87,6 @@ inherited frmEmployeePhoto: TfrmEmployeePhoto
     Top = 434
     Width = 50
     Height = 22
-    Anchors = [akLeft, akBottom]
     BorderOuter = fsNone
     BorderColor = 13816530
     BorderWidth = 1

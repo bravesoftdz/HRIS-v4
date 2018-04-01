@@ -2,7 +2,8 @@ unit HRISDialogs;
 
 interface
 
-uses InfoBox, ErrorBox, ConfBox, DecisionBox, WarningBox, ConfBox2, ErrorBox2;
+uses InfoBox, ErrorBox, ConfBox, DecisionBox, WarningBox, ConfBox2, ErrorBox2,
+  DecisionBox2;
 
 procedure ShowInfoBox(const info: string);
 procedure ShowErrorBox(const error: string);
@@ -10,6 +11,7 @@ procedure ShowErrorBox2(const error: string);
 procedure ShowConfirmationBox(const conf: string = 'Record saved successfully.');
 procedure ShowConfirmationBox2(const conf: string = 'Record saved successfully.');
 function ShowDecisionBox(const confMessage: string): integer;
+function ShowDecisionBox2(const confMessage: string): integer;
 function ShowWarningBox(const confMessage: string): integer;
 
 implementation
@@ -67,6 +69,17 @@ end;
 function ShowDecisionBox(const confMessage: string): integer;
 begin
   with TfrmDecisionBox.Create(nil,confMessage) do
+  try
+    ShowModal;
+    Result := Integer(ModalResult);
+  finally
+    Free;
+  end;
+end;
+
+function ShowDecisionBox2(const confMessage: string): integer;
+begin
+  with TfrmDecisionBox2.Create(nil,confMessage) do
   try
     ShowModal;
     Result := Integer(ModalResult);
