@@ -162,6 +162,7 @@ object dmApplication: TdmApplication
     Connection = acMain
     CursorType = ctStatic
     LockType = ltReadOnly
+    BeforeOpen = dstPendingPAFBeforeOpen
     CommandText = 'hris_get_paf_list_pending;1'
     CommandType = cmdStoredProc
     Parameters = <
@@ -170,6 +171,7 @@ object dmApplication: TdmApplication
         DataType = ftInteger
         Direction = pdReturnValue
         Precision = 10
+        Value = 0
       end
       item
         Name = '@user_id_num'
@@ -229,6 +231,10 @@ object dmApplication: TdmApplication
     end
     object dstPendingPAFeffective_date: TDateTimeField
       FieldName = 'effective_date'
+      DisplayFormat = 'mm/dd/yyyy'
+    end
+    object dstPendingPAFeffective_until: TDateTimeField
+      FieldName = 'effective_until'
       DisplayFormat = 'mm/dd/yyyy'
     end
     object dstPendingPAFrank_movement: TIntegerField

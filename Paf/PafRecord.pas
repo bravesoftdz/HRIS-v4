@@ -32,6 +32,7 @@ type
     property IsEmpty: boolean read GetIsEmpty;
 
     procedure Add(AAllowance: TAllowance);
+    procedure Remove(AType: string);
     procedure Clear;
 
     constructor Create;
@@ -164,6 +165,27 @@ begin
   Result := 0;
 
   for LAllowance in FItems do Result := Result + LAllowance.Amount;
+end;
+
+procedure TAllowances.Remove(AType: string);
+var
+  i, ii, len: integer;
+  LAllowance: TAllowance;
+begin
+  len := Length(FItems);
+
+  ii := 0;
+  for i := 0 to len - 1 do
+  begin
+    LAllowance := FItems[i];
+    if LAllowance.AllowanceType <> AType then
+    begin
+      FItems[ii] := LAllowance;
+      Inc(ii);
+    end;
+  end;
+
+  SetLength(FItems,Length(FItems) - 1);
 end;
 
 procedure TAllowances.SetItems(const i: integer; const Value: TAllowance);

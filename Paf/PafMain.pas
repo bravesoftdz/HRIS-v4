@@ -56,6 +56,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure RzDBLookupComboBox4Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure btnDeleteClick(Sender: TObject);
   private
     { Private declarations }
     Controller: TPafController;
@@ -92,6 +93,12 @@ procedure TfrmPafMain.btnCancelClick(Sender: TObject);
 begin
   inherited;
   Controller.CancelPaf;
+end;
+
+procedure TfrmPafMain.btnDeleteClick(Sender: TObject);
+begin
+  inherited;
+  Controller.RemoveAllowance;
 end;
 
 procedure TfrmPafMain.Cancel;

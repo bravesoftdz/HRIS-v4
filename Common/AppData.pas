@@ -34,10 +34,12 @@ type
     dstPendingPAFpafstatus_code: TStringField;
     dstPendingPAFis_cancelled: TSmallintField;
     dstPendingPAFis_external: TSmallintField;
+    dstPendingPAFeffective_until: TDateTimeField;
     procedure DataModuleCreate(Sender: TObject);
     procedure acMainBeforeConnect(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure dstEmployeesBeforeOpen(DataSet: TDataSet);
+    procedure dstPendingPAFBeforeOpen(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -75,6 +77,11 @@ procedure TdmApplication.dstEmployeesBeforeOpen(DataSet: TDataSet);
 begin
   (DataSet as TADODataSet).Parameters.ParamByName('@dtr_date_from').Value := HRIS.CurrentDate;
   (DataSet as TADODataSet).Parameters.ParamByName('@dtr_date_until').Value := HRIS.CurrentDate;
+end;
+
+procedure TdmApplication.dstPendingPAFBeforeOpen(DataSet: TDataSet);
+begin
+  (DataSet as TADODataSet).Parameters.ParamByName('@user_id_num').Value := HRIS.User.UserId;
 end;
 
 end.

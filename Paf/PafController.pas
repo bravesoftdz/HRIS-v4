@@ -63,6 +63,7 @@ type
     function ErrorsExists: boolean;
     function AddingAllowanceAllowed: boolean;
     function DeletingAllowanceAllowed: boolean;
+    function AllowanceExists(const AType: string): boolean;
 
   public
     property Employee: TEmployee read FEmployee write FEmployee;
@@ -79,6 +80,7 @@ type
     function CheckAllowance: string;
 
     procedure AddAllowance;
+    procedure RemoveAllowance;
     procedure NewAllowance;
     procedure FindEmployee;
     procedure ApprovePaf;
@@ -144,6 +146,7 @@ begin
     FPaf.Allowances.Clear;
 
     Open;
+
     if Assigned(FPafLatest) and (not FPafLatest.Allowances.IsEmpty) then
     begin
       cnt := FPafLatest.Allowances.Count - 1;
@@ -221,20 +224,43 @@ begin
   if not Result then ShowErrorBox2('Self-creation of PAF is not allowed.');
 end;
 
+function TPafController.AllowanceExists(const AType: string): boolean;
+var
+  i, cnt: integer;
+  LAllowance: TAllowance;
+begin
+  Result := true;
+
+  cnt := FPaf.Allowances.Count - 1;
+
+  for i := 0 to cnt do
+  begin
+    LAllowance := FPaf.Allowances.Items[i];
+    if LAllowance.AllowanceType = AType then Exit;
+  end;
+
+  Result := false;
+end;
+
 procedure TPafController.ApprovePaf;
 begin
   with (FData as TdmPaf).dstPaf do
   begin
     if ApprovingAllowed then
-    begin
-      Edit;
-      FieldByName('pafstatus_code').AsString := PAF_STATUS_APPROVED;
-      Post;
+      if HasChanges then
+      begin
+        if ShowDecisionBox2('Approving this PAF restricts making changes to it. Do you want to continue?') = mrYes then
+        begin
+          Edit;
+          FieldByName('pafstatus_code').AsString := PAF_STATUS_APPROVED;
+          Post;
 
-      FPaf.StatusCode := FieldByName('pafstatus_code').AsString;
+          FPaf.StatusCode := FieldByName('pafstatus_code').AsString;
 
-      FOnUpdate;
-    end;
+          FOnUpdate;
+        end;
+      end
+      else ShowErrorBox2('No changes have been made to this PAF.');
   end;
 end;
 
@@ -320,11 +346,7 @@ begin
     error := '';
     hasRight := true;
 
-    if not HRIS.User.HasRights([PRIV_PAF_CANCEL],true) then
-    begin
-      hasRight := false;
-      Exit;
-    end
+    if not HRIS.User.HasRights([PRIV_PAF_CANCEL],true) then Exit
     else if FPaf.Cancelled then  error := 'PAF has already been cancelled.';
 
     Result := (error = '') and (hasRight);
@@ -355,6 +377,7 @@ end;
 function TPafController.CheckAllowance: string;
 var
   i: integer;
+  LType: string;
 begin
   Result := '';
 
@@ -373,6 +396,10 @@ begin
         Exit;
       end;
     end;
+
+    // check if allowance already exists
+    LType := FieldByName('allowancetype_code').AsString;
+    if AllowanceExists(LType) then Result := 'Allowance already exists.';
   end;
 end;
 
@@ -381,38 +408,81 @@ var
   LAllowance, LAllowance2: TAllowance;
   i, cnt: integer;
   i2, cnt2: integer;
+  allowanceExists: boolean;
 begin
+  // this routine checks for new allowances added to this PAF entry
   Result := false;
 
   cnt := FPaf.Allowances.Count - 1;
-  for i := 0 to cnt do
+
+  i := 0;
+
+  allowanceExists := false;
+
+  while (i <= cnt) and (not allowanceExists) do
   begin
     LAllowance := FPaf.Allowances.Items[i];
 
-    if FPafLatest.Allowances.Count > 0 then
+    cnt2 := FPafLatest.Allowances.Count - 1;
+
+    i2 := 0;
+
+    allowanceExists := false;
+
+    while (i2 <= cnt2) and (not allowanceExists) do
     begin
-      cnt2 := FPafLatest.Allowances.Count - 1;
-      for i2 := 0 to cnt2 do
-      begin
-        LAllowance2 := FPafLatest.Allowances.Items[i2];
-        if LAllowance2.AllowanceType <> LAllowance.AllowanceType then
-        begin
-          Result := true;
-          Exit;
-        end;
-      end;
-    end
-    else
-    begin
-      Result := true;
-      Exit;
+      LAllowance2 := FPafLatest.Allowances.Items[i2];
+      if LAllowance2.AllowanceType = LAllowance.AllowanceType then allowanceExists := true;
+      Inc(i2);
     end;
+
+    // if not allowanceExists then Result := true;
+
+    Inc(i);
   end;
+
+  Result := (not allowanceExists) and (FPaf.Allowances.Count > 0);
 end;
 
 function TPafController.CheckRemoveAllowanceComponent: boolean;
+var
+  LAllowance, LAllowance2: TAllowance;
+  i, cnt: integer;
+  i2, cnt2: integer;
+  allowanceExists: boolean;
 begin
+  // this routine checks for new allowances added to this PAF entry
+  Result := false;
 
+  cnt := FPafLatest.Allowances.Count - 1;
+
+  i := 0;
+
+  allowanceExists := false;
+
+  while (i <= cnt) and (not allowanceExists) do
+  begin
+    LAllowance := FPafLatest.Allowances.Items[i];
+
+    cnt2 := FPaf.Allowances.Count - 1;
+
+    i2 := 0;
+
+    allowanceExists := false;
+
+    while (i2 <= cnt2) and (not allowanceExists) do
+    begin
+      LAllowance2 := FPaf.Allowances.Items[i2];
+      if LAllowance2.AllowanceType = LAllowance.AllowanceType then allowanceExists := true;
+      Inc(i2);
+    end;
+
+    // if not allowanceExists then Result := true;
+
+    Inc(i);
+  end;
+
+  Result := (not allowanceExists) and (FPafLatest.Allowances.Count > 0);
 end;
 
 constructor TPafController.Create(const APafId: integer; AEmployee: TEmployee);
@@ -436,7 +506,7 @@ end;
 
 function TPafController.DeletingAllowanceAllowed: boolean;
 begin
-
+  Result := (FPaf.StatusCode <> PAF_STATUS_APPROVED) and (not FPaf.Cancelled);
 end;
 
 destructor TPafController.Destroy;
@@ -465,7 +535,7 @@ begin
   if hasRight then
   begin
     Result := (Assigned(FEmployee))
-            and (FStatus = PAF_STATUS_PENDING);
+            and (FPaf.StatusCode = PAF_STATUS_PENDING);
 
     if not Result then ShowErrorBox2('Editing this PAF is restricted.');
   end;
@@ -541,24 +611,27 @@ procedure TPafController.FindEmployee;
 var
   LEmployee: TEmployee;
 begin
-  LEmployee := TEmployee.Create;
+  if (FPaf.StatusCode <> PAF_STATUS_APPROVED) and (FPaf.StatusCode <> PAF_STATUS_PENDING) then
+  begin
+    LEmployee := TEmployee.Create;
 
-  with TfrmEmployeeSearch.Create(nil,LEmployee) do
-  try
-    ShowModal;
-    if ModalResult = mrOK  then
-    begin
-      FEmployee := LEmployee;
-      if AddingAllowed then
+    with TfrmEmployeeSearch.Create(nil,LEmployee) do
+    try
+      ShowModal;
+      if ModalResult = mrOK  then
       begin
-        Add;
-        FOnUpdate;
+        FEmployee := LEmployee;
+        if AddingAllowed then
+        begin
+          Add;
+          FOnUpdate;
+        end
+        else FreeAndNil(FEmployee);
       end
-      else FreeAndNil(FEmployee);
-    end
-    else FreeAndNil(LEmployee);
-  finally
-    Free;
+      else FreeAndNil(LEmployee);
+    finally
+      Free;
+    end;
   end;
 end;
 
@@ -599,7 +672,7 @@ end;
 
 function TPafController.GetHasChanges: boolean;
 begin
-  Result := FChanges.Count > 0;
+  Result := GetChanges <> '';
 end;
 
 function TPafController.GetStatus: string;
@@ -615,6 +688,28 @@ end;
 procedure TPafController.NewAllowance;
 begin
 
+end;
+
+procedure TPafController.RemoveAllowance;
+var
+  LType: string;
+begin
+  with (FData as TdmPaf).dstPafAllowances do
+  begin
+    if DeletingAllowanceAllowed then
+    begin
+      if RecordCount > 0 then
+      begin
+        LType := FieldByName('allowancetype_code').AsString;
+        FPaf.Allowances.Remove(LType);
+
+        // remove from dataset
+        Delete;
+
+        FOnUpdate;
+      end;
+    end;
+  end;
 end;
 
 procedure TPafController.RemoveDepartmentFilter;
@@ -755,19 +850,30 @@ begin
 
     if ErrorsExists then Exit;
 
+    if FPaf.StatusCode = PAF_STATUS_APPROVED then
+      if ShowDecisionBox2('PAF has been approved. Do you want to continue saving the changes?') <> mrYes then
+      begin
+        Cancel;
+        Exit;
+      end;
+
     with (FData as TdmPaf).dstPaf do
     begin
-      SetCreatedFields((FData as TdmPaf).dstPaf);
+      if FAction = paAdding then SetCreatedFields((FData as TdmPaf).dstPaf);
 
-      Post;
-      Refresh;
+      if Modified then
+      begin
+        Post;
+        Refresh;
+      end;
 
       FPaf.Id := FieldByName('paf_id').AsInteger;
       FPaf.StatusCode := FieldByName('pafstatus_code').AsString;
     end;
 
     SaveAllowances;
-    SaveComponents;
+
+    // SaveComponents;
 
     // set effective until field of last recorded paf
     SetPafEffectiveUntil;

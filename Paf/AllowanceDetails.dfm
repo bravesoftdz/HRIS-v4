@@ -23,12 +23,12 @@ inherited frmAllowanceDetails: TfrmAllowanceDetails
     Width = 324
     Height = 196
     ExplicitWidth = 324
-    ExplicitHeight = 176
+    ExplicitHeight = 196
     inherited pnlDetail: TRzPanel
       Width = 305
       Height = 148
       ExplicitWidth = 305
-      ExplicitHeight = 128
+      ExplicitHeight = 148
       DesignSize = (
         305
         148)
@@ -111,13 +111,13 @@ inherited frmAllowanceDetails: TfrmAllowanceDetails
       Left = 208
       Top = 165
       ExplicitLeft = 208
-      ExplicitTop = 145
+      ExplicitTop = 165
     end
     inherited btnCancel: TRzPanel
       Left = 264
       Top = 165
       ExplicitLeft = 264
-      ExplicitTop = 145
+      ExplicitTop = 165
     end
   end
 end

@@ -169,7 +169,7 @@ begin
     VideoSourceFilter.BaseFilter.Moniker := VideoDevice.GetMoniker(ListBox.ItemIndex);
     VideoSourceFilter.FilterGraph := CaptureGraph;
     CaptureGraph.Active := true;
-    PinList := TPinList.Create(VideoSourceFilter as IBaseFilter);
+    PinList := DXSUtil.TPinList.Create(VideoSourceFilter as IBaseFilter);
     ListBox2.Clear;
     VideoMediaTypes.Assign(PinList.First);
 

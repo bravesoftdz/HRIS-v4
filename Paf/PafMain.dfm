@@ -231,8 +231,8 @@ inherited frmPafMain: TfrmPafMain
     Top = 59
     Width = 289
     Height = 61
-    DataField = 'birth_place'
-    DataSource = dmEmployee.dsEmployee
+    DataField = 'paf_remarks'
+    DataSource = dmPaf.dscPaf
     TabOrder = 4
     FrameColor = 13816530
     FrameVisible = True
@@ -409,7 +409,7 @@ inherited frmPafMain: TfrmPafMain
       FixedColor = clMenu
       GradientEndColor = 12955288
       GradientStartColor = 12955288
-      Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+      Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       ParentCtl3D = False
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -614,6 +614,7 @@ inherited frmPafMain: TfrmPafMain
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
+      OnClick = btnDeleteClick
     end
   end
 end

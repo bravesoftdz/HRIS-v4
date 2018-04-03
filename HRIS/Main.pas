@@ -53,6 +53,8 @@ type
     lblWelcome: TRzLabel;
     pnlSettings: TRzPanel;
     imgSettings: TImage;
+    pnlPendingPAF: TRzPanel;
+    imgPendingPAF: TImage;
     procedure FormCreate(Sender: TObject);
     procedure pnlTitleMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -69,6 +71,7 @@ type
     procedure imgAddEmployeeClick(Sender: TObject);
     procedure imgEmployeeSearchClick(Sender: TObject);
     procedure imgAddPAFClick(Sender: TObject);
+    procedure imgPendingPAFClick(Sender: TObject);
   private
     { Private declarations }
     DOCKED_FORM: TForms;
@@ -89,7 +92,7 @@ implementation
 
 uses
   EmployeeDrawer, NewIntf, SaveIntf, FormsUtil, HRISDialogs, EmployeeSearch, Employee,
-  HRISGlobal, PafMain, PafController;
+  HRISGlobal, PafMain, PafController, PafListPending;
 
 procedure TfrmMain.pnlTitleMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
@@ -127,6 +130,7 @@ begin
     case fm of
       fmEmployeeDrawer: frm := TfrmEmployeeDrawer.Create(Application,AObject as TEmployee);
       fmPaf: frm := TfrmPafMain.Create(Application, AObject as TPafController);
+      fmPendingPaf: frm := TfrmPafListPending.Create(Application);
       else
         frm := nil;
     end;
@@ -236,6 +240,11 @@ end;
 procedure TfrmMain.imgMinimizeClick(Sender: TObject);
 begin
   Application.Minimize;
+end;
+
+procedure TfrmMain.imgPendingPAFClick(Sender: TObject);
+begin
+  DockForm(fmPendingPaf);
 end;
 
 procedure TfrmMain.imgSaveClick(Sender: TObject);

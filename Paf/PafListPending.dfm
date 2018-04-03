@@ -9,13 +9,14 @@ inherited frmPafListPending: TfrmPafListPending
   TextHeight = 14
   inherited pnlTitle: TRzPanel
     Width = 946
+    ExplicitWidth = 946
     inherited lblTitle: TRzLabel
       Width = 77
       Caption = 'Pending PAF'
       ExplicitWidth = 77
     end
   end
-  object grSearch: TRzDBGrid
+  object grList: TRzDBGrid
     Left = 0
     Top = 28
     Width = 946
@@ -27,7 +28,7 @@ inherited frmPafListPending: TfrmPafListPending
     FixedColor = clMenu
     GradientEndColor = 12955288
     GradientStartColor = 12955288
-    Options = [dgTitles, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+    Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ParentCtl3D = False
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
@@ -35,6 +36,7 @@ inherited frmPafListPending: TfrmPafListPending
     TitleFont.Height = -12
     TitleFont.Name = 'Tahoma'
     TitleFont.Style = []
+    OnDblClick = grListDblClick
     FrameStyle = fsNone
     FrameVisible = True
     FramingPreference = fpCustomFraming
@@ -56,6 +58,44 @@ inherited frmPafListPending: TfrmPafListPending
       end
       item
         Expanded = False
+        FieldName = 'effective_until'
+        Title.Caption = 'Effective until'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 100
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'id_num'
+        Title.Alignment = taCenter
+        Title.Caption = 'ID No.'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 50
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'employee_name'
+        Title.Alignment = taCenter
+        Title.Caption = 'Employee'
+        Title.Font.Charset = DEFAULT_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Tahoma'
+        Title.Font.Style = [fsBold]
+        Width = 220
+        Visible = True
+      end
+      item
+        Expanded = False
         FieldName = 'position_name'
         Title.Alignment = taCenter
         Title.Caption = 'Position'
@@ -64,7 +104,7 @@ inherited frmPafListPending: TfrmPafListPending
         Title.Font.Height = -12
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 200
+        Width = 150
         Visible = True
       end
       item
@@ -77,7 +117,7 @@ inherited frmPafListPending: TfrmPafListPending
         Title.Font.Height = -12
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 150
+        Width = 100
         Visible = True
       end
       item
@@ -90,7 +130,7 @@ inherited frmPafListPending: TfrmPafListPending
         Title.Font.Height = -12
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 200
+        Width = 150
         Visible = True
       end
       item
@@ -103,7 +143,7 @@ inherited frmPafListPending: TfrmPafListPending
         Title.Font.Height = -12
         Title.Font.Name = 'Tahoma'
         Title.Font.Style = [fsBold]
-        Width = 120
+        Width = 80
         Visible = True
       end>
   end
