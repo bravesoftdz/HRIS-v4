@@ -115,6 +115,10 @@
         <DCCReference Include="rtl.dcp"/>
         <DCCReference Include="vcl.dcp"/>
         <DCCReference Include="RaizeComponentsVcl.dcp"/>
+        <DCCReference Include="vclimg.dcp"/>
+        <DCCReference Include="Jcl.dcp"/>
+        <DCCReference Include="JvCore.dcp"/>
+        <DCCReference Include="JvStdCtrls.dcp"/>
         <DCCReference Include="..\Base\BaseDocked2.pas">
             <Form>frmBaseDocked2</Form>
             <FormType>dfm</FormType>

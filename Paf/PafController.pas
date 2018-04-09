@@ -51,7 +51,7 @@ type
 
     function GetHasChanges: boolean;
     function GetTotalAllowance: currency;
-    function GetChanges: string;
+    function GetSummaryOfChanges: string;
     function CheckNewAllowanceComponent: boolean;
     function CheckRemoveAllowanceComponent: boolean;
     function Add: boolean;
@@ -71,7 +71,7 @@ type
     property OnUpdate: TOnUpdate read FOnUpdate write FOnUpdate;
     property HasChanges: boolean read GetHasChanges;
     property TotalAllowance: currency read GetTotalAllowance;
-    property Changes: string read GetChanges;
+    property SummaryOfChanges: string read GetSummaryOfChanges;
     property Status: string read GetStatus;
 
     function Save: boolean;
@@ -635,7 +635,7 @@ begin
   end;
 end;
 
-function TPafController.GetChanges: string;
+function TPafController.GetSummaryOfChanges: string;
 var
   changes: TStringList;
   change: string;
@@ -672,7 +672,7 @@ end;
 
 function TPafController.GetHasChanges: boolean;
 begin
-  Result := GetChanges <> '';
+  Result := GetSummaryOfChanges <> '';
 end;
 
 function TPafController.GetStatus: string;

@@ -51,7 +51,8 @@ implementation
 { TEmployeeController }
 
 uses
-  EmployeeData, HRISDialogs, PafController, PafMain, DockIntf;
+  EmployeeData, HRISDialogs, PafController, PafMain,
+  DockIntf, MainModule;
 
 function TEmployeeController.Add: boolean;
 begin
@@ -122,7 +123,11 @@ end;
 constructor TEmployeeController.Create;
 begin
   inherited;
+  {$ifdef WEB}
+  FData := TdmEmployee.Create(nil,UniMainModule.MainConnection);
+  {$else}
   FData := TdmEmployee.Create(nil);
+  {$endif}
   FEmployee := TEmployee.Create;
   FSelectionChanged := OnChange;
 end;

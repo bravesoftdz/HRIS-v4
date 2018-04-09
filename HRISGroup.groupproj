@@ -39,6 +39,9 @@
         <Projects Include="HRIS\HRIS.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="HRISWeb\HRISWeb.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -155,14 +158,23 @@
     <Target Name="HRIS:Make">
         <MSBuild Projects="HRIS\HRIS.dproj" Targets="Make"/>
     </Target>
+    <Target Name="HRISWeb">
+        <MSBuild Projects="HRISWeb\HRISWeb.dproj"/>
+    </Target>
+    <Target Name="HRISWeb:Clean">
+        <MSBuild Projects="HRISWeb\HRISWeb.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="HRISWeb:Make">
+        <MSBuild Projects="HRISWeb\HRISWeb.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="Attendance;Base;Common;Employee;Paf;Synchronisation;Tools;SyncClient;SyncClientDB;SyncWeb;Kiosk;HRIS"/>
+        <CallTarget Targets="Attendance;Base;Common;Employee;Paf;Synchronisation;Tools;SyncClient;SyncClientDB;SyncWeb;Kiosk;HRIS;HRISWeb"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Attendance:Clean;Base:Clean;Common:Clean;Employee:Clean;Paf:Clean;Synchronisation:Clean;Tools:Clean;SyncClient:Clean;SyncClientDB:Clean;SyncWeb:Clean;Kiosk:Clean;HRIS:Clean"/>
+        <CallTarget Targets="Attendance:Clean;Base:Clean;Common:Clean;Employee:Clean;Paf:Clean;Synchronisation:Clean;Tools:Clean;SyncClient:Clean;SyncClientDB:Clean;SyncWeb:Clean;Kiosk:Clean;HRIS:Clean;HRISWeb:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Attendance:Make;Base:Make;Common:Make;Employee:Make;Paf:Make;Synchronisation:Make;Tools:Make;SyncClient:Make;SyncClientDB:Make;SyncWeb:Make;Kiosk:Make;HRIS:Make"/>
+        <CallTarget Targets="Attendance:Make;Base:Make;Common:Make;Employee:Make;Paf:Make;Synchronisation:Make;Tools:Make;SyncClient:Make;SyncClientDB:Make;SyncWeb:Make;Kiosk:Make;HRIS:Make;HRISWeb:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

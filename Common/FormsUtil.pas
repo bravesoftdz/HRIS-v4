@@ -4,7 +4,7 @@ interface
 
 uses
   Vcl.Controls, RzDBCmbo, RzDBGrid, RzGrids, DB, RzLstBox, RzChkLst, Vcl.ExtCtrls,
-  System.Classes, RzCmboBx, HRISGlobal, PayrollCode, HRISDialogs, SysUtils;
+  System.Classes, RzCmboBx, HRISGlobal, PayrollCode, HRISDialogs, SysUtils, UniDBLookupComboBox;
 
 procedure OpenDropdownDataSources(const parentCtrl: TWinControl;
   const open: boolean = true);
@@ -28,14 +28,15 @@ var
   i: integer;
   ds: TDataSet;
 begin
-  ctrlCnt := parentCtrl.ControlCount - 1;
+  ctrlCnt := parentCtrl.ComponentCount - 1;
+  {$ifndef WEB}
   for i := 0 to ctrlCnt do
   begin
-    if parentCtrl.Controls[i] is TRzDBLookupComboBox then
+    if parentCtrl.Components[i] is TRzDBLookupComboBox then
     begin
-      if (parentCtrl.Controls[i] as TRzDBLookupComboBox).DataSource <> nil then
+      if (parentCtrl.Components[i] as TRzDBLookupComboBox).DataSource <> nil then
       begin
-        ds := (parentCtrl.Controls[i] as TRzDBLookupComboBox).ListSource.DataSet;
+        ds := (parentCtrl.Components[i] as TRzDBLookupComboBox).ListSource.DataSet;
 
         ds.Close;
 
@@ -43,6 +44,22 @@ begin
       end
     end
   end;
+  {$else}
+  for i := 0 to ctrlCnt do
+  begin
+    if parentCtrl.Components[i] is TUniDBLookupComboBox then
+    begin
+      if (parentCtrl.Components[i] as TUniDBLookupComboBox).DataSource <> nil then
+      begin
+        ds := (parentCtrl.Components[i] as TUniDBLookupComboBox).ListSource.DataSet;
+
+        ds.Close;
+
+        if open then ds.Open;
+      end
+    end
+  end;
+  {$endif}
 end;
 
 procedure OpenGridDataSources(const parentCtrl: TWinControl;

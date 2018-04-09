@@ -19,7 +19,7 @@ type
     property UserId: string read FUserId write FUserId;
     property UserName: string read FUserName write FUserName;
     property FirstName: string read FFirstName write FFirstName;
-    property LastName: string write FLastName;
+    property LastName: string read FLastName write FLastName;
     property Name: string read GetName;
 
     procedure AddRight(const ARight: string);

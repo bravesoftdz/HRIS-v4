@@ -144,7 +144,7 @@ inherited frmPafMain: TfrmPafMain
     HotTrackFont.Name = 'Tahoma'
     HotTrackFont.Style = []
   end
-  object lblChanges: TJvLabel [13]
+  object lblSummaryOfChanges: TJvLabel [13]
     Left = 884
     Top = 92
     Width = 197

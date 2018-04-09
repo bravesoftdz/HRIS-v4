@@ -39,7 +39,7 @@ type
     JvLabel11: TJvLabel;
     lblTotalAllowance: TJvLabel;
     lblSummary: TJvLabel;
-    lblChanges: TJvLabel;
+    lblSummaryOfChanges: TJvLabel;
     pnlApprove: TRzPanel;
     btnApprove: TRzShapeButton;
     pnlStatus: TRzPanel;
@@ -147,7 +147,7 @@ procedure TfrmPafMain.RefreshForm;
 begin
   edEmployee.Text := Controller.Employee.NameSurnameFirst;
   lblTotalAllowance.Caption := FormatCurr('###,###,##0.00',Controller.TotalAllowance);
-  lblChanges.Caption := Controller.Changes;
+  lblSummaryOfChanges.Caption := Controller.SummaryOfChanges;
 
   // status
   pnlStatus.Caption := Controller.Status;

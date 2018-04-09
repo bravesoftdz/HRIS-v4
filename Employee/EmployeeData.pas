@@ -91,8 +91,13 @@ type
     procedure dstPAFBeforeOpen(DataSet: TDataSet);
   private
     { Private declarations }
+    FConnection: TADOConnection;
+    procedure SetConnection;
   public
     { Public declarations }
+
+    constructor Create(AOwner: TComponent); overload; override;
+    constructor Create(AOwner: TComponent; AConnection: TADOConnection); reintroduce; overload;
   end;
 
 implementation
@@ -103,6 +108,29 @@ implementation
 
 uses
   AppData, HRISGlobal;
+
+procedure TdmEmployee.SetConnection;
+var
+  i: integer;
+begin
+  for i := 0 to ComponentCount - 1 do
+  begin
+    if Components[i] is TADODataSet then
+      (Components[i] as TADODataSet).Connection := FConnection;
+  end;
+end;
+
+constructor TdmEmployee.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+end;
+
+constructor TdmEmployee.Create(AOwner: TComponent; AConnection: TADOConnection);
+begin
+  inherited Create(AOwner);
+  FConnection := AConnection;
+  SetConnection;
+end;
 
 procedure TdmEmployee.dstPAFBeforeOpen(DataSet: TDataSet);
 begin

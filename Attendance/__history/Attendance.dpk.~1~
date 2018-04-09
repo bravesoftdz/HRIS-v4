@@ -1,0 +1,73 @@
+package Attendance;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$RUNONLY}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  vcl,
+  RaizeComponentsVcl,
+  dbrtl,
+  adortl,
+  vclimg,
+  vcldb,
+  RaizeComponentsVclDb,
+  Jcl,
+  JvCore,
+  JvStdCtrls,
+  xmlrtl,
+  fmx,
+  dclstd;
+
+contains
+  TimelogYear in 'TimelogYear.pas' {frmTimelogYear},
+  BaseCalendar in '..\Base\BaseCalendar.pas' {frmBaseCalendar},
+  TimelogData in 'TimelogData.pas' {dmTimelog: TDataModule},
+  AttendanceUtils in 'AttendanceUtils.pas',
+  Timelog in 'Timelog.pas',
+  Timelogs in 'Timelogs.pas',
+  TimelogDetails in 'TimelogDetails.pas' {frmTimelogDetails},
+  BasePopup in '..\..\iFinance\Base\BasePopup.pas' {frmBasePopup},
+  UndertimeDetails in 'UndertimeDetails.pas' {frmUndertimeDetails},
+  BasePopupDetail2 in '..\Base\BasePopupDetail2.pas' {frmBasePopupDetail2},
+  CollapsiblePanelUtils in 'CollapsiblePanelUtils.pas',
+  UndertimeLog in 'UndertimeLog.pas',
+  UndertimeLogs in 'UndertimeLogs.pas',
+  ForApproval in 'ForApproval.pas' {frmForApproval},
+  BaseDocked in '..\..\iFinance\Base\BaseDocked.pas' {frmBaseDocked},
+  Entitlement in 'Entitlement.pas',
+  TimelogPayPeriod in 'TimelogPayPeriod.pas' {frmTimelogPayPeriod},
+  TimelogUtils in 'TimelogUtils.pas',
+  FilterSelect in 'FilterSelect.pas' {frmFilterSelect},
+  ResourceFilter in 'ResourceFilter.pas',
+  OverrideDetails in 'OverrideDetails.pas' {frmOverrideDetails},
+  Ovrride in 'Ovrride.pas',
+  Overrides in 'Overrides.pas';
+
+end.
+

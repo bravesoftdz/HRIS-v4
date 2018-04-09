@@ -41,7 +41,7 @@ object dmEmployee: TdmEmployee
         Attributes = [paNullable]
         DataType = ftString
         Size = 12
-        Value = ''
+        Value = Null
       end>
     Left = 80
     Top = 33
