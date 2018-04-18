@@ -10,7 +10,7 @@ type
     MainConnection: TADOConnection;
     dstUser: TADODataSet;
     procedure UniGUIMainModuleDestroy(Sender: TObject);
-    procedure fdcMainBeforeConnect(Sender: TObject);
+    procedure MainConnectionBeforeConnect(Sender: TObject);
   private
     { Private declarations }
     FUser: TUser;
@@ -27,7 +27,7 @@ implementation
 {$R *.dfm}
 
 uses
-  UniGUIVars, ServerModule, uniGUIApplication;
+  UniGUIVars, ServerModule, uniGUIApplication, ConnUtil;
 
 function UniMainModule: TUniMainModule;
 begin
@@ -39,16 +39,9 @@ begin
   MainConnection.Execute(AQuery);
 end;
 
-procedure TUniMainModule.fdcMainBeforeConnect(Sender: TObject);
+procedure TUniMainModule.MainConnectionBeforeConnect(Sender: TObject);
 begin
-  // set connection params
-//  with fdcMain.Params as TFDPhysFBConnectionDefParams do
-//  begin
-//    Server := FAppSettings.Database.Server;
-//    Database := FAppSettings.Database.DatabaseFile;
-//    UserName := FAppSettings.Database.User;
-//    Password := FAppSettings.Database.Password;
-//  end
+  MainConnection.ConnectionString := GetConnection('','','');
 end;
 
 procedure TUniMainModule.UniGUIMainModuleDestroy(Sender: TObject);

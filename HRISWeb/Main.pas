@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics,
   Controls, Forms, uniGUITypes, uniGUIAbstractClasses,
   uniGUIClasses, uniGUIRegClasses, uniGUIForm, uniLabel, uniGUIBaseClasses,
-  uniPanel, uniGUIFrame;
+  uniPanel, uniGUIFrame, Vcl.Imaging.pngimage, uniImage;
 
 type
   TWebFrames = (frEmployeeDrawer,frTagRegistrationList,frShipList,frReportSettings);
@@ -14,14 +14,18 @@ type
   TMainForm = class(TUniForm)
     DockPanel: TUniPanel;
     lblWelcomeUser: TUniLabel;
-    LogoutLabel: TUniLabel;
-    ProfileLabel: TUniLabel;
-    UniLabel2: TUniLabel;
     UniSimplePanel1: TUniSimplePanel;
+    pnlProfile: TUniSimplePanel;
+    imgProfile: TUniImage;
+    pnlLeaves: TUniSimplePanel;
+    imgLeaves: TUniImage;
+    UniSimplePanel2: TUniSimplePanel;
+    imgLogout: TUniImage;
+    UniLabel2: TUniLabel;
     procedure UniFormAfterShow(Sender: TObject);
-    procedure LogoutLabelClick(Sender: TObject);
     procedure lblShipsClick(Sender: TObject);
-    procedure ProfileLabelClick(Sender: TObject);
+    procedure imgProfileClick(Sender: TObject);
+    procedure imgLogoutClick(Sender: TObject);
   private
     { Private declarations }
     procedure DockFrame(frame: TWebFrames);
@@ -36,7 +40,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uniGUIVars, MainModule, uniGUIApplication, EmployeeDrawer;
+  uniGUIVars, MainModule, uniGUIApplication, WebEmployeeDrawer;
 
 function MainForm: TMainForm;
 begin
@@ -59,12 +63,12 @@ begin
   LFrame.Show;
 end;
 
-procedure TMainForm.LogoutLabelClick(Sender: TObject);
+procedure TMainForm.imgLogoutClick(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TMainForm.ProfileLabelClick(Sender: TObject);
+procedure TMainForm.imgProfileClick(Sender: TObject);
 begin
   DockFrame(frEmployeeDrawer);
 end;

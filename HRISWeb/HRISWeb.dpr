@@ -5,9 +5,10 @@ uses
   ServerModule in 'ServerModule.pas' {UniServerModule: TUniGUIServerModule},
   MainModule in 'MainModule.pas' {UniMainModule: TUniGUIMainModule},
   Main in 'Main.pas' {MainForm: TUniForm},
-  Login in 'Login.pas' {LoginForm: TUniLoginForm},
-  EmployeeDrawer in 'EmployeeDrawer.pas' {EmployeeDrawerFrame: TUniFrame},
-  EmployeeMain in 'EmployeeMain.pas' {EmployeeMainFrame: TUniFrame};
+  WebLogin in 'WebLogin.pas' {LoginForm: TUniLoginForm},
+  WebEmployeeDrawer in 'WebEmployeeDrawer.pas' {EmployeeDrawerFrame: TUniFrame},
+  WebEmployeeMain in 'WebEmployeeMain.pas' {EmployeeMainFrame: TUniFrame},
+  WebAddressAndContact in 'WebAddressAndContact.pas' {AddressAndContactFrame: TUniFrame};
 
 {$R *.res}
 

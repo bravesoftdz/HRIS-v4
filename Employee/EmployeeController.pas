@@ -222,6 +222,7 @@ begin
                  (Components[i] as TADODataSet).Append;
 
              if FSelected = sdMain then Bind;
+
            end;
         end;
       end;

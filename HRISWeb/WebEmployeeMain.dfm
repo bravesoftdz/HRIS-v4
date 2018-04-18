@@ -117,7 +117,7 @@ object EmployeeMainFrame: TEmployeeMainFrame
   end
   object UniLabel7: TUniLabel
     Left = 80
-    Top = 374
+    Top = 390
     Width = 40
     Height = 14
     Hint = ''
@@ -150,7 +150,7 @@ object EmployeeMainFrame: TEmployeeMainFrame
   end
   object UniLabel9: TUniLabel
     Left = 80
-    Top = 414
+    Top = 430
     Width = 41
     Height = 14
     Hint = ''
@@ -159,7 +159,7 @@ object EmployeeMainFrame: TEmployeeMainFrame
   end
   object UniLabel10: TUniLabel
     Left = 80
-    Top = 454
+    Top = 470
     Width = 56
     Height = 14
     Hint = ''
@@ -168,7 +168,7 @@ object EmployeeMainFrame: TEmployeeMainFrame
   end
   object UniLabel11: TUniLabel
     Left = 80
-    Top = 494
+    Top = 510
     Width = 74
     Height = 14
     Hint = ''
@@ -189,7 +189,7 @@ object EmployeeMainFrame: TEmployeeMainFrame
   end
   object UniDBLookupComboBox1: TUniDBLookupComboBox
     Left = 176
-    Top = 368
+    Top = 384
     Width = 120
     Hint = ''
     ListField = 'display'
@@ -205,7 +205,7 @@ object EmployeeMainFrame: TEmployeeMainFrame
     Left = 176
     Top = 304
     Width = 225
-    Height = 46
+    Height = 62
     Hint = ''
     DataField = 'birth_place'
     DataSource = dmEmployee.dsEmployee
@@ -213,7 +213,7 @@ object EmployeeMainFrame: TEmployeeMainFrame
   end
   object UniDBLookupComboBox2: TUniDBLookupComboBox
     Left = 176
-    Top = 408
+    Top = 424
     Width = 225
     Hint = ''
     ListField = 'religion_name'
@@ -227,7 +227,7 @@ object EmployeeMainFrame: TEmployeeMainFrame
   end
   object UniDBLookupComboBox3: TUniDBLookupComboBox
     Left = 176
-    Top = 448
+    Top = 464
     Width = 225
     Hint = ''
     ListField = 'display'
@@ -241,7 +241,7 @@ object EmployeeMainFrame: TEmployeeMainFrame
   end
   object UniDBDateTimePicker2: TUniDBDateTimePicker
     Left = 176
-    Top = 488
+    Top = 504
     Width = 120
     Hint = ''
     DataField = 'marriage_date'

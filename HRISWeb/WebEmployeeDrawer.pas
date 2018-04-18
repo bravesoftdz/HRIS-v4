@@ -1,4 +1,4 @@
-unit EmployeeDrawer;
+unit WebEmployeeDrawer;
 
 interface
 
@@ -21,6 +21,7 @@ type
     procedure MainLabelClick(Sender: TObject);
     procedure UniFrameDestroy(Sender: TObject);
     procedure UniFrameCreate(Sender: TObject);
+    procedure AddressAndContactLabelClick(Sender: TObject);
   private
     { Private declarations }
     Controller: TEmployeeController;
@@ -34,9 +35,15 @@ implementation
 {$R *.dfm}
 
 uses
-  uniGUIVars, MainModule, uniGUIApplication, EmployeeMain, Employee;
+  uniGUIVars, MainModule, uniGUIApplication, WebEmployeeMain, Employee,
+  WebAddressAndContact;
 
 { TEmployeeDrawerFrame }
+
+procedure TEmployeeDrawerFrame.AddressAndContactLabelClick(Sender: TObject);
+begin
+  DockFrame(frAddressAndContact);
+end;
 
 procedure TEmployeeDrawerFrame.DockFrame(AFrame: TEmployeeFrames);
 var
@@ -47,10 +54,12 @@ begin
 
   case AFrame of
     frMain: LFrame := TEmployeeMainFrame.Create(self,Controller.Employee);
+    frAddressAndContact: LFrame := TAddressAndContactFrame.Create(self);
   end;
 
   case AFrame of
     frMain: Controller.Selected := sdMain;
+    frAddressAndContact: Controller.Selected := sdAddressAndContact;
   end;
 
   Controller.OnSelectionChanged;

@@ -1,8 +1,8 @@
 object EmployeeDrawerFrame: TEmployeeDrawerFrame
   Left = 0
   Top = 0
-  Width = 653
-  Height = 240
+  Width = 451
+  Height = 305
   OnCreate = UniFrameCreate
   OnDestroy = UniFrameDestroy
   Align = alClient
@@ -12,7 +12,7 @@ object EmployeeDrawerFrame: TEmployeeDrawerFrame
     Left = 0
     Top = 0
     Width = 200
-    Height = 240
+    Height = 305
     Hint = ''
     ParentColor = False
     Color = 16250871
@@ -31,7 +31,7 @@ object EmployeeDrawerFrame: TEmployeeDrawerFrame
       Caption = 'Main'
       ParentFont = False
       Font.Charset = ANSI_CHARSET
-      Font.Color = 8026685
+      Font.Color = clTeal
       Font.Height = -13
       Font.Name = 'Arial'
       Font.Style = [fsUnderline]
@@ -48,11 +48,12 @@ object EmployeeDrawerFrame: TEmployeeDrawerFrame
       Caption = 'Address and contact'
       ParentFont = False
       Font.Charset = ANSI_CHARSET
-      Font.Color = 8026685
+      Font.Color = clTeal
       Font.Height = -13
       Font.Name = 'Arial'
       Font.Style = [fsUnderline]
       TabOrder = 2
+      OnClick = AddressAndContactLabelClick
     end
     object FamilyAndRelativesLabel: TUniLabel
       Left = 41
@@ -64,7 +65,7 @@ object EmployeeDrawerFrame: TEmployeeDrawerFrame
       Caption = 'Family and relatives'
       ParentFont = False
       Font.Charset = ANSI_CHARSET
-      Font.Color = 8026685
+      Font.Color = clTeal
       Font.Height = -13
       Font.Name = 'Arial'
       Font.Style = [fsUnderline]
@@ -80,7 +81,7 @@ object EmployeeDrawerFrame: TEmployeeDrawerFrame
       Caption = 'PAF records'
       ParentFont = False
       Font.Charset = ANSI_CHARSET
-      Font.Color = 8026685
+      Font.Color = clTeal
       Font.Height = -13
       Font.Name = 'Arial'
       Font.Style = [fsUnderline]
@@ -90,8 +91,8 @@ object EmployeeDrawerFrame: TEmployeeDrawerFrame
   object DockPanel: TUniSimplePanel
     Left = 200
     Top = 0
-    Width = 453
-    Height = 240
+    Width = 251
+    Height = 305
     Hint = ''
     ParentColor = False
     Color = clWhite
@@ -100,9 +101,5 @@ object EmployeeDrawerFrame: TEmployeeDrawerFrame
     ParentAlignmentControl = False
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 1
-    ExplicitLeft = 464
-    ExplicitTop = 136
-    ExplicitWidth = 256
-    ExplicitHeight = 128
   end
 end

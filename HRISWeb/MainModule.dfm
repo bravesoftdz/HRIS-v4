@@ -12,6 +12,7 @@ object UniMainModule: TUniMainModule
       'DEVELOPMENT;Initial File Name="";Server SPN=""'
     LoginPrompt = False
     Provider = 'SQLNCLI11.1'
+    BeforeConnect = MainConnectionBeforeConnect
     Left = 56
     Top = 32
   end

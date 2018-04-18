@@ -114,13 +114,12 @@ object LoginForm: TLoginForm
     Hint = ''
     ParentShowHint = False
     ParentColor = False
-    Color = 8421440
+    Color = clTeal
     Align = alTop
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 6
-    ExplicitWidth = 350
     object UniLabel3: TUniLabel
-      Left = 14
+      Left = 6
       Top = 3
       Width = 36
       Height = 16
