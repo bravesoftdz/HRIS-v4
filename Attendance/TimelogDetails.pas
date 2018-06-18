@@ -103,7 +103,7 @@ implementation
 {$R *.dfm}
 
 uses
-  KioskGlobal, AttendanceUtils;
+  HRISGlobal, AttendanceUtils, Leave;
 
 procedure TfrmTimelogDetails.SetCollapsePanelProperties(panel: TRzPanel; image: TImage; var tp: integer);
 begin
@@ -121,7 +121,8 @@ begin
   with image do
   begin
     // imageList.GetBitmap(Integer(psExpand),Picture.Icon);
-    Picture.LoadFromFile(kk.AppImagesPath + 'expand.png');
+    image.Picture.Icon := nil;
+    imageList.GetIcon(Integer(psExpand), image.Picture.Icon);
     Hint := 'Expand';
     Tag := Integer(psExpand);
   end;
@@ -157,7 +158,10 @@ begin
           begin
             (Sender as TImage).Parent.Parent.Top := tp;
             (Sender as TImage).Parent.Parent.Height := ht;
-            (Sender as TImage).Picture.LoadFromFile(kk.AppImagesPath + 'collapse.png');
+            (Sender as TImage).Picture.Icon := nil;
+            imageList.GetIcon(0, (Sender as TImage).Picture.Icon);
+            (Sender as TImage).Transparent := true;
+            // (Sender as TImage).Picture.LoadFromFile(HRIS.AppImagesPath + 'collapse.png');
             (Sender as TImage).Hint := 'Collapse';
             (Sender as TImage).Tag := Integer(psCollapse);
           end
@@ -175,7 +179,10 @@ begin
           if Sender is TImage then
           begin
             (Sender as TImage).Parent.Parent.Height := COLLAPSED_HEIGHT;
-            (Sender as TImage).Picture.LoadFromFile(kk.AppImagesPath + 'expand.png');
+            (Sender as TImage).Picture.Icon := nil;
+            imageList.GetIcon(1, (Sender as TImage).Picture.Icon);
+            (Sender as TImage).Transparent := true;
+            // (Sender as TImage).Picture.LoadFromFile(HRIS.AppImagesPath + 'expand.png');
             (Sender as TImage).Hint := 'Expand';
             (Sender as TImage).Tag := Integer(psExpand);
           end
@@ -284,12 +291,12 @@ begin
       begin
         lblLvTypeAM.Caption := lv.LeaveTypeName;
         lblLvReasonAM.Caption := lv.Reason;
-        lblPaidAM.Caption := lv.Paid;
+        lblPaidAM.Caption := lv.PaidDescription;
         lblLvRemarksAM.Caption := lv.Remarks;
 
         lblLvTypePM.Caption := lv.LeaveTypeName;
         lblLvReasonPM.Caption := lv.Reason;
-        lblPaidPM.Caption := lv.Paid;
+        lblPaidPM.Caption := lv.PaidDescription;
         lblLvRemarksPM.Caption := lv.Remarks;
       end
       else
@@ -299,7 +306,7 @@ begin
         begin
           lblLvTypeAM.Caption := lv.LeaveTypeName;
           lblLvReasonAM.Caption := lv.Reason;
-          lblPaidAM.Caption := lv.Paid;
+          lblPaidAM.Caption := lv.PaidDescription;
           lblLvRemarksAM.Caption := lv.Remarks;
         end;
 
@@ -308,7 +315,7 @@ begin
         begin
           lblLvTypePM.Caption := lv.LeaveTypeName;
           lblLvReasonPM.Caption := lv.Reason;
-          lblPaidPM.Caption := lv.Paid;
+          lblPaidPM.Caption := lv.PaidDescription;
           lblLvRemarksPM.Caption := lv.Remarks;
         end;
       end;
@@ -355,11 +362,11 @@ var
 begin
   // changes tab colors depending on information availability
   // light blue (transparent) no info is found
-  enabledColor1 := $0086603E;
-  enabledColor2 := $00A98867;
+  enabledColor1 := $00845F3E; // $0086603E;
+  enabledColor2 := $00845F3E; // $00A98867;
 
-  disabledColor1 := $00C5AE98;
-  disabledColor2 := $00CAB59F;
+  disabledColor1 := $00E3D9CE; // $00C5AE98;
+  disabledColor2 := $00E3D9CE; // $00CAB59F;
 
   // office log
   if (tlog.NoLog) and (not tlog.HasOverride) then
@@ -408,9 +415,9 @@ begin
   SetPanelColors;
 
   // expand panel
-  if (not tlog.NoLog) or (tlog.HasOverride) then lblExpandOfficeLog.OnClick(lblExpandOfficeLog)
-  else if tlog.HasUndertime then lblExpandUndertime.OnClick(lblExpandUndertime)
-  else if tlog.HasLeave then lblExpandLeaves.OnClick(lblExpandLeaves);
+  if (not tlog.NoLog) or (tlog.HasOverride) then imgOfficelog.OnClick(imgOfficelog) // lblExpandOfficeLog.OnClick(lblExpandOfficeLog)
+  else if tlog.HasUndertime then imgUndertime.OnClick(imgUndertime) // lblExpandUndertime.OnClick(lblExpandUndertime)
+  else if tlog.HasLeave then imgLeaves.OnClick(imgLeaves); // lblExpandLeaves.OnClick(lblExpandLeaves);
 
 end;
 

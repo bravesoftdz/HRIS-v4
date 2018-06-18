@@ -49,7 +49,7 @@ inherited frmBaseCalendar: TfrmBaseCalendar
     Height = 22
     Ctl3D = False
     FlatButtonColor = 14273211
-    FrameColor = 8675134
+    FrameColor = 14205355
     FrameVisible = True
     FramingPreference = fpCustomFraming
     ParentCtl3D = False
@@ -77,7 +77,7 @@ inherited frmBaseCalendar: TfrmBaseCalendar
       BevelInner = bvNone
       BevelOuter = bvNone
       BorderStyle = bsNone
-      Color = 14273211
+      Color = 14932430
       ColCount = 16
       DefaultColWidth = 50
       DefaultRowHeight = 24
@@ -90,6 +90,7 @@ inherited frmBaseCalendar: TfrmBaseCalendar
       Font.Name = 'Tahoma'
       Font.Style = []
       Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine]
+      ParentColor = True
       ParentFont = False
       ScrollBars = ssNone
       TabOrder = 0
@@ -141,7 +142,7 @@ inherited frmBaseCalendar: TfrmBaseCalendar
     Anchors = [akLeft, akBottom]
     BorderOuter = fsNone
     BorderSides = []
-    Color = 14273211
+    ParentColor = True
     TabOrder = 3
     object RzLabel8: TRzLabel
       Left = 511
@@ -319,7 +320,7 @@ inherited frmBaseCalendar: TfrmBaseCalendar
     Height = 22
     Text = ''
     DisabledColor = 14273211
-    FrameColor = 8675134
+    FrameColor = 14205355
     FrameVisible = True
     FramingPreference = fpCustomFraming
     ReadOnly = True

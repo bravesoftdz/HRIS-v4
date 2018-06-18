@@ -11,7 +11,7 @@ type
 type
   TUndertimeLog = class
   private
-    FEmployee: TEmployee;
+    FEmployee: TBaseEmployee;
     FDateString: string;
     FTimeFrom: double;
     FTimeUntil: double;
@@ -33,7 +33,7 @@ type
     function GetTimeUntilFormatted: string;
 
   public
-    property Employee: TEmployee read FEmployee write FEmployee;
+    property Employee: TBaseEmployee read FEmployee write FEmployee;
     property Date: TDateTime read GetDate;
     property DateString: string read FDateString write FDateString;
     property TimeFrom: double read FTimeFrom write FTimeFrom;
@@ -74,7 +74,7 @@ begin
 
       if GetIsNew then FStatus := 'PND';
 
-      dstUndertimeAM.FieldByName('id_num').AsString := FEmployee.IdNum;
+      dstUndertimeAM.FieldByName('id_num').AsString := FEmployee.IdNumber;
       dstUndertimeAM.FieldByName('dtr_date').AsString := FDateString;
       dstUndertimeAM.FieldByName('time_from').AsString := TimeToStr(FTimeFrom);
       dstUndertimeAM.FieldByName('time_until').AsString := TimeToStr(FTimeUntil);
@@ -86,7 +86,7 @@ begin
 
       if GetIsNew then FStatus := 'PND';
 
-      dstUndertimePM.FieldByName('id_num').AsString := FEmployee.IdNum;
+      dstUndertimePM.FieldByName('id_num').AsString := FEmployee.IdNumber;
       dstUndertimePM.FieldByName('dtr_date').AsString := FDateString;
       dstUndertimePM.FieldByName('time_from').AsString := TimeToStr(FTimeFrom);
       dstUndertimePM.FieldByName('time_until').AsString := TimeToStr(FTimeUntil);

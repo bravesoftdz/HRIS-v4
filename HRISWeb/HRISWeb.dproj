@@ -5,7 +5,7 @@
         <FrameworkType>VCL</FrameworkType>
         <MainSource>HRISWeb.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -164,8 +164,8 @@
             <FormType>dfm</FormType>
             <DesignClass>TUniGUIMainModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="Main.pas">
-            <Form>MainForm</Form>
+        <DCCReference Include="WebMain.pas">
+            <Form>WebMainForm</Form>
             <FormType>dfm</FormType>
             <DesignClass>TUniForm</DesignClass>
         </DCCReference>
@@ -173,21 +173,6 @@
             <Form>LoginForm</Form>
             <FormType>dfm</FormType>
             <DesignClass>TUniLoginForm</DesignClass>
-        </DCCReference>
-        <DCCReference Include="WebEmployeeDrawer.pas">
-            <Form>EmployeeDrawerFrame</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TUniFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="WebEmployeeMain.pas">
-            <Form>EmployeeMainFrame</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TUniFrame</DesignClass>
-        </DCCReference>
-        <DCCReference Include="WebAddressAndContact.pas">
-            <Form>AddressAndContactFrame</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TUniFrame</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -216,6 +201,12 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
+                <DeployFile LocalName="..\_bin\HRISWeb.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>HRISWeb.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="..\_bin\HRISWeb.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>HRISWeb.exe</RemoteName>

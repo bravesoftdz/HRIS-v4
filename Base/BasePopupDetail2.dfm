@@ -22,8 +22,6 @@ inherited frmBasePopupDetail2: TfrmBasePopupDetail2
   inherited pnlMain: TRzPanel
     Width = 533
     Height = 227
-    ExplicitLeft = 0
-    ExplicitTop = 21
     ExplicitWidth = 533
     ExplicitHeight = 227
     DesignSize = (

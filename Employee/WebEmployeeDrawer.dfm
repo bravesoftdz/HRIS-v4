@@ -70,6 +70,7 @@ object EmployeeDrawerFrame: TEmployeeDrawerFrame
       Font.Name = 'Arial'
       Font.Style = [fsUnderline]
       TabOrder = 3
+      OnClick = FamilyAndRelativesLabelClick
     end
     object PafRecordsLabel: TUniLabel
       Left = 41

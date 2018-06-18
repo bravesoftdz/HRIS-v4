@@ -34,7 +34,7 @@ var
 
 implementation
 
-uses TimeLogData, KioskDialogs;
+uses TimeLogData, HRISDialogs;
 
 constructor TUndertimeLogs.Create;
 begin
@@ -86,7 +86,7 @@ end;
 procedure TUndertimeLogs.PopulateUndertimeLogs;
 var
   ut: TUndertimeLog;
-  emp: TEmployee;
+  emp: TBaseEmployee;
 begin
   FUndertimeLogs := [];
 
@@ -95,9 +95,9 @@ begin
   begin
     while not Eof do
     begin
-      emp := TEmployee.Create;
+      emp := TBaseEmployee.Create;
 
-      emp.IdNum := FieldByName('id_num').AsString;
+      emp.IdNumber := FieldByName('id_num').AsString;
       emp.LastName := FieldByName('employee_lastname').AsString;
       emp.FirstName := FieldByName('employee_firstname').AsString;
 
@@ -124,9 +124,9 @@ begin
   begin
     while not Eof do
     begin
-      emp := TEmployee.Create;
+      emp := TBaseEmployee.Create;
 
-      emp.IdNum := FieldByName('id_num').AsString;
+      emp.IdNumber := FieldByName('id_num').AsString;
       emp.LastName := FieldByName('employee_lastname').AsString;
       emp.FirstName := FieldByName('employee_firstname').AsString;
 

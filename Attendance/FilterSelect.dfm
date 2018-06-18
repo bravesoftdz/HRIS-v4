@@ -39,7 +39,7 @@ inherited frmFilterSelect: TfrmFilterSelect
       Height = 272
       Anchors = [akLeft, akTop, akRight, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
       Color = 14273211
       TabOrder = 0
@@ -74,7 +74,7 @@ inherited frmFilterSelect: TfrmFilterSelect
       Height = 22
       Anchors = [akLeft, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
       Color = 14273211
       TabOrder = 1
@@ -97,7 +97,7 @@ inherited frmFilterSelect: TfrmFilterSelect
       Height = 22
       Anchors = [akRight, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
       Color = 14273211
       TabOrder = 2

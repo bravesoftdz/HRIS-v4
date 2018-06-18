@@ -10,7 +10,7 @@ type
   private
     FCurrentDate: TDate;
     FUser: TUser;
-    FEmployee: TEmployee;
+    FEmployee: TBaseEmployeeExt;
     FVersion: string;
     FLocationCode: string;
     FAppImagesPath: string;
@@ -31,7 +31,7 @@ type
   public
     property CurrentDate: TDate read FCurrentDate write FCurrentDate;
     property User: TUser read FUser write FUser;
-    property Employee: TEmployee read FEmployee write FEmployee;
+    property Employee: TBaseEmployeeExt read FEmployee write FEmployee;
     property Version: string read FVersion write FVersion;
     property LocationCode: string read FLocationCode write FLocationCode;
     property AppImagesPath: string read FAppImagesPath write FAppImagesPath;
@@ -64,7 +64,7 @@ begin
   if HRIS = nil then
   begin
     FUser := TUser.Create;
-    FEmployee := TEmployee.Create;
+    FEmployee := TBaseEmployeeExt.Create;
     FSettings := TSettings.Create;
 
     HRIS := self

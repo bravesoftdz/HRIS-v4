@@ -119,6 +119,7 @@
         <DCCReference Include="Jcl.dcp"/>
         <DCCReference Include="JvCore.dcp"/>
         <DCCReference Include="JvStdCtrls.dcp"/>
+        <DCCReference Include="adortl.dcp"/>
         <DCCReference Include="..\Base\BaseDocked2.pas">
             <Form>frmBaseDocked2</Form>
             <FormType>dfm</FormType>

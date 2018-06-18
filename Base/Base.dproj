@@ -100,6 +100,11 @@
         <DCCReference Include="JvStdCtrls.dcp"/>
         <DCCReference Include="adortl.dcp"/>
         <DCCReference Include="dclstd.dcp"/>
+        <DCCReference Include="soaprtl.dcp"/>
+        <DCCReference Include="uniGUI25.dcp"/>
+        <DCCReference Include="uniGUI25Core.dcp"/>
+        <DCCReference Include="uniTools25.dcp"/>
+        <DCCReference Include="uIndy25.dcp"/>
         <DCCReference Include="BaseForm.pas">
             <Form>frmBase</Form>
             <FormType>dfm</FormType>
@@ -138,6 +143,10 @@
         </DCCReference>
         <DCCReference Include="BasePopupDetail.pas">
             <Form>frmBasePopupDetail</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="BaseGridDetail.pas">
+            <Form>frmBaseGridDetail</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

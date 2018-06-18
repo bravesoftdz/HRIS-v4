@@ -240,7 +240,7 @@ begin
 
         if showLog then
         begin
-          if c = 1 then Cells[0,r] := log.Employee.FullName; // add employee name
+          if c = 1 then Cells[0,r] := log.Employee.Name; // add employee name
           Objects[c,r] := log;
           Inc(c);
         end;
@@ -266,7 +266,7 @@ var
   intf: IDock;
 begin
   if Supports(Application.MainForm,IDock,intf) then
-    intf.DockForm(fmTimelogYear);
+    intf.DockForm(fmTimelogYear,'');
 end;
 
 end.

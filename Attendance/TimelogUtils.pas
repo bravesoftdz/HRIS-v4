@@ -3,8 +3,8 @@ unit TimelogUtils;
 interface
 
 uses
-  Timelog, System.Types, RzGrids, Vcl.Graphics, KioskDialogs, System.SysUtils, Timelogs,
-  KioskGlobal;
+  Timelog, System.Types, RzGrids, Vcl.Graphics, HRISDialogs, System.SysUtils, Timelogs,
+  HRISGlobal, Leave;
 
 procedure SimpleView(const grid: TRzStringGrid; const log: TTimelog; Rect: TRect);
 
@@ -16,7 +16,7 @@ var
   lv: TLeave;
 begin
   try
-    with grid, kk.Settings.CalendarColours do
+    with grid, HRIS.Settings.CalendarColours do
     begin
       if not log.IsEmpty then
       begin

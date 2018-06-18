@@ -38,7 +38,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uniGUIVars, MainModule, uniGUIApplication, Main, User;
+  uniGUIVars, MainModule, uniGUIApplication, WebMain, User;
 
 function LoginForm: TLoginForm;
 begin

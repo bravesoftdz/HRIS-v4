@@ -189,6 +189,7 @@ end;
 procedure TfrmEmployeePhoto.StartCapture;
 var
  PinList: TPinList;
+ intf: IBaseFilter;
 begin
   // Activating graph filter, at this stage the source filter is added to the graph
   CaptureGraph.Active := true;
@@ -208,6 +209,9 @@ begin
   begin
     // Hooking up a preview video (VideoWindow)
     if VideoSourceFilter.BaseFilter.DataLength > 0 then
+      if Supports(VideoSourceFilter,IBaseFilter,intf) then
+        if Supports(SampleGrabber,IBaseFilter,intf) then
+          if Supports(VideoWindow,IBaseFilter,intf) then
       RenderStream(@PIN_CATEGORY_PREVIEW, nil, VideoSourceFilter as IBaseFilter,
         SampleGrabber as IBaseFilter , VideoWindow as IBaseFilter);
    end;

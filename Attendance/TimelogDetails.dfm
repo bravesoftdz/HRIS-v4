@@ -63,9 +63,9 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       Height = 18
       Anchors = [akLeft, akTop, akRight]
       BorderOuter = fsNone
-      BorderColor = clBlack
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14273211
+      Color = 14932430
       TabOrder = 0
       object RzLabel6: TRzLabel
         Left = 19
@@ -236,15 +236,15 @@ inherited frmTimelogDetails: TfrmTimelogDetails
         Align = alTop
         BorderOuter = fsNone
         BorderSides = [sdBottom]
-        BorderColor = clBlack
+        BorderColor = 14205355
         BorderWidth = 1
         Color = 12955288
         GradientColorStyle = gcsCustom
-        GradientColorStart = 6572079
+        GradientColorStart = 8675134
         GradientColorStop = 8675134
         TabOrder = 0
         VisualStyle = vsGradient
-        OnDblClick = lblExpandOfficeLogDblClick
+        OnDblClick = imgOfficelogClick
         DesignSize = (
           569
           17)
@@ -297,7 +297,7 @@ inherited frmTimelogDetails: TfrmTimelogDetails
             94FB21E02F107F061AF08D91D2EC0C00FF44D3E1741FD00E0000000049454E44
             AE426082}
           ShowHint = True
-          Visible = False
+          Transparent = True
           OnClick = imgOfficelogClick
           ExplicitLeft = 498
         end
@@ -319,6 +319,7 @@ inherited frmTimelogDetails: TfrmTimelogDetails
           ParentShowHint = False
           ShowHint = True
           Transparent = True
+          Visible = False
           OnClick = lblExpandOfficeLogDblClick
           FlatColor = clWhite
         end
@@ -332,9 +333,9 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       Height = 18
       Anchors = [akLeft, akTop, akRight]
       BorderOuter = fsNone
-      BorderColor = clBlack
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14273211
+      Color = 14932430
       TabOrder = 1
       object RzLabel1: TRzLabel
         Left = 19
@@ -524,15 +525,15 @@ inherited frmTimelogDetails: TfrmTimelogDetails
         Align = alTop
         BorderOuter = fsNone
         BorderSides = [sdBottom]
-        BorderColor = clBlack
+        BorderColor = 14205355
         BorderWidth = 1
         Color = 12955288
         GradientColorStyle = gcsCustom
-        GradientColorStart = 6572079
+        GradientColorStart = 8675134
         GradientColorStop = 8675134
         TabOrder = 0
         VisualStyle = vsGradient
-        OnDblClick = lblExpandOfficeLogDblClick
+        OnDblClick = imgOfficelogClick
         DesignSize = (
           569
           17)
@@ -585,7 +586,7 @@ inherited frmTimelogDetails: TfrmTimelogDetails
             94FB21E02F107F061AF08D91D2EC0C00FF44D3E1741FD00E0000000049454E44
             AE426082}
           ShowHint = True
-          Visible = False
+          Transparent = True
           OnClick = imgOfficelogClick
           ExplicitLeft = 498
         end
@@ -607,6 +608,7 @@ inherited frmTimelogDetails: TfrmTimelogDetails
           ParentShowHint = False
           ShowHint = True
           Transparent = True
+          Visible = False
           OnClick = lblExpandOfficeLogDblClick
           FlatColor = clWhite
         end
@@ -620,9 +622,9 @@ inherited frmTimelogDetails: TfrmTimelogDetails
       Height = 18
       Anchors = [akLeft, akTop, akRight]
       BorderOuter = fsNone
-      BorderColor = clBlack
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14273211
+      Color = 14932430
       TabOrder = 2
       object RzLabel19: TRzLabel
         Left = 19
@@ -814,15 +816,15 @@ inherited frmTimelogDetails: TfrmTimelogDetails
         Align = alTop
         BorderOuter = fsNone
         BorderSides = [sdBottom]
-        BorderColor = clBlack
+        BorderColor = 14205355
         BorderWidth = 1
         Color = 12955288
         GradientColorStyle = gcsCustom
-        GradientColorStart = 6572079
+        GradientColorStart = 8675134
         GradientColorStop = 8675134
         TabOrder = 0
         VisualStyle = vsGradient
-        OnDblClick = lblExpandOfficeLogDblClick
+        OnDblClick = imgOfficelogClick
         DesignSize = (
           569
           17)
@@ -875,7 +877,7 @@ inherited frmTimelogDetails: TfrmTimelogDetails
             94FB21E02F107F061AF08D91D2EC0C00FF44D3E1741FD00E0000000049454E44
             AE426082}
           ShowHint = True
-          Visible = False
+          Transparent = True
           OnClick = imgOfficelogClick
           ExplicitLeft = 498
         end
@@ -897,6 +899,7 @@ inherited frmTimelogDetails: TfrmTimelogDetails
           ParentShowHint = False
           ShowHint = True
           Transparent = True
+          Visible = False
           OnClick = lblExpandOfficeLogDblClick
           FlatColor = clWhite
         end
@@ -905,11 +908,12 @@ inherited frmTimelogDetails: TfrmTimelogDetails
   end
   object imageList: TImageList
     ColorDepth = cd32Bit
+    BlendColor = 8675134
     DrawingStyle = dsTransparent
     Left = 536
     Top = 301
     Bitmap = {
-      494C0101020008001C0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C010102000800280010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

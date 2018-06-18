@@ -18,7 +18,7 @@ inherited frmMain: TfrmMain
     Height = 21
     Align = alTop
     BorderOuter = fsNone
-    BorderColor = clBlack
+    BorderColor = 8149306
     BorderWidth = 1
     Color = 8675134
     GradientColorStyle = gcsCustom
@@ -90,9 +90,9 @@ inherited frmMain: TfrmMain
     Align = alClient
     BorderOuter = fsNone
     BorderSides = [sdLeft, sdRight, sdBottom]
-    BorderColor = clBlack
+    BorderColor = 14205355
     BorderWidth = 1
-    Color = 12955288
+    Color = 14932430
     TabOrder = 1
     DesignSize = (
       1150
@@ -100,19 +100,19 @@ inherited frmMain: TfrmMain
     object lblWelcome: TRzLabel
       Left = 27
       Top = 18
-      Width = 164
-      Height = 18
+      Width = 133
+      Height = 14
       Caption = 'Welcome back, Bryan '
       Font.Charset = DEFAULT_CHARSET
       Font.Color = 6572079
-      Font.Height = -15
+      Font.Height = -12
       Font.Name = 'Tahoma'
       Font.Style = [fsBold]
       ParentFont = False
     end
     object lblLocation: TRzLabel
       Left = 27
-      Top = 42
+      Top = 37
       Width = 112
       Height = 16
       Caption = 'Location: Unknown.'
@@ -146,9 +146,9 @@ inherited frmMain: TfrmMain
       Height = 65
       Anchors = [akTop, akRight]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14273211
+      Color = 14932430
       TabOrder = 0
       object btnTimelog: TRzShapeButton
         Left = 2
@@ -254,15 +254,15 @@ inherited frmMain: TfrmMain
     end
     object pnlDockMain: TRzPanel
       Left = 27
-      Top = 107
+      Top = 101
       Width = 1091
       Height = 456
       Anchors = [akLeft, akTop, akRight, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
       Caption = 'Loading window. Please wait...'
-      Color = 14273211
+      Color = 14932430
       TabOrder = 1
     end
     object pnlLeave: TRzPanel
@@ -272,9 +272,9 @@ inherited frmMain: TfrmMain
       Height = 60
       Anchors = [akLeft, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14075057
+      Color = 14932430
       TabOrder = 2
       object btnLeave: TRzShapeButton
         Left = 2
@@ -361,9 +361,9 @@ inherited frmMain: TfrmMain
       Height = 60
       Anchors = [akLeft, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14075057
+      Color = 14932430
       TabOrder = 3
       object btnForApproval: TRzShapeButton
         Left = 2
@@ -524,9 +524,9 @@ inherited frmMain: TfrmMain
       Height = 65
       Anchors = [akTop, akRight]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14273211
+      Color = 14932430
       TabOrder = 4
       object btnSynchronise: TRzShapeButton
         Left = 2
@@ -624,9 +624,9 @@ inherited frmMain: TfrmMain
       Height = 60
       Anchors = [akLeft, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14075057
+      Color = 14932430
       TabOrder = 5
       object btnOverride: TRzShapeButton
         Left = 2
@@ -733,9 +733,9 @@ inherited frmMain: TfrmMain
       Height = 60
       Anchors = [akLeft, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14075057
+      Color = 14932430
       TabOrder = 6
       object btnUndertime: TRzShapeButton
         Left = 2

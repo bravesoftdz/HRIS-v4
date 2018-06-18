@@ -9,7 +9,6 @@ inherited frmSyncMain: TfrmSyncMain
   TextHeight = 14
   inherited pnlTitle: TRzPanel
     Width = 798
-    BorderSides = []
     ExplicitWidth = 798
     inherited lblTitle: TRzLabel
       Width = 128
@@ -24,7 +23,7 @@ inherited frmSyncMain: TfrmSyncMain
     Height = 306
     Anchors = [akLeft, akTop, akRight, akBottom]
     BorderOuter = fsNone
-    BorderColor = 8675134
+    BorderColor = 14205355
     BorderWidth = 1
     Caption = 'Retrieving data. Please wait...'
     ParentColor = True
@@ -37,10 +36,8 @@ inherited frmSyncMain: TfrmSyncMain
       Align = alClient
       BorderStyle = bsNone
       DataSource = dmSync.dscMessages
-      DrawingStyle = gdsGradient
-      FixedColor = 12955288
-      GradientEndColor = 12955288
-      GradientStartColor = 12955288
+      FixedColor = clWhite
+      GradientEndColor = clWhite
       Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -140,9 +137,9 @@ inherited frmSyncMain: TfrmSyncMain
     Height = 22
     Anchors = [akLeft, akBottom]
     BorderOuter = fsNone
-    BorderColor = 6572079
+    BorderColor = 14205355
     BorderWidth = 1
-    Color = 14273211
+    Color = 14932430
     TabOrder = 3
     object btnSync: TRzShapeButton
       Left = 0
@@ -163,9 +160,9 @@ inherited frmSyncMain: TfrmSyncMain
     Height = 22
     Anchors = [akLeft, akBottom]
     BorderOuter = fsNone
-    BorderColor = 6572079
+    BorderColor = 14205355
     BorderWidth = 1
-    Color = 14273211
+    Color = 14932430
     TabOrder = 4
     object btnDelete: TRzShapeButton
       Left = 0
@@ -186,7 +183,7 @@ inherited frmSyncMain: TfrmSyncMain
     Height = 306
     Anchors = [akTop, akRight, akBottom]
     BorderOuter = fsNone
-    BorderColor = 8675134
+    BorderColor = 14205355
     BorderWidth = 1
     ParentColor = True
     TabOrder = 5
@@ -195,61 +192,30 @@ inherited frmSyncMain: TfrmSyncMain
       306)
     object RzLabel1: TRzLabel
       Left = 16
-      Top = 70
+      Top = 60
       Width = 28
       Height = 14
       Caption = 'Type'
     end
     object RzLabel2: TRzLabel
       Left = 16
-      Top = 98
+      Top = 88
       Width = 38
       Height = 14
       Caption = 'Source'
     end
-    object pnlDetailHead: TRzPanel
-      Left = 1
-      Top = 1
-      Width = 270
-      Height = 19
-      Align = alTop
-      BorderOuter = fsNone
-      BorderSides = [sdBottom]
-      BorderColor = clBlack
-      BorderWidth = 1
-      Color = 8675134
-      GradientColorStyle = gcsCustom
-      GradientColorStart = 6572079
-      GradientColorStop = 8675134
-      TabOrder = 0
-      VisualStyle = vsGradient
-      object lblDetailHeadCaption: TRzLabel
-        Left = 7
-        Top = 2
-        Width = 36
-        Height = 14
-        Caption = 'Filters'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWhite
-        Font.Height = -12
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-        Transparent = True
-      end
-    end
     object cmbType: TRzComboBox
       Left = 63
-      Top = 64
+      Top = 54
       Width = 186
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       Ctl3D = False
-      FrameColor = 8675134
+      FrameColor = 14205355
       FrameVisible = True
       FramingPreference = fpCustomFraming
       ParentCtl3D = False
-      TabOrder = 1
+      TabOrder = 0
       Text = 'Time log'
       OnChange = cmbTypeChange
       Items.Strings = (
@@ -266,21 +232,21 @@ inherited frmSyncMain: TfrmSyncMain
     end
     object cmbBranch: TRzComboBox
       Left = 63
-      Top = 92
+      Top = 82
       Width = 186
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       Ctl3D = False
-      FrameColor = 8675134
+      FrameColor = 14205355
       FrameVisible = True
       FramingPreference = fpCustomFraming
       ParentCtl3D = False
-      TabOrder = 2
+      TabOrder = 1
       OnChange = cmbBranchChange
     end
     object rgDirection: TRzRadioGroup
       Left = 9
-      Top = 31
+      Top = 21
       Width = 176
       Height = 19
       Caption = ''
@@ -292,7 +258,7 @@ inherited frmSyncMain: TfrmSyncMain
         'Incoming')
       ParentColor = True
       SpaceEvenly = True
-      TabOrder = 3
+      TabOrder = 2
       OnClick = rgDirectionClick
     end
   end

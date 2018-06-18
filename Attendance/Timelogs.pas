@@ -13,7 +13,7 @@ type
 
   end;
 
-type
+
   TTimeLogs = class
   private
     FItems: array of TTimelog;
@@ -122,7 +122,7 @@ begin
   Result := false;
   for l in FItems do
   begin
-    if (l.Date = log.Date) and (l.Employee.IdNum = log.Employee.IdNum) then
+    if (l.Date = log.Date) and (l.Employee.IdNumber = log.Employee.IdNumber) then
     begin
       // tag the found log as having a conflict
       l.HasConflict := true;

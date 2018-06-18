@@ -43,7 +43,6 @@ object LoginForm: TLoginForm
     Height = 23
     Hint = ''
     CharCase = ecUpperCase
-    BorderStyle = ubsSingle
     Text = ''
     TabOrder = 1
   end
@@ -67,7 +66,6 @@ object LoginForm: TLoginForm
     Height = 23
     Hint = ''
     PasswordChar = '*'
-    BorderStyle = ubsSingle
     Text = ''
     TabOrder = 3
     OnKeyPress = edPasswordKeyPress

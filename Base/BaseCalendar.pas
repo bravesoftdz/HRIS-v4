@@ -54,9 +54,6 @@ type
     procedure RefreshDisplay; virtual;
   end;
 
-var
-  frmBaseCalendar: TfrmBaseCalendar;
-
 implementation
 
 {$R *.dfm}

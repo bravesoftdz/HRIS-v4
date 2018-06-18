@@ -49,7 +49,7 @@ procedure TfrmEmployeeSearch.SetReturn;
 begin
   with grSearch.DataSource.DataSet do
   begin
-    empl.IdNum := FieldByName('id_num').AsString;
+    empl.IdNumber := FieldByName('id_num').AsString;
     empl.LastName := FieldByName('employee_lastname').AsString;
     empl.FirstName := FieldByName('employee_firstname').AsString;
   end;

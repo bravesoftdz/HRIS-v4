@@ -4,40 +4,41 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BaseDocked, Data.DB, Vcl.StdCtrls,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BaseDocked2, Data.DB, Vcl.StdCtrls,
   Vcl.Mask, RzEdit, RzTabs, Vcl.Grids, Vcl.DBGrids, RzDBGrid, RzLabel,
-  Vcl.ExtCtrls, RzPanel, RzButton, System.ImageList, Vcl.ImgList, JvImageList,
-  SaveIntf, JvExControls, JvSpeedButton;
+  Vcl.ExtCtrls, RzPanel, RzButton, System.ImageList, Vcl.ImgList,
+  SaveIntf, NewIntf, BaseDocked;
 
 type
-  TfrmBaseGridDetail = class(TfrmBaseDocked,ISave)
+  TfrmBaseGridDetail = class(TfrmBaseDocked2,ISave,INew)
     pnlList: TRzPanel;
     grList: TRzDBGrid;
-    pcDetail: TRzPageControl;
-    tsDetail: TRzTabSheet;
     pnlSearch: TRzPanel;
     Label1: TLabel;
     edSearchKey: TRzEdit;
-    imlMain: TJvImageList;
-    btnNew: TRzButton;
+    pnlDetail: TRzPanel;
+    pnlAdd: TRzPanel;
+    sbtnNew: TRzShapeButton;
     procedure FormCreate(Sender: TObject);
     procedure edSearchKeyChange(Sender: TObject);
-    procedure btnNewClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure sbtnNewClick(Sender: TObject);
   private
     { Private declarations }
   protected
     procedure SearchList; virtual; abstract;
+    procedure BindToObject; virtual; abstract;
+
     function EntryIsValid: boolean; virtual; abstract;
+    function NewIsAllowed: boolean; virtual; abstract;
+    function EditIsAllowed: boolean; virtual; abstract;
   public
     { Public declarations }
-    function Save: boolean;
-    procedure Cancel;
+    function Save: boolean; virtual;
+    procedure Cancel; virtual;
+    procedure New; virtual;
   end;
-
-var
-  frmBaseGridDetail: TfrmBaseGridDetail;
 
 implementation
 
@@ -45,12 +46,6 @@ implementation
 
 uses
   FormsUtil;
-
-procedure TfrmBaseGridDetail.btnNewClick(Sender: TObject);
-begin
-  inherited;
-  grList.DataSource.DataSet.Append;
-end;
 
 procedure TfrmBaseGridDetail.edSearchKeyChange(Sender: TObject);
 begin
@@ -61,7 +56,7 @@ end;
 procedure TfrmBaseGridDetail.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
-  OpenDropdownDataSources(tsDetail,false);
+  OpenDropdownDataSources(pnlDetail,false);
   OpenGridDataSources(pnlList,false);
   inherited;
 end;
@@ -75,7 +70,7 @@ end;
 procedure TfrmBaseGridDetail.FormShow(Sender: TObject);
 begin
   inherited;
-  OpenDropdownDataSources(tsDetail);
+  OpenDropdownDataSources(pnlDetail);
 end;
 
 function TfrmBaseGridDetail.Save: boolean;
@@ -84,17 +79,41 @@ begin
   with grList.DataSource.DataSet do
   begin
     if State in [dsInsert,dsEdit] then
+    begin
+      BindToObject;
       if EntryIsValid then
       begin
         grList.DataSource.DataSet.Post;
+        grList.Enabled := true;
         Result := true;
       end
+    end;
   end;
+end;
+
+procedure TfrmBaseGridDetail.sbtnNewClick(Sender: TObject);
+begin
+  New;
 end;
 
 procedure TfrmBaseGridDetail.Cancel;
 begin
   grList.DataSource.DataSet.Cancel;
+  grList.Enabled := true;
+end;
+
+procedure TfrmBaseGridDetail.New;
+begin
+  if NewIsAllowed then
+  begin
+    grList.DataSource.DataSet.Append;
+
+    // disable the grid
+    grList.Enabled := false;
+
+    // focus the first control
+    grList.DataSource.DataSet.FieldByName(grList.Columns[0].FieldName).FocusControl;
+  end;
 end;
 
 end.

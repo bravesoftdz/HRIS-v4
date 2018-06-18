@@ -78,7 +78,7 @@ implementation
 
 uses
   AppData, Timelogs, TimeLog, HRISGlobal, AttendanceUtils, Entitlement,
-  Employee;
+  Employee, Leave, Holiday;
 
 procedure TdmTimelog.DataModuleDestroy(Sender: TObject);
 begin
@@ -132,7 +132,7 @@ end;
 procedure TdmTimelog.dstLogsAfterOpen(DataSet: TDataSet);
 var
   log: TTimelog;
-  emp: TEmployee;
+  emp: TBaseEmployeeExt;
 begin
   with DataSet, tlogs do
   begin
@@ -150,8 +150,8 @@ begin
       log.TotalHoursPM := FieldByName('total_hours_pm').AsFloat;
 
       // employee
-      emp := TEmployee.Create;
-      emp.IdNum := FieldByName('id_num').AsString;
+      emp := TBaseEmployeeExt.Create;
+      emp.IdNumber := FieldByName('id_num').AsString;
       emp.FirstName := FieldByName('employee_firstname').AsString;
       emp.LastName := FieldByName('employee_lastname').AsString;
       emp.LocationCode := FieldByName('location_code').AsString;

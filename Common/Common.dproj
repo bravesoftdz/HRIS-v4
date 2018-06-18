@@ -131,7 +131,6 @@
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="AppUtil.pas"/>
-        <DCCReference Include="User.pas"/>
         <DCCReference Include="HRISGlobal.pas"/>
         <DCCReference Include="ConnUtil.pas"/>
         <DCCReference Include="ConfBox.pas">
@@ -172,8 +171,6 @@
             <Form>frmEmployeeSearch</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Employee.pas"/>
-        <DCCReference Include="DockIntf.pas"/>
         <DCCReference Include="BaseActionIntf.pas"/>
         <DCCReference Include="NewIntf.pas"/>
         <DCCReference Include="SaveIntf.pas"/>
@@ -187,6 +184,11 @@
         </DCCReference>
         <DCCReference Include="DecisionBox.pas">
             <Form>frmDecisionBox</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="DockIntf.pas"/>
+        <DCCReference Include="InfoBox2.pas">
+            <Form>frmInfoBox2</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

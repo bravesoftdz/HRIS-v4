@@ -90,7 +90,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_DcpOutput>..\_dcp</DCC_DcpOutput>
-        <DCC_UnitSearchPath>..\_dcu;..\Base;..\Common;..\Tools;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\_dcu;..\Base;..\Employee;..\Tools;..\Common;..\Security;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <DCC_BplOutput>..\_bpl</DCC_BplOutput>
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -121,12 +121,11 @@
         <DCCReference Include="xmlrtl.dcp"/>
         <DCCReference Include="fmx.dcp"/>
         <DCCReference Include="dclstd.dcp"/>
-        <DCCReference Include="TimelogYear.pas">
-            <Form>frmTimelogYear</Form>
-        </DCCReference>
-        <DCCReference Include="..\Base\BaseCalendar.pas">
-            <Form>frmBaseCalendar</Form>
-        </DCCReference>
+        <DCCReference Include="soaprtl.dcp"/>
+        <DCCReference Include="uniGUI25.dcp"/>
+        <DCCReference Include="uniGUI25Core.dcp"/>
+        <DCCReference Include="uniTools25.dcp"/>
+        <DCCReference Include="uIndy25.dcp"/>
         <DCCReference Include="TimelogData.pas">
             <Form>dmTimelog</Form>
             <DesignClass>TDataModule</DesignClass>
@@ -134,44 +133,76 @@
         <DCCReference Include="AttendanceUtils.pas"/>
         <DCCReference Include="Timelog.pas"/>
         <DCCReference Include="Timelogs.pas"/>
-        <DCCReference Include="TimelogDetails.pas">
-            <Form>frmTimelogDetails</Form>
-        </DCCReference>
-        <DCCReference Include="..\..\iFinance\Base\BasePopup.pas">
-            <Form>frmBasePopup</Form>
-        </DCCReference>
-        <DCCReference Include="UndertimeDetails.pas">
-            <Form>frmUndertimeDetails</Form>
-        </DCCReference>
         <DCCReference Include="..\Base\BasePopupDetail2.pas">
             <Form>frmBasePopupDetail2</Form>
         </DCCReference>
         <DCCReference Include="CollapsiblePanelUtils.pas"/>
         <DCCReference Include="UndertimeLog.pas"/>
         <DCCReference Include="UndertimeLogs.pas"/>
-        <DCCReference Include="ForApproval.pas">
-            <Form>frmForApproval</Form>
-        </DCCReference>
-        <DCCReference Include="..\..\iFinance\Base\BaseDocked.pas">
-            <Form>frmBaseDocked</Form>
-        </DCCReference>
         <DCCReference Include="Entitlement.pas"/>
-        <DCCReference Include="TimelogPayPeriod.pas">
-            <Form>frmTimelogPayPeriod</Form>
+        <DCCReference Include="TimelogUtils.pas"/>
+        <DCCReference Include="ResourceFilter.pas"/>
+        <DCCReference Include="Ovrride.pas"/>
+        <DCCReference Include="Overrides.pas"/>
+        <DCCReference Include="LeaveData.pas">
+            <Form>dmLeave</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="LeaveController.pas"/>
+        <DCCReference Include="Leave.pas"/>
+        <DCCReference Include="..\Base\BaseCalendar.pas">
+            <Form>frmBaseCalendar</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="TimelogUtils.pas"/>
+        <DCCReference Include="..\Base\BaseDocked.pas">
+            <Form>frmBaseDocked</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Base\BasePopup.pas">
+            <Form>frmBasePopup</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\Base\BasePopupDetail.pas">
+            <Form>frmBasePopupDetail</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <DCCReference Include="FilterSelect.pas">
             <Form>frmFilterSelect</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="ResourceFilter.pas"/>
+        <DCCReference Include="ForApproval.pas">
+            <Form>frmForApproval</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="TimelogPayPeriod.pas">
+            <Form>frmTimelogPayPeriod</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="TimelogYear.pas">
+            <Form>frmTimelogYear</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="TimelogDetails.pas">
+            <Form>frmTimelogDetails</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <DCCReference Include="OverrideDetails.pas">
             <Form>frmOverrideDetails</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Ovrride.pas"/>
-        <DCCReference Include="Overrides.pas"/>
+        <DCCReference Include="UndertimeDetails.pas">
+            <Form>frmUndertimeDetails</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="LeaveDetails.pas">
+            <Form>frmLeaveDetails</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="LeaveMain.pas">
+            <Form>frmLeaveMain</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

@@ -1,8 +1,8 @@
 object AddressAndContactFrame: TAddressAndContactFrame
   Left = 0
   Top = 0
-  Width = 1103
-  Height = 620
+  Width = 1025
+  Height = 609
   OnCreate = UniFrameCreate
   ParentAlignmentControl = False
   Color = clWhite

@@ -221,7 +221,12 @@ begin
                if not ((Components[i] as TADODataSet).LockType = ltReadOnly) then
                  (Components[i] as TADODataSet).Append;
 
-             if FSelected = sdMain then Bind;
+             if FSelected = sdMain then
+             begin
+               Bind;
+
+               if Assigned(FEmployee.OnUpdate) then FEmployee.OnUpdate;
+             end;
 
            end;
         end;

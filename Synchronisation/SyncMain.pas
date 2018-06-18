@@ -18,8 +18,6 @@ type
     pnlDelete: TRzPanel;
     btnDelete: TRzShapeButton;
     pnlDetail: TRzPanel;
-    pnlDetailHead: TRzPanel;
-    lblDetailHeadCaption: TRzLabel;
     RzLabel1: TRzLabel;
     cmbType: TRzComboBox;
     RzLabel2: TRzLabel;
@@ -51,7 +49,7 @@ implementation
 {$R *.dfm}
 
 uses
-  SyncData, FormsUtil, KioskDialogs;
+  SyncData, FormsUtil, HRISDialogs;
 
 procedure TfrmSyncMain.FormClose(Sender: TObject; var Action: TCloseAction);
 begin

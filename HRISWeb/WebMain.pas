@@ -1,4 +1,4 @@
-unit Main;
+unit WebMain;
 
 interface
 
@@ -11,7 +11,7 @@ uses
 type
   TWebFrames = (frEmployeeDrawer,frTagRegistrationList,frShipList,frReportSettings);
 
-  TMainForm = class(TUniForm)
+  TWebMainForm = class(TUniForm)
     DockPanel: TUniPanel;
     lblWelcomeUser: TUniLabel;
     UniSimplePanel1: TUniSimplePanel;
@@ -33,7 +33,7 @@ type
     { Public declarations }
   end;
 
-function MainForm: TMainForm;
+function WebMainForm: TWebMainForm;
 
 implementation
 
@@ -42,12 +42,12 @@ implementation
 uses
   uniGUIVars, MainModule, uniGUIApplication, WebEmployeeDrawer;
 
-function MainForm: TMainForm;
+function WebMainForm: TWebMainForm;
 begin
-  Result := TMainForm(UniMainModule.GetFormInstance(TMainForm));
+  Result := TWebMainForm(UniMainModule.GetFormInstance(TWebMainForm));
 end;
 
-procedure TMainForm.DockFrame(frame: TWebFrames);
+procedure TWebMainForm.DockFrame(frame: TWebFrames);
 var
   LFrame: TUniFrame;
 begin
@@ -63,27 +63,27 @@ begin
   LFrame.Show;
 end;
 
-procedure TMainForm.imgLogoutClick(Sender: TObject);
+procedure TWebMainForm.imgLogoutClick(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TMainForm.imgProfileClick(Sender: TObject);
+procedure TWebMainForm.imgProfileClick(Sender: TObject);
 begin
   DockFrame(frEmployeeDrawer);
 end;
 
-procedure TMainForm.lblShipsClick(Sender: TObject);
+procedure TWebMainForm.lblShipsClick(Sender: TObject);
 begin
   DockFrame(frShipList);
 end;
 
-procedure TMainForm.UniFormAfterShow(Sender: TObject);
+procedure TWebMainForm.UniFormAfterShow(Sender: TObject);
 begin
   lblWelcomeUser.Caption := 'Welcome back ' + UniMainModule.User.FirstName + '.';
 end;
 
 initialization
-  RegisterAppFormClass(TMainForm);
+  RegisterAppFormClass(TWebMainForm);
 
 end.

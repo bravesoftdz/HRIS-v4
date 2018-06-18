@@ -59,7 +59,6 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
       Top = 99
       Width = 541
       Height = 32
-      BorderColor = 6572079
       ExplicitLeft = 19
       ExplicitTop = 99
       ExplicitWidth = 541
@@ -74,12 +73,12 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         BevelInner = bvNone
         BevelOuter = bvNone
         BorderStyle = bsNone
-        Color = 14273211
+        Color = 14932430
         ColCount = 30
         DefaultColWidth = 53
         DefaultRowHeight = 30
         DrawingStyle = gdsGradient
-        FixedColor = 8806462
+        FixedColor = 14205355
         FixedCols = 0
         RowCount = 1
         FixedRows = 0
@@ -95,8 +94,8 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         TabOrder = 0
         OnClick = grDateSelectorClick
         OnDrawCell = grDateSelectorDrawCell
-        FixedLineColor = 6572079
-        LineColor = 6572079
+        FixedLineColor = 14205355
+        LineColor = 14205355
         UseDrawingStyle = False
         ColWidths = (
           53
@@ -160,13 +159,13 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
       Width = 262
       Height = 137
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14273211
+      Color = 14932430
       TabOrder = 3
       object RzLabel7: TRzLabel
         Left = 19
-        Top = 64
+        Top = 58
         Width = 27
         Height = 14
         Caption = 'Time'
@@ -179,7 +178,7 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
       end
       object RzLabel1: TRzLabel
         Left = 19
-        Top = 88
+        Top = 85
         Width = 39
         Height = 14
         Caption = 'Reason'
@@ -192,7 +191,7 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
       end
       object lblStatusAM: TRzLabel
         Left = 224
-        Top = 27
+        Top = 21
         Width = 18
         Height = 14
         Alignment = taRightJustify
@@ -204,41 +203,9 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         Font.Style = []
         ParentFont = False
       end
-      object RzPanel1: TRzPanel
-        Left = 1
-        Top = 1
-        Width = 260
-        Height = 17
-        Align = alTop
-        BorderOuter = fsNone
-        BorderSides = [sdBottom]
-        BorderColor = clBlack
-        BorderWidth = 1
-        GradientColorStyle = gcsCustom
-        GradientColorStart = 6572079
-        GradientColorStop = 8675134
-        TabOrder = 0
-        VisualStyle = vsGradient
-        object RzLabel9: TRzLabel
-          Tag = -1
-          Left = 4
-          Top = 1
-          Width = 139
-          Height = 13
-          Caption = 'Morning undertime (AM)'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          Transparent = True
-          FlatColor = clWhite
-        end
-      end
       object dbluReasonAM: TRzDBLookupComboBox
         Left = 67
-        Top = 82
+        Top = 79
         Width = 175
         Height = 22
         DataField = 'undertime_reason_code'
@@ -247,18 +214,18 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         KeyField = 'undertime_reason_code'
         ListField = 'undertime_reason_name'
         ListSource = dmTimelog.dscUndertimeReason
-        TabOrder = 4
+        TabOrder = 3
         FlatButtons = True
-        DisabledColor = 14273211
+        DisabledColor = 14932430
         FocusColor = clWhite
-        FrameColor = 6572079
+        FrameColor = 14205355
         FrameVisible = True
         FramingPreference = fpCustomFraming
         ReadOnlyColor = 14273211
       end
       object chbAM: TRzCheckBox
         Left = 19
-        Top = 26
+        Top = 20
         Width = 104
         Height = 16
         Caption = 'Morning (AM)'
@@ -269,13 +236,13 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         Font.Style = [fsBold]
         ParentFont = False
         State = cbUnchecked
-        TabOrder = 1
+        TabOrder = 0
         OnClick = chbAMClick
       end
       object dteFromAM: TRzDateTimeEdit
         Left = 67
-        Top = 58
-        Width = 86
+        Top = 52
+        Width = 85
         Height = 22
         ShowHowToUseHint = False
         EditType = etTime
@@ -283,41 +250,41 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         UseFormatToParse = True
         OnInvalidTime = dteFromAMInvalidTime
         BeepOnInvalidKey = False
-        DisabledColor = 14273211
+        DisabledColor = 14932430
         DropButtonVisible = False
         Enabled = False
         FlatButtons = True
-        FrameColor = 6572079
+        FrameColor = 14205355
         FrameVisible = True
         FramingPreference = fpCustomFraming
         ReadOnlyColor = 14273211
         TabOnEnter = True
-        TabOrder = 2
+        TabOrder = 1
       end
       object dteUntilAM: TRzDateTimeEdit
-        Left = 156
-        Top = 58
-        Width = 86
+        Left = 157
+        Top = 52
+        Width = 85
         Height = 22
         ShowHowToUseHint = False
         EditType = etTime
         Format = 'hh:nn'
         UseFormatToParse = True
         OnInvalidTime = dteUntilAMInvalidTime
-        DisabledColor = 14273211
+        DisabledColor = 14932430
         DropButtonVisible = False
         Enabled = False
         FlatButtons = True
-        FrameColor = 6572079
+        FrameColor = 14205355
         FrameVisible = True
         FramingPreference = fpCustomFraming
         ReadOnlyColor = 14273211
         TabOnEnter = True
-        TabOrder = 3
+        TabOrder = 2
       end
       object chbPaidAM: TRzDBCheckBox
         Left = 67
-        Top = 110
+        Top = 107
         Width = 41
         Height = 16
         DataField = 'is_paid'
@@ -328,7 +295,7 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         DisabledColor = 14273211
         FillColor = 14273211
         FocusColor = 14273211
-        TabOrder = 5
+        TabOrder = 4
       end
     end
     object pnlPM: TRzPanel
@@ -338,13 +305,13 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
       Width = 262
       Height = 137
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14273211
+      Color = 14932430
       TabOrder = 4
       object RzLabel2: TRzLabel
         Left = 19
-        Top = 64
+        Top = 58
         Width = 27
         Height = 14
         Caption = 'Time'
@@ -357,7 +324,7 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
       end
       object RzLabel3: TRzLabel
         Left = 19
-        Top = 88
+        Top = 85
         Width = 39
         Height = 14
         Caption = 'Reason'
@@ -370,7 +337,7 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
       end
       object lblStatusPM: TRzLabel
         Left = 224
-        Top = 27
+        Top = 21
         Width = 18
         Height = 14
         Alignment = taRightJustify
@@ -382,41 +349,9 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         Font.Style = []
         ParentFont = False
       end
-      object RzPanel3: TRzPanel
-        Left = 1
-        Top = 1
-        Width = 260
-        Height = 17
-        Align = alTop
-        BorderOuter = fsNone
-        BorderSides = [sdBottom]
-        BorderColor = clBlack
-        BorderWidth = 1
-        GradientColorStyle = gcsCustom
-        GradientColorStart = 6572079
-        GradientColorStop = 8675134
-        TabOrder = 0
-        VisualStyle = vsGradient
-        object RzLabel4: TRzLabel
-          Tag = -1
-          Left = 4
-          Top = 1
-          Width = 149
-          Height = 13
-          Caption = 'Afternoon undertime (PM)'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          Transparent = True
-          FlatColor = clWhite
-        end
-      end
       object dbluReasonPM: TRzDBLookupComboBox
         Left = 67
-        Top = 82
+        Top = 79
         Width = 175
         Height = 22
         DataField = 'undertime_reason_code'
@@ -425,18 +360,18 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         KeyField = 'undertime_reason_code'
         ListField = 'undertime_reason_name'
         ListSource = dmTimelog.dscUndertimeReason
-        TabOrder = 3
+        TabOrder = 2
         FlatButtons = True
-        DisabledColor = 14273211
+        DisabledColor = 14932430
         FocusColor = clWhite
-        FrameColor = 6572079
+        FrameColor = 14205355
         FrameVisible = True
         FramingPreference = fpCustomFraming
         ReadOnlyColor = 14273211
       end
       object chbPaidPM: TRzDBCheckBox
         Left = 67
-        Top = 110
+        Top = 107
         Width = 41
         Height = 16
         DataField = 'is_paid'
@@ -447,11 +382,11 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         DisabledColor = 14273211
         FillColor = 14273211
         FocusColor = 14273211
-        TabOrder = 4
+        TabOrder = 3
       end
       object chbPM: TRzCheckBox
         Left = 19
-        Top = 26
+        Top = 20
         Width = 116
         Height = 16
         Caption = 'Afternoon (PM)'
@@ -462,50 +397,50 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
         Font.Style = [fsBold]
         ParentFont = False
         State = cbUnchecked
-        TabOrder = 5
+        TabOrder = 4
         OnClick = chbPMClick
       end
       object dteFromPM: TRzDateTimeEdit
         Left = 67
-        Top = 58
-        Width = 86
+        Top = 52
+        Width = 85
         Height = 22
         ShowHowToUseHint = False
         EditType = etTime
         Format = 'hh:nn'
         UseFormatToParse = True
         OnInvalidTime = dteFromAMInvalidTime
-        DisabledColor = 14273211
+        DisabledColor = 14932430
         DropButtonVisible = False
         Enabled = False
         FlatButtons = True
-        FrameColor = 6572079
+        FrameColor = 14205355
         FrameVisible = True
         FramingPreference = fpCustomFraming
         ReadOnlyColor = 14273211
         TabOnEnter = True
-        TabOrder = 1
+        TabOrder = 0
       end
       object dteUntilPM: TRzDateTimeEdit
-        Left = 156
-        Top = 58
-        Width = 86
+        Left = 157
+        Top = 52
+        Width = 85
         Height = 22
         ShowHowToUseHint = False
         EditType = etTime
         Format = 'hh:nn'
         UseFormatToParse = True
         OnInvalidTime = dteUntilAMInvalidTime
-        DisabledColor = 14273211
+        DisabledColor = 14932430
         DropButtonVisible = False
         Enabled = False
         FlatButtons = True
-        FrameColor = 6572079
+        FrameColor = 14205355
         FrameVisible = True
         FramingPreference = fpCustomFraming
         ReadOnlyColor = 14273211
         TabOnEnter = True
-        TabOrder = 2
+        TabOrder = 1
       end
     end
     object bteEmployee: TRzButtonEdit
@@ -514,12 +449,13 @@ inherited frmUndertimeDetails: TfrmUndertimeDetails
       Width = 474
       Height = 22
       Text = ''
-      Color = 14273211
-      FrameColor = 6572079
+      Color = clWhite
+      FocusColor = 14932430
+      FrameColor = 14205355
       FrameVisible = True
       FramingPreference = fpCustomFraming
       ReadOnly = True
-      ReadOnlyColor = 14273211
+      ReadOnlyColor = clWhite
       TabOrder = 5
       AltBtnKind = bkFind
       ButtonKind = bkFind

@@ -28,7 +28,7 @@ inherited frmForApproval: TfrmForApproval
     Height = 323
     Anchors = [akLeft, akTop, akRight, akBottom]
     BorderOuter = fsNone
-    BorderColor = 8675134
+    BorderColor = 14205355
     BorderWidth = 1
     Caption = 'Retrieving data. Please wait...'
     ParentColor = True
@@ -41,8 +41,7 @@ inherited frmForApproval: TfrmForApproval
       Align = alClient
       BorderStyle = bsNone
       DataSource = dmTimelog.dscForApproval
-      DrawingStyle = gdsGradient
-      FixedColor = 12955288
+      FixedColor = clWhite
       GradientEndColor = 12955288
       GradientStartColor = 12955288
       Options = [dgTitles, dgIndicator, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -163,7 +162,7 @@ inherited frmForApproval: TfrmForApproval
     Height = 323
     Anchors = [akTop, akRight, akBottom]
     BorderOuter = fsNone
-    BorderColor = 8675134
+    BorderColor = 14205355
     BorderWidth = 1
     ParentColor = True
     TabOrder = 4
@@ -177,9 +176,9 @@ inherited frmForApproval: TfrmForApproval
       Height = 22
       Anchors = [akLeft, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 12955288
+      Color = 14932430
       TabOrder = 0
       object btnApprove: TRzShapeButton
         Left = 0
@@ -194,37 +193,6 @@ inherited frmForApproval: TfrmForApproval
         OnClick = btnApproveClick
       end
     end
-    object pnlDetailHead: TRzPanel
-      Left = 1
-      Top = 1
-      Width = 270
-      Height = 19
-      Align = alTop
-      BorderOuter = fsNone
-      BorderSides = [sdBottom]
-      BorderColor = clBlack
-      BorderWidth = 1
-      Color = 8675134
-      GradientColorStyle = gcsCustom
-      GradientColorStart = 6572079
-      GradientColorStop = 8675134
-      TabOrder = 1
-      VisualStyle = vsGradient
-      object lblDetailHeadCaption: TRzLabel
-        Left = 7
-        Top = 2
-        Width = 41
-        Height = 14
-        Caption = 'Details'
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWhite
-        Font.Height = -12
-        Font.Name = 'Tahoma'
-        Font.Style = [fsBold]
-        ParentFont = False
-        Transparent = True
-      end
-    end
     object pnlDeny: TRzPanel
       Left = 79
       Top = 293
@@ -232,10 +200,10 @@ inherited frmForApproval: TfrmForApproval
       Height = 22
       Anchors = [akRight, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 12955288
-      TabOrder = 2
+      Color = 14932430
+      TabOrder = 1
       object btnDeny: TRzShapeButton
         Left = 0
         Top = 0
@@ -251,7 +219,7 @@ inherited frmForApproval: TfrmForApproval
     end
     object pcDetails: TRzPageControl
       Left = 14
-      Top = 32
+      Top = 16
       Width = 243
       Height = 255
       Hint = ''
@@ -260,12 +228,12 @@ inherited frmForApproval: TfrmForApproval
       FlatColor = 8675134
       ShowCardFrame = False
       ShowShadow = False
-      TabOrder = 3
+      TabOrder = 2
       TabStop = False
       Transparent = True
       FixedDimension = 20
       object tsUndertime: TRzTabSheet
-        Color = 14273211
+        Color = 14932430
         TabVisible = False
         Caption = 'Undertime'
         object JvLabel1: TJvLabel
@@ -444,11 +412,9 @@ inherited frmForApproval: TfrmForApproval
         end
       end
       object tsLeave: TRzTabSheet
-        Color = 14273211
+        Color = 14932430
         TabVisible = False
         Caption = 'Leave'
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object JvLabel3: TJvLabel
           Tag = -1
           Left = 4
@@ -737,7 +703,7 @@ inherited frmForApproval: TfrmForApproval
     Width = 118
     Height = 22
     Ctl3D = False
-    FrameColor = 8675134
+    FrameColor = 14205355
     FrameVisible = True
     FramingPreference = fpCustomFraming
     ParentCtl3D = False
@@ -749,7 +715,6 @@ inherited frmForApproval: TfrmForApproval
   end
   inherited pnlTitle: TRzPanel
     Width = 798
-    BorderSides = []
     TabOrder = 5
     ExplicitWidth = 798
     inherited lblTitle: TRzLabel
@@ -775,7 +740,7 @@ inherited frmForApproval: TfrmForApproval
     Width = 184
     Height = 22
     Ctl3D = False
-    FrameColor = 8675134
+    FrameColor = 14205355
     FrameVisible = True
     FramingPreference = fpCustomFraming
     ParentCtl3D = False

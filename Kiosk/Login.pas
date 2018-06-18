@@ -121,7 +121,7 @@ begin
 
         self.Update;
 
-        kk := TKioskGlobal.Create;
+        HRIS := THRISGlobal.Create;
 
         LoadModules;
         SettingAccessRights;
@@ -220,13 +220,13 @@ begin
     dstConfig.Open;
     dstPayrollCode.Open;
 
-    kk.CurrentDate := Date;
+    HRIS.CurrentDate := Date;
 
     // location code
     if dstConfig.Locate('sysconfig_code','LOCATION_CODE',[]) then
-      kk.LocationCode := dstConfig.FieldbyName('sysconfig_value').AsString
+      HRIS.LocationCode := dstConfig.FieldbyName('sysconfig_value').AsString
     else
-      kk.LocationCode := 'CO';
+      HRIS.LocationCode := 'CO';
 
     // payroll code
     while not dstPayrollCode.Eof do
@@ -236,18 +236,18 @@ begin
       prFrom := dstPayrollCode.FieldByName('payroll_from').AsString;
       prUntil := dstPayrollCode.FieldByName('payroll_until').AsString;
 
-      kk.AddActivePayrollCode(TPayrollCode.Create(prCode,prPeriod,prFrom,prUntil));
+      HRIS.AddActivePayrollCode(TPayrollCode.Create(prCode,prPeriod,prFrom,prUntil));
 
       dstPayrollCode.Next;
     end;
 
-    kk.Version := GetAppVersionStr(ParamStr(0));
-    kk.AppImagesPath := ExtractFilePath(Application.ExeName) + '_images\';
-    kk.MaximumUndertime := 120;
+    HRIS.Version := GetAppVersionStr(ParamStr(0));
+    HRIS.AppImagesPath := ExtractFilePath(Application.ExeName) + '_images\';
+    HRIS.MaximumUndertime := 120;
 
     GetLocations;
 
-    kk.Settings.Load;
+    HRIS.Settings.Load;
 
     dstConfig.Close;
     dstPayrollCode.Close;
@@ -309,18 +309,18 @@ begin
 
   with dmApplication.dstUser do
   begin
-    kk.User.UserId := FieldByName('id_num').AsString;
+    HRIS.User.UserId := FieldByName('id_num').AsString;
 
-    kk.Employee.IdNum := FieldByName('id_num').AsString;
-    kk.Employee.FirstName := FieldByName('employee_firstname').AsString;
-    kk.Employee.LastName := FieldByName('employee_lastname').AsString;
-    kk.Employee.LocationCode := FieldByName('location_code').AsString;
-    kk.Employee.PositionTypeCode := FieldByName('positiontype_code').AsString;
+    HRIS.Employee.IdNumber := FieldByName('id_num').AsString;
+    HRIS.Employee.FirstName := FieldByName('employee_firstname').AsString;
+    HRIS.Employee.LastName := FieldByName('employee_lastname').AsString;
+    HRIS.Employee.LocationCode := FieldByName('location_code').AsString;
+    HRIS.Employee.PositionTypeCode := FieldByName('positiontype_code').AsString;
 
     while not Eof do
     begin
       right := FieldbyName('privilege_code').AsString;
-      kk.User.SetRight(right);
+      HRIS.User.AddRight(right);
       Next;
     end;
   end;
@@ -343,7 +343,7 @@ begin
       loc.LocationName := FieldByName('location_name').AsString;
       loc.LocationType := FieldByName('locationtype_code').AsString;
 
-      kk.AddLocation(loc);
+      HRIS.AddLocation(loc);
 
       Next;
     end;

@@ -80,7 +80,7 @@ inherited frmLogin: TfrmLogin
     end
     object Label1: TLabel
       Left = 114
-      Top = 102
+      Top = 100
       Width = 54
       Height = 14
       Anchors = [akLeft, akBottom]
@@ -94,7 +94,7 @@ inherited frmLogin: TfrmLogin
     end
     object Label2: TLabel
       Left = 114
-      Top = 126
+      Top = 128
       Width = 51
       Height = 14
       Anchors = [akLeft, akBottom]
@@ -212,14 +212,14 @@ inherited frmLogin: TfrmLogin
     end
     object edUsername: TRzEdit
       Left = 178
-      Top = 97
+      Top = 95
       Width = 121
       Height = 22
       Text = ''
       Anchors = [akLeft, akBottom]
       CharCase = ecUpperCase
-      DisabledColor = 12955288
-      FrameColor = 6572079
+      DisabledColor = 14932430
+      FrameColor = 14205355
       FrameVisible = True
       FramingPreference = fpCustomFraming
       TabOnEnter = True
@@ -228,13 +228,13 @@ inherited frmLogin: TfrmLogin
     end
     object edPassword: TRzEdit
       Left = 178
-      Top = 121
+      Top = 123
       Width = 121
       Height = 22
       Text = ''
       Anchors = [akLeft, akBottom]
-      DisabledColor = 12955288
-      FrameColor = 6572079
+      DisabledColor = 14932430
+      FrameColor = 14205355
       FrameVisible = True
       FramingPreference = fpCustomFraming
       PasswordChar = '*'
@@ -248,9 +248,9 @@ inherited frmLogin: TfrmLogin
       Height = 22
       Anchors = [akLeft, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14273211
+      Color = 14932430
       TabOrder = 2
       object btnCancel: TRzShapeButton
         Left = 0
@@ -269,9 +269,9 @@ inherited frmLogin: TfrmLogin
       Height = 22
       Anchors = [akLeft, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14273211
+      Color = 14932430
       TabOrder = 3
       object btnLogin: TRzShapeButton
         Left = 0

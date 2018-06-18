@@ -1,5 +1,7 @@
 inherited frmEmployeeSearch: TfrmEmployeeSearch
   Caption = 'frmEmployeeSearch'
+  ExplicitWidth = 320
+  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 14
   inherited pnlTitle: TRzPanel

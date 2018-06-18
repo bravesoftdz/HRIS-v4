@@ -35,12 +35,16 @@ const
   PRIV_EMP_ADD_NEW       = 'EMP_ADD_NEW;Add_new_employee;EMP';
   PRIV_EMP_MODIFY        = 'EMP_MODIFY;Modify_employee_details;EMP';
   PRIV_EMP_DEPENDENT     = 'EMP_DEPENDENT;Setting_employee_dependents;EMP';
+  PRIV_SYNC_EMPLOYEE     = 'SYNC_EMPLOYEE;Synchronise_employee_records;EMP';
+
   // PAF PRIVILEGES
   PRIV_PAF_ADD_NEW       = 'PAF_ADD_NEW;Add_new_PAF;PAF';
   PRIV_PAF_CANCEL        = 'PAF_CANCEL;Cancel_PAF;PAF';
   PRIV_PAF_VIEW          = 'PAF_VIEW;View_PAF;PAF';
   PRIV_PAF_APPROVE       = 'PAF_APPROVE;Approve_PAF;PAF';
   PRIV_PAF_EDIT          = 'PAF_EDIT;Edit_PAF;PAF';
+
+  // SECURITY PRIVILEGES
   PRIV_USER_ADD_NEW      = 'USER_ADD_NEW;Add_system_user;SEC';
   PRIV_USER_MODIFY       = 'USER_MODIFY;Assign_user_roles;SEC';
   PRIV_USER_VIEW         = 'USER_VIEW;View_systerm_users;SEC';
@@ -55,8 +59,9 @@ const
   PRIV_LEAVE_APPROVE     = 'LEAVE_APPROVE;Approve_leave_applications;LVE';
   PRIV_LEAVE_DISAPPROVE  = 'LEAVE_DISAPPROVE;Disapprove_leave_applications;LVE';
   // CONFIG_MANAGER    = 'CONFIG_MANAGER;Configuration_manager_access;CFG';
+
+  // TIME AND ATTENDANCE
   PRIV_OVERRIDE_DTR      = 'OVERRIDE_DTR;Override_employee_time_log;DTR';
-  PRIV_SYNC_EMPLOYEE     = 'SYNC_EMPLOYEE;Synchronise_employee_records;EMP';
   PRIV_OVERTIME_DTR      = 'OVERTIME_DTR;Add_or_modify_overtime_records;DTR';
   PRIV_LEAVE_NEW         = 'LEAVE_NEW;Add_leave_records;DTR';
   PRIV_LEAVE_MODIFY_ST   = 'LEAVE_MODIFY_ST;Modify_leave_status;DTR';
@@ -73,14 +78,14 @@ const
   PRIV_HOLIDAY_VIEW      = 'HOLIDAY_VIEW;View_holiday;DTR';
   PRIV_HOLIDAY_MODIFY    = 'HOLIDAY_MODIFY;Modify_holiday;DTR';
   PRIV_HOLIDAY_NEW       = 'HOLIDAY_NEW;Add_holiday;DTR';
+  PRIV_FILTER_BY_POS     = 'FILTER_BY_POS;Filter_time_and_attendance_by_position;DTR';
+
   // PAYROLL PRIVILEGES
   PRIV_PAYROLL_VIEW      = 'PAYROLL_VIEW;View_payroll;PAY';
   PRIV_PAYROLL_GENERATE  = 'PAYROLL_GENERATE;Generate_payroll;PAY';
   PRIV_PAYROLL_CLOSE     = 'PAYROLL_CLOSE;Close_payroll;PAY';
   PRIV_PAYROLL_MODIFY    = 'PAYROLL_MODIFY;Modify_payroll_record;PAY';
   PRIV_PAYROLL_DEDUCTION = 'PAYROLL_DEDUCTION;Add_or_modify_payroll_deduction;PAY';
-  // MISCELLANEOUS
-  PRIV_FILTER_BY_POS     = 'FILTER_BY_POS;Filter_time_and_attendance_by_position;DTR';
 
   // adjust the array size before adding an item
   // array size is equal to the number of privileges
@@ -138,3 +143,4 @@ const
 implementation
 
 end.
+

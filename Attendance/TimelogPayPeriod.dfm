@@ -44,7 +44,6 @@ inherited frmTimelogPayPeriod: TfrmTimelogPayPeriod
     ExplicitLeft = 318
   end
   inherited pnlTitle: TRzPanel
-    BorderSides = []
     inherited lblTitle: TRzLabel
       Width = 47
       Caption = 'Timelog'
@@ -61,7 +60,7 @@ inherited frmTimelogPayPeriod: TfrmTimelogPayPeriod
       Anchors = [akTop, akRight]
       Caption = 'Next'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = 6572079
       Font.Height = -12
       Font.Name = 'Tahoma'
       Font.Style = [fsUnderline]
@@ -81,7 +80,7 @@ inherited frmTimelogPayPeriod: TfrmTimelogPayPeriod
       Anchors = [akTop, akRight]
       Caption = 'Previous'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWhite
+      Font.Color = 6572079
       Font.Height = -12
       Font.Name = 'Tahoma'
       Font.Style = [fsUnderline]
@@ -95,7 +94,7 @@ inherited frmTimelogPayPeriod: TfrmTimelogPayPeriod
     Left = 107
     Width = 190
     Ctl3D = True
-    DisabledColor = 14273211
+    DisabledColor = 14932430
     FrameHotStyle = fsFlat
     ExplicitLeft = 107
     ExplicitWidth = 190
@@ -139,6 +138,7 @@ inherited frmTimelogPayPeriod: TfrmTimelogPayPeriod
   end
   inherited bteFilter: TRzButtonEdit
     Left = 365
+    DisabledColor = 14932430
     ParentCtl3D = False
     ExplicitLeft = 365
   end

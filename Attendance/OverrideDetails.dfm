@@ -70,7 +70,7 @@ inherited frmOverrideDetails: TfrmOverrideDetails
         BevelInner = bvNone
         BevelOuter = bvNone
         BorderStyle = bsNone
-        Color = 14273211
+        Color = 14932430
         ColCount = 30
         DefaultColWidth = 53
         DefaultRowHeight = 30
@@ -92,7 +92,7 @@ inherited frmOverrideDetails: TfrmOverrideDetails
         OnClick = grDateSelectorClick
         OnDrawCell = grDateSelectorDrawCell
         FixedLineColor = 6572079
-        LineColor = 6572079
+        LineColor = 14205355
         UseDrawingStyle = False
         ColWidths = (
           53
@@ -154,13 +154,13 @@ inherited frmOverrideDetails: TfrmOverrideDetails
       Width = 262
       Height = 137
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14273211
+      Color = 14932430
       TabOrder = 3
       object RzLabel7: TRzLabel
         Left = 19
-        Top = 64
+        Top = 58
         Width = 27
         Height = 14
         Caption = 'Time'
@@ -173,7 +173,7 @@ inherited frmOverrideDetails: TfrmOverrideDetails
       end
       object RzLabel1: TRzLabel
         Left = 19
-        Top = 88
+        Top = 85
         Width = 39
         Height = 14
         Caption = 'Reason'
@@ -184,41 +184,9 @@ inherited frmOverrideDetails: TfrmOverrideDetails
         Font.Style = []
         ParentFont = False
       end
-      object RzPanel1: TRzPanel
-        Left = 1
-        Top = 1
-        Width = 260
-        Height = 17
-        Align = alTop
-        BorderOuter = fsNone
-        BorderSides = [sdBottom]
-        BorderColor = clBlack
-        BorderWidth = 1
-        GradientColorStyle = gcsCustom
-        GradientColorStart = 6572079
-        GradientColorStop = 8675134
-        TabOrder = 0
-        VisualStyle = vsGradient
-        object RzLabel9: TRzLabel
-          Tag = -1
-          Left = 4
-          Top = 1
-          Width = 128
-          Height = 13
-          Caption = 'Morning override (AM)'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          Transparent = True
-          FlatColor = clWhite
-        end
-      end
       object dbluReasonAM: TRzDBLookupComboBox
         Left = 67
-        Top = 82
+        Top = 79
         Width = 175
         Height = 22
         DataField = 'override_reason_code'
@@ -227,18 +195,18 @@ inherited frmOverrideDetails: TfrmOverrideDetails
         KeyField = 'override_reason_code'
         ListField = 'override_reason_name'
         ListSource = dmTimelog.dscOverrideReasons
-        TabOrder = 4
+        TabOrder = 3
         FlatButtons = True
-        DisabledColor = 14273211
+        DisabledColor = 14932430
         FocusColor = clWhite
-        FrameColor = 6572079
+        FrameColor = 14205355
         FrameVisible = True
         FramingPreference = fpCustomFraming
         ReadOnlyColor = 14273211
       end
       object chbAM: TRzCheckBox
         Left = 19
-        Top = 26
+        Top = 20
         Width = 104
         Height = 16
         Caption = 'Morning (AM)'
@@ -249,12 +217,12 @@ inherited frmOverrideDetails: TfrmOverrideDetails
         Font.Style = [fsBold]
         ParentFont = False
         State = cbUnchecked
-        TabOrder = 1
+        TabOrder = 0
         OnClick = chbAMClick
       end
       object dteInAM: TRzDateTimeEdit
         Left = 67
-        Top = 58
+        Top = 52
         Width = 86
         Height = 22
         ShowHowToUseHint = False
@@ -262,40 +230,40 @@ inherited frmOverrideDetails: TfrmOverrideDetails
         Format = 'hh:nn'
         UseFormatToParse = True
         BeepOnInvalidKey = False
-        DisabledColor = 14273211
+        DisabledColor = 14932430
         DropButtonVisible = False
         Enabled = False
         FlatButtons = True
-        FrameColor = 6572079
+        FrameColor = 14205355
         FrameVisible = True
         FramingPreference = fpCustomFraming
         ReadOnlyColor = 14273211
         TabOnEnter = True
-        TabOrder = 2
+        TabOrder = 1
       end
       object dteOutAM: TRzDateTimeEdit
         Left = 156
-        Top = 58
+        Top = 52
         Width = 86
         Height = 22
         ShowHowToUseHint = False
         EditType = etTime
         Format = 'hh:nn'
         UseFormatToParse = True
-        DisabledColor = 14273211
+        DisabledColor = 14932430
         DropButtonVisible = False
         Enabled = False
         FlatButtons = True
-        FrameColor = 6572079
+        FrameColor = 14205355
         FrameVisible = True
         FramingPreference = fpCustomFraming
         ReadOnlyColor = 14273211
         TabOnEnter = True
-        TabOrder = 3
+        TabOrder = 2
       end
       object chbCancelledAM: TRzDBCheckBox
         Left = 67
-        Top = 110
+        Top = 107
         Width = 70
         Height = 16
         DataField = 'is_cancelled'
@@ -306,7 +274,7 @@ inherited frmOverrideDetails: TfrmOverrideDetails
         DisabledColor = 14273211
         FillColor = 14273211
         FocusColor = 14273211
-        TabOrder = 5
+        TabOrder = 4
       end
     end
     object pnlPM: TRzPanel
@@ -316,13 +284,13 @@ inherited frmOverrideDetails: TfrmOverrideDetails
       Width = 262
       Height = 137
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14273211
+      Color = 14932430
       TabOrder = 4
       object RzLabel2: TRzLabel
         Left = 19
-        Top = 64
+        Top = 58
         Width = 27
         Height = 14
         Caption = 'Time'
@@ -335,7 +303,7 @@ inherited frmOverrideDetails: TfrmOverrideDetails
       end
       object RzLabel3: TRzLabel
         Left = 19
-        Top = 88
+        Top = 85
         Width = 39
         Height = 14
         Caption = 'Reason'
@@ -346,41 +314,9 @@ inherited frmOverrideDetails: TfrmOverrideDetails
         Font.Style = []
         ParentFont = False
       end
-      object RzPanel3: TRzPanel
-        Left = 1
-        Top = 1
-        Width = 260
-        Height = 17
-        Align = alTop
-        BorderOuter = fsNone
-        BorderSides = [sdBottom]
-        BorderColor = clBlack
-        BorderWidth = 1
-        GradientColorStyle = gcsCustom
-        GradientColorStart = 6572079
-        GradientColorStop = 8675134
-        TabOrder = 0
-        VisualStyle = vsGradient
-        object RzLabel4: TRzLabel
-          Tag = -1
-          Left = 4
-          Top = 1
-          Width = 138
-          Height = 13
-          Caption = 'Afternoon override (PM)'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWhite
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentFont = False
-          Transparent = True
-          FlatColor = clWhite
-        end
-      end
       object dbluReasonPM: TRzDBLookupComboBox
         Left = 67
-        Top = 82
+        Top = 79
         Width = 175
         Height = 22
         DataField = 'override_reason_code'
@@ -389,18 +325,18 @@ inherited frmOverrideDetails: TfrmOverrideDetails
         KeyField = 'override_reason_code'
         ListField = 'override_reason_name'
         ListSource = dmTimelog.dscOverrideReasons
-        TabOrder = 4
+        TabOrder = 3
         FlatButtons = True
-        DisabledColor = 14273211
+        DisabledColor = 14932430
         FocusColor = clWhite
-        FrameColor = 6572079
+        FrameColor = 14205355
         FrameVisible = True
         FramingPreference = fpCustomFraming
         ReadOnlyColor = 14273211
       end
       object chbPM: TRzCheckBox
         Left = 19
-        Top = 26
+        Top = 20
         Width = 116
         Height = 16
         Caption = 'Afternoon (PM)'
@@ -411,52 +347,52 @@ inherited frmOverrideDetails: TfrmOverrideDetails
         Font.Style = [fsBold]
         ParentFont = False
         State = cbUnchecked
-        TabOrder = 1
+        TabOrder = 0
         OnClick = chbPMClick
       end
       object dteInPM: TRzDateTimeEdit
         Left = 67
-        Top = 58
+        Top = 52
         Width = 86
         Height = 22
         ShowHowToUseHint = False
         EditType = etTime
         Format = 'hh:nn'
         UseFormatToParse = True
-        DisabledColor = 14273211
+        DisabledColor = 14932430
         DropButtonVisible = False
         Enabled = False
         FlatButtons = True
-        FrameColor = 6572079
+        FrameColor = 14205355
+        FrameVisible = True
+        FramingPreference = fpCustomFraming
+        ReadOnlyColor = 14273211
+        TabOnEnter = True
+        TabOrder = 1
+      end
+      object dteOutPM: TRzDateTimeEdit
+        Left = 156
+        Top = 52
+        Width = 86
+        Height = 22
+        ShowHowToUseHint = False
+        EditType = etTime
+        Format = 'hh:nn'
+        UseFormatToParse = True
+        DisabledColor = 14932430
+        DropButtonVisible = False
+        Enabled = False
+        FlatButtons = True
+        FrameColor = 14205355
         FrameVisible = True
         FramingPreference = fpCustomFraming
         ReadOnlyColor = 14273211
         TabOnEnter = True
         TabOrder = 2
       end
-      object dteOutPM: TRzDateTimeEdit
-        Left = 156
-        Top = 58
-        Width = 86
-        Height = 22
-        ShowHowToUseHint = False
-        EditType = etTime
-        Format = 'hh:nn'
-        UseFormatToParse = True
-        DisabledColor = 14273211
-        DropButtonVisible = False
-        Enabled = False
-        FlatButtons = True
-        FrameColor = 6572079
-        FrameVisible = True
-        FramingPreference = fpCustomFraming
-        ReadOnlyColor = 14273211
-        TabOnEnter = True
-        TabOrder = 3
-      end
       object chbCancelledPM: TRzDBCheckBox
         Left = 67
-        Top = 110
+        Top = 107
         Width = 70
         Height = 16
         DataField = 'is_cancelled'
@@ -467,7 +403,7 @@ inherited frmOverrideDetails: TfrmOverrideDetails
         DisabledColor = 14273211
         FillColor = 14273211
         FocusColor = 14273211
-        TabOrder = 5
+        TabOrder = 4
       end
     end
     object chbCloseOnSave: TRzCheckBox
@@ -493,12 +429,13 @@ inherited frmOverrideDetails: TfrmOverrideDetails
       Width = 474
       Height = 22
       Text = ''
-      Color = 14273211
-      FrameColor = 6572079
+      Color = clWhite
+      FocusColor = 14932430
+      FrameColor = 14205355
       FrameVisible = True
       FramingPreference = fpCustomFraming
       ReadOnly = True
-      ReadOnlyColor = 14273211
+      ReadOnlyColor = clWhite
       TabOrder = 6
       AltBtnKind = bkFind
       ButtonKind = bkFind

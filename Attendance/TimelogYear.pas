@@ -72,12 +72,12 @@ implementation
 {$R *.dfm}
 
 uses
-  AttendanceUtils, Timelogs, KioskGlobal, TimelogDetails, TimelogData, Employee,
+  AttendanceUtils, Timelogs, HRISGlobal, TimelogDetails, TimelogData, Employee,
   DockIntf, TimelogUtils, ResourceFilter;
 
 procedure TfrmTimelogYear.PopulateEmployeeList(const clearList: boolean);
 var
-  emp: TEmployee;
+  emp: TBaseEmployeeExt;
 
   function CompareFilter: boolean;
   begin
@@ -102,15 +102,15 @@ begin
 
     while not Eof do
     begin
-      emp := TEmployee.Create;
-      emp.IdNum := FieldByName('id_num').AsString;
+      emp := TBaseEmployeeExt.Create;
+      emp.IdNumber := FieldByName('id_num').AsString;
       emp.FirstName := FieldByName('employee_firstname').AsString;
       emp.LastName := FieldByName('employee_lastname').AsString;
       emp.LocationCode := FieldByName('location_code').AsString;
       emp.DepartmentCode := FieldByName('department_code').AsString;
       emp.PositionTypeCode := FieldByName('positiontype_code').AsString;
 
-      if CompareFilter then AddObject(emp.FullName,emp);
+      if CompareFilter then AddObject(emp.Name,emp);
       Next;
     end;
 
@@ -163,7 +163,7 @@ end;
 
 procedure TfrmTimelogYear.InitForm;
 begin
-  lbEmployees.AddObject(kk.Employee.FullName,kk.Employee);
+  lbEmployees.AddObject(HRIS.Employee.Name,HRIS.Employee);
   PopulateEmployeeList;
 
   lbEmployees.ItemIndex := 0;
@@ -179,7 +179,7 @@ var
   intf: IDock;
 begin
   if Supports(Application.MainForm,IDock,intf) then
-    intf.DockForm(fmTimeLogPayPeriod);
+    intf.DockForm(fmTimeLogPayPeriod,'');
 end;
 
 procedure TfrmTimelogYear.GraphicalView(const log: TTimelog; Rect: TRect);
@@ -288,7 +288,7 @@ var
   i, cnt: integer;
   log: TTimelog;
   fd, td: TDate;
-  emp: TEmployee;
+  emp: TBaseEmployeeExt;
 begin
   ClearCalendar;
 
@@ -305,14 +305,14 @@ begin
 
       // id num param
       if lbEmployees.IndexOf(lbEmployees.SelectedItem) > -1 then
-        emp := TEmployee(lbEmployees.Items.Objects[lbEmployees.IndexOf(lbEmployees.SelectedItem)])
+        emp := TBaseEmployeeExt(lbEmployees.Items.Objects[lbEmployees.IndexOf(lbEmployees.SelectedItem)])
       else Exit;
 
-      Retrieve(fd,td,emp.IdNum,emp.LocationCode);
+      Retrieve(fd,td,emp.IdNumber,emp.LocationCode);
 
-      lblEmployeeName.Caption := emp.FullName +
-                                 '  ' + emp.IdNum + ' - ' +
-                                 kk.GetLocationNameByCode(Trim(emp.LocationCode));
+      lblEmployeeName.Caption := emp.Name +
+                                 '  ' + emp.IdNumber + ' - ' +
+                                 HRIS.GetLocationNameByCode(Trim(emp.LocationCode));
     end;
 
     SetViewOptions;

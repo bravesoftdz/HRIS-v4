@@ -33,9 +33,9 @@ inherited frmBasePopupDetail: TfrmBasePopupDetail
       Height = 179
       Anchors = [akLeft, akTop, akRight, akBottom]
       BorderOuter = fsNone
-      BorderColor = clBlack
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14273211
+      Color = 14932430
       TabOrder = 0
     end
     object btnSave: TRzPanel
@@ -45,9 +45,9 @@ inherited frmBasePopupDetail: TfrmBasePopupDetail
       Height = 22
       Anchors = [akRight, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14075057
+      Color = 14932430
       TabOrder = 1
       DesignSize = (
         50
@@ -82,9 +82,9 @@ inherited frmBasePopupDetail: TfrmBasePopupDetail
       Height = 22
       Anchors = [akRight, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
-      Color = 14075057
+      Color = 14932430
       TabOrder = 2
       DesignSize = (
         50

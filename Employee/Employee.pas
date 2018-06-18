@@ -8,26 +8,46 @@ uses
 type
   TOnUpdate = procedure of object;
 
-  TEmployee = class
-  private
+  TBaseEmployee = class
+  protected
     FIdNumber: string;
     FLastName: string;
     FFirstName: string;
-    FBirthDate: TDateTime;
-    FWeight: integer;
-    FHeight: integer;
-    FOnUpdate: TOnUpdate;
-
     function GetName: string;
-    function GetAge: integer;
-    function GetHeightInFeetAndInches: string;
-    function GetWeightInKilos: string;
-    function GetNameSurnameFirst: string;
   public
     property IdNumber: string read FIdNumber write FIdNumber;
     property FirstName: string read FFirstName write FFirstName;
     property LastName: string read FLastName write FLastName;
     property Name: string read GetName;
+
+    constructor Create;
+    destructor Destroy; reintroduce;
+  end;
+
+  TBaseEmployeeExt = class(TBaseEmployee)
+  protected
+    FLocationCode: string;
+    FDepartmentCode: string;
+    FPositionTypeCode: string;
+  public
+    property LocationCode: string read FLocationCode write FLocationCode;
+    property DepartmentCode: string read FDepartmentCode write FDepartmentCode;
+    property PositionTypeCode: string read FPositionTypeCode write FPositionTypeCode;
+  end;
+
+  TEmployee = class(TBaseEmployee)
+  private
+    FBirthDate: TDateTime;
+    FWeight: integer;
+    FHeight: integer;
+    FOnUpdate: TOnUpdate;
+
+    function GetAge: integer;
+    function GetHeightInFeetAndInches: string;
+    function GetWeightInKilos: string;
+    function GetNameSurnameFirst: string;
+  public
+
     property BirthDate: TDateTime read FBirthDate write FBirthDate;
     property Age: integer read GetAge;
     property Height: integer read FHeight write FHeight;
@@ -37,6 +57,9 @@ type
     property OnUpdate: TOnUpdate read FOnUpdate write FOnUpdate;
     property NameSurnameFirst: string read GetNameSurnameFirst;
   end;
+
+var
+  empl: TBaseEmployee;
 
 implementation
 
@@ -89,11 +112,6 @@ begin
   else Result := IntToStr(Trunc(ft)) + ' ft ' +  IntToStr(Round(inches)) + ' inches';
 end;
 
-function TEmployee.GetName: string;
-begin
-  Result := FFirstName + ' ' + FLastName;
-end;
-
 function TEmployee.GetNameSurnameFirst: string;
 begin
   Result := FLastName + ', ' + FFirstName;
@@ -109,6 +127,24 @@ begin
 
   kg := FWeight / 2.2;
   Result := FormatFloat('###,##0.00', kg) + ' kg';
+end;
+
+{ TBaseEmployee }
+
+constructor TBaseEmployee.Create;
+begin
+  if empl <> nil then empl := self
+  else inherited Create;
+end;
+
+destructor TBaseEmployee.Destroy;
+begin
+  if empl = self then empl := nil;
+end;
+
+function TBaseEmployee.GetName: string;
+begin
+  Result := FFirstName + ' ' + FLastName;
 end;
 
 end.

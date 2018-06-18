@@ -5,6 +5,6 @@
     <Transaction>2018/02/01 11:52:12.000.499,C:\Projects\Kiosk\HRISGroup.groupproj=C:\Projects\Kiosk\KioskGroup.groupproj</Transaction>
   </Transactions>
 	<Default.Personality>
-		<Projects ActiveProject="C:\Projects\HRIS v4\HRISWeb\HRISWeb.dproj"/>
+		<Projects ActiveProject="C:\Projects\HRIS v4\HRIS\HRIS.dproj"/>
 	</Default.Personality>
 </BorlandProject>

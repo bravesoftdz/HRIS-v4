@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, BaseForm, Vcl.StdCtrls, RzLabel,
   Vcl.Imaging.pngimage, Vcl.ExtCtrls, RzPanel, RzBmpBtn, RzButton, RefreshIntf,
-  DockIntf;
+  DockIntf, JvExControls;
 
 type
   TfrmMain = class(TfrmBase, IDock)
@@ -54,13 +54,12 @@ type
     procedure HandleRunOnShow(var Msg:TMessage);  message MSG_RUN_ONSHOW;
   public
     { Public declarations }
-    procedure DockForm(const fm: TForms; const title: string = '');
+    procedure DockForm(const fm: TForms; AObject: TObject = nil); overload;
+    procedure DockForm(const fm: TForms; const title: string = ''); overload;
   end;
 
 var
   frmMain: TfrmMain;
-
-
 
 implementation
 
@@ -117,9 +116,9 @@ end;
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   inherited;
-  lblCaption.Caption := 'Kiosk ver. ' + kk.Version;
-  lblWelcome.Caption := 'Welcome back ' + kk.Employee.FullName + '.';
-  lblLocation.Caption := 'Location: ' + kk.GetLocationNameByCode(kk.LocationCode);
+  lblCaption.Caption := 'Kiosk ver. ' + HRIS.Version;
+  lblWelcome.Caption := 'Welcome back ' + HRIS.Employee.Name + '.';
+  lblLocation.Caption := 'Location: ' + HRIS.GetLocationNameByCode(HRIS.LocationCode);
 
   dmTimelog := TdmTimelog.Create(self);
 end;
@@ -132,13 +131,13 @@ end;
 
 procedure TfrmMain.HandleRunOnShow(var Msg:TMessage);
 begin
-  DockForm(fmTimelogPayPeriod);
+  DockForm(fmTimelogPayPeriod,'');
 end;
 
 procedure TfrmMain.btnTimelogClick(Sender: TObject);
 begin
   inherited;
-  DockForm(fmTimelogPayPeriod);
+  DockForm(fmTimelogPayPeriod,'');
 end;
 
 procedure TfrmMain.btnUndertimeClick(Sender: TObject);
@@ -160,6 +159,11 @@ begin
   end;
 end;
 
+procedure TfrmMain.DockForm(const fm: TForms; AObject: TObject);
+begin
+
+end;
+
 procedure TfrmMain.imgCloseClick(Sender: TObject);
 begin
   Application.Terminate;
@@ -168,7 +172,7 @@ end;
 procedure TfrmMain.lblSettingsClick(Sender: TObject);
 begin
   inherited;
-  DockForm(fmSettings);
+  DockForm(fmSettings,'');
 end;
 
 procedure TfrmMain.pnlTitleDblClick(Sender: TObject);
@@ -211,13 +215,13 @@ end;
 procedure TfrmMain.btnSynchroniseClick(Sender: TObject);
 begin
   inherited;
-  DockForm(fmSynchronisation);
+  DockForm(fmSynchronisation,'');
 end;
 
 procedure TfrmMain.btnForApprovalClick(Sender: TObject);
 begin
   inherited;
-  DockForm(fmForApproval);
+  DockForm(fmForApproval,'');
 end;
 
 end.

@@ -24,16 +24,12 @@ type
     RzLabel7: TRzLabel;
     lblDate: TRzLabel;
     grDateSelector: TRzStringGrid;
-    RzPanel1: TRzPanel;
-    RzLabel9: TRzLabel;
     dbluReasonAM: TRzDBLookupComboBox;
     chbAM: TRzCheckBox;
     RzLabel1: TRzLabel;
     pnlPM: TRzPanel;
     RzLabel2: TRzLabel;
     RzLabel3: TRzLabel;
-    RzPanel3: TRzPanel;
-    RzLabel4: TRzLabel;
     dbluReasonPM: TRzDBLookupComboBox;
     chbPaidPM: TRzDBCheckBox;
     chbPM: TRzCheckBox;
@@ -81,7 +77,7 @@ implementation
 {$R *.dfm}
 
 uses
-  KioskGlobal, TimelogData, FormsUtil, KioskDialogs, EmployeeSearch, Employee;
+  HRISGlobal, TimelogData, FormsUtil, HRISDialogs, EmployeeSearch, Employee;
 
 constructor TSelDate.Create(const dt: TDate);
 begin
@@ -207,9 +203,9 @@ begin
   inherited;
   // set default employee to user
   empl := TEmployee.Create;
-  empl.IdNum := kk.Employee.IdNum;
-  empl.FirstName := kk.Employee.FirstName;
-  empl.LastName := kk.Employee.LastName;
+  empl.IdNumber := HRIS.Employee.IdNumber;
+  empl.FirstName := HRIS.Employee.FirstName;
+  empl.LastName := HRIS.Employee.LastName;
 
   Initialise;
 
@@ -221,16 +217,16 @@ procedure TfrmUndertimeDetails.Initialise;
 begin
   utLogs := TUndertimeLogs.Create;
 
-  utLogs.Retrieve(IncDay(kk.CurrentDate,-15),IncDay(kk.CurrentDate,+15),empl.IdNum);
+  utLogs.Retrieve(IncDay(HRIS.CurrentDate,-15),IncDay(HRIS.CurrentDate,+15),empl.IdNumber);
 
-  PopulateDateSelector(IncDay(kk.CurrentDate,-15));
+  PopulateDateSelector(IncDay(HRIS.CurrentDate,-15));
 
   SetUnboundControls;
 
   EnableControls(chbAM);
   EnableControls(chbPM,pdPM);
 
-  bteEmployee.Text := empl.FullName;
+  bteEmployee.Text := empl.Name;
 end;
 
 procedure TfrmUndertimeDetails.grDateSelectorClick(Sender: TObject);
@@ -352,7 +348,7 @@ begin
         Objects[c,r] := TSelDate.Create(dt);
 
         // default
-        if dt = kk.CurrentDate then def := c;
+        if dt = HRIS.CurrentDate then def := c;
 
         Inc(i);
         Inc(c);
@@ -453,7 +449,7 @@ begin
       error := 'Invalid value for START time.'   
     else if CompareTime(dteFromAM.Time,dteUntilAM.Time) > -1 then
       error := 'END time should be greater than START time.'
-    else if MinutesBetween(dteUntilAM.Time,dteFromAM.Time) > kk.MaximumUndertime then
+    else if MinutesBetween(dteUntilAM.Time,dteFromAM.Time) > HRIS.MaximumUndertime then
       error := 'Undertime is more than the time allowed.';   
   end;
 
@@ -468,7 +464,7 @@ begin
       error := 'Invalid value for START time.'   
     else if CompareTime(dteFromPM.Time,dteUntilPM.Time) > -1 then
       error := 'END time should be greater than START time.'
-    else if MinutesBetween(dteUntilPM.Time,dteFromPM.Time) > kk.MaximumUndertime then
+    else if MinutesBetween(dteUntilPM.Time,dteFromPM.Time) > HRIS.MaximumUndertime then
       error := 'Undertime is more than the time allowed.';   
   end;
 

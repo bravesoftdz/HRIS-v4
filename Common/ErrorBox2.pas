@@ -23,9 +23,6 @@ type
     constructor Create(AOwner: TComponent; const errMessage: string); reintroduce; overload;
   end;
 
-var
-  frmErrorBox2: TfrmErrorBox2;
-
 implementation
 
 {$R *.dfm}

@@ -1,5 +1,7 @@
 inherited frmTimelogYear: TfrmTimelogYear
   Caption = 'frmTimelogYear'
+  ExplicitWidth = 320
+  ExplicitHeight = 240
   PixelsPerInch = 96
   TextHeight = 14
   object imgHoliday: TImage [0]
@@ -515,7 +517,7 @@ inherited frmTimelogYear: TfrmTimelogYear
     Height = 325
     Anchors = [akLeft, akTop, akRight]
     BorderOuter = fsNone
-    BorderColor = 6572079
+    BorderColor = 8806462
     BorderWidth = 1
     GradientColorStyle = gcsCustom
     GradientColorStart = 12955288
@@ -530,7 +532,7 @@ inherited frmTimelogYear: TfrmTimelogYear
       Align = alTop
       BorderOuter = fsNone
       BorderSides = [sdBottom]
-      BorderColor = 6572079
+      BorderColor = 8806462
       BorderWidth = 1
       Color = 8806462
       GradientColorStyle = gcsCustom
@@ -561,7 +563,7 @@ inherited frmTimelogYear: TfrmTimelogYear
       Height = 299
       Align = alClient
       BorderStyle = bsNone
-      Color = 14273211
+      Color = 14932430
       ItemHeight = 14
       TabOrder = 1
       OnDblClick = lbEmployeesDblClick
@@ -577,19 +579,18 @@ inherited frmTimelogYear: TfrmTimelogYear
     BorderColor = 8806462
     BorderSides = []
     Caption = ''
-    Color = 14273211
     Columns = 2
     GroupStyle = gsCustom
     ItemIndex = 0
     Items.Strings = (
       'Simple view'
       'Graphical')
+    ParentColor = True
     TabOrder = 1
     VisualStyle = vsClassic
     OnClick = rbgViewOptionsClick
   end
   inherited pnlTitle: TRzPanel [15]
-    BorderSides = []
     Color = clBlack
     inherited lblTitle: TRzLabel
       Width = 47

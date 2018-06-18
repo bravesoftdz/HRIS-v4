@@ -3,36 +3,10 @@ unit Timelog;
 interface
 
 uses
-  SysUtils, Graphics, DateUtils, Employee, StrUtils;
+  SysUtils, Graphics, DateUtils, Employee, StrUtils, Leave, Holiday;
 
 type
   TPeriod = (pdMorning,pdAfternoon,pdWholeDay);
-
-  TLeave = class
-  private
-    FAmPm: string;
-    FLeaveType: string;
-    FLeaveTypeName: string;
-    FReason: string;
-    FRemarks: string;
-    FIsPaid: boolean;
-
-    function GetHalfDay: boolean;
-    function GetIsBusinessTrip: boolean;
-    function GetPaid: string;
-  public
-    property AmPm: string read FAmPm write FAmPm;
-    property LeaveType: string read FLeaveType write FLeaveType;
-    property LeaveTypeName: string read FLeaveTypeName write FLeaveTypeName;
-    property IsHalfDay: boolean read GetHalfDay;
-    property Reason: string read FReason write FReason;
-    property Remarks: string read FRemarks write FRemarks;
-    property IsBusinessTrip: boolean read GetIsBusinessTrip;
-    property IsPaid: boolean read FIsPaid write FIsPaid;
-    property Paid: string read GetPaid;
-
-    constructor Create(const ap, tp, nm, rs, rm: string; const ip: boolean);
-  end;
 
   TUndertime = class
   private
@@ -80,23 +54,9 @@ type
     constructor Create(const i, o, ap, rs: string);
   end;
 
-  THoliday = class
-  private
-    FName: string;
-    FIsNational: integer;
-
-    function GetIsNational: boolean;
-
-  public
-    property Name: string read FName write FName;
-    property IsNational: boolean read GetIsNational;
-
-    constructor Create(const nm: string; const isNat: integer);
-  end;
-
   TTimelog = class(TObject)
   private
-    FEmployee: TEmployee;
+    FEmployee: TBaseEmployeeExt;
     FLocationCode: string;
     FDate: TDate;
     FTimeInAM: string;
@@ -138,7 +98,7 @@ type
     function GetTimeOutPMFormatted: string;
 
   public
-    property Employee: TEmployee read FEmployee write FEmployee;
+    property Employee: TBaseEmployeeExt read FEmployee write FEmployee;
     property LocationCode: string read FLocationCode write FLocationCode;
     property Date: TDate read FDate write FDate;
     property TimeInAM: string read FTimeInAM write FTimeInAM;
@@ -192,32 +152,6 @@ implementation
 
 uses
   AttendanceUtils;
-
-constructor TLeave.Create(const ap, tp, nm, rs, rm: string; const ip: boolean);
-begin
-  FAmPm := ap;
-  FLeaveType := tp;
-  FLeaveTypeName := nm;
-  FReason := rs;
-  FRemarks := rm;
-  FIsPaid := ip;
-end;
-
-function TLeave.GetHalfDay;
-begin
-  Result := FAmPM <> '';
-end;
-
-function TLeave.GetIsBusinessTrip: boolean;
-begin
-  Result := Trim(FLeaveType) = 'BT';
-end;
-
-function TLeave.GetPaid: string;
-begin
-  if FIsPaid then Result := 'Yes'
-  else Result := 'No';
-end;
 
 constructor TTimelog.Create;
 begin
@@ -328,7 +262,7 @@ begin
 
   for i := 0 to cnt do
   begin
-    if FLeaves[i].FAmPM = pd then
+    if FLeaves[i].AmPM = pd then
       lv := FLeaves[i];
   end;
 
@@ -444,7 +378,7 @@ begin
   cnt := Length(FLeaves) - 1;
   for i := 0 to cnt do
   begin
-    if FLeaves[i].FAmPm = '' then
+    if FLeaves[i].AmPm = '' then
     begin
       Result := true;
       Exit;
@@ -467,17 +401,6 @@ begin
   FTimeOut := o;
   FAmPM := ap;
   FReason := rs;
-end;
-
-constructor THoliday.Create(const nm: string; const isNat: Integer);
-begin
-  FName := nm;
-  FIsNational := isNat;
-end;
-
-function THoliday.GetIsNational: boolean;
-begin
-  Result := FIsNational = 1;
 end;
 
 function TOverride.GetTimeInFormatted: string;

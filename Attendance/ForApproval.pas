@@ -16,8 +16,6 @@ type
     pnlDetail: TRzPanel;
     pnlApprove: TRzPanel;
     btnApprove: TRzShapeButton;
-    pnlDetailHead: TRzPanel;
-    lblDetailHeadCaption: TRzLabel;
     RzLabel1: TRzLabel;
     cmbEntitlement: TRzComboBox;
     pnlDeny: TRzPanel;
@@ -95,7 +93,7 @@ implementation
 {$R *.dfm}
 
 uses
-  TimelogData, FormsUtil, KioskDialogs, DBUtil, AppData, PayrollCode;
+  TimelogData, FormsUtil, HRISDialogs, DBUtil, AppData, PayrollCode;
 
 procedure TfrmForApproval.btnApproveClick(Sender: TObject);
 begin

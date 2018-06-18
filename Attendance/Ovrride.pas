@@ -11,7 +11,7 @@ type
 type
   TOverride = class
   private
-    FEmployee: TEmployee;
+    FEmployee: TBaseEmployee;
     FDateString: string;
     FTimeIn: double;
     FTimeOut: double;
@@ -27,7 +27,7 @@ type
     function GetTimeOutConverted: double;
 
   public
-    property Employee: TEmployee read FEmployee write FEmployee;
+    property Employee: TBaseEmployee read FEmployee write FEmployee;
     property Date: TDateTime read GetDate;
     property DateString: string read FDateString write FDateString;
     property TimeIn: double read FTimeIn write FTimeIn;
@@ -102,7 +102,7 @@ begin
     begin
       if dstOverrideAM.State <> dsInsert then dstOverrideAM.Edit;
 
-      dstOverrideAM.FieldByName('id_num').AsString := FEmployee.IdNum;
+      dstOverrideAM.FieldByName('id_num').AsString := FEmployee.IdNumber;
       dstOverrideAM.FieldByName('dtr_date').AsString := FDateString;
       dstOverrideAM.FieldByName('time_in').AsString := TimeToStr(FTimeIn);
       dstOverrideAM.FieldByName('time_out').AsString := TimeToStr(FTimeOut);
@@ -112,7 +112,7 @@ begin
     begin
       if dstOverridePM.State <> dsInsert then dstOverridePM.Edit;
 
-      dstOverridePM.FieldByName('id_num').AsString := FEmployee.IdNum;
+      dstOverridePM.FieldByName('id_num').AsString := FEmployee.IdNumber;
       dstOverridePM.FieldByName('dtr_date').AsString := FDateString;
       dstOverridePM.FieldByName('time_in').AsString := TimeToStr(FTimeIn);
       dstOverridePM.FieldByName('time_out').AsString := TimeToStr(FTimeOut);

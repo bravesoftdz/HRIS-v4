@@ -21,7 +21,9 @@ type
   private
     { Private declarations }
   protected
-    procedure Cancel;
+    procedure Save; virtual;
+    procedure Cancel; virtual;
+    procedure BindToObject; virtual; abstract;
     function ValidEntry: boolean; virtual; abstract;
   public
     { Public declarations }
@@ -52,9 +54,14 @@ begin
   OpenDropdownDataSources(pnlDetail);
 end;
 
-procedure TfrmBasePopupDetail2.sbtnSaveClick(Sender: TObject);
+procedure TfrmBasePopupDetail2.Save;
 begin
   if ValidEntry then ModalResult := mrOK;
+end;
+
+procedure TfrmBasePopupDetail2.sbtnSaveClick(Sender: TObject);
+begin
+  Save;
 end;
 
 end.

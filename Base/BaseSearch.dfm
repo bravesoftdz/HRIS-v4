@@ -41,7 +41,7 @@ inherited frmBaseSearch: TfrmBaseSearch
       Height = 22
       Text = ''
       Anchors = [akLeft, akTop, akRight]
-      FrameColor = 8675134
+      FrameColor = 14205355
       FrameVisible = True
       FramingPreference = fpCustomFraming
       TabOrder = 0
@@ -54,7 +54,7 @@ inherited frmBaseSearch: TfrmBaseSearch
       Height = 245
       Anchors = [akLeft, akTop, akRight, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
       Color = 14273211
       TabOrder = 1
@@ -93,7 +93,7 @@ inherited frmBaseSearch: TfrmBaseSearch
       Height = 22
       Anchors = [akLeft, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
       Color = 14273211
       TabOrder = 2
@@ -116,7 +116,7 @@ inherited frmBaseSearch: TfrmBaseSearch
       Height = 22
       Anchors = [akLeft, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
       Color = 14273211
       TabOrder = 3
@@ -139,7 +139,7 @@ inherited frmBaseSearch: TfrmBaseSearch
       Height = 22
       Anchors = [akRight, akBottom]
       BorderOuter = fsNone
-      BorderColor = 6572079
+      BorderColor = 14205355
       BorderWidth = 1
       Color = 14273211
       TabOrder = 4

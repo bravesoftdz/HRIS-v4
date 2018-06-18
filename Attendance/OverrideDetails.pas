@@ -24,8 +24,6 @@ type
     pnlAM: TRzPanel;
     RzLabel7: TRzLabel;
     RzLabel1: TRzLabel;
-    RzPanel1: TRzPanel;
-    RzLabel9: TRzLabel;
     dbluReasonAM: TRzDBLookupComboBox;
     chbAM: TRzCheckBox;
     dteInAM: TRzDateTimeEdit;
@@ -33,8 +31,6 @@ type
     pnlPM: TRzPanel;
     RzLabel2: TRzLabel;
     RzLabel3: TRzLabel;
-    RzPanel3: TRzPanel;
-    RzLabel4: TRzLabel;
     dbluReasonPM: TRzDBLookupComboBox;
     chbPM: TRzCheckBox;
     dteInPM: TRzDateTimeEdit;
@@ -75,7 +71,7 @@ implementation
 {$R *.dfm}
 
 uses
-  KioskGlobal, TimelogData, FormsUtil, KioskDialogs, EmployeeSearch, Employee,
+  HRISGlobal, TimelogData, FormsUtil, HRISDialogs, EmployeeSearch, Employee,
   Overrides, AttendanceUtils;
 
 procedure TfrmOverrideDetails.bteEmployeeButtonClick(Sender: TObject);
@@ -192,10 +188,10 @@ procedure TfrmOverrideDetails.FormCreate(Sender: TObject);
 begin
   inherited;
   // set default employee to user
-  empl := TEmployee.Create;
-  empl.IdNum := kk.Employee.IdNum;
-  empl.FirstName := kk.Employee.FirstName;
-  empl.LastName := kk.Employee.LastName;
+  empl := TBaseEmployee.Create;
+  empl.IdNumber := HRIS.Employee.IdNumber;
+  empl.FirstName := HRIS.Employee.FirstName;
+  empl.LastName := HRIS.Employee.LastName;
 
   Initialise;
 
@@ -224,7 +220,7 @@ begin
     if gdSelected in State then
       grDateSelector.Canvas.Brush.Color := $006CD900
     else
-      grDateSelector.Canvas.Brush.Color := kk.Settings.CalendarColours.Ovrride;
+      grDateSelector.Canvas.Brush.Color := HRIS.Settings.CalendarColours.Ovrride;
   end
   else if gdSelected in State then
     grDateSelector.Canvas.Brush.Color := $0059ACFF;
@@ -238,16 +234,16 @@ procedure TfrmOverrideDetails.Initialise;
 begin
   ovs := TOverrides.Create;
 
-  ovs.Retrieve(IncDay(kk.CurrentDate,-15),IncDay(kk.CurrentDate,+15),empl.IdNum);
+  ovs.Retrieve(IncDay(HRIS.CurrentDate,-15),IncDay(HRIS.CurrentDate,+15),empl.IdNumber);
 
-  PopulateDateSelector(IncDay(kk.CurrentDate,-15));
+  PopulateDateSelector(IncDay(HRIS.CurrentDate,-15));
 
   SetUnboundControls;
 
   EnableControls(chbAM);
   EnableControls(chbPM,pdPM);
 
-  bteEmployee.Text := empl.FullName;
+  bteEmployee.Text := empl.Name;
 end;
 
 procedure TfrmOverrideDetails.PopulateDateSelector(const sd: TDate);
@@ -282,7 +278,7 @@ begin
         Objects[c,r] := TSelDate.Create(dt);
 
         // default
-        if dt = kk.CurrentDate then def := c;
+        if dt = HRIS.CurrentDate then def := c;
 
         Inc(i);
         Inc(c);

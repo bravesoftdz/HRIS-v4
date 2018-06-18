@@ -128,6 +128,11 @@
         <DCCReference Include="JvCore.dcp"/>
         <DCCReference Include="JvStdCtrls.dcp"/>
         <DCCReference Include="dclstd.dcp"/>
+        <DCCReference Include="soaprtl.dcp"/>
+        <DCCReference Include="uniGUI25.dcp"/>
+        <DCCReference Include="uniGUI25Core.dcp"/>
+        <DCCReference Include="uniTools25.dcp"/>
+        <DCCReference Include="uIndy25.dcp"/>
         <DCCReference Include="SyncMain.pas">
             <Form>frmSyncMain</Form>
             <FormType>dfm</FormType>

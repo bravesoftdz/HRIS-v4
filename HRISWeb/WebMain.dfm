@@ -1,9 +1,9 @@
-object MainForm: TMainForm
+object WebMainForm: TWebMainForm
   Left = 0
   Top = 0
   ClientHeight = 537
   ClientWidth = 1150
-  Caption = 'MainForm'
+  Caption = 'WebMainForm'
   Color = 15658734
   BorderStyle = bsNone
   WindowState = wsMaximized
@@ -49,7 +49,7 @@ object MainForm: TMainForm
     Left = 64
     Top = 104
     Width = 1017
-    Height = 369
+    Height = 372
     Hint = ''
     ParentColor = False
     Color = clWhite
@@ -61,7 +61,7 @@ object MainForm: TMainForm
       Left = 0
       Top = 0
       Width = 1017
-      Height = 369
+      Height = 372
       Hint = ''
       Align = alClient
       Anchors = [akLeft, akTop, akRight, akBottom]
@@ -70,7 +70,6 @@ object MainForm: TMainForm
       ShowCaption = False
       Caption = ''
       Color = clWhite
-      ExplicitHeight = 368
     end
   end
   object pnlProfile: TUniSimplePanel

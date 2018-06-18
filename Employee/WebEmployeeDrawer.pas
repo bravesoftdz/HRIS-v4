@@ -22,6 +22,7 @@ type
     procedure UniFrameDestroy(Sender: TObject);
     procedure UniFrameCreate(Sender: TObject);
     procedure AddressAndContactLabelClick(Sender: TObject);
+    procedure FamilyAndRelativesLabelClick(Sender: TObject);
   private
     { Private declarations }
     Controller: TEmployeeController;
@@ -36,7 +37,7 @@ implementation
 
 uses
   uniGUIVars, MainModule, uniGUIApplication, WebEmployeeMain, Employee,
-  WebAddressAndContact;
+  WebAddressAndContact, WebFamilyAndRelatives;
 
 { TEmployeeDrawerFrame }
 
@@ -55,11 +56,13 @@ begin
   case AFrame of
     frMain: LFrame := TEmployeeMainFrame.Create(self,Controller.Employee);
     frAddressAndContact: LFrame := TAddressAndContactFrame.Create(self);
+    frFamilyAndRelatives: LFrame := TFamilyAndRelativesFrame.Create(self,Controller);
   end;
 
   case AFrame of
     frMain: Controller.Selected := sdMain;
     frAddressAndContact: Controller.Selected := sdAddressAndContact;
+    frFamilyAndRelatives: Controller.Selected := sdFamily;
   end;
 
   Controller.OnSelectionChanged;
@@ -68,6 +71,11 @@ begin
   LFrame.Parent := DockPanel;
   LFrame.Show;
 
+end;
+
+procedure TEmployeeDrawerFrame.FamilyAndRelativesLabelClick(Sender: TObject);
+begin
+  DockFrame(frFamilyAndRelatives);
 end;
 
 procedure TEmployeeDrawerFrame.MainLabelClick(Sender: TObject);

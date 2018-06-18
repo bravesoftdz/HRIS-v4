@@ -55,6 +55,10 @@ type
     imgSettings: TImage;
     pnlPendingPAF: TRzPanel;
     imgPendingPAF: TImage;
+    pnlSecurity: TRzPanel;
+    imgSecurity: TImage;
+    pnlLeaves: TRzPanel;
+    imgLeaves: TImage;
     procedure FormCreate(Sender: TObject);
     procedure pnlTitleMouseDown(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
@@ -72,6 +76,8 @@ type
     procedure imgEmployeeSearchClick(Sender: TObject);
     procedure imgAddPAFClick(Sender: TObject);
     procedure imgPendingPAFClick(Sender: TObject);
+    procedure imgSecurityClick(Sender: TObject);
+    procedure imgLeavesClick(Sender: TObject);
   private
     { Private declarations }
     DOCKED_FORM: TForms;
@@ -80,7 +86,8 @@ type
     procedure Save;
   public
     { Public declarations }
-    procedure DockForm(const fm: TForms; AObject: TObject = nil);
+    procedure DockForm(const fm: TForms; AObject: TObject = nil); overload;
+    procedure DockForm(const fm: TForms; const title: string = ''); overload;
   end;
 
 var
@@ -92,7 +99,7 @@ implementation
 
 uses
   EmployeeDrawer, NewIntf, SaveIntf, FormsUtil, HRISDialogs, EmployeeSearch, Employee,
-  HRISGlobal, PafMain, PafController, PafListPending;
+  HRISGlobal, PafMain, PafController, PafListPending, SecurityMain, LeaveMain;
 
 procedure TfrmMain.pnlTitleMouseDown(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
@@ -131,6 +138,8 @@ begin
       fmEmployeeDrawer: frm := TfrmEmployeeDrawer.Create(Application,AObject as TEmployee);
       fmPaf: frm := TfrmPafMain.Create(Application, AObject as TPafController);
       fmPendingPaf: frm := TfrmPafListPending.Create(Application);
+      fmSecurity: frm := TfrmSecurityMain.Create(Application);
+      fmLeaveMain: frm := TfrmLeaveMain.Create(Application);
       else
         frm := nil;
     end;
@@ -173,6 +182,11 @@ begin
   end;
 end;
 
+procedure TfrmMain.DockForm(const fm: TForms; const title: string);
+begin
+
+end;
+
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
   DOCKED_FORM := fmNone;
@@ -190,7 +204,7 @@ end;
 
 procedure TfrmMain.imgAddEmployeeClick(Sender: TObject);
 begin
-  DockForm(fmEmployeeDrawer);
+  DockForm(fmEmployeeDrawer,nil);
 end;
 
 procedure TfrmMain.imgAddEmployeeMouseDown(Sender: TObject; Button: TMouseButton;
@@ -207,7 +221,7 @@ end;
 
 procedure TfrmMain.imgAddPAFClick(Sender: TObject);
 begin
-  DockForm(fmPaf);
+  DockForm(fmPaf,nil);
 end;
 
 procedure TfrmMain.imgCancelClick(Sender: TObject);
@@ -237,6 +251,11 @@ begin
   end;
 end;
 
+procedure TfrmMain.imgLeavesClick(Sender: TObject);
+begin
+  DockForm(fmLeaveMain,nil);
+end;
+
 procedure TfrmMain.imgMinimizeClick(Sender: TObject);
 begin
   Application.Minimize;
@@ -244,12 +263,17 @@ end;
 
 procedure TfrmMain.imgPendingPAFClick(Sender: TObject);
 begin
-  DockForm(fmPendingPaf);
+  DockForm(fmPendingPaf,nil);
 end;
 
 procedure TfrmMain.imgSaveClick(Sender: TObject);
 begin
   Save;
+end;
+
+procedure TfrmMain.imgSecurityClick(Sender: TObject);
+begin
+  DockForm(fmSecurity,nil);
 end;
 
 procedure TfrmMain.acSearchEmployeeExecute(Sender: TObject);
