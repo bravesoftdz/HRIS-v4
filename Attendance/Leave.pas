@@ -18,6 +18,9 @@ type
     function GetHalfDay: boolean;
     function GetIsBusinessTrip: boolean;
     function GetPaidDescription: string;
+    function GetIsAfternoon: boolean;
+    function GetIsMorning: boolean;
+    function GetIsWholeDay: boolean;
 
   public
     property AmPm: string read FAmPm write FAmPm;
@@ -29,6 +32,9 @@ type
     property IsBusinessTrip: boolean read GetIsBusinessTrip;
     property IsPaid: boolean read FIsPaid write FIsPaid;
     property PaidDescription: string read GetPaidDescription;
+    property IsWholeDay: boolean read GetIsWholeDay;
+    property IsMorning: boolean read GetIsMorning;
+    property IsAfternoon: boolean read GetIsAfternoon;
 
     constructor Create; overload;
     constructor Create(const ap, tp, nm, rs, rm: string; const ip: boolean); reintroduce; overload;
@@ -74,9 +80,24 @@ begin
   Result := FAmPM <> '';
 end;
 
+function TLeave.GetIsAfternoon: boolean;
+begin
+  Result := FAmPm = 'P';
+end;
+
 function TLeave.GetIsBusinessTrip: boolean;
 begin
   Result := Trim(FLeaveType) = 'BT';
+end;
+
+function TLeave.GetIsMorning: boolean;
+begin
+  Result := FAmPm = 'A';
+end;
+
+function TLeave.GetIsWholeDay: boolean;
+begin
+  Result := FAmPm = '';
 end;
 
 function TLeave.GetPaidDescription: string;

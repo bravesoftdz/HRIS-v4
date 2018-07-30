@@ -4,21 +4,31 @@ interface
 
 uses
   Leave, System.Classes, ADODB, SysUtils, Employee, System.UITypes, RzGrids,
-  System.Types, Graphics;
+  System.Types, Graphics, DateUtils;
 
 type
   TOnUpdate = procedure of object;
 
+  TLeaveType = (ltSick, ltVacation);
+
+  TLeaveCredit = class
+  strict private
+    FCredits: smallint;
+    FLeaveType: string;
+  public
+    property LeaveType: string read FLeaveType write FLeaveType;
+    property Credits: smallint read FCredits write FCredits;
+  end;
+
   TLeaveController = class
   private
     FLeaves: array of TEmployeeLeave;
-    FLeaveCreditsRemaining: smallint;
-    FLeaveCredits: smallint;
     FData: TDataModule;
     FEmployee: TEmployee;
     FStartDate: TDateTime;
     FEndDate: TDateTime;
     FOnUpdate: TOnUpdate;
+    FLeaveCredits: array of TLeaveCredit;
 
     procedure SetLeave(const i: integer; const Value: TEmployeeLeave);
     procedure Clear;
@@ -26,16 +36,26 @@ type
     function GetLeave(const i: integer): TEmployeeLeave;
     function GetLeaveCount: integer;
     function IndexOf(const ADate: TDate): integer;
+    function GetSickLeaveCredits: single;
+    function GetVacationLeaveCredits: single;
+    function GetSickLeavesRemaining: single;
+    function GetVacationLeavesRemaining: single;
+    function GetSickLeavesAvailed: single;
+    function GetVacationLeavesAvailed: single;
 
   public
     property Leaves[const i: integer]: TEmployeeLeave read GetLeave write SetLeave;
-    property LeaveCredits: smallint read FLeaveCredits write FLeaveCredits;
-    property LeaveCreditsRemaining: smallint read FLeaveCreditsRemaining write FLeaveCreditsRemaining;
     property LeaveCount: integer read GetLeaveCount;
     property StartDate: TDateTime read FStartDate write FStartDate;
     property EndDate: TDateTime read FEndDate write FEndDate;
     property OnUpdate: TOnUpdate read FOnUpdate write FOnUpdate;
     property Employee: TEmployee read FEmployee;
+    property VacationLeaveCredits: single read GetVacationLeaveCredits;
+    property SickLeaveCredits: single read GetSickLeaveCredits;
+    property VacationLeavesRemaining: single read GetVacationLeavesRemaining;
+    property SickLeavesRemaining: single read GetSickLeavesRemaining;
+    property VacationLeavesAvailed: single read GetVacationLeavesAvailed;
+    property SickLeavesAvailed: single read GetSickLeavesAvailed;
 
     procedure AddLeave(ALeave: TEmployeeLeave);
     procedure RemoveLeave(ALeave: TEmployeeLeave);
@@ -53,7 +73,7 @@ type
 implementation
 
 uses
-  LeaveData, Holiday, EmployeeSearch, HRISGlobal;
+  LeaveData, Holiday, EmployeeSearch, HRISGlobal, HRISDialogs;
 
 { TLeaveController }
 
@@ -108,6 +128,70 @@ end;
 function TLeaveController.GetLeaveCount: integer;
 begin
   Result := Length(FLeaves);
+end;
+
+function TLeaveController.GetSickLeaveCredits: single;
+var
+  LCredit: TLeaveCredit;
+begin
+  for LCredit in FLeaveCredits do
+    if LCredit.LeaveType = 'SL' then
+      Result := LCredit.Credits;
+end;
+
+function TLeaveController.GetSickLeavesAvailed: single;
+var
+  LLeave: TEmployeeLeave;
+  leavesAvailed: single;
+begin
+  leavesAvailed := 0;
+
+  for LLeave in FLeaves do
+    if (LLeave.LeaveType = 'SL') and (LLeave.IsApproved)  then
+    begin
+      if LLeave.IsWholeDay then leavesAvailed := leavesAvailed + 1
+      else if LLeave.IsMorning then leavesAvailed := leavesAvailed + 0.4375
+      else leavesAvailed := leavesAvailed + 0.5625
+    end;
+
+  Result := leavesAvailed;
+end;
+
+function TLeaveController.GetSickLeavesRemaining: single;
+begin
+  Result := SickLeaveCredits - SickLeavesAvailed;
+end;
+
+function TLeaveController.GetVacationLeaveCredits: single;
+var
+  LCredit: TLeaveCredit;
+begin
+  for LCredit in FLeaveCredits do
+    if LCredit.LeaveType = 'VL' then
+      Result := LCredit.Credits;
+end;
+
+function TLeaveController.GetVacationLeavesAvailed: single;
+var
+  LLeave: TEmployeeLeave;
+  leavesAvailed: single;
+begin
+  leavesAvailed := 0;
+
+  for LLeave in FLeaves do
+    if (LLeave.LeaveType = 'VL') and (LLeave.IsApproved)  then
+    begin
+      if LLeave.IsWholeDay then leavesAvailed := leavesAvailed + 1
+      else if LLeave.IsMorning then leavesAvailed := leavesAvailed + 0.4375
+      else leavesAvailed := leavesAvailed + 0.5625
+    end;
+
+  Result := leavesAvailed;
+end;
+
+function TLeaveController.GetVacationLeavesRemaining: single;
+begin
+  Result := VacationLeaveCredits - VacationLeavesAvailed;
 end;
 
 function TLeaveController.HasLeave(const ADate: TDateTime): boolean;
@@ -172,8 +256,8 @@ begin
           else
           begin
             if LLeave.IsApproved then Canvas.Brush.Color := clMoneyGreen
-            else if LLeave.IsPending then Canvas.Brush.Color := $00FFA4A4
-            else if LLeave.IsCancelled then Canvas.Brush.Color := $00B0B0FF;
+            else if LLeave.IsPending then Canvas.Brush.Color := $00FFA4A4;
+            // else if LLeave.IsCancelled then Canvas.Brush.Color := $00B0B0FF;
           end;
 
           Inc(i);
@@ -260,11 +344,54 @@ procedure TLeaveController.Retrieve;
 var
   LEmployee: TBaseEmployeeExt;
   LLeave: TEmployeeLeave;
+  LCredit: TLeaveCredit;
+  i, cnt: integer;
 begin
   Clear;
 
   if not Assigned(FEmployee) then Exit;
-  
+
+    // leave credits
+  with (FData as TdmLeave).dstLeaveCredits do
+  begin
+    try
+      try
+        Parameters.ParamByName('@id_num').Value := FEmployee.IdNumber;
+        Parameters.ParamByName('@year').Value := YearOf(HRIS.CurrentDate);
+
+        Open;
+
+        // clear leave credits
+        cnt := Length(FLeaveCredits) - 1;
+        for i := 0 to cnt do
+        begin
+          LCredit := FLeaveCredits[i];
+          FreeAndNil(LCredit);
+        end;
+
+        SetLength(FLeaveCredits,0);
+
+        while not Eof do
+        begin
+          LCredit := TLeaveCredit.Create;
+          LCredit.LeaveType := Trim(FieldByName('leavetype_code').AsString);
+          LCredit.Credits := FieldByName('leave_credits').AsInteger;
+
+          SetLength(FLeaveCredits,Length(FLeaveCredits) + 1);
+          FLeaveCredits[Length(FLeaveCredits)-1] := LCredit;
+
+          Next;
+        end;
+
+      except
+        on E: Exception do ShowErrorBox2(E.Message);
+      end;
+    finally
+      Close;
+    end;
+  end;
+
+  // leaves
   with (FData as TdmLeave).dstLeaves do
   begin
     try
@@ -296,7 +423,7 @@ begin
         if FieldByName('leave_date_full').AsString <> '' then
         begin
           LLeave.AmPm := '';
-          LLeave.LeaveType := FieldByName('leavetype_code_full').AsString;
+          LLeave.LeaveType := Trim(FieldByName('leavetype_code_full').AsString);
           LLeave.LeaveTypeName := FieldByName('leavetype_name_full').AsString;
           LLeave.Reason := FieldByName('leave_reason_full').AsString;
           LLeave.Remarks := FieldByName('leave_remarks_full').AsString;
@@ -307,7 +434,7 @@ begin
         else if FieldByName('leave_date_am').AsString <> '' then
         begin
           LLeave.AmPm := 'A';
-          LLeave.LeaveType := FieldByName('leavetype_code_am').AsString;
+          LLeave.LeaveType := Trim(FieldByName('leavetype_code_am').AsString);
           LLeave.LeaveTypeName := FieldByName('leavetype_name_am').AsString;
           LLeave.Reason := FieldByName('leave_reason_am').AsString;
           LLeave.Remarks := FieldByName('leave_remarks_am').AsString;
@@ -315,10 +442,10 @@ begin
           LLeave.IsPaid := FieldByName('is_paid_leave_am').AsInteger = 1;
         end
         // leave pm
-        else
+        else if FieldByName('leave_date_pm').AsString <> '' then
         begin
           LLeave.AmPm := 'P';
-          LLeave.LeaveType := FieldByName('leavetype_code_pm').AsString;
+          LLeave.LeaveType := Trim(FieldByName('leavetype_code_pm').AsString);
           LLeave.LeaveTypeName := FieldByName('leavetype_name_pm').AsString;
           LLeave.Reason := FieldByName('leave_reason_pm').AsString;
           LLeave.Remarks := FieldByName('leave_remarks_pm').AsString;
@@ -335,6 +462,7 @@ begin
       Close;
     end;
   end;
+
 end;
 
 function TLeaveController.Save: boolean;

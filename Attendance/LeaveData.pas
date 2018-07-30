@@ -8,6 +8,7 @@ uses
 type
   TdmLeave = class(TDataModule)
     dstLeaves: TADODataSet;
+    dstLeaveCredits: TADODataSet;
   private
     { Private declarations }
   public

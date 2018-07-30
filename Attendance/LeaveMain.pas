@@ -57,10 +57,15 @@ type
     RzLabel18: TRzLabel;
     cmbYear: TRzComboBox;
     edEmployee: TRzButtonEdit;
+    lblVacationCredits: TRzLabel;
+    lblVacationAvailed: TRzLabel;
+    lblVacationRemaining: TRzLabel;
+    lblSickCredits: TRzLabel;
+    lblSickAvailed: TRzLabel;
+    lblSickRemaining: TRzLabel;
     RzLabel2: TRzLabel;
     RzLabel3: TRzLabel;
     RzLabel4: TRzLabel;
-    RzLabel5: TRzLabel;
     procedure grCalendar1Exit(Sender: TObject);
     procedure grCalendar1Enter(Sender: TObject);
     procedure grCalendar1DrawCell(Sender: TObject; ACol, ARow: Integer;
@@ -144,7 +149,7 @@ begin
       Font.Style := [];
       Font.Color := clBlack;
 
-      // change colour of cells depending of status
+      // change colour of cells depending on status
       if Assigned(Objects[ACol,ARow]) then
       begin
         LCellDate := (Objects[ACol,ARow] as TCellDate);
@@ -289,6 +294,15 @@ begin
     LGrid := FindComponent('grCalendar' + IntToStr(i)) as TRzStringGrid;
     LGrid.Refresh;
   end;
+
+  // credits
+  lblVacationCredits.Caption := FormatFloat('0.0000',FController.VacationLeaveCredits);
+  lblVacationAvailed.Caption := FormatFloat('0.0000',FController.VacationLeavesAvailed);
+  lblVacationRemaining.Caption := FormatFloat('0.0000',FController.VacationLeavesRemaining);
+
+  lblSickCredits.Caption := FormatFloat('0.0000',FController.SickLeaveCredits);
+  lblSickAvailed.Caption := FormatFloat('0.0000',FController.SickLeavesAvailed);
+  lblSickRemaining.Caption := FormatFloat('0.0000',FController.SickLeavesRemaining);
 end;
 
 end.

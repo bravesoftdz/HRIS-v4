@@ -21,56 +21,145 @@ inherited frmLeaveMain: TfrmLeaveMain
     Height = 14
     Caption = 'Employee'
   end
-  object RzLabel2: TRzLabel [2]
-    Left = 24
-    Top = 416
-    Width = 98
-    Height = 14
-    Caption = 'Leave Credits: 0'
+  object lblVacationCredits: TRzLabel [2]
+    Left = 174
+    Top = 424
+    Width = 60
+    Height = 20
+    Alignment = taCenter
+    AutoSize = False
+    Caption = '-'
+    Color = clMenu
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
+    Font.Color = clBlack
     Font.Height = -12
     Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
+    Font.Style = []
+    ParentColor = False
     ParentFont = False
   end
-  object RzLabel3: TRzLabel [3]
-    Left = 24
-    Top = 448
-    Width = 103
-    Height = 14
-    Caption = 'Leaves availed: 0'
+  object lblVacationAvailed: TRzLabel [3]
+    Left = 175
+    Top = 454
+    Width = 60
+    Height = 20
+    Alignment = taCenter
+    AutoSize = False
+    Caption = '-'
+    Color = clMenu
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
+    Font.Color = clBlack
     Font.Height = -12
     Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
+    Font.Style = []
+    ParentColor = False
     ParentFont = False
   end
-  object RzLabel4: TRzLabel [4]
-    Left = 24
-    Top = 480
-    Width = 111
-    Height = 14
-    Caption = 'Leaves pending: 0'
+  object lblVacationRemaining: TRzLabel [4]
+    Left = 175
+    Top = 484
+    Width = 60
+    Height = 20
+    Alignment = taCenter
+    AutoSize = False
+    Caption = '-'
+    Color = clGreen
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
+    Font.Color = clWhite
     Font.Height = -12
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
+    ParentColor = False
     ParentFont = False
   end
-  object RzLabel5: TRzLabel [5]
-    Left = 24
-    Top = 512
-    Width = 129
-    Height = 14
-    Caption = 'Leaves remaining: 12'
+  object lblSickCredits: TRzLabel [5]
+    Left = 245
+    Top = 424
+    Width = 60
+    Height = 20
+    Alignment = taCenter
+    AutoSize = False
+    Caption = '-'
+    Color = clMenu
     Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGray
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+  end
+  object lblSickAvailed: TRzLabel [6]
+    Left = 246
+    Top = 454
+    Width = 60
+    Height = 20
+    Alignment = taCenter
+    AutoSize = False
+    Caption = '-'
+    Color = clMenu
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+  end
+  object lblSickRemaining: TRzLabel [7]
+    Left = 246
+    Top = 484
+    Width = 60
+    Height = 20
+    Alignment = taCenter
+    AutoSize = False
+    Caption = '-'
+    Color = clRed
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
     Font.Height = -12
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
+  end
+  object RzLabel2: TRzLabel [8]
+    Left = 29
+    Top = 424
+    Width = 73
+    Height = 14
+    Caption = 'Leave Credits'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object RzLabel3: TRzLabel [9]
+    Left = 30
+    Top = 454
+    Width = 77
+    Height = 14
+    Caption = 'Leaves availed'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+  end
+  object RzLabel4: TRzLabel [10]
+    Left = 30
+    Top = 484
+    Width = 93
+    Height = 14
+    Caption = 'Leaves remaining'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
     ParentFont = False
   end
   inherited pnlTitle: TRzPanel
